@@ -80,7 +80,6 @@
             android:text="Regisztráció"
             android:id="@+id/button"
             android:layout_below="@+id/editText4"
-            android:layout_marginTop="10sp"
             android:layout_centerHorizontal="true" />
 
         <Button
@@ -94,6 +93,25 @@
             android:layout_alignLeft="@+id/button"
             android:layout_alignStart="@+id/button"
             android:layout_marginBottom="81dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_alignBottom="@+id/username">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton2" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton" />
+        </RadioGroup>
     </RelativeLayout>
 
 </RelativeLayout>
