@@ -54,12 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:text="felhasznalonev"
+        android:text=""
+        android:maxLength="13"
+        android:minWidth="300sp"
         android:layout_alignTop="@+id/textView"
-        android:layout_alignRight="@+id/radioGroup"
-        android:layout_alignEnd="@+id/radioGroup"
-        android:layout_marginRight="41dp"
-        android:layout_marginEnd="41dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,10 +74,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:text="vezeteknev" />
+        android:maxLength="13"
+        android:text=""
+        android:minWidth="300sp"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,10 +94,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
+        android:maxLength="13"
+        android:minWidth="300sp"
+        android:text=""
         android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:text="keresztnev" />
+        android:layout_alignRight="@+id/radioGroup"
+        android:layout_alignEnd="@+id/radioGroup" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -149,6 +153,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="showAlert"
         android:text="Bejelentkezés"
         android:id="@+id/button2"
         android:layout_alignTop="@+id/textView6"
