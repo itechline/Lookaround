@@ -9,4 +9,5 @@
     <string name= "registration_hu">Regisztráció</string>
     <string name= "individual_hu">Magánszemély</string>
     <string name= "estateagency">Ingatlaniroda</string>
+    <string name= "mail">E-mail</string>
 </resources>

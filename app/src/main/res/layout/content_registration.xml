@@ -72,7 +72,7 @@
             android:layout_below="@+id/keresztnev"
             android:layout_alignLeft="@+id/keresztnev"
             android:layout_alignStart="@+id/keresztnev"
-            android:hint="Email" />
+            android:hint="@string/mail" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
