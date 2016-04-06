@@ -9,6 +9,14 @@
     android:background="#f1f2f3">
     <!--tools:showIn="@layout/activity_main"-->
 
+    <ImageView
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/main_logo"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="50sp"/>
 
 
     <RelativeLayout
@@ -79,22 +87,21 @@
             android:onClick="sendRegistration"
             android:layout_centerHorizontal="true"
 
-            android:layout_marginTop="10sp"
             android:background="#0066cc"
-            android:layout_marginRight="60sp"
-            android:layout_marginLeft="60sp"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_marginLeft="70sp"
+            android:layout_marginRight="70sp"
+            />
 
         <TextView
-            android:layout_below="@id/registButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/acceptingfszf"
             android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
-            android:layout_marginBottom="30sp"
             android:textStyle="italic"
-            />
+            android:layout_marginBottom="25sp"
+            android:layout_below="@+id/registButton" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -103,8 +110,8 @@
             android:gravity="bottom|center_horizontal"
             android:textColor="#0066cc"
             android:textStyle="italic"
-
-            android:layout_marginBottom="10sp"/>
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/registButton" />
 
         <RadioGroup
             android:layout_width="match_parent"
