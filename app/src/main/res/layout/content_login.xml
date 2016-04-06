@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ededed">
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="140sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="90sp"
+        android:background="#ffffff">
 
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
+            android:ems="10"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:hint="@string/username_hu"
-            android:layout_marginTop="110dp" />
+            android:layout_marginTop="40sp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -26,7 +33,7 @@
             android:layout_below="@+id/editText"
             android:layout_centerHorizontal="true"
             android:hint="@string/password_hu"
-            android:layout_marginTop="58dp" />
+            />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -37,18 +44,19 @@
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
             android:onClick="sendLogin"
-            android:layout_marginTop="61dp" />
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="30sp"/>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/reg_pic"
-            android:background="@drawable/main_house"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/reg_house"
-            android:layout_alignParentBottom="true"
-            />
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reg_pic"
+        android:background="@drawable/main_house"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/reg_house"
+        />
 
 
 </LinearLayout>
