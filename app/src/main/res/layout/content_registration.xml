@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lar.com.lookaround.MainActivity"
-    android:background="#ededed">
+    android:background="#f1f2f3">
     <!--tools:showIn="@layout/activity_main"-->
 
 
@@ -99,16 +99,31 @@
                 android:id="@+id/radioButton" />
         </RadioGroup>
     </RelativeLayout>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <TextView
+        android:id="@+id/you_have_existing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showLogin"
-        android:text="@string/button_login_hu"
-        android:id="@+id/button2"
+        android:text="@string/existing_account"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="60sp"
+        android:layout_marginLeft="110sp"
+        android:textColor="#8c9397"
+        android:gravity="left" />
+
+    <TextView
+
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_login_hu"
+        android:layout_alignParentBottom="true"
+        android:onClick="showLogin"
+        android:layout_marginBottom="60sp"
+        android:layout_marginLeft="210sp"
+        android:textColor="#0066cc"
+        android:gravity="right" />
+
+
 
     <ImageView
         android:layout_width="fill_parent"

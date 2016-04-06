@@ -10,5 +10,6 @@
     <string name= "individual_hu">Magánszemély</string>
     <string name= "estateagency">Ingatlaniroda</string>
     <string name= "mail">E-mail</string>
-    <string name="reg_house">main_house_image</string>
+    <string name= "reg_house">main_house_image</string>
+    <string name= "existing_account">Már van fiókja?</string>
 </resources>

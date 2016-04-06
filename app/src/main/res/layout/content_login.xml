@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lar.com.lookaround.MainActivity"
-    android:background="#ededed">
+    android:background="#f1f2f3">
 
     <RelativeLayout
         android:layout_width="fill_parent"
