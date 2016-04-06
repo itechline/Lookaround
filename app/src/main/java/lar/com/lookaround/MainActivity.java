@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstnameEditText;
     private EditText lastnameEditText;
 
-    private RadioGroup radioGroup;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,21 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
-        //radioGroup.clearCheck();
-
-        /* Attach CheckedChangeListener to radio group */
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rb = (RadioButton) group.findViewById(checkedId);
-                if (null != rb && checkedId > -1) {
-                    Toast.makeText(MainActivity.this, rb.getText(), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
 
 
         View login, regist;
