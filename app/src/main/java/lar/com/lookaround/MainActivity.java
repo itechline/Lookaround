@@ -108,6 +108,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void sendRegistration(View view) {
+        //showAlert();
+    }
+
+    public void sendLogin(View view) {
+        showAlert(view);
+    }
+
     public void switchLayoutTo(int switchTo){
         while(mCurrentLayoutState != switchTo){
             if(mCurrentLayoutState > switchTo){
@@ -121,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 viewFlip.setOutAnimation(outToLeftAnimation());
                 viewFlip.setDisplayedChild(switchTo);
             }
-
         };
     }
 

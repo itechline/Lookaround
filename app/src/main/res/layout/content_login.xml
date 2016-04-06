@@ -36,7 +36,7 @@
             android:id="@+id/button3"
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
-            android:onClick="showLogin"
+            android:onClick="sendLogin"
             android:layout_marginTop="61dp" />
     </RelativeLayout>
 </LinearLayout>

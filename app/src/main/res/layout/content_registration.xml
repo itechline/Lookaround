@@ -10,8 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lar.com.lookaround.MainActivity"
-    android:background="#ededed"
-    >
+    android:background="#ededed">
+    <!--tools:showIn="@layout/activity_main"-->
 
 
 
@@ -25,8 +25,7 @@
         android:paddingRight="15sp"
         android:paddingLeft="15sp"
         android:paddingTop="15sp"
-        android:background="#ffffff"
-        android:id="@+id/relativeLayout">
+        android:background="#ffffff">
 
 
         <EditText
@@ -83,6 +82,7 @@
             android:text="@string/registration_hu"
             android:id="@+id/button"
             android:layout_below="@+id/editText4"
+            android:onClick="sendRegistration"
             android:layout_centerHorizontal="true" />
 
         <RadioGroup
@@ -115,14 +115,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="480sp"
-        android:id="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/main_house"
-        android:layout_alignParentBottom="true"
-        />
+    <!--lofaszka-->
 
 </RelativeLayout>
