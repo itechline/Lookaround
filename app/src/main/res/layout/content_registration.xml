@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/mail"
             android:inputType="textEmailAddress"
-            android:maxLength="13"
             android:minWidth="300sp"
             android:singleLine="true"
             android:text=""

@@ -1,5 +1,4 @@
 package lar.com.lookaround;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,11 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 //showAlert(view);
             }
         });
-
-        emailEditText = (EditText) findViewById(R.id.mail);
-        passEditText = (EditText) findViewById(R.id.passw);
-        firstnameEditText = (EditText) findViewById(R.id.keresztNev);
-        lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
 
 
         View login, regist;
@@ -123,21 +117,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendRegistration(View view) {
-       /* final String email = emailEditText.getText().toString();
-        if (!isValidEmail(email)) {
-            emailEditText.setError("Invalid Email");
-        }
-
-        final String pass = passEditText.getText().toString();
-        if (!isValidPassword(pass)) {
-            passEditText.setError("Invalid Password");
-        }*/
-        //showAlert();
+        emailEditText = (EditText) findViewById(R.id.mail);
+        passEditText = (EditText) findViewById(R.id.passw);
         firstnameEditText = (EditText) findViewById(R.id.keresztNev);
         lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
 
         String firstName = firstnameEditText.getText().toString();
         String lastName = lastnameEditText.getText().toString();
+        String passw = passEditText.getText().toString();
+        String email = emailEditText.getText().toString();
 
         if(!isValidFirstName(firstName)) {
             firstnameEditText.setError("Hibás név!");
@@ -145,6 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(!isValidLastName(lastName)) {
             lastnameEditText.setError(("Hibás név!"));
+        }
+
+        if (!isValidPassword(passw)) {
+            passEditText.setError("Hibás jelszó!");
+        }
+
+        if (!isValidEmail(email)) {
+            emailEditText.setError("ASDF");
         }
 
     }
