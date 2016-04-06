@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int REGISTRATION = 0;
     private static final int LOGIN = 1;
 
+    private EditText emailEditText;
+    private EditText passEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText abc = (EditText)findViewById(R.id.username);
+                        EditText abc = (EditText)findViewById(R.id.keresztNev);
                         abc.getText().toString();
                         Log.d("DEBUG: ", abc.getText().toString());
                         dialog.dismiss();
