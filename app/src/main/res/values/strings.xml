@@ -6,12 +6,12 @@
     <string name= "password_hu">Jelszó</string>
     <string name= "lastname_hu">Vezetéknév</string>
     <string name= "firstname_hu">Keresztnév</string>
-    <string name= "registration_hu">Regisztráció</string>
+    <string name= "registration_hu"> Regisztráció </string>
     <string name= "individual_hu">Magánszemély</string>
     <string name= "estateagency">Ingatlaniroda</string>
     <string name= "mail">E-mail</string>
     <string name= "reg_house">main_house_image</string>
     <string name= "existing_account">Már van fiókja?</string>
-    <string name= "acceptingfszf">A 'REGISZTRÁCIÓ' gomb megnyomásávával elfogadja a</string>
+    <string name= "acceptingfszf">A REGISZTRÁCIÓ gomb megnyomásávával elfogadja a</string>
     <string name= "fszf">Felhasználási Feltételeket</string>
 </resources>

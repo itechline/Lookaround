@@ -71,14 +71,18 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registration_hu"
             android:id="@+id/registButton"
             android:layout_below="@+id/passw"
             android:onClick="sendRegistration"
             android:layout_centerHorizontal="true"
-            android:background="#0066cc"/>
+
+            android:background="#0066cc"
+            android:layout_marginRight="60sp"
+            android:layout_marginLeft="60sp"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -88,7 +92,7 @@
             android:gravity="bottom|center_horizontal"
             android:layout_marginBottom="20sp"
             android:textStyle="italic"
-            android:textSize="7pt"/>
+            android:textSize="8pt"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,7 +101,7 @@
             android:gravity="bottom|center_horizontal"
             android:textColor="#0066cc"
             android:textStyle="italic"
-            android:textSize="6pt"
+            android:textSize="7pt"
             android:layout_marginBottom="5sp"/>
 
         <RadioGroup
