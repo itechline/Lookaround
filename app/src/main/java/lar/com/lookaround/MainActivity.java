@@ -13,11 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ViewFlipper;
+import android.view.LayoutInflater;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip;
-
+    private int mCurrentLayoutState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 //showAlert(view);
             }
         });
-
-        viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
     }
 
     @Override
@@ -86,7 +85,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLogin(View view) {
-        setContentView(R.layout.content_login);
+        //setContentView(R.layout.content_login);
+        //viewFlip.addView();
 
     }
+
+    /**
+     * Switches the layout to the given constant ID as a parameter
+     * @param switchTo (should be 0 or a positive number)
+     */
+    public void switchLayoutStateTo(int switchTo){
+        while(mCurrentLayoutState != switchTo){
+            if(mCurrentLayoutState > switchTo){
+                mCurrentLayoutState--;
+                //viewFlip.setInAnimation(inFromLeftAnimation());
+                //viewFlip.setOutAnimation(outToRightAnimation());
+                viewFlip.showPrevious();
+            } else {
+                mCurrentLayoutState++;
+                //viewFlip.setInAnimation(inFromRightAnimation());
+               // viewFlip.setOutAnimation(outToLeftAnimation());
+                viewFlip.showNext();
+            }
+
+        };
+    }
+
+
 }
