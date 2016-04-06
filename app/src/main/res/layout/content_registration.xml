@@ -99,30 +99,6 @@
                 android:id="@+id/radioButton" />
         </RadioGroup>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/you_have_existing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/existing_account"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60sp"
-        android:layout_marginLeft="110sp"
-        android:textColor="#8c9397"
-        android:gravity="left" />
-
-    <TextView
-
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_login_hu"
-        android:layout_alignParentBottom="true"
-        android:onClick="showLogin"
-        android:layout_marginBottom="60sp"
-        android:layout_marginLeft="210sp"
-        android:textColor="#0066cc"
-        android:gravity="right" />
-
 
 
     <ImageView
@@ -136,8 +112,34 @@
         android:contentDescription="@string/reg_house"
         android:scaleType="fitXY"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:id="@+id/you_have_existing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/existing_account"
+            android:layout_weight="2"
+            android:textColor="#8c9397"
+            android:layout_marginBottom="60sp"
+            />
+        <TextView
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login_hu"
+            android:layout_weight="2"
+            android:onClick="showLogin"
+            android:textColor="#0066cc"
+            android:layout_marginBottom="60sp"
 
-
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>
