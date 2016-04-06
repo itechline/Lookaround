@@ -10,18 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lar.com.lookaround.MainActivity"
-    android:background="#ededed">
-    <!--tools:showIn="@layout/activity_main"-->
+    android:background="#ededed"
+    tools:showIn="@layout/activity_main">
 
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50sp"
-        android:layout_marginBottom="50sp"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
+        android:layout_marginTop="140sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="90sp"
         android:paddingRight="15sp"
         android:paddingLeft="15sp"
         android:paddingTop="15sp"
@@ -84,18 +84,6 @@
             android:layout_below="@+id/editText4"
             android:layout_centerHorizontal="true" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showLogin"
-            android:text="@string/button_login_hu"
-            android:id="@+id/button2"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/button"
-            android:layout_alignStart="@+id/button"
-            android:layout_marginBottom="81dp" />
-
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -115,5 +103,15 @@
                 android:id="@+id/radioButton" />
         </RadioGroup>
     </RelativeLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showLogin"
+        android:text="@string/button_login_hu"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
