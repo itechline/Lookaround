@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
 
         <EditText
@@ -38,5 +38,17 @@
             android:layout_centerHorizontal="true"
             android:onClick="sendLogin"
             android:layout_marginTop="61dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg_pic"
+            android:background="@drawable/main_house"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/reg_house"
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
+
+
 </LinearLayout>

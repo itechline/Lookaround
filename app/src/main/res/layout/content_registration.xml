@@ -112,14 +112,17 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="false"
+        android:id="@+id/reg_pic"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/main_house"
-        android:layout_marginTop="510sp" />
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/reg_house"
+        android:scaleType="fitXY"/>
+
+
 
 
 
