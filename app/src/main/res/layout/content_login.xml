@@ -21,11 +21,12 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/mailLogin"
+            android:inputType="textEmailAddress"
             android:ems="10"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:hint="@string/username_hu"
+            android:hint="@string/mail"
             android:layout_marginTop="40sp" />
 
         <EditText
@@ -33,8 +34,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_below="@+id/editText"
+            android:id="@+id/passwLogin"
+            android:layout_below="@+id/mailLogin"
             android:layout_centerHorizontal="true"
             android:hint="@string/password_hu"
             />
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_login_hu"
             android:id="@+id/button3"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/passwLogin"
             android:layout_centerHorizontal="true"
             android:onClick="sendLogin"
             android:layout_marginTop="30sp"
