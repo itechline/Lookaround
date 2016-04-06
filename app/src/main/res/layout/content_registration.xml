@@ -79,6 +79,21 @@
             android:onClick="sendRegistration"
             android:layout_centerHorizontal="true" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/acceptingfszf"
+            android:layout_alignParentEnd="false"
+            android:gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/fszf"
+            android:layout_alignParentEnd="false"
+            android:gravity="bottom|center_horizontal"
+            android:textColor="#0066cc"/>
+
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -89,14 +104,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/individual_hu"
-                android:onClick="setIndividual"
+
                 android:checked="true"
                 android:id="@+id/radioButton2" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="setEstateagency"
+
                 android:text="@string/estateagency"
                 android:id="@+id/radioButton" />
         </RadioGroup>

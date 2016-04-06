@@ -12,4 +12,6 @@
     <string name= "mail">E-mail</string>
     <string name= "reg_house">main_house_image</string>
     <string name= "existing_account">Már van fiókja?</string>
+    <string name= "acceptingfszf">A "REGISZTRÁLOK" gomb megnyomásávával elfogadja a</string>
+    <string name= "fszf">Felhasználási Feltételeket</string>
 </resources>
