@@ -77,7 +77,8 @@
             android:id="@+id/registButton"
             android:layout_below="@+id/passw"
             android:onClick="sendRegistration"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="#0066cc"/>
 
         <TextView
             android:layout_width="match_parent"
