@@ -119,7 +119,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/main_house"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="480sp" />
+        android:layout_marginTop="510sp" />
 
 
 
