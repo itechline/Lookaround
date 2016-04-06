@@ -85,14 +85,19 @@
             android:text="@string/acceptingfszf"
             android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
-            android:layout_marginBottom="20sp" />
+            android:layout_marginBottom="20sp"
+            android:textStyle="italic"
+            android:textSize="7pt"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/fszf"
             android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
-            android:textColor="#0066cc"/>
+            android:textColor="#0066cc"
+            android:textStyle="italic"
+            android:textSize="6pt"
+            android:layout_marginBottom="5sp"/>
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -144,7 +149,7 @@
             android:layout_weight="2"
             android:textColor="#8c9397"
             android:layout_marginBottom="60sp"
-            />
+            android:textStyle="italic"/>
         <TextView
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
@@ -154,7 +159,7 @@
             android:onClick="showLogin"
             android:textColor="#0066cc"
             android:layout_marginBottom="60sp"
-
+            android:textStyle="italic"
             />
     </LinearLayout>
 
