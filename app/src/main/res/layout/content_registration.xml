@@ -27,49 +27,48 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/username"
+            android:id="@+id/vezetekNev"
             android:maxLength="13"
             android:minWidth="300sp"
             android:singleLine="true"
-            android:layout_alignParentRight="true"
-            android:hint="@string/username_hu"
-            android:layout_alignParentEnd="true"
+            android:hint="@string/lastname_hu"
             android:paddingTop="50sp"
             />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/vezeteknev"
+            android:id="@+id/keresztNev"
             android:maxLength="13"
-            android:text=""
             android:minWidth="300sp"
             android:singleLine="true"
             android:hint="@string/firstname_hu"
-            android:layout_below="@+id/username"
-            android:layout_alignLeft="@+id/username"
-            android:layout_alignStart="@+id/username" />
+            android:layout_below="@+id/vezetekNev" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/keresztnev"
+            android:id="@+id/mail"
+            android:inputType="textEmailAddress"
             android:maxLength="13"
             android:minWidth="300sp"
+            android:singleLine="true"
             android:text=""
-            android:hint="@string/lastname_hu"
-            android:layout_below="@+id/vezeteknev" />
+            android:hint="@string/mail"
+            android:layout_below="@+id/keresztNev" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText4"
-            android:layout_below="@+id/keresztnev"
-            android:layout_alignLeft="@+id/keresztnev"
-            android:layout_alignStart="@+id/keresztnev"
-            android:hint="@string/mail" />
+            android:id="@+id/passw"
+            android:minWidth="300sp"
+            android:singleLine="true"
+            android:layout_below="@+id/mail"
+            android:layout_alignLeft="@+id/mail"
+            android:layout_alignStart="@+id/mail"
+            android:hint="@string/password_hu" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -77,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="@string/registration_hu"
             android:id="@+id/button"
-            android:layout_below="@+id/editText4"
+            android:layout_below="@+id/passw"
             android:onClick="sendRegistration"
             android:layout_centerHorizontal="true" />
 
@@ -85,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_alignBottom="@+id/username">
+            android:layout_alignBottom="@+id/vezetekNev">
 
             <RadioButton
                 android:layout_width="wrap_content"
