@@ -116,6 +116,12 @@ public class MainActivity extends AppCompatActivity {
         showAlert(view);
     }
 
+    @Override
+    public void onBackPressed() {
+        // your code.
+        switchLayoutTo(REGISTRATION);
+    }
+
     public void switchLayoutTo(int switchTo){
         while(mCurrentLayoutState != switchTo){
             if(mCurrentLayoutState > switchTo){

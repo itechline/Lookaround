@@ -91,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/individual_hu"
+                android:checked="true"
                 android:id="@+id/radioButton2" />
 
             <RadioButton
@@ -117,8 +118,8 @@
         android:id="@+id/imageView"
         android:layout_alignParentTop="false"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/main_house"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/main_house"
         android:layout_marginTop="510sp" />
 
 
