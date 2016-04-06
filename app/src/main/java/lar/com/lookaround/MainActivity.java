@@ -1,6 +1,7 @@
 package lar.com.lookaround;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
@@ -19,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip;
     private int mCurrentLayoutState;
+
+    private static final int REGISTRATION = 0;
+    private static final int LOGIN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 //showAlert(view);
             }
         });
+
+        View login, regist;
+        LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        login = inflater.inflate(R.layout.content_login, null);
+        regist = inflater.inflate(R.layout.content_registration, null);
+
+        viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
+        viewFlip.addView(regist, REGISTRATION);
+        viewFlip.addView(login, LOGIN);
     }
 
     @Override
@@ -69,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         EditText abc = (EditText)findViewById(R.id.username);
                         abc.getText().toString();
                         Log.d("DEBUG: ", abc.getText().toString());
-                       // dialog.dismiss();
+                        dialog.dismiss();
                     }
                 })
                 /*.setNegativeButton("Mégse", new DialogInterface.OnClickListener() {
@@ -87,29 +103,70 @@ public class MainActivity extends AppCompatActivity {
     public void showLogin(View view) {
         //setContentView(R.layout.content_login);
         //viewFlip.addView();
+        //viewFlip.setDisplayedChild(LOGIN);
+        switchLayoutTo(LOGIN);
 
     }
 
-    /**
-     * Switches the layout to the given constant ID as a parameter
-     * @param switchTo (should be 0 or a positive number)
-     */
-    public void switchLayoutStateTo(int switchTo){
+    public void switchLayoutTo(int switchTo){
         while(mCurrentLayoutState != switchTo){
             if(mCurrentLayoutState > switchTo){
                 mCurrentLayoutState--;
-                //viewFlip.setInAnimation(inFromLeftAnimation());
-                //viewFlip.setOutAnimation(outToRightAnimation());
-                viewFlip.showPrevious();
+                viewFlip.setInAnimation(inFromLeftAnimation());
+                viewFlip.setOutAnimation(outToRightAnimation());
+                viewFlip.setDisplayedChild(switchTo);
             } else {
                 mCurrentLayoutState++;
-                //viewFlip.setInAnimation(inFromRightAnimation());
-               // viewFlip.setOutAnimation(outToLeftAnimation());
-                viewFlip.showNext();
+                viewFlip.setInAnimation(inFromRightAnimation());
+                viewFlip.setOutAnimation(outToLeftAnimation());
+                viewFlip.setDisplayedChild(switchTo);
             }
 
         };
     }
 
+    protected Animation inFromRightAnimation() {
 
+        Animation inFromRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromRight.setDuration(300);
+        inFromRight.setInterpolator(new AccelerateInterpolator());
+        return inFromRight;
+    }
+
+    protected Animation outToLeftAnimation() {
+        Animation outtoLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoLeft.setDuration(300);
+        outtoLeft.setInterpolator(new AccelerateInterpolator());
+        return outtoLeft;
+    }
+
+    protected Animation inFromLeftAnimation() {
+        Animation inFromLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromLeft.setDuration(300);
+        inFromLeft.setInterpolator(new AccelerateInterpolator());
+        return inFromLeft;
+    }
+
+    protected Animation outToRightAnimation() {
+        Animation outtoRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoRight.setDuration(300);
+        outtoRight.setInterpolator(new AccelerateInterpolator());
+        return outtoRight;
+    }
 }
