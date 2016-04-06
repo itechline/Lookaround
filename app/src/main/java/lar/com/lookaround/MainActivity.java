@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passEditText;
+    private EditText firstnameEditText;
+    private EditText lastnameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 //showAlert(view);
             }
         });
+
+        emailEditText = (EditText) findViewById(R.id.mail);
+        passEditText = (EditText) findViewById(R.id.passw);
+        firstnameEditText = (EditText) findViewById(R.id.keresztNev);
+        lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
+
 
         View login, regist;
         LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -112,8 +123,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendRegistration(View view) {
+       /* final String email = emailEditText.getText().toString();
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid Email");
+        }
+
+        final String pass = passEditText.getText().toString();
+        if (!isValidPassword(pass)) {
+            passEditText.setError("Invalid Password");
+        }*/
         //showAlert();
+        firstnameEditText = (EditText) findViewById(R.id.keresztNev);
+        lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
+
+        String firstName = firstnameEditText.getText().toString();
+        String lastName = lastnameEditText.getText().toString();
+
+        if(!isValidFirstName(firstName)) {
+            firstnameEditText.setError("Hibás név!");
+        }
+
+        if(!isValidLastName(lastName)) {
+            lastnameEditText.setError(("Hibás név!"));
+        }
+
     }
+
+
 
     public void sendLogin(View view) {
         showAlert(view);
@@ -123,6 +159,40 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         // your code.
         switchLayoutTo(REGISTRATION);
+    }
+
+    private  boolean isValidFirstName(String name) {
+        if(name.length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean isValidLastName(String name){
+        if(name.length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // validating email id
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // validating password with retype password
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() > 6) {
+            return true;
+        }
+        return false;
     }
 
     public void switchLayoutTo(int switchTo){
