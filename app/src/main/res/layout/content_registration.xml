@@ -122,6 +122,6 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/main_house"
         android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/button2" />
+        />
 
 </RelativeLayout>
