@@ -12,8 +12,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity {
+
+    ViewFlipper viewFlip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 //showAlert(view);
             }
         });
+
+        viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
     }
 
     @Override
