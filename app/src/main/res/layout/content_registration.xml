@@ -142,7 +142,7 @@
         android:layout_height="60sp"
         android:id="@+id/reg_pic"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/main_house"
+        android:src="@drawable/main_house"
         android:adjustViewBounds="true"
         android:layout_alignParentBottom="true"
         android:contentDescription="@string/reg_house"

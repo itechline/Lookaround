@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:id="@+id/reg_pic"
-        android:background="@drawable/main_house"
+        android:src="@drawable/main_house"
         android:adjustViewBounds="true"
         android:contentDescription="@string/reg_house"
         android:layout_alignParentBottom="true"
