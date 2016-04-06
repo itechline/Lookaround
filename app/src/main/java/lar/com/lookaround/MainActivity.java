@@ -2,7 +2,6 @@ package lar.com.lookaround;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,5 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("HIBA")
                 .create();
         myAlert.show();
+    }
+
+    public void showLogin(View view) {
+        setContentView(R.layout.content_login);
+
     }
 }

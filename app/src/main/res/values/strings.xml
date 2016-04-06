@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Lookaround</string>
     <string name="action_settings">Settings</string>
+    <string name= "button_login_hu">Bejelentkezés</string>
+    <string name= "username_hu">Felhasználónév</string>
+    <string name= "password_hu">Jelszó</string>
+    <string name= "lastname_hu">Vezetéknév</string>
+    <string name= "firstname_hu">Keresztnév</string>
+    <string name= "registration_hu">Regisztráció</string>
+    <string name= "individual_hu">Magánszemély</string>
+    <string name= "estateagency">Ingatlaniroda</string>
 </resources>

@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lar.com.lookaround.MainActivity"
     android:background="#ededed"
     tools:showIn="@layout/activity_main">
 
@@ -34,7 +35,7 @@
             android:minWidth="300sp"
             android:singleLine="true"
             android:layout_alignParentRight="true"
-            android:hint="Felhasználónév"
+            android:hint="@string/username_hu"
             android:layout_alignParentEnd="true"
             android:paddingTop="50sp"
             />
@@ -47,7 +48,7 @@
             android:text=""
             android:minWidth="300sp"
             android:singleLine="true"
-            android:hint="Vezetéknév"
+            android:hint="@string/firstname_hu"
             android:layout_below="@+id/username"
             android:layout_alignLeft="@+id/username"
             android:layout_alignStart="@+id/username" />
@@ -59,7 +60,7 @@
             android:maxLength="13"
             android:minWidth="300sp"
             android:text=""
-            android:hint="Keresztnév"
+            android:hint="@string/lastname_hu"
             android:layout_below="@+id/vezeteknev" />
 
         <EditText
@@ -77,7 +78,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regisztráció"
+            android:text="@string/registration_hu"
             android:id="@+id/button"
             android:layout_below="@+id/editText4"
             android:layout_centerHorizontal="true" />
@@ -86,8 +87,8 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="showAlert"
-            android:text="Bejelentkezés"
+            android:onClick="showLogin"
+            android:text="@string/button_login_hu"
             android:id="@+id/button2"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/button"
@@ -103,13 +104,13 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton"
+                android:text="@string/individual_hu"
                 android:id="@+id/radioButton2" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton"
+                android:text="@string/estateagency"
                 android:id="@+id/radioButton" />
         </RadioGroup>
     </RelativeLayout>
