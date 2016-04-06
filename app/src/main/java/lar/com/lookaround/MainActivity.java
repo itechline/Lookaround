@@ -15,6 +15,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
 
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstnameEditText;
     private EditText lastnameEditText;
 
+    private RadioGroup radioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 //showAlert(view);
+            }
+        });
+
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
+        //radioGroup.clearCheck();
+
+        /* Attach CheckedChangeListener to radio group */
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) group.findViewById(checkedId);
+                if (null != rb && checkedId > -1) {
+                    Toast.makeText(MainActivity.this, rb.getText(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -142,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
         if (!isValidEmail(email)) {
             emailEditText.setError("Hibás Email");
         }
+        emailEditText.invalidate();
+        passEditText.invalidate();
+        firstnameEditText.invalidate();
+        lastnameEditText.invalidate();
 
     }
 
