@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!isValidEmail(email)) {
-            emailEditText.setError("ASDF");
+            emailEditText.setError("Hibás Email");
         }
 
     }
@@ -148,7 +148,34 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void sendLogin(View view) {
-        showAlert(view);
+        emailEditText = (EditText) findViewById(R.id.mailLogin);
+        passEditText = (EditText) findViewById(R.id.passwLogin);
+        boolean isAbleToJoin = true;
+
+        String passw = passEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+
+        if (!isValidPassword(passw)) {
+            passEditText.setError("Hibás jelszó!");
+            isAbleToJoin = false;
+        }
+
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Hibás Email");
+            isAbleToJoin = false;
+        }
+
+        if(!isAbleToJoin) {
+            showAlert(view);
+        }
+    }
+
+    public void setIndividual() {
+
+    }
+
+    public void setEstateagency() {
+
     }
 
     @Override
@@ -185,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
     // validating password with retype password
     private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 6) {
+        if (pass != null && pass.length() >= 6) {
             return true;
         }
         return false;
