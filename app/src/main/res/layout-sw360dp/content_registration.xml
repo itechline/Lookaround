@@ -119,9 +119,9 @@
                 android:id="@+id/passw2"
                 android:minWidth="300sp"
                 android:singleLine="true"
-                android:layout_below="@+id/mail"
-                android:layout_alignLeft="@+id/mail"
-                android:layout_alignStart="@+id/mail"
+                android:layout_below="@+id/mail2"
+                android:layout_alignLeft="@+id/mail2"
+                android:layout_alignStart="@+id/mail2"
                 android:hint="@string/password_hu" />
         </RelativeLayout>
 

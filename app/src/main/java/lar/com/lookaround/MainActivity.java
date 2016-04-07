@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstnameEditText;
     private EditText lastnameEditText;
 
+    private EditText emailCompanyEditText;
+    private EditText passCompanyEditText;
+    private EditText companyNameEditText;
+    boolean isCompany = false;
+
     //private RadioGroup radioGroup;
     //private RadioButton individual, estateagency;
     LayoutInflater inflater;
@@ -56,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                //showAlert(view);
             }
         });
 
@@ -144,34 +148,61 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendRegistration(View view) {
-        emailEditText = (EditText) findViewById(R.id.mail);
-        passEditText = (EditText) findViewById(R.id.passw);
-        firstnameEditText = (EditText) findViewById(R.id.keresztNev);
-        lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
+        if (!isCompany) {
+            emailEditText = (EditText) findViewById(R.id.mail);
+            passEditText = (EditText) findViewById(R.id.passw);
+            firstnameEditText = (EditText) findViewById(R.id.keresztNev);
+            lastnameEditText = (EditText) findViewById(R.id.vezetekNev);
 
-        String firstName = firstnameEditText.getText().toString();
-        String lastName = lastnameEditText.getText().toString();
-        String passw = passEditText.getText().toString();
-        String email = emailEditText.getText().toString();
+            String firstName = firstnameEditText.getText().toString();
+            String lastName = lastnameEditText.getText().toString();
+            String passw = passEditText.getText().toString();
+            String email = emailEditText.getText().toString();
 
-        if(!isValidFirstName(firstName)) {
-            firstnameEditText.setError("Hibás név!");
-            firstnameEditText.invalidate();
-        }
+            if (!isValidName(firstName)) {
+                firstnameEditText.setError("Hibás név!");
+                firstnameEditText.invalidate();
+            }
 
-        if(!isValidLastName(lastName)) {
-            lastnameEditText.setError(("Hibás név!"));
-            lastnameEditText.invalidate();
-        }
+            if (!isValidName(lastName)) {
+                lastnameEditText.setError(("Hibás név!"));
+                lastnameEditText.invalidate();
+            }
 
-        if (!isValidPassword(passw)) {
-            passEditText.setError("Hibás jelszó!");
-            passEditText.invalidate();
-        }
+            if (!isValidPassword(passw)) {
+                passEditText.setError("Hibás jelszó!");
+                passEditText.invalidate();
+            }
 
-        if (!isValidEmail(email)) {
-            emailEditText.setError("Hibás Email");
-            emailEditText.invalidate();
+            if (!isValidEmail(email)) {
+                emailEditText.setError("Hibás Email");
+                emailEditText.invalidate();
+            }
+        } else {
+            emailCompanyEditText = (EditText) findViewById(R.id.mail2);
+            passCompanyEditText = (EditText) findViewById(R.id.passw2);
+            companyNameEditText = (EditText) findViewById(R.id.entry_company);
+
+            String passwCompany = passCompanyEditText.getText().toString();
+            String emailCompany = emailCompanyEditText.getText().toString();
+            String companyName = companyNameEditText.getText().toString();
+
+            if(!isValidName(companyName)) {
+                companyNameEditText.setError("Hibás Cégnév!");
+                companyNameEditText.invalidate();
+            }
+
+            if (!isValidPassword(passwCompany)) {
+                passCompanyEditText.setError("Hibás jelszó!");
+                passCompanyEditText.invalidate();
+            }
+
+            if (!isValidEmail(emailCompany)) {
+                emailCompanyEditText.setError("Hibás Email");
+                emailCompanyEditText.invalidate();
+            }
+
+
         }
     }
 
@@ -201,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setIndividual(View view) {
+        isCompany = false;
         RelativeLayout layone = (RelativeLayout) findViewById(R.id.relative_individual);
         layone.setVisibility(View.VISIBLE);
         RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relative_agency);
@@ -208,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setEstateagency(View view) {
-        //view = inflater.inflate(R.layout.content_registration, container, false);
+        isCompany = true;
         RelativeLayout layone= (RelativeLayout) findViewById(R.id.relative_individual);
         layone.setVisibility(View.INVISIBLE);
         RelativeLayout laytwo= (RelativeLayout) findViewById(R.id.relative_agency);
@@ -221,15 +253,7 @@ public class MainActivity extends AppCompatActivity {
         switchLayoutTo(REGISTRATION);
     }
 
-    private  boolean isValidFirstName(String name) {
-        if(name.length() == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private boolean isValidLastName(String name){
+    private  boolean isValidName(String name) {
         if(name.length() == 0) {
             return false;
         } else {
