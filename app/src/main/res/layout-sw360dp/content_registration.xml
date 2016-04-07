@@ -36,7 +36,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -85,21 +86,28 @@
         </RelativeLayout>
 
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registration_hu"
-            android:id="@+id/registButton"
-            android:onClick="sendRegistration"
-            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/fszf_text"
+            android:layout_below="@+id/relativeLayout">
 
-            android:background="#0066cc"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="70sp"
-            android:layout_marginRight="70sp"
-            android:layout_alignParentTop="false"
-            android:layout_above="@+id/fszf_text" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/registration_hu"
+                android:id="@+id/registButton"
+                android:onClick="sendRegistration"
+                android:layout_centerHorizontal="true"
+
+                android:background="#0066cc"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="70sp"
+                android:layout_marginRight="70sp"
+                android:layout_above="@+id/fszf_text"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/fszf_text"
