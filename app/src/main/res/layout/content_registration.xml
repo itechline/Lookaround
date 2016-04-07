@@ -32,50 +32,56 @@
         android:background="#ffffff">
 
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vezetekNev"
-            android:maxLength="13"
-            android:minWidth="300sp"
-            android:singleLine="true"
-            android:hint="@string/lastname_hu"
-            android:paddingTop="50sp"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/keresztNev"
-            android:maxLength="13"
-            android:minWidth="300sp"
-            android:singleLine="true"
-            android:hint="@string/firstname_hu"
-            android:layout_below="@+id/vezetekNev" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vezetekNev"
+                android:maxLength="13"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:hint="@string/lastname_hu"
+                android:paddingTop="50sp"
+                />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mail"
-            android:inputType="textEmailAddress"
-            android:minWidth="300sp"
-            android:singleLine="true"
-            android:text=""
-            android:hint="@string/mail"
-            android:layout_below="@+id/keresztNev" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/keresztNev"
+                android:maxLength="13"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:hint="@string/firstname_hu"
+                android:layout_below="@+id/vezetekNev" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/passw"
-            android:minWidth="300sp"
-            android:singleLine="true"
-            android:layout_below="@+id/mail"
-            android:layout_alignLeft="@+id/mail"
-            android:layout_alignStart="@+id/mail"
-            android:hint="@string/password_hu" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mail"
+                android:inputType="textEmailAddress"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:text=""
+                android:hint="@string/mail"
+                android:layout_below="@+id/keresztNev" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/passw"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:layout_below="@+id/mail"
+                android:layout_alignLeft="@+id/mail"
+                android:layout_alignStart="@+id/mail"
+                android:hint="@string/password_hu" />
+        </RelativeLayout>
+
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -83,7 +89,6 @@
             android:layout_height="wrap_content"
             android:text="@string/registration_hu"
             android:id="@+id/registButton"
-            android:layout_below="@+id/passw"
             android:onClick="sendRegistration"
             android:layout_centerHorizontal="true"
 
@@ -91,34 +96,38 @@
             android:textColor="#ffffff"
             android:layout_marginLeft="70sp"
             android:layout_marginRight="70sp"
-            />
+            android:layout_alignParentTop="false"
+            android:layout_above="@+id/fszf_text" />
 
         <TextView
+            android:id="@+id/fszf_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/acceptingfszf"
             android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
             android:textStyle="italic"
-            android:layout_marginBottom="25sp"
-            android:layout_below="@+id/registButton" />
+            android:layout_marginBottom="0dp"
+            android:layout_above="@+id/fszf_btn_text" />
         <TextView
+            android:id="@+id/fszf_btn_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/fszf"
             android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
             android:textColor="#0066cc"
             android:textStyle="italic"
             android:layout_marginBottom="10sp"
-            android:layout_below="@+id/registButton" />
+            android:layout_alignParentBottom="true" />
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/radioGroup1"
             android:orientation="horizontal"
-            android:layout_alignBottom="@+id/vezetekNev">
+            android:layout_alignParentTop="true"
+            >
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -135,6 +144,7 @@
                 android:id="@+id/radioButton"
                 android:buttonTint="#0066cc"/>
        </RadioGroup>
+
     </RelativeLayout>
 
 
