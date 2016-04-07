@@ -2,6 +2,7 @@ package lar.com.lookaround;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -133,24 +134,23 @@ public class MainActivity extends AppCompatActivity {
 
         if(!isValidFirstName(firstName)) {
             firstnameEditText.setError("Hibás név!");
+            firstnameEditText.invalidate();
         }
 
         if(!isValidLastName(lastName)) {
             lastnameEditText.setError(("Hibás név!"));
+            lastnameEditText.invalidate();
         }
 
         if (!isValidPassword(passw)) {
             passEditText.setError("Hibás jelszó!");
+            passEditText.invalidate();
         }
 
         if (!isValidEmail(email)) {
             emailEditText.setError("Hibás Email");
+            emailEditText.invalidate();
         }
-        emailEditText.invalidate();
-        passEditText.invalidate();
-        firstnameEditText.invalidate();
-        lastnameEditText.invalidate();
-
     }
 
 
@@ -178,12 +178,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setIndividual() {
+    public void setIndividual(View view) {
 
     }
 
-    public void setEstateagency() {
-
+    public void setEstateagency(View view) {
+        startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
     }
 
     @Override
