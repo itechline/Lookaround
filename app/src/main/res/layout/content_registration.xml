@@ -36,7 +36,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relative_individual">
+            android:id="@+id/relative_individual"
+            android:visibility="visible">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -87,7 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relative_agency"
-            android:layout_below="@+id/radioGroup1">
+            android:layout_below="@+id/radioGroup1"
+            android:visibility="invisible">
 
             <EditText
                 android:layout_width="wrap_content"

@@ -18,6 +18,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
@@ -38,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstnameEditText;
     private EditText lastnameEditText;
 
-    private RadioGroup radioGroup;
-    private RadioButton individual, estateagency;
-
+    //private RadioGroup radioGroup;
+    //private RadioButton individual, estateagency;
+    LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         View login, regist;
-        LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         login = inflater.inflate(R.layout.content_login, null);
         regist = inflater.inflate(R.layout.content_registration, null);
 
@@ -70,12 +71,14 @@ public class MainActivity extends AppCompatActivity {
         viewFlip.addView(regist, REGISTRATION);
         viewFlip.addView(login, LOGIN);
 
-
+        RelativeLayout layone = (RelativeLayout) findViewById(R.id.relative_individual);
+        layone.setVisibility(View.VISIBLE);
+        RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relative_agency);
+        laytwo.setVisibility(View.INVISIBLE);
     }
 
     public void openBlankPage(View view) {
         startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
-        //showAlert(view);
     }
 
     /*public void loadRegistration() {
@@ -209,11 +212,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setIndividual(View view) {
-
+        RelativeLayout layone = (RelativeLayout) findViewById(R.id.relative_individual);
+        layone.setVisibility(View.VISIBLE);
+        RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relative_agency);
+        laytwo.setVisibility(View.INVISIBLE);
     }
 
     public void setEstateagency(View view) {
-        startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
+        //view = inflater.inflate(R.layout.content_registration, container, false);
+        RelativeLayout layone= (RelativeLayout) findViewById(R.id.relative_individual);
+        layone.setVisibility(View.INVISIBLE);
+        RelativeLayout laytwo= (RelativeLayout) findViewById(R.id.relative_agency);
+        laytwo.setVisibility(View.VISIBLE);
     }
 
     @Override
