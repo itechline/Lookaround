@@ -36,7 +36,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout">
+            android:id="@+id/relative_individual">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -83,13 +83,52 @@
                 android:layout_alignStart="@+id/mail"
                 android:hint="@string/password_hu" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_agency"
+            android:layout_below="@+id/radioGroup1">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/entry_company"
+                android:maxLength="13"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:hint="@string/company_name" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mail"
+                android:inputType="textEmailAddress"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:text=""
+                android:hint="@string/mail"
+                android:layout_below="@+id/entry_company" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/passw"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:layout_below="@+id/mail"
+                android:layout_alignLeft="@+id/mail"
+                android:layout_alignStart="@+id/mail"
+                android:hint="@string/password_hu" />
+        </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/fszf_text"
-            android:layout_below="@+id/relativeLayout">
+            android:layout_below="@+id/relative_individual">
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -105,6 +144,7 @@
                 android:layout_marginLeft="70sp"
                 android:layout_marginRight="70sp"
                 android:layout_above="@+id/fszf_text"
+
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
 
