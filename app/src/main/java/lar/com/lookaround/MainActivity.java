@@ -38,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstnameEditText;
     private EditText lastnameEditText;
 
+    private RadioGroup radioGroup;
+    private RadioButton individual, estateagency;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +69,33 @@ public class MainActivity extends AppCompatActivity {
         viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
         viewFlip.addView(regist, REGISTRATION);
         viewFlip.addView(login, LOGIN);
+
+
     }
+
+    public void openBlankPage(View view) {
+        startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
+        //showAlert(view);
+    }
+
+    /*public void loadRegistration() {
+        //viewFlip.setDisplayedChild(REGISTRATION);
+
+        radioGroup = (RadioGroup) findViewById(R.id.indiOrEstateGroup);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.radioButton2) {
+                    Toast.makeText(getApplicationContext(), "choice: Silent",
+                            Toast.LENGTH_SHORT).show();
+                } else if(checkedId == R.id.radioButton) {
+                    Toast.makeText(getApplicationContext(), "choice: Sound",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
