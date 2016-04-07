@@ -16,4 +16,6 @@
     <string name="fszf">Felhasználási Feltételeket</string>
     <string name="title_activity_blank_page">BlankPageActivity</string>
     <string name="company_name">Cégnév</string>
+    <string name="forgotten_pass">Elfelejtette jelszavát?</string>
+    <string name="reminder_pass">Emlékeztető</string>
 </resources>
