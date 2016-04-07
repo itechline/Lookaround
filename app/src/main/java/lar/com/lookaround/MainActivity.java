@@ -2,6 +2,7 @@ package lar.com.lookaround;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setEstateagency(View view) {
-
+        startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
     }
 
     @Override

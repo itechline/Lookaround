@@ -40,8 +40,7 @@
             android:minWidth="300sp"
             android:singleLine="true"
             android:hint="@string/lastname_hu"
-            android:paddingTop="50sp"
-            />
+            android:paddingTop="50sp" />
 
         <EditText
             android:layout_width="wrap_content"
