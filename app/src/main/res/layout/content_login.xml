@@ -59,7 +59,8 @@
             android:layout_centerHorizontal="true"
             android:onClick="sendLogin"
             android:layout_marginTop="30sp"
-            android:layout_marginBottom="30sp"/>
+            android:layout_marginBottom="30sp"
+            android:background="@drawable/colorbutton"/>
 
 
 
