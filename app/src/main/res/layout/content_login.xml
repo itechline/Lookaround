@@ -27,6 +27,36 @@
         android:background="#ffffff">
 
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linearLayout">
+            <TextView
+                android:id="@+id/forgotten_P"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgotten_pass"
+                android:layout_weight="2"
+                android:textColor="#8c9397"
+                android:layout_marginBottom="20sp"
+                android:textStyle="italic"
+                android:paddingRight="2sp" />
+            <TextView
+                android:id="@+id/reminder_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminder_pass"
+                android:layout_weight="2"
+                android:onClick="showLogin"
+                android:textColor="#0066cc"
+                android:layout_marginBottom="20sp"
+                android:textStyle="italic"
+                android:paddingLeft="2sp" />
+        </LinearLayout>
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,13 +85,14 @@
             android:layout_height="wrap_content"
             android:text="@string/button_login_hu"
             android:id="@+id/button3"
-            android:layout_below="@+id/passwLogin"
-            android:layout_centerHorizontal="true"
             android:onClick="sendLogin"
-            android:layout_marginTop="30sp"
-            android:layout_marginBottom="30sp"
-            android:background="@drawable/colorbutton"/>
-
+            android:background="@drawable/colorbutton"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="10sp"
+            android:paddingLeft="10sp"
+            android:layout_marginBottom="10sp" />
 
 
     </RelativeLayout>
