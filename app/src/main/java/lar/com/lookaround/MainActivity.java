@@ -74,11 +74,6 @@ public class MainActivity extends AppCompatActivity {
         viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
         viewFlip.addView(regist, REGISTRATION);
         viewFlip.addView(login, LOGIN);
-
-        RelativeLayout layone = (RelativeLayout) findViewById(R.id.relative_individual);
-        layone.setVisibility(View.VISIBLE);
-        RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relative_agency);
-        laytwo.setVisibility(View.INVISIBLE);
     }
 
     public void openBlankPage(View view) {
@@ -201,8 +196,6 @@ public class MainActivity extends AppCompatActivity {
                 emailCompanyEditText.setError("Hibás Email");
                 emailCompanyEditText.invalidate();
             }
-
-
         }
     }
 
