@@ -134,17 +134,19 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/registration_hu"
                 android:id="@+id/registButton"
                 android:onClick="sendRegistration"
                 android:layout_centerHorizontal="true"
 
-                android:background="#0066cc"
+                android:background="@drawable/colorbutton"
+
+
                 android:textColor="#ffffff"
-                android:layout_marginLeft="70sp"
-                android:layout_marginRight="70sp"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
                 android:layout_above="@+id/fszf_text"
 
                 android:layout_centerVertical="true"/>

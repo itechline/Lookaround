@@ -141,7 +141,10 @@
                 android:onClick="sendRegistration"
                 android:layout_centerHorizontal="true"
 
-                android:background="#0066cc"
+                android:background="@drawable/colorbutton"
+
+
+
                 android:textColor="#ffffff"
                 android:layout_marginLeft="70sp"
                 android:layout_marginRight="70sp"
