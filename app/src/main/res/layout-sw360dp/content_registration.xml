@@ -88,7 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relative_agency"
-            android:layout_below="@+id/radioGroup1">
+            android:layout_below="@+id/radioGroup1"
+            android:visibility="invisible">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -102,7 +103,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/mail"
+                android:id="@+id/mail2"
                 android:inputType="textEmailAddress"
                 android:minWidth="300sp"
                 android:singleLine="true"
@@ -115,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/passw"
+                android:id="@+id/passw2"
                 android:minWidth="300sp"
                 android:singleLine="true"
                 android:layout_below="@+id/mail"

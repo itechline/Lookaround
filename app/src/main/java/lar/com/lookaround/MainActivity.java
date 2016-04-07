@@ -134,24 +134,13 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 })
-                /*.setNegativeButton("Mégse", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })*/
-
                 .setTitle("HIBA")
                 .create();
         myAlert.show();
     }
 
     public void showLogin(View view) {
-        //setContentView(R.layout.content_login);
-        //viewFlip.addView();
-        //viewFlip.setDisplayedChild(LOGIN);
         switchLayoutTo(LOGIN);
-
     }
 
     public void sendRegistration(View view) {
