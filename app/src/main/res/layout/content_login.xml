@@ -29,6 +29,49 @@
 
         <LinearLayout
             android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwLogin"
+            android:layout_above="@+id/button3"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:src="@drawable/face"
+                android:layout_width="30sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:layout_below="@+id/passwLogin"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_login_hu"
+                android:id="@+id/textView"
+                />
+
+            <ImageView
+                android:src="@drawable/g_plus"
+                android:layout_width="30sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView4"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_login_hu"
+                android:id="@+id/textView2"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -54,7 +97,7 @@
                 android:textColor="#0066cc"
                 android:layout_marginBottom="20sp"
                 android:textStyle="italic"
-                android:paddingLeft="2sp" />
+                />
         </LinearLayout>
 
         <EditText
