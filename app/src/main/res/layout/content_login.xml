@@ -35,13 +35,15 @@
             android:layout_above="@+id/button3"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20sp"
+            android:layout_alignParentStart="false">
 
             <ImageView
                 android:src="@drawable/face"
                 android:layout_width="30sp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
+                android:id="@+id/fb_img"
                 android:layout_below="@+id/passwLogin"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
@@ -50,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_login_hu"
-                android:id="@+id/textView"
+                android:id="@+id/fb_text"
                 />
 
             <ImageView
@@ -66,8 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_login_hu"
-                android:id="@+id/textView2"
-                />
+                android:id="@+id/textView2" />
         </LinearLayout>
 
         <LinearLayout
