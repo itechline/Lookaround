@@ -1,5 +1,6 @@
 package lar.com.lookaround;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import lar.com.lookaround.adapters.EstateAdapter;
+import lar.com.lookaround.models.RealEstate;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +47,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        loadRealEstates();
+
+
+    }
+
+    public void loadRealEstates() {
+        /*ListView listView = (ListView) findViewById(R.id.estateListView);
+        ArrayList<RealEstate> arrayOfEstates = new ArrayList<RealEstate>();
+        EstateAdapter abc = new EstateAdapter(this,arrayOfEstates);
+        listView.setAdapter(abc);*/
+
+
+        ArrayList<RealEstate> arrayOfUsers = RealEstate.getUsers();
+        // Create the adapter to convert the array to views
+        EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
+        // Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.estateListView);
+        listView.setAdapter(adapter);
     }
 
     @Override
