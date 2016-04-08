@@ -4,31 +4,73 @@
     android:layout_height="match_parent"
     android:id="@+id/item_realestate_layout">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/item_realestate_adress1"
-        android:layout_gravity="center_horizontal" />
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/item_realestate_adress2"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Budapest V. kerület"
+            android:id="@+id/item_realestate_adress1"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_margin="5sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:id="@+id/item_realestate_description"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arany János utca"
+            android:id="@+id/item_realestate_adress2"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/item_realestate_adress1"
+            android:layout_alignLeft="@+id/item_realestate_adress1"
+            android:layout_alignStart="@+id/item_realestate_adress1" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_realestate_mainpic"
-        android:src="@drawable/face"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ide jön valami amit majd kitalálunk"
+            android:id="@+id/item_realestate_description"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_below="@+id/item_realestate_adress2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/item_realestate_adress2"
+            android:layout_alignStart="@+id/item_realestate_adress2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_realestate_mainpic"
+            android:src="@drawable/face"
+            android:layout_margin="5sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28.560.000 HUF"
+            android:id="@+id/Price"
+            android:layout_alignBottom="@+id/item_realestate_mainpic"
+            android:layout_alignStart="@+id/item_realestate_adress2"
+            android:layout_margin="5sp"
+            android:background="#0066cc"
+            android:textColor="#ffffff"
+            android:padding="2sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_realestate_isfavourite"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5sp" />
+    </RelativeLayout>
+
 </LinearLayout>
