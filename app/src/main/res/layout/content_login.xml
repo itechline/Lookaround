@@ -223,7 +223,7 @@
             android:layout_height="wrap_content"
             android:text="@string/registration_1"
             android:layout_weight="2"
-            android:onClick="showLogin"
+            android:onClick="showRegistration"
             android:textColor="#0066cc"
             android:textStyle="italic"
             android:paddingLeft="2sp" />
