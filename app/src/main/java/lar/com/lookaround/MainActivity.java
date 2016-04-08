@@ -17,6 +17,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -239,6 +240,15 @@ public class MainActivity extends AppCompatActivity {
         layone.setVisibility(View.INVISIBLE);
         RelativeLayout laytwo= (RelativeLayout) findViewById(R.id.relative_agency);
         laytwo.setVisibility(View.VISIBLE);
+    }
+
+    public void showForgottenPass(View view) {
+        RelativeLayout layone= (RelativeLayout) findViewById(R.id.Layout_Login);
+        layone.setVisibility(View.INVISIBLE);
+        RelativeLayout laytwo= (RelativeLayout) findViewById(R.id.Forgotten_Pass_Layout);
+        laytwo.setVisibility(View.VISIBLE);
+        LinearLayout layFooter = (LinearLayout) findViewById(R.id.login_linear_footer);
+        layFooter.setVisibility(View.INVISIBLE);
     }
 
     public void showRegistration(View view) {

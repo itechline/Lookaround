@@ -21,9 +21,6 @@ public class BlankPageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //ActionBar actionBar = getActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
         TextView felh_szoveg = (TextView)findViewById(R.id.felh_szoveg);
 
         felh_szoveg.setText(Html.fromHtml("<h2>Általános Felhasználási Feltételek</h2>" +
