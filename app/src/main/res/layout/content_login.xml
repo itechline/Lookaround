@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reminder_pass"
                 android:layout_weight="2"
-                android:onClick="showForgottenPass"
+                android:onClick="showLogin"
                 android:textColor="#0066cc"
                 android:layout_marginBottom="20sp"
                 android:textStyle="italic"
@@ -157,8 +157,8 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:layout_above="@+id/login_linear_footer"
-        android:visibility="invisible">
+        android:visibility="visible"
+        android:layout_above="@+id/linearLayout2">
 
 
         <EditText
@@ -183,8 +183,11 @@
             android:paddingRight="10sp"
             android:paddingLeft="10sp"
             android:layout_centerHorizontal="true"
-            android:layout_margin="20sp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -202,10 +205,9 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/login_linear_footer"
-        android:layout_margin="10sp">
+        android:id="@+id/linearLayout2"
+        android:layout_above="@+id/reg_pic"
+        android:layout_centerHorizontal="true">
         <TextView
             android:id="@+id/you_Dnthave_existing"
             android:layout_width="wrap_content"
@@ -213,7 +215,6 @@
             android:text="@string/you_Dnt_have"
             android:layout_weight="2"
             android:textColor="#8c9397"
-            android:layout_marginBottom="60sp"
             android:textStyle="italic"
             android:paddingRight="2sp" />
         <TextView
@@ -222,9 +223,8 @@
             android:layout_height="wrap_content"
             android:text="@string/registration_1"
             android:layout_weight="2"
-            android:onClick="showRegistration"
+            android:onClick="showLogin"
             android:textColor="#0066cc"
-            android:layout_marginBottom="60sp"
             android:textStyle="italic"
             android:paddingLeft="2sp" />
     </LinearLayout>
