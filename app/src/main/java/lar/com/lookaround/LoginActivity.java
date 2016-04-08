@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -18,17 +17,14 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip;
     private int mCurrentLayoutState;
@@ -81,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openBlankPage(View view) {
-        startActivity(new Intent(MainActivity.this, BlankPageActivity.class));
+        startActivity(new Intent(LoginActivity.this, BlankPageActivity.class));
     }
 
     /*public void loadRegistration() {

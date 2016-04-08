@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="lar.com.lookaround.MainActivity"
+    tools:context=".LoginActivity"
     android:background="#f1f2f3">
 
     <ImageView
