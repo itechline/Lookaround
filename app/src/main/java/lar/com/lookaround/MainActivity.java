@@ -241,11 +241,16 @@ public class MainActivity extends AppCompatActivity {
         laytwo.setVisibility(View.VISIBLE);
     }
 
+    public void showRegistration(View view) {
+        switchLayoutTo(REGISTRATION);
+    }
+
     @Override
     public void onBackPressed() {
         // your code.
         switchLayoutTo(REGISTRATION);
     }
+
 
     private  boolean isValidName(String name) {
         if(name.length() == 0) {
