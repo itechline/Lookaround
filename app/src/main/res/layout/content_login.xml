@@ -15,29 +15,32 @@
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_marginTop="50sp"/>
+        android:contentDescription="Logo_"
+        android:id="@+id/imageView3"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:id="@+id/RL_login"
+
+        android:layout_above="@+id/linearLayout2"
+        android:layout_below="@+id/imageView3"
         android:layout_marginLeft="20sp"
-        android:layout_marginTop="140sp"
-        android:layout_marginRight="20sp"
-        android:layout_marginBottom="90sp"
-        android:background="#ffffff">
+        android:layout_marginRight="20sp">
 
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/passwLogin"
-            android:layout_above="@+id/button3"
+            android:id="@+id/LL_login"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20sp"
-            android:layout_alignParentStart="false">
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp">
 
             <ImageView
                 android:src="@drawable/face"
@@ -46,14 +49,15 @@
                 android:id="@+id/fb_img"
                 android:layout_below="@+id/passwLogin"
                 android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                android:layout_margin="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_login_hu"
                 android:id="@+id/fb_text"
-                />
+                android:layout_marginTop="10sp" />
 
             <ImageView
                 android:src="@drawable/g_plus"
@@ -62,22 +66,25 @@
                 android:id="@+id/imageView4"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                 />
+                android:layout_margin="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_login_hu"
-                android:id="@+id/textView2" />
+                android:id="@+id/textView2"
+                android:layout_marginTop="10sp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/linearLayout">
+            android:id="@+id/linearLayout"
+            android:layout_below="@+id/button3"
+            android:layout_alignRight="@+id/passwLogin"
+            android:layout_alignEnd="@+id/passwLogin"
+            android:layout_marginTop="10sp">
             <TextView
                 android:id="@+id/forgotten_P"
                 android:layout_width="wrap_content"
@@ -107,10 +114,10 @@
             android:id="@+id/mailLogin"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:hint="@string/mail"
-            android:layout_marginTop="20sp" />
+            android:layout_above="@+id/passwLogin"
+            android:layout_alignLeft="@+id/passwLogin"
+            android:layout_alignStart="@+id/passwLogin" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -118,10 +125,9 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwLogin"
-            android:layout_below="@+id/mailLogin"
-            android:layout_centerHorizontal="true"
             android:hint="@string/password_hu"
-            />
+            android:layout_above="@+id/LL_login"
+            android:layout_centerHorizontal="true" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -132,14 +138,43 @@
             android:onClick="sendLogin"
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
-            android:layout_above="@+id/linearLayout"
-            android:layout_centerHorizontal="true"
             android:paddingRight="10sp"
             android:paddingLeft="10sp"
-            android:layout_marginBottom="10sp" />
+            android:layout_below="@+id/LL_login"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5sp" />
 
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/reg_pic"
+        android:id="@+id/linearLayout2"
+        android:layout_margin="5sp">
+        <TextView
+            android:id="@+id/you_have_existing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/existing_account"
+            android:layout_weight="2"
+            android:textColor="#8c9397"
+            android:textStyle="italic"
+            android:paddingRight="2sp" />
+        <TextView
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login_hu"
+            android:layout_weight="2"
+            android:onClick="showLogin"
+            android:textColor="#0066cc"
+            android:textStyle="italic"
+            android:paddingLeft="2sp" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
@@ -150,6 +185,7 @@
         android:contentDescription="@string/reg_house"
         android:layout_alignParentBottom="true"
         android:scaleType="fitXY" />
+
 
 
 </RelativeLayout>
