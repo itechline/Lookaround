@@ -164,7 +164,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mailLogin"
+            android:id="@+id/forgottenMailLogin"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:hint="@string/mail"
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:text="@string/send"
             android:id="@+id/buttonsend"
-            android:onClick="sendLogin"
+            android:onClick="sendForgottenPass"
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
             android:paddingRight="10sp"

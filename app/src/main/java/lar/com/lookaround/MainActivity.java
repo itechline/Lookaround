@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText companyNameEditText;
     boolean isCompany = false;
 
+    private EditText forgottenMail;
+
     //private RadioGroup radioGroup;
     //private RadioButton individual, estateagency;
     LayoutInflater inflater;
@@ -203,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     public void sendLogin(View view) {
         emailEditText = (EditText) findViewById(R.id.mailLogin);
         passEditText = (EditText) findViewById(R.id.passwLogin);
@@ -213,16 +217,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (!isValidPassword(passw)) {
             passEditText.setError("Hibás jelszó!");
+            passEditText.invalidate();
             isAbleToJoin = false;
         }
 
         if (!isValidEmail(email)) {
             emailEditText.setError("Hibás Email");
+            emailEditText.invalidate();
             isAbleToJoin = false;
         }
 
         if(!isAbleToJoin) {
-            showAlert(view);
+            //showAlert(view);
         }
     }
 
@@ -249,6 +255,34 @@ public class MainActivity extends AppCompatActivity {
         laytwo.setVisibility(View.VISIBLE);
         LinearLayout layFooter = (LinearLayout) findViewById(R.id.login_linear_footer);
         layFooter.setVisibility(View.INVISIBLE);
+    }
+
+    public void sendForgottenPass(View view) {
+        forgottenMail = (EditText) findViewById(R.id.forgottenMailLogin);
+
+        String forgottenMailString = forgottenMail.getText().toString();
+
+        if (!isValidEmail(forgottenMailString)) {
+            forgottenMail.setError("Hibás Email");
+            forgottenMail.invalidate();
+        } else {
+            AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+            myAlert.setMessage("Új jelszavát elküldtük email címére!")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            RelativeLayout layone = (RelativeLayout) findViewById(R.id.Layout_Login);
+                            layone.setVisibility(View.VISIBLE);
+                            RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.Forgotten_Pass_Layout);
+                            laytwo.setVisibility(View.INVISIBLE);
+                            LinearLayout layFooter = (LinearLayout) findViewById(R.id.login_linear_footer);
+                            layFooter.setVisibility(View.VISIBLE);
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+            myAlert.show();
+        }
     }
 
     public void showRegistration(View view) {
