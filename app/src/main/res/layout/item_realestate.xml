@@ -26,6 +26,14 @@
         android:id="@+id/item_realestate_description"
         android:layout_gravity="center_horizontal" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New CheckBox"
+        android:id="@+id/item_realestate_isFavourite"
+        android:layout_gravity="center_horizontal"
+        android:checked="false" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
