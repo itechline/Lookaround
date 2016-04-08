@@ -165,7 +165,7 @@
             android:textStyle="italic"
             android:paddingRight="2sp" />
         <TextView
-            android:id="@+id/reg_button"
+            android:id="@+id/backToReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration_1"
