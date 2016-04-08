@@ -223,8 +223,8 @@ public class LoginActivity extends AppCompatActivity {
             isAbleToJoin = false;
         }
 
-        if(!isAbleToJoin) {
-            //showAlert(view);
+        if(isAbleToJoin) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 
