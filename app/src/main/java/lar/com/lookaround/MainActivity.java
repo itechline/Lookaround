@@ -1,9 +1,11 @@
 package lar.com.lookaround;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,11 @@ import lar.com.lookaround.models.RealEstate;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ViewFlipper viewFlip;
+    LayoutInflater inflater;
+
+    private static final int ESTATESLIST = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        /*View estatesView;
+        inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        estatesView = inflater.inflate(R.layout.content_main, null);
+
+        viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
+        viewFlip.addView(estatesView, ESTATESLIST);*/
 
         loadRealEstates();
 
