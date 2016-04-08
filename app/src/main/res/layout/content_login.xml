@@ -157,7 +157,7 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:layout_above="@+id/linearLayout2"
+        android:layout_above="@+id/login_linear_footer"
         android:visibility="visible">
 
 
