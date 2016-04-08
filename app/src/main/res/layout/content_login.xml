@@ -126,7 +126,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwLogin"
-            android:hint="@string/password_hu"
+            android:hint="@string/password"
             android:layout_above="@+id/LL_login"
             android:layout_centerHorizontal="true" />
 

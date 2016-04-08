@@ -46,7 +46,7 @@
                 android:maxLength="13"
                 android:minWidth="300sp"
                 android:singleLine="true"
-                android:hint="@string/lastname_hu"
+                android:hint="@string/lastname"
                 android:paddingTop="50sp"
                 />
 
@@ -57,7 +57,7 @@
                 android:maxLength="13"
                 android:minWidth="300sp"
                 android:singleLine="true"
-                android:hint="@string/firstname_hu"
+                android:hint="@string/firstname"
                 android:layout_below="@+id/vezetekNev" />
 
             <EditText
@@ -82,7 +82,7 @@
                 android:layout_below="@+id/mail"
                 android:layout_alignLeft="@+id/mail"
                 android:layout_alignStart="@+id/mail"
-                android:hint="@string/password_hu" />
+                android:hint="@string/password" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                 android:layout_below="@+id/mail2"
                 android:layout_alignLeft="@+id/mail2"
                 android:layout_alignStart="@+id/mail2"
-                android:hint="@string/password_hu" />
+                android:hint="@string/password" />
         </RelativeLayout>
 
 
@@ -136,7 +136,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/registration_hu"
+                android:text="@string/registration"
                 android:id="@+id/registButton"
                 android:onClick="sendRegistration"
                 android:layout_centerHorizontal="true"
@@ -186,7 +186,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/individual_hu"
+                android:text="@string/individual"
                 android:onClick="setIndividual"
                 android:checked="true"
                 android:id="@+id/radioButton2"
