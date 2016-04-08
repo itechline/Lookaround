@@ -247,7 +247,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // your code.
         switchLayoutTo(REGISTRATION);
     }
 
