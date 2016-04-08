@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reminder_pass"
                 android:layout_weight="2"
-                android:onClick="showLogin"
+                android:onClick="showForgottenPass"
                 android:textColor="#0066cc"
                 android:layout_marginBottom="20sp"
                 android:textStyle="italic"
@@ -157,8 +157,8 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:visibility="visible"
-        android:layout_above="@+id/linearLayout2">
+        android:visibility="invisible"
+        android:layout_above="@+id/login_linear_footer">
 
 
         <EditText
@@ -205,7 +205,7 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2"
+        android:id="@+id/login_linear_footer"
         android:layout_above="@+id/reg_pic"
         android:layout_centerHorizontal="true">
         <TextView
