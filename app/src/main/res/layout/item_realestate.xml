@@ -17,9 +17,11 @@
             android:id="@+id/item_realestate_adress1"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_toLeftOf="@+id/item_realestate_isfavourite"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:layout_margin="5sp" />
+            android:layout_toEndOf="@+id/item_realestate_mainpic" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,7 +76,7 @@
             android:button="@drawable/checkbox_fav_selector"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:layout_margin="10sp" />
+            android:layout_margin="5sp" />
     </RelativeLayout>
 
 </LinearLayout>
