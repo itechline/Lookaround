@@ -70,7 +70,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="5sp" />
+            android:layout_margin="5sp"
+            android:nestedScrollingEnabled="true" />
     </RelativeLayout>
 
 </LinearLayout>
