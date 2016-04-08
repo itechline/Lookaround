@@ -12,22 +12,25 @@ public class RealEstate {
     private String street;
     private String description;
     private String price;
-    //private boolean isFavourite;
+    private boolean isFavourite;
     //private Picture estateMainPic;
 
-    public RealEstate(String adress, String street, String description, String price) {
+    public RealEstate(String adress, String street, String description, String price, boolean isFavourite) {
         this.adress = adress;
         this.street = street;
         this.description = description;
         this.price = price;
+        this.isFavourite = isFavourite;
     }
 
 
     public static ArrayList<RealEstate> getUsers() {
         ArrayList<RealEstate> estates = new ArrayList<RealEstate>();
-        estates.add(new RealEstate("Nyírbátor", "Zrínyi 72", "Úgybizonydááá", "69 Huf"));
-        estates.add(new RealEstate("Nyírpócs", "Street", "Igen", "6969 Huf"));
-        estates.add(new RealEstate("Asdf", "Street2", "Nem", "100 Huf"));
+        estates.add(new RealEstate("Nyírbátor", "Zrínyi 72", "Úgybizonydááá", "69 Huf", true));
+        estates.add(new RealEstate("Nyírpócs", "Street", "Igen", "6969 Huf", false));
+        estates.add(new RealEstate("Asdf", "Street2", "Nem", "100 Huf", true));
+        estates.add(new RealEstate("Asdf2", "Stree3", "Lofasz", "6969 Huf", false));
+        estates.add(new RealEstate("Asdf3", "Street4", "Hogyishijjak", "100 Huf", false));
         return estates;
     }
 
@@ -63,7 +66,7 @@ public class RealEstate {
         this.price = price;
     }
 
-    /*public boolean isFavourite() {
+    public boolean isFavourite() {
         return isFavourite;
     }
 
@@ -71,7 +74,7 @@ public class RealEstate {
         this.isFavourite = isFavourite;
     }
 
-    public Picture getEstateMainPic() {
+    /*public Picture getEstateMainPic() {
         return estateMainPic;
     }
 
