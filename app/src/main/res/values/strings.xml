@@ -18,4 +18,6 @@
     <string name="company_name">Cégnév</string>
     <string name="forgotten_pass">Elfelejtette jelszavát?</string>
     <string name="reminder_pass">Emlékeztető</string>
+    <string name="registration_1">Regisztráljon</string>
+    <string name="you_Dnt_have">Még nincs fiókja?</string>
 </resources>

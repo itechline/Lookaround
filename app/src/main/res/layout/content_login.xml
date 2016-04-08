@@ -156,19 +156,19 @@
         android:id="@+id/linearLayout2"
         android:layout_margin="5sp">
         <TextView
-            android:id="@+id/you_have_existing"
+            android:id="@+id/you_Dnthave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/existing_account"
+            android:text="@string/you_Dnt_have"
             android:layout_weight="2"
             android:textColor="#8c9397"
             android:textStyle="italic"
             android:paddingRight="2sp" />
         <TextView
-            android:id="@+id/login_button"
+            android:id="@+id/reg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_login_hu"
+            android:text="@string/registration_1"
             android:layout_weight="2"
             android:onClick="showLogin"
             android:textColor="#0066cc"
