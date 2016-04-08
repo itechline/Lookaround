@@ -74,7 +74,7 @@
             android:button="@drawable/checkbox_fav_selector"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:layout_margin="5sp" />
+            android:layout_margin="10sp" />
     </RelativeLayout>
 
 </LinearLayout>
