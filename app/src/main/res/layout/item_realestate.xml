@@ -73,7 +73,8 @@
             android:nestedScrollingEnabled="true"
             android:button="@drawable/checkbox_fav_selector"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:layout_margin="5sp" />
     </RelativeLayout>
 
 </LinearLayout>
