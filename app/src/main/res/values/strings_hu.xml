@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Lookaround</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="lastname">Lastname</string>
+    <string name="firstname">Firstname</string>
+    <string name="registration"> REGISTRATION </string>
+    <string name="individual">Individual</string>
+    <string name="estateagency">Estate Agency</string>
+    <string name="mail">E-mail</string>
+    <string name="reg_house">main_house_image</string>
+    <string name="existing_account">You have an account?</string>
+    <string name="acceptingfszf">By clicking the REGISTRATION button you are accepting the</string>
+    <string name="fszf">Terms and Conditions</string>
+    <string name="title_activity_blank_page">BlankPageActivity</string>
+    <string name="company_name">Company Name</string>
+    <string name="forgotten_pass">Did you forget your password?</string>
+    <string name="reminder_pass">Reminder</string>
+    <string name="registration_1">Registration</string>
+    <string name="you_Dnt_have">You don't have an account?</string>
+    <string name="send">Send</string>
+    <string name="forgotten_pass_text">To set your new password, please give us your registered e-mail. Our system will generate and send yout new password to the e-mail you gave</string>
+</resources>
