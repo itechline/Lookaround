@@ -29,8 +29,8 @@
         android:layout_below="@+id/imageView3"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
-        android:visibility="visible"
-        android:layout_alignBottom="@+id/Forgotten_Pass_Layout">
+        android:layout_alignBottom="@+id/Forgotten_Pass_Layout"
+        android:visibility="invisible">
 
 
         <LinearLayout
@@ -157,8 +157,8 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:visibility="invisible"
-        android:layout_above="@+id/linearLayout2">
+        android:layout_above="@+id/linearLayout2"
+        android:visibility="visible">
 
 
         <EditText
@@ -183,7 +183,7 @@
             android:paddingRight="10sp"
             android:paddingLeft="10sp"
             android:layout_centerHorizontal="true"
-            android:layout_margin="15sp"
+            android:layout_margin="20sp"
             android:layout_alignParentBottom="true"/>
 
         <TextView
