@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import lar.com.lookaround.MainActivity;
 import lar.com.lookaround.R;
 import lar.com.lookaround.models.RealEstate;
 
@@ -27,11 +29,11 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_realestate, parent, false);
         }
         // Lookup view for data population
-        TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
+        final TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
         TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
         TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
         TextView price = (TextView) convertView.findViewById(R.id.Price);
-        CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
+        final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
         // Populate the data into the template view using the data object
 
         adress.setText(estate.getAdress());
@@ -42,4 +44,6 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
 
         return convertView;
     }
+
+
 }

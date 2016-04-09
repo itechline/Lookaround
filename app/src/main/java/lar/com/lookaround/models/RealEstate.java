@@ -74,6 +74,8 @@ public class RealEstate {
         this.isFavourite = isFavourite;
     }
 
+
+
     /*public Picture getEstateMainPic() {
         return estateMainPic;
     }

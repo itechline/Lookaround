@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,7 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     LayoutInflater inflater;
 
     private static final int ESTATESLIST = 0;
+    private static final int CONTENTESTATE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +65,30 @@ public class MainActivity extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        /*View estatesView;
+        View estatesView, contentRealestate;
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
+        contentRealestate = inflater.inflate(R.layout.content_realestate, null);
 
-        viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
-        viewFlip.addView(estatesView, ESTATESLIST);*/
+        viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.addView(estatesView, ESTATESLIST);
+        viewFlip.addView(contentRealestate, CONTENTESTATE);
 
         loadRealEstates();
 
 
+    }
+
+    private class ItemList implements AdapterView.OnItemClickListener {
+
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            ViewGroup viewg=(ViewGroup)view;
+            TextView textv=(TextView)viewg.findViewById(R.id.item_realestate_adress1);
+            //EditText abc = (EditText)findViewById(R.id.keresztNev);
+            //abc.getText().toString();
+            viewFlip.setDisplayedChild(CONTENTESTATE);
+            Log.d("DEBUG: ", textv.getText().toString());
+        }
     }
 
     public void loadRealEstates() {
@@ -81,8 +102,9 @@ public class MainActivity extends AppCompatActivity
         // Create the adapter to convert the array to views
         EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.estateListView);
+        final ListView listView = (ListView) findViewById(R.id.estateListView);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new ItemList());
     }
 
     @Override
