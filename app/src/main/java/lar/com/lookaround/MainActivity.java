@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(estatesView, ESTATESLIST);
         viewFlip.addView(contentRealestate, CONTENTESTATE);
 
+        viewFlip.setDisplayedChild(ESTATESLIST);
+
         loadRealEstates();
 
 
