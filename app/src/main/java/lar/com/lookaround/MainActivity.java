@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();*/
                 prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(ADDESTATE);
+                fab.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -149,6 +150,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case ADDESTATE:
                 switchLayoutTo(prewView);
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                fab.setVisibility(View.VISIBLE);
                 break;
         }
     }
