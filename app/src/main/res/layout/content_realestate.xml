@@ -127,6 +127,7 @@
             </HorizontalScrollView>
 
             <RelativeLayout
+                android:id="@+id/realestate_dtail_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/item_realestate_hscrollview">
@@ -137,6 +138,31 @@
                     android:layout_height="wrap_content"
                     android:text="New Text"
                     android:id="@+id/item_realestate_description_text" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/realestate_whats_near_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/realestate_dtail_layout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ekszorszizámusztéj, omni szpiritusz szánkté"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/realestate_stats_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/realestate_whats_near_layout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ekszorszizámusztéj, omni szpiritusz szánkté, izé mizé vizé"/>
+
             </RelativeLayout>
 
 
