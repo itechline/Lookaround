@@ -193,11 +193,12 @@
             android:layout_alignParentBottom="true" />
 
         <RadioGroup
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioGroup1"
             android:orientation="horizontal"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             >
 
             <RadioButton
@@ -216,7 +217,8 @@
                 android:text="@string/estateagency"
                 android:onClick="setEstateagency"
                 android:id="@+id/radioButton"
-                android:buttonTint="#0066cc"/>
+                android:buttonTint="#0066cc"
+               />
         </RadioGroup>
 
     </RelativeLayout>
