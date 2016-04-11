@@ -173,13 +173,27 @@
             <RelativeLayout
                 android:id="@+id/item_offensive_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/realestate_stats_layout">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/realestate_stats_layout"
+                android:layout_margin="2sp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/offensive_ad"/>
+                android:text="@string/offensive_ad"
+                android:textColor="#ff0000"
+                android:id="@+id/text_offensive"
+                android:layout_centerInParent="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_offensive"
+                    android:src="@drawable/hibas_serto"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_toLeftOf="@+id/textView3"
+                    android:layout_toStartOf="@+id/textView3" />
 
             </RelativeLayout>
 
