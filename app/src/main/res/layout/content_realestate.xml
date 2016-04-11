@@ -121,11 +121,203 @@
                 android:layout_below="@id/item_realestate_addresses"
                 android:layout_margin="5sp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="idejönmajdadinamikusgeci"
-                    android:id="@+id/textView4" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/realestate_dtail_table1"
+                        >
+
+                        <TableRow>
+
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/type_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Tégla építésű lakás"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/elevator_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Nincs"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/balcony_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="80m2"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/parking_realestate"
+                                android:padding="3dip"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Garázs az árban"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/view_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="kertre néző"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/heating_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="gáz (cirko)"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="@string/comfort_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="luxus"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+
+                    </TableLayout>
+
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/realestate_dtail_table2"
+                        android:layout_alignEnd="@+id/item_realestate_hscrollview"
+                        android:layout_toRightOf="@+id/realestate_dtail_table1"
+                        android:layout_margin="5sp">
+
+                        <TableRow>
+
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/type_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Tégla építésű lakás"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/elevator_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Nincs"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/balcony_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="80m2"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/parking_realestate"
+                                android:padding="3dip"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="Garázs az árban"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/view_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="kertre néző"
+                                android:gravity="right"
+                                android:padding="3sp" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/heating_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="gáz (cirko)"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:layout_column="2"
+                                android:text="@string/comfort_realestate"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:text="luxus"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+
+                    </TableLayout>
+
+                </RelativeLayout>
             </HorizontalScrollView>
 
             <RelativeLayout
@@ -192,8 +384,8 @@
                     android:src="@drawable/hibas_serto"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:layout_toLeftOf="@+id/textView3"
-                    android:layout_toStartOf="@+id/textView3" />
+                    android:layout_toStartOf="@+id/text_offensive"
+                    android:layout_toLeftOf="@+id/text_offensive" />
 
             </RelativeLayout>
 
