@@ -4,15 +4,15 @@
     android:layout_height="match_parent">
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView2" >
+        android:id="@+id/scrollView2">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/item_scv_relative_layout"
             >
             <ImageView
                 android:src="@drawable/estate"
@@ -25,6 +25,7 @@
                 android:adjustViewBounds="true"/>
 
             <RelativeLayout
+                android:id="@+id/item_realestate_profile_layout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,9 +34,8 @@
                 <ImageView
                     android:src="@drawable/face"
                     android:layout_width="wrap_content"
-                    android:layout_height="50sp"
+                    android:layout_height="40sp"
                     android:id="@+id/profile_avatar"
-                    android:layout_below="@+id/image_realestate_dtail"
                     android:layout_alignParentLeft="true"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="Redneck Jonnie"
                     android:id="@+id/profile_name_text"
-                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@+id/profile_avatar"
                     android:layout_toRightOf="@+id/profile_avatar"
                     android:layout_toEndOf="@+id/profile_avatar" />
 
@@ -55,10 +55,59 @@
                     android:layout_height="wrap_content"
                     android:text="Magánszemély"
                     android:id="@+id/profile_type_text"
-                    android:layout_below="@+id/profile_name_text"
+                    android:layout_alignBottom="@+id/profile_avatar"
                     android:layout_alignLeft="@+id/profile_name_text"
                     android:layout_alignStart="@+id/profile_name_text" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13.450.990 HUF"
+                    android:id="@+id/item_realestate_price"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="#0066cc"
+                    android:textColor="#ffffff"
+                    android:layout_margin="10sp"
+                    android:padding="2sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="irányár"
+                    android:id="@+id/item_realestate_pricetype"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/item_realestate_price"
+                    android:layout_toStartOf="@+id/item_realestate_price"
+                    android:textStyle="italic"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_realestate_profile_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Budapest 6. kerület, Munkácsy Mihály utca"
+                    android:id="@+id/item_realestate_needed_address"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Külső-Terézváros, Diplomatanegyed"
+                    android:id="@+id/item_realestate_optional_address"
+                    android:layout_below="@id/item_realestate_needed_address"
+                    android:layout_centerInParent="true"/>
 
             </RelativeLayout>
 
