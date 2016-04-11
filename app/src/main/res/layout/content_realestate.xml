@@ -86,6 +86,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/item_realestate_addresses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_realestate_profile_layout">
@@ -109,6 +110,32 @@
                     android:layout_below="@id/item_realestate_needed_address"
                     android:layout_centerInParent="true"/>
 
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_realestate_hscrollview"
+                android:layout_below="@id/item_realestate_addresses">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="idejönmajdadinamikusgeci"
+                    android:id="@+id/textView4" />
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/item_realestate_hscrollview">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView3" />
             </RelativeLayout>
 
 
