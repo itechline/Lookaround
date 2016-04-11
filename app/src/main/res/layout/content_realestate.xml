@@ -48,7 +48,8 @@
                     android:id="@+id/profile_name_text"
                     android:layout_alignTop="@+id/profile_avatar"
                     android:layout_toRightOf="@+id/profile_avatar"
-                    android:layout_toEndOf="@+id/profile_avatar" />
+                    android:layout_toEndOf="@+id/profile_avatar"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/item_realestate_description_text" />
             </RelativeLayout>
 
 
