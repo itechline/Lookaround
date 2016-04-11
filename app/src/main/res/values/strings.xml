@@ -22,6 +22,17 @@
     <string name="you_Dnt_have">Még nincs fiókja?</string>
     <string name="send">Küldés</string>
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
+
+    <string name="profile">Személyes</string>
+    <string name="messages">Üzenetek</string>
+    <string name="billing">Számlázás</string>
+    <string name="myadvertisements">Hirdetéseim</string>
+    <string name="myfavourites">Kedvenceim</string>
+    <string name="admonitor">Hirdetésfigyelő</string>
+    <string name="agency">Ügynökség</string>
+    <string name="invitation">Meghívás</string>
+    <string name="logout">Kijelentkezés</string>
+
     <string name="title_activity_main">MainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
