@@ -44,8 +44,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView3"
+                    android:text="Redneck Jonnie"
+                    android:id="@+id/profile_name_text"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/profile_avatar"
                     android:layout_toEndOf="@+id/profile_avatar" />
@@ -53,11 +53,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView4"
-                    android:layout_below="@+id/textView3"
-                    android:layout_toRightOf="@+id/profile_avatar"
-                    android:layout_toEndOf="@+id/profile_avatar" />
+                    android:text="Magánszemély"
+                    android:id="@+id/profile_type_text"
+                    android:layout_below="@+id/profile_name_text"
+                    android:layout_alignLeft="@+id/profile_name_text"
+                    android:layout_alignStart="@+id/profile_name_text" />
 
 
             </RelativeLayout>
