@@ -17,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,9 +37,12 @@ public class MainActivity extends AppCompatActivity
 
     ViewFlipper viewFlip;
     LayoutInflater inflater;
+    private int mCurrentLayoutState;
+    private int prewView;
 
     private static final int ESTATESLIST = 0;
     private static final int CONTENTESTATE = 1;
+    private static final int ADDESTATE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +55,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                prewView = viewFlip.getDisplayedChild();
+                switchLayoutTo(ADDESTATE);
+
             }
         });
 
@@ -65,14 +74,16 @@ public class MainActivity extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        View estatesView, contentRealestate;
+        View estatesView, contentRealestate, addEstate;
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
+        addEstate = inflater.inflate(R.layout.content_addrealestate, null);
 
         viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
         viewFlip.addView(estatesView, ESTATESLIST);
         viewFlip.addView(contentRealestate, CONTENTESTATE);
+        viewFlip.addView(addEstate, ADDESTATE);
 
         viewFlip.setDisplayedChild(ESTATESLIST);
 
@@ -88,17 +99,27 @@ public class MainActivity extends AppCompatActivity
             TextView textv=(TextView)viewg.findViewById(R.id.item_realestate_adress1);
             //EditText abc = (EditText)findViewById(R.id.keresztNev);
             //abc.getText().toString();
-            viewFlip.setDisplayedChild(CONTENTESTATE);
+            //viewFlip.setDisplayedChild(CONTENTESTATE);
+            switchLayoutTo(CONTENTESTATE);
             Log.d("DEBUG: ", textv.getText().toString());
+            loadRealEstateContent(view);
+            supportInvalidateOptionsMenu();
         }
     }
+
+
+    public void loadRealEstateContent(View view) {
+        ViewGroup viewg=(ViewGroup)view;
+        TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
+        Log.d("DEBUG: ", t.getText().toString());
+    }
+
 
     public void loadRealEstates() {
         /*ListView listView = (ListView) findViewById(R.id.estateListView);
         ArrayList<RealEstate> arrayOfEstates = new ArrayList<RealEstate>();
         EstateAdapter abc = new EstateAdapter(this,arrayOfEstates);
         listView.setAdapter(abc);*/
-
 
         ArrayList<RealEstate> arrayOfUsers = RealEstate.getUsers();
         // Create the adapter to convert the array to views
@@ -107,22 +128,46 @@ public class MainActivity extends AppCompatActivity
         final ListView listView = (ListView) findViewById(R.id.estateListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ItemList());
+        supportInvalidateOptionsMenu();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }*/
+        switch (viewFlip.getDisplayedChild()) {
+            case ESTATESLIST:
+
+                break;
+            case CONTENTESTATE:
+                switchLayoutTo(ESTATESLIST);
+                loadRealEstates();
+                break;
+            case ADDESTATE:
+                switchLayoutTo(prewView);
+                break;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        /*if(viewFlip.getDisplayedChild() == ESTATESLIST) {
+            getMenuInflater().inflate(R.menu.main, menu);
+        }*/
+
+        switch (viewFlip.getDisplayedChild()) {
+            case ESTATESLIST:
+                getMenuInflater().inflate(R.menu.main, menu);
+                break;
+            case CONTENTESTATE:
+                getMenuInflater().inflate(R.menu.menu_realestate, menu);
+                break;
+        }
         return true;
     }
 
@@ -164,5 +209,71 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+
+
+
+    public void switchLayoutTo(int switchTo){
+        while(mCurrentLayoutState != switchTo){
+            if(mCurrentLayoutState > switchTo){
+                mCurrentLayoutState--;
+                viewFlip.setInAnimation(inFromLeftAnimation());
+                viewFlip.setOutAnimation(outToRightAnimation());
+                viewFlip.setDisplayedChild(switchTo);
+            } else {
+                mCurrentLayoutState++;
+                viewFlip.setInAnimation(inFromRightAnimation());
+                viewFlip.setOutAnimation(outToLeftAnimation());
+                viewFlip.setDisplayedChild(switchTo);
+            }
+        };
+    }
+
+    protected Animation inFromRightAnimation() {
+
+        Animation inFromRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromRight.setDuration(300);
+        inFromRight.setInterpolator(new AccelerateInterpolator());
+        return inFromRight;
+    }
+
+    protected Animation outToLeftAnimation() {
+        Animation outtoLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoLeft.setDuration(300);
+        outtoLeft.setInterpolator(new AccelerateInterpolator());
+        return outtoLeft;
+    }
+
+    protected Animation inFromLeftAnimation() {
+        Animation inFromLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromLeft.setDuration(300);
+        inFromLeft.setInterpolator(new AccelerateInterpolator());
+        return inFromLeft;
+    }
+
+    protected Animation outToRightAnimation() {
+        Animation outtoRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoRight.setDuration(300);
+        outtoRight.setInterpolator(new AccelerateInterpolator());
+        return outtoRight;
     }
 }
