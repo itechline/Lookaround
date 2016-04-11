@@ -39,4 +39,13 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="type_realestate">Típus</string>
+    <string name="elevator_realestate">Lift</string>
+    <string name="balcony_realestate">Erkély</string>
+    <string name="parking_realestate">Parkolás</string>
+    <string name="view_realestate">Kilátás</string>
+    <string name="heating_realestate">Fűtés</string>
+    <string name="comfort_realestate">Komfort</string>
+
 </resources>

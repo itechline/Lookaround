@@ -121,11 +121,99 @@
                 android:layout_below="@id/item_realestate_addresses"
                 android:layout_margin="5sp">
 
-                <TextView
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="idejönmajdadinamikusgeci"
-                    android:id="@+id/textView4" />
+                    android:layout_height="match_parent"
+                    >
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/type_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="Tégla építésű lakás"
+                            android:gravity="right"
+                            android:padding="3sp" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/elevator_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="Nincs"
+                            android:gravity="right"
+                            android:padding="3sp" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/balcony_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="80m2"
+                            android:gravity="right"
+                            android:padding="3sp" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/parking_realestate"
+                            android:padding="3dip"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="Garázs az árban"
+                            android:gravity="right"
+                            android:padding="3sp"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/view_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="kertre néző"
+                            android:gravity="right"
+                            android:padding="3sp" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/heating_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="gáz (cirko)"
+                            android:gravity="right"
+                            android:padding="3sp"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="1"
+                            android:text="@string/comfort_realestate"
+                            android:padding="3sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="luxus"
+                            android:gravity="right"
+                            android:padding="3sp"/>
+                    </TableRow>
+
+
+                </TableLayout>
             </HorizontalScrollView>
 
             <RelativeLayout
