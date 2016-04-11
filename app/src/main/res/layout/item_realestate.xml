@@ -54,6 +54,17 @@
             android:src="@drawable/face"
             android:layout_margin="5sp" />
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignBottom="@+id/item_realestate_mainpic"
+            android:layout_alignRight="@+id/item_realestate_mainpic"
+            android:layout_alignEnd="@+id/item_realestate_mainpic"
+            android:layout_alignTop="@+id/item_realestate_mainpic"
+            android:layout_alignLeft="@+id/item_realestate_mainpic"
+            android:layout_alignStart="@+id/item_realestate_mainpic" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

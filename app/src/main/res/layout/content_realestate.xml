@@ -24,7 +24,7 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,10 +41,26 @@
                     android:adjustViewBounds="true"
                     android:layout_margin="10sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView3"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/profile_avatar"
+                    android:layout_toEndOf="@+id/profile_avatar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView4"
+                    android:layout_below="@+id/textView3"
+                    android:layout_toRightOf="@+id/profile_avatar"
+                    android:layout_toEndOf="@+id/profile_avatar" />
 
 
-
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </RelativeLayout>
