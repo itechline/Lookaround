@@ -123,6 +123,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/realestate_table_relative"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -131,7 +132,7 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:id="@+id/realestate_dtail_table1"
-                        >
+                        android:layout_margin="5sp">
 
                         <TableRow>
 
