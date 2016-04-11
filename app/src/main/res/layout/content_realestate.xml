@@ -233,11 +233,11 @@
 
                             <TextView
                                 android:layout_column="2"
-                                android:text="@string/type_realestate"
+                                android:text="@string/condition_realestate"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="Tégla építésű lakás"
+                                android:text="Új építésú"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -245,11 +245,11 @@
                         <TableRow>
                             <TextView
                                 android:layout_column="2"
-                                android:text="@string/elevator_realestate"
+                                android:text="@string/floors_realestete"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="Nincs"
+                                android:text="2"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -257,11 +257,11 @@
                         <TableRow>
                             <TextView
                                 android:layout_column="2"
-                                android:text="@string/balcony_realestate"
+                                android:text="@string/bathroom_wc_realestate"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="80m2"
+                                android:text="külön és egyben is"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -269,11 +269,11 @@
                         <TableRow>
                             <TextView
                                 android:layout_column="2"
-                                android:text="@string/parking_realestate"
+                                android:text="@string/height_realestate"
                                 android:padding="3dip"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="Garázs az árban"
+                                android:text="3m vagy magasabb"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -281,11 +281,11 @@
                         <TableRow>
                             <TextView
                                 android:layout_column="2"
-                                android:text="@string/view_realestate"
+                                android:text="@string/gardenrelation_realestate"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="kertre néző"
+                                android:text="igen"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>

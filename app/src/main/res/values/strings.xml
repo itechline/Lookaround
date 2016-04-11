@@ -47,5 +47,10 @@
     <string name="view_realestate">Kilátás</string>
     <string name="heating_realestate">Fűtés</string>
     <string name="comfort_realestate">Komfort</string>
+    <string name="condition_realestate">Ingatlan állapota</string>
+    <string name="floors_realestete">Épület szintjei</string>
+    <string name="bathroom_wc_realestate">Fürdő és WC</string>
+    <string name="height_realestate">Belmagasság</string>
+    <string name="gardenrelation_realestate">Kertkapcsolatos</string>
 
 </resources>
