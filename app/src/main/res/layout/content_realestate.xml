@@ -100,7 +100,8 @@
                     android:id="@+id/item_realestate_needed_address"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,7 +118,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/item_realestate_hscrollview"
-                android:layout_below="@id/item_realestate_addresses">
+                android:layout_below="@id/item_realestate_addresses"
+                android:layout_margin="5sp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,7 +132,8 @@
                 android:id="@+id/realestate_dtail_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/item_realestate_hscrollview">
+                android:layout_below="@id/item_realestate_hscrollview"
+                android:layout_margin="5sp">
 
 
                 <TextView
@@ -144,7 +147,8 @@
                 android:id="@+id/realestate_whats_near_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/realestate_dtail_layout">
+                android:layout_below="@id/realestate_dtail_layout"
+                android:layout_margin="5sp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -156,12 +160,26 @@
                 android:id="@+id/realestate_stats_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/realestate_whats_near_layout">
+                android:layout_below="@id/realestate_whats_near_layout"
+                android:layout_margin="5sp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ekszorszizámusztéj, omni szpiritusz szánkté, izé mizé vizé"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/item_offensive_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/realestate_stats_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/offensive_ad"/>
 
             </RelativeLayout>
 

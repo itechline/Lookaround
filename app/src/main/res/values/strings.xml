@@ -22,6 +22,8 @@
     <string name="you_Dnt_have">Még nincs fiókja?</string>
     <string name="send">Küldés</string>
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
+    <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
+
 
     <string name="profile">Személyes</string>
     <string name="messages">Üzenetek</string>
