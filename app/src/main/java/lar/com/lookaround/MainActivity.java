@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,8 +112,13 @@ public class MainActivity extends AppCompatActivity
 
     public void loadRealEstateContent(View view) {
         ViewGroup viewg=(ViewGroup)view;
-        TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
-        Log.d("DEBUG: ", t.getText().toString());
+        //TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
+        //Log.d("DEBUG: ", t.getText().toString());
+        TextView felh_szoveg = (TextView)findViewById(R.id.item_realestate_description_text);
+
+        felh_szoveg.setText(Html.fromHtml("<br><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum sit amet urna vulputate sagittis. Nulla vulputate lacus ac velit congue tincidunt. Fusce viverra mi nec sodales convallis. Integer porta elit ipsum, eget consequat mi suscipit in. In varius velit et est suscipit commodo. Sed vitae malesuada nisl. Cras vestibulum consectetur tortor, quis rutrum urna iaculis gravida. Proin rhoncus lectus aliquet, luctus massa vel, fermentum ipsum. Proin vitae magna a justo viverra egestas in sed ex. Donec pretium elit arcu, et cursus ligula lacinia in. Sed fermentum facilisis magna, eget viverra nisi maximus sit amet." +
+                "<br><br>Integer quis massa non mi elementum posuere. Sed vestibulum enim nec bibendum sodales. Aenean pretium eleifend orci, ut laoreet diam sodales ac. Maecenas eu suscipit ante. Pellentesque dignissim tincidunt dolor at gravida. Cras sit amet elementum urna, et gravida leo. Nunc eleifend vel mauris non semper. Mauris in urna sed elit aliquet lacinia at et nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus risus leo, non consectetur nisi mollis non. Suspendisse fringilla ipsum ac tempor mollis."));
+
     }
 
 
