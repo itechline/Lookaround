@@ -1,6 +1,7 @@
 package lar.com.lookaround;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -201,7 +202,38 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        switch (id) {
+            case R.id.nav_profile:
+
+                break;
+            case R.id.nav_messages:
+
+                break;
+            case R.id.nav_billing:
+
+                break;
+            case R.id.nav_myads:
+
+                break;
+            case R.id.nav_myfavs:
+
+                break;
+            case R.id.nav_admonitor:
+
+                break;
+            case R.id.nav_agency:
+
+                break;
+            case R.id.nav_invitation:
+
+                break;
+            case R.id.nav_logout:
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                break;
+        }
+
+
+        /*if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -213,7 +245,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
