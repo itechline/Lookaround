@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity
     ViewFlipper viewFlip;
     LayoutInflater inflater;
     private int mCurrentLayoutState;
+    private int prewView;
 
     private static final int ESTATESLIST = 0;
     private static final int CONTENTESTATE = 1;
+    private static final int ADDESTATE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                prewView = viewFlip.getDisplayedChild();
+                switchLayoutTo(ADDESTATE);
+
             }
         });
 
@@ -69,14 +74,16 @@ public class MainActivity extends AppCompatActivity
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        View estatesView, contentRealestate;
+        View estatesView, contentRealestate, addEstate;
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
+        addEstate = inflater.inflate(R.layout.content_addrealestate, null);
 
         viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
         viewFlip.addView(estatesView, ESTATESLIST);
         viewFlip.addView(contentRealestate, CONTENTESTATE);
+        viewFlip.addView(addEstate, ADDESTATE);
 
         viewFlip.setDisplayedChild(ESTATESLIST);
 
@@ -95,14 +102,16 @@ public class MainActivity extends AppCompatActivity
             //viewFlip.setDisplayedChild(CONTENTESTATE);
             switchLayoutTo(CONTENTESTATE);
             Log.d("DEBUG: ", textv.getText().toString());
+            loadRealEstateContent(view);
             supportInvalidateOptionsMenu();
         }
     }
 
 
-    public void loadRealEstateContent() {
-
-
+    public void loadRealEstateContent(View view) {
+        ViewGroup viewg=(ViewGroup)view;
+        TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
+        Log.d("DEBUG: ", t.getText().toString());
     }
 
 
@@ -136,6 +145,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case CONTENTESTATE:
                 switchLayoutTo(ESTATESLIST);
+                loadRealEstates();
+                break;
+            case ADDESTATE:
+                switchLayoutTo(prewView);
                 break;
         }
     }
