@@ -192,8 +192,8 @@
                     android:src="@drawable/hibas_serto"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:layout_toLeftOf="@+id/textView3"
-                    android:layout_toStartOf="@+id/textView3" />
+                    android:layout_toStartOf="@+id/text_offensive"
+                    android:layout_toLeftOf="@+id/text_offensive" />
 
             </RelativeLayout>
 
