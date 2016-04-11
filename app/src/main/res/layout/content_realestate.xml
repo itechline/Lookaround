@@ -3,4 +3,50 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:src="@drawable/estate"
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:id="@+id/image_realestate_dtail"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_realestate_dtail">
+
+                <ImageView
+                    android:src="@drawable/face"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50sp"
+                    android:id="@+id/profile_avatar"
+                    android:layout_below="@+id/image_realestate_dtail"
+                    android:layout_alignParentLeft="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="10sp" />
+
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>
