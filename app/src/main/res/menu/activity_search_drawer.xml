@@ -3,34 +3,32 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_profile"
-            android:title="@string/type_search" />
+            android:id="@+id/nav_estatetype"
+            android:title="@string/type_search"
+            />
         <item
-            android:id="@+id/nav_messages"
+            android:id="@+id/nav_localisaton"
             android:title="@string/localisation_search" />
         <item
-            android:id="@+id/nav_billing"
+            android:id="@+id/nav_keyword"
             android:title="@string/keyword_search" />
         <item
-            android:id="@+id/nav_myads"
+            android:id="@+id/nav_dontwanttosee"
             android:title="@string/idontwant_search" />
-
         <item
-            android:id="@+id/nav_myfavs"
+            android:id="@+id/nav_floors"
             android:title="@string/floors_search" />
-
         <item
-            android:id="@+id/nav_admonitor"
+            android:id="@+id/nav_roomcount"
             android:title="@string/rooms_count_search" />
-
         <item
-            android:id="@+id/nav_agency"
+            android:id="@+id/nav_elevator"
             android:title="@string/elevator_search" />
         <item
-            android:id="@+id/nav_invitation"
+            android:id="@+id/nav_balcony"
             android:title="@string/balcony_search" />
         <item
-            android:id="@+id/nav_logout"
+            android:id="@+id/nav_innerheight"
             android:title="@string/inner_height_search" />
         <item
             android:id="@+id/nav_bath_wc"
