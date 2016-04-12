@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:title="@string/type_search" />
+        <item
+            android:id="@+id/nav_messages"
+            android:title="@string/localisation_search" />
+        <item
+            android:id="@+id/nav_billing"
+            android:title="@string/keyword_search" />
+        <item
+            android:id="@+id/nav_myads"
+            android:title="@string/idontwant_search" />
+
+        <item
+            android:id="@+id/nav_myfavs"
+            android:title="@string/floors_search" />
+
+        <item
+            android:id="@+id/nav_admonitor"
+            android:title="@string/rooms_count_search" />
+
+        <item
+            android:id="@+id/nav_agency"
+            android:title="@string/elevator_search" />
+        <item
+            android:id="@+id/nav_invitation"
+            android:title="@string/balcony_search" />
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/inner_height_search" />
+        <item
+            android:id="@+id/nav_bath_wc"
+            android:title="@string/bath_wc_search"/>
+        <item
+            android:id="@+id/nav_aircondition"
+            android:title="@string/air_condition_search"/>
+        <item
+            android:id="@+id/nav_gardenrelation"
+            android:title="@string/garden_realtion_search"/>
+        <item
+            android:id="@+id/nav_condition"
+            android:title="@string/condition_search"/>
+        <item
+            android:id="@+id/nav_attic"
+            android:title="@string/attic_search"/>
+    </group>
+
+</menu>

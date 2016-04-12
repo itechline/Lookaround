@@ -24,7 +24,7 @@
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
 
-
+<!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
     <string name="messages">Üzenetek</string>
     <string name="billing">Számlázás</string>
@@ -34,6 +34,24 @@
     <string name="agency">Ügynökség</string>
     <string name="invitation">Meghívás</string>
     <string name="logout">Kijelentkezés</string>
+
+<!-- search drawer stringek -->
+
+    <string name="type_search">Kivitel</string>
+    <string name="localisation_search">Elhelyezkedés</string>
+    <string name="keyword_search">Kulcsszó</string>
+    <string name="idontwant_search">Ne szerepeljen</string>
+    <string name="floors_search">Szintek</string>
+    <string name="rooms_count_search">Szobák száma</string>
+    <string name="elevator_search">Lift</string>
+    <string name="balcony_search">Erkély</string>
+    <string name="inner_height_search">Belmagasság</string>
+    <string name="bath_wc_search">Fürdő és mosdó</string>
+    <string name="air_condition_search">Légkondi</string>
+    <string name="garden_realtion_search">Kertkapcsolat</string>
+    <string name="condition_search">Állapot</string>
+    <string name="attic_search">Tetőtér</string>
+
 
     <string name="title_activity_main">MainActivity</string>
 
