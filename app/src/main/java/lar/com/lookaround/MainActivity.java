@@ -24,10 +24,16 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
 import java.util.ArrayList;
 
@@ -89,8 +95,22 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(addEstate, ADDESTATE);
 
         viewFlip.setDisplayedChild(ESTATESLIST);
-
         loadRealEstates();
+
+        SliderLayout sliderShow = (SliderLayout) findViewById(R.id.slider);
+        sliderShow.stopAutoCycle();
+
+        DefaultSliderView textSliderView = new DefaultSliderView (this);
+        DefaultSliderView  textSliderView2 = new DefaultSliderView (this);
+        textSliderView
+                .image("https://s-media-cache-ak0.pinimg.com/736x/e7/f2/81/e7f2812089086a6e9e7e6408457c76c4.jpg");
+        textSliderView2
+                .image("https://scontent.fomr1-1.fna.fbcdn.net/hphotos-xfp1/v/t1.0-9/10399388_1037153376364726_5568922816957393250_n.jpg?oh=6c8027e95134a0fc5310ba3e0847372d&oe=577B8A7D ");
+
+        textSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
+        textSliderView2.setScaleType(BaseSliderView.ScaleType.CenterCrop);
+        sliderShow.addSlider(textSliderView);
+        sliderShow.addSlider(textSliderView2);
 
 
     }
