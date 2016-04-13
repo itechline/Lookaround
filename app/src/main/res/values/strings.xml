@@ -102,4 +102,21 @@
         <item>Zala</item>
     </string-array>
 
+    <string-array name="realestate_floors_min_array">
+        <item>min szuterén</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="realestate_floors_max_array">
+        <item>max 10+</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+
 </resources>

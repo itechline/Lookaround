@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
-    Spinner typeSpinner, localSpinner;
-    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter;
+    Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner;
+    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +155,39 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+        minfloorSpinner = (Spinner)findViewById(R.id.realestate_floors_min_spinner);
+        minfloorSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_floors_min_array, android.R.layout.simple_spinner_item);
+        minfloorSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        minfloorSpinner.setAdapter(minfloorSPAdapter);
+        minfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        maxfloorSpinner = (Spinner)findViewById(R.id.realestate_floors_max_spinner);
+        maxfloorSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_floors_max_array, android.R.layout.simple_spinner_item);
+        maxfloorSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        maxfloorSpinner.setAdapter(maxfloorSPAdapter);
+        maxfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
 
