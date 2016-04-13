@@ -155,6 +155,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
 
+            //sliderLayout.addOnPageChangeListener();
+
             sliderLayout.addSlider(defaultSliderView);
 
             //sliderLayout.destroyDrawingCache();
@@ -238,8 +240,6 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
-        } else {
-            super.onBackPressed();
         }
     }
 
