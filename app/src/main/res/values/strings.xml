@@ -118,5 +118,26 @@
         <item>4</item>
     </string-array>
 
+    <string-array name="realestate_rooms_min_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="realestate_rooms_max_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="realestate_elevator_array">
+        <item>Mindegy</item>
+        <item>Van</item>
+        <item>Nincs</item>
+    </string-array>
+
 
 </resources>

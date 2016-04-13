@@ -53,8 +53,12 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
-    Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner;
-    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter;
+
+    Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
+    Spinner elevatorSpinner;
+    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
+    ArrayAdapter<CharSequence> elevatorSpinnerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +181,54 @@ public class MainActivity extends AppCompatActivity
         maxfloorSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         maxfloorSpinner.setAdapter(maxfloorSPAdapter);
         maxfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        minroomsSpinner = (Spinner)findViewById(R.id.realestate_roomcount_min_spinner);
+        minroomsSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_rooms_min_array, android.R.layout.simple_spinner_item);
+        minroomsSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        minroomsSpinner.setAdapter(minroomsSPAdapter);
+        minroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        maxroomsSpinner = (Spinner)findViewById(R.id.realestate_roomcount_max_spinner);
+        maxroomsSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_rooms_max_array, android.R.layout.simple_spinner_item);
+        maxroomsSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        maxroomsSpinner.setAdapter(maxroomsSPAdapter);
+        maxroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        elevatorSpinner = (Spinner)findViewById(R.id.realestate_elevator_spinner);
+        elevatorSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_elevator_array, android.R.layout.simple_spinner_item);
+        elevatorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        elevatorSpinner.setAdapter(elevatorSpinnerAdapter);
+        elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
