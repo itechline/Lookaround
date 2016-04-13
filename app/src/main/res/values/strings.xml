@@ -73,8 +73,33 @@
 
     <string-array name="realestate_type_spinner_array">
         <item>Mindegy</item>
-        <item>Nem mindegy</item>
-        <item>Kerti Budi</item>
+        <item>Tégla</item>
+        <item>Panel</item>
+        <item>Csúsztatott zsalus</item>
+    </string-array>
+
+    <string-array name="realestate_local_spinner_array">
+        <item>Mindegy</item>
+        <item>Balaton</item>
+        <item>Baranya</item>
+        <item>Békés</item>
+        <item>Borsod-Abaúj-Zemplén</item>
+        <item>Budapest</item>
+        <item>Csongrád</item>
+        <item>Fejér</item>
+        <item>Győr-Moson-Sopron</item>
+        <item>Hajdú-Bihar</item>
+        <item>Heves</item>
+        <item>Jász-Nagykun-Szolnok</item>
+        <item>Komárom-Esztergom</item>
+        <item>Nógrád</item>
+        <item>Pest</item>
+        <item>Somogy</item>
+        <item>Szabolcs-Szatmár-Bereg</item>
+        <item>Tolna</item>
+        <item>Vas</item>
+        <item>Veszprém</item>
+        <item>Zala</item>
     </string-array>
 
 </resources>

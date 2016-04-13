@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
-    Spinner typeSpinner;
-    ArrayAdapter<CharSequence> spinnerAdapter;
+    Spinner typeSpinner, localSpinner;
+    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +120,15 @@ public class MainActivity extends AppCompatActivity
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView2.setNavigationItemSelectedListener(this);
 
-        spinnerCreator();
+        typespinnerCreator();
+
     }
 
-    public void spinnerCreator() {
-        typeSpinner = (Spinner)findViewById(R.id.realestate_type_spinner);
-        spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_type_spinner_array, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeSpinner.setAdapter(spinnerAdapter);
+    public void typespinnerCreator() {
+        typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
+        typespinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_type_spinner_array, android.R.layout.simple_spinner_item);
+        typespinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(typespinnerAdapter);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -139,9 +140,24 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+        localSpinner = (Spinner)findViewById(R.id.realestate_localisaton_spinner);
+        localSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_local_spinner_array, android.R.layout.simple_spinner_item);
+        localSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        localSpinner.setAdapter(localSpinnerAdapter);
+        localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
+
 
     public void loadEstateImages() {
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
