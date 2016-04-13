@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * Created by Attila_Dan on 16. 04. 08..
  */
 public class RealEstate {
+    int id;
     private String adress;
     private String street;
     private String description;
@@ -16,6 +17,7 @@ public class RealEstate {
     //private Picture estateMainPic;
 
     public RealEstate(int id, String adress, String street, String description, String price, boolean isFavourite) {
+        this.id = id;
         this.adress = adress;
         this.street = street;
         this.description = description;
@@ -33,6 +35,10 @@ public class RealEstate {
         estates.add(new RealEstate(0005,"Asdf3", "Street4", "Hogyishijjak", "100 Huf", false));
         return estates;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getAdress() {
         return adress;

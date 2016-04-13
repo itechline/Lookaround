@@ -1,5 +1,6 @@
 package lar.com.lookaround;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.models.RealEstate;
@@ -52,10 +55,16 @@ public class MainActivity extends AppCompatActivity
     private static final int CONTENTESTATE = 1;
     private static final int ADDESTATE = 2;
 
+    View estatesView, contentRealestate, addEstate;
+
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
+        //addContentView(R.layout.activity_search);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -72,18 +81,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
+
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        View estatesView, contentRealestate, addEstate;
+
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
@@ -97,21 +107,75 @@ public class MainActivity extends AppCompatActivity
         viewFlip.setDisplayedChild(ESTATESLIST);
         loadRealEstates();
 
-        SliderLayout sliderShow = (SliderLayout) findViewById(R.id.slider);
-        sliderShow.stopAutoCycle();
+        loadEstateImages();
 
-        DefaultSliderView textSliderView = new DefaultSliderView (this);
-        DefaultSliderView  textSliderView2 = new DefaultSliderView (this);
-        textSliderView
-                .image("https://s-media-cache-ak0.pinimg.com/736x/e7/f2/81/e7f2812089086a6e9e7e6408457c76c4.jpg");
-        textSliderView2
-                .image("https://scontent.fomr1-1.fna.fbcdn.net/hphotos-xfp1/v/t1.0-9/10399388_1037153376364726_5568922816957393250_n.jpg?oh=6c8027e95134a0fc5310ba3e0847372d&oe=577B8A7D ");
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ImageButton menuLeft = (ImageButton) findViewById(R.id.menuLeft);
+        ImageButton menuRight = (ImageButton) findViewById(R.id.menuRight);
 
-        textSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
-        textSliderView2.setScaleType(BaseSliderView.ScaleType.CenterCrop);
-        sliderShow.addSlider(textSliderView);
-        sliderShow.addSlider(textSliderView2);
+        menuLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    drawer.openDrawer(GravityCompat.START);
+                }
+            }
+        });
 
+        menuRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else {
+                    drawer.openDrawer(GravityCompat.END);
+                }
+            }
+        });
+
+        NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view_search);
+        navigationView1.setNavigationItemSelectedListener(this);
+        navigationView2.setNavigationItemSelectedListener(this);
+
+
+    }
+
+    public void loadEstateImages() {
+        final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
+
+        //final List<String> urls = slideImageURLLists();
+
+        final List<String> urls = new ArrayList<String>();
+        urls.add("https://s-media-cache-ak0.pinimg.com/736x/e7/f2/81/e7f2812089086a6e9e7e6408457c76c4.jpg");
+        urls.add("https://scontent.fomr1-1.fna.fbcdn.net/hphotos-xfp1/v/t1.0-9/10399388_1037153376364726_5568922816957393250_n.jpg?oh=6c8027e95134a0fc5310ba3e0847372d&oe=577B8A7D");
+        urls.add("https://scontent.fomr1-1.fna.fbcdn.net/v/t1.0-9/10500443_784808998244322_3120390074428787735_n.jpg?oh=f5ca0004521550b3146dff315a43f37d&oe=5779D2CB");
+
+        for(int i = 0; i<urls.size();i ++) {
+            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
+            final int finalI = i;
+            defaultSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
+            defaultSliderView.image(urls.get(i))
+                    .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                        @Override
+                        public void onSliderClick(BaseSliderView slider) {
+                            Log.d("CLICKED ON: ", urls.get(finalI));
+                            /*if(sliderLayout.getScaleX() == 1) {
+                                sliderLayout.setScaleY(0.5f);
+                                sliderLayout.setScaleX(0.5f);
+                            } else {
+                                sliderLayout.setScaleY(1);
+                                sliderLayout.setScaleX(1);
+                            }*/
+                        }
+                    });
+
+            sliderLayout.addSlider(defaultSliderView);
+
+            //sliderLayout.destroyDrawingCache();
+        }
 
     }
 
@@ -132,6 +196,8 @@ public class MainActivity extends AppCompatActivity
 
 
     public void loadRealEstateContent(View view) {
+        findViewById(R.id.scrollView2).scrollTo(0, 0);
+
         ViewGroup viewg=(ViewGroup)view;
         //TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
         //Log.d("DEBUG: ", t.getText().toString());
@@ -172,6 +238,8 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case CONTENTESTATE:
+                //findViewById(R.id.estateListView).invalidate();
+
                 switchLayoutTo(ESTATESLIST);
                 loadRealEstates();
                 break;
@@ -209,7 +277,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
+            if (drawer.isDrawerOpen(GravityCompat.END)) {
+                drawer.closeDrawer(GravityCompat.END);
+            } else {
+                drawer.openDrawer(GravityCompat.END);
+            }
             return true;
         }
 
@@ -256,6 +329,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.END);
         return true;
     }
 

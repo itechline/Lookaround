@@ -19,8 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:fitsSystemWindows="true"
-        app:menu="@menu/activity_search_drawer"
-        android:visibility="visible"
-        android:transitionGroup="false" />
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_search_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
