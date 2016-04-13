@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,30 +117,6 @@ public class MainActivity extends AppCompatActivity
         loadEstateImages();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ImageButton menuLeft = (ImageButton) findViewById(R.id.menuLeft);
-        ImageButton menuRight = (ImageButton) findViewById(R.id.menuRight);
-
-        menuLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.closeDrawer(GravityCompat.START);
-                } else {
-                    drawer.openDrawer(GravityCompat.START);
-                }
-            }
-        });
-
-        menuRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
-                }
-            }
-        });
 
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
         NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view_search);
@@ -249,6 +232,15 @@ public class MainActivity extends AppCompatActivity
                 fab.setVisibility(View.VISIBLE);
                 break;
         }
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -282,6 +274,14 @@ public class MainActivity extends AppCompatActivity
                 drawer.closeDrawer(GravityCompat.END);
             } else {
                 drawer.openDrawer(GravityCompat.END);
+            }
+            return true;
+        }
+        if (id == android.R.id.home) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                drawer.openDrawer(GravityCompat.START);
             }
             return true;
         }
