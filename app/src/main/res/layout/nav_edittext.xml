@@ -193,5 +193,15 @@
         android:layout_toRightOf="@+id/type_realestate_textview"
         android:layout_toEndOf="@+id/type_realestate_textview" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/realestate_localisaton_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/text_localisation_search"
+        android:layout_toEndOf="@+id/text_localisation_search"
+        android:layout_below="@+id/type_realestate_textview" />
+
 
 </RelativeLayout>
