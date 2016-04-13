@@ -71,7 +71,7 @@
     <string name="height_realestate">Belmagasság</string>
     <string name="gardenrelation_realestate">Kertkapcsolatos</string>
 
-    <string-array name="realestate_type_spinner">
+    <string-array name="realestate_type_spinner_array">
         <item>Mindegy</item>
         <item>Nem mindegy</item>
         <item>Kerti Budi</item>
