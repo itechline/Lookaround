@@ -5,19 +5,26 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="megymár?"
-            android:id="@+id/textView"
+            android:text="@string/type_search"
+            android:id="@+id/type_realestate_textview"
+            android:layout_gravity="left"
             />
 
-    </LinearLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/type_realestate_edittext"
+            android:hint="@string/type_search"
+            android:layout_gravity="right"
+            android:layout_alignBottom="@+id/type_realestate_textview"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
 </RelativeLayout>
