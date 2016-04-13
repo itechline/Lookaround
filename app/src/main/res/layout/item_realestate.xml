@@ -55,6 +55,14 @@
             android:layout_margin="5sp"
             android:visibility="invisible" />
 
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/sliderSmall"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_alignBottom="@+id/item_realestate_mainpic"
+            android:layout_alignRight="@+id/item_realestate_mainpic"
+            android:layout_alignEnd="@+id/item_realestate_mainpic" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +73,8 @@
             android:layout_alignTop="@+id/item_realestate_mainpic"
             android:layout_alignLeft="@+id/item_realestate_mainpic"
             android:layout_alignStart="@+id/item_realestate_mainpic"
-            android:layout_margin="40sp" />
+            android:layout_margin="40sp"
+            android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
