@@ -27,8 +27,10 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
+import lar.com.lookaround.util.LoginUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -200,12 +202,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    public void sendLogin(View view) {
+    public void sendLogin(final View view) {
         emailEditText = (EditText) findViewById(R.id.mailLogin);
         passEditText = (EditText) findViewById(R.id.passwLogin);
         boolean isAbleToJoin = true;
 
-        String passw = passEditText.getText().toString();
+        final String passw = passEditText.getText().toString();
         String email = emailEditText.getText().toString();
 
         if (!isValidPassword(passw)) {
@@ -221,7 +223,20 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(isAbleToJoin) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            LoginUtil loginUtil = new LoginUtil();
+            loginUtil.login(new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    if((boolean)result) {
+                        Log.d("RESULT: ", result.toString());
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    } else {
+                        Log.d("RESULT: ", result.toString());
+                        showAlert(view);
+                    }
+
+                }
+            }, email, passw);
         }
     }
 
@@ -308,7 +323,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // validating password with retype password
     private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() >= 6) {
+        if (pass != null && pass.length() >= 4) {
             return true;
         }
         return false;

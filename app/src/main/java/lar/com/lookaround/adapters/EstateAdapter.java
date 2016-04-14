@@ -45,7 +45,7 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_realestate, parent, false);
-            new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic), convertView.getId()).execute(estate.getUrls());
+            //new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic), convertView.getId()).execute(estate.getUrls());
         } else {
             ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
             image.setImageBitmap(null);
@@ -72,7 +72,7 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             //Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
 
             //if (bitmap == null)
-                new DownloadImageTask(image, estate.getId()).execute(estate.getUrls());
+                //new DownloadImageTask(image, estate.getId()).execute(estate.getUrls());
 
             //bitmap.recycle();
 
