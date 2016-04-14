@@ -1,5 +1,6 @@
 package lar.com.lookaround;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -223,21 +224,43 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(isAbleToJoin) {
+            launchRingDialog(view);
             LoginUtil loginUtil = new LoginUtil();
             loginUtil.login(new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
                     if((boolean)result) {
                         Log.d("RESULT: ", result.toString());
+                        ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {
                         Log.d("RESULT: ", result.toString());
+                        ringProgressDialog.dismiss();
                         showAlert(view);
                     }
 
                 }
             }, email, passw);
         }
+    }
+    ProgressDialog ringProgressDialog;
+
+    public void launchRingDialog(View view) {
+        ringProgressDialog = ProgressDialog.show(LoginActivity.this, "Please wait ...", "Logging In ...", true);
+        ringProgressDialog.setCancelable(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Here you should write your time consuming task...
+                    // Let the progress ring for 10 seconds...
+                    Thread.sleep(10000);
+                } catch (Exception e) {
+
+                }
+                ringProgressDialog.dismiss();
+            }
+        }).start();
     }
 
     public void setIndividual(View view) {
