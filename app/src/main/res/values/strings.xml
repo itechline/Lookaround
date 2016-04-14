@@ -71,6 +71,8 @@
     <string name="bathroom_wc_realestate">Fürdő és WC</string>
     <string name="height_realestate">Belmagasság</string>
     <string name="gardenrelation_realestate">Kertkapcsolatos</string>
+    <string name="keyword_hint">Ami biztos szerepeljen a hírdetésben</string>
+    <string name="idontwant_hint">Ami biztos ne szerepeljen a hírdetésben</string>
 
     <string-array name="realestate_type_spinner_array">
         <item>Mindegy</item>

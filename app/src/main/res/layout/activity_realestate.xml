@@ -245,18 +245,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/keyword_editText"
+                    android:hint="@string/keyword_hint"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_toEndOf="@+id/text_air_condition_search"
+                    android:layout_toEndOf="@+id/text_inner_height_search"
                     android:layout_above="@+id/text_idontwant_search"
                     android:layout_below="@+id/text_localisation_search"
-                    android:layout_alignLeft="@+id/keyword_editText"
-                    android:layout_alignStart="@+id/keyword_editText" />
+                    android:layout_alignLeft="@+id/idontwant_editText"
+                    android:layout_alignStart="@+id/idontwant_editText" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/keyword_editText"
+                    android:id="@+id/idontwant_editText"
+                    android:hint="@string/idontwant_hint"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_toRightOf="@+id/text_idontwant_search"
@@ -268,11 +270,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/realestate_floors_min_spinner"
-                    android:layout_alignTop="@+id/realestate_floors_max_spinner"
                     android:layout_above="@+id/text_rooms_count_search"
                     android:layout_toLeftOf="@+id/realestate_floors_max_spinner"
                     android:layout_alignLeft="@+id/keyword_editText"
-                    android:layout_alignStart="@+id/keyword_editText" />
+                    android:layout_alignStart="@+id/keyword_editText"
+                    android:layout_below="@+id/text_idontwant_search" />
 
                 <Spinner
                     android:layout_width="wrap_content"
@@ -281,9 +283,9 @@
                     android:layout_alignRight="@+id/keyword_editText"
                     android:layout_alignEnd="@+id/keyword_editText"
                     android:layout_toEndOf="@+id/search_confirm_button"
-                    android:layout_below="@+id/keyword_editText"
                     android:layout_above="@+id/text_rooms_count_search"
-                    android:layout_toRightOf="@+id/search_confirm_button" />
+                    android:layout_toRightOf="@+id/search_confirm_button"
+                    android:layout_below="@+id/text_idontwant_search" />
 
                 <Spinner
                     android:layout_width="wrap_content"
