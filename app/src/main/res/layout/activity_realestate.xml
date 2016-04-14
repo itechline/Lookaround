@@ -312,6 +312,18 @@
                 android:layout_above="@+id/text_balcony_search"
                 android:layout_below="@+id/text_rooms_count_serach" />
 
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/realestate_balcony_spinner"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/realestate_floors_min_spinner"
+                android:layout_alignStart="@+id/realestate_floors_min_spinner"
+                android:layout_below="@+id/realestate_elevator_spinner"
+                android:layout_above="@+id/text_inner_height_search" />
+
+
 
         </RelativeLayout>
         </ScrollView>

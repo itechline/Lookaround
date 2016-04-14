@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity
 
 
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
-    Spinner elevatorSpinner;
+    Spinner elevatorSpinner, balconySpinner;
     ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
-    ArrayAdapter<CharSequence> elevatorSpinnerAdapter;
+    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter;
 
 
     @Override
@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView2.setNavigationItemSelectedListener(this);
 
-        typespinnerCreator();
+        spinnerCreator();
 
     }
 
-    public void typespinnerCreator() {
+    public void spinnerCreator() {
         typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
         typespinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_type_spinner_array, android.R.layout.simple_spinner_item);
         typespinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -229,6 +229,22 @@ public class MainActivity extends AppCompatActivity
         elevatorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         elevatorSpinner.setAdapter(elevatorSpinnerAdapter);
         elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        balconySpinner = (Spinner)findViewById(R.id.realestate_balcony_spinner);
+        balconySpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_balcony_array, android.R.layout.simple_spinner_item);
+        balconySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        balconySpinner.setAdapter(balconySpinnerAdapter);
+        balconySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

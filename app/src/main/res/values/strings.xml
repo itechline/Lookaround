@@ -139,5 +139,11 @@
         <item>Nincs</item>
     </string-array>
 
+    <string-array name="realestate_balcony_array">
+        <item>Mindegy</item>
+        <item>Van</item>
+        <item>Nincs</item>
+    </string-array>
+
 
 </resources>
