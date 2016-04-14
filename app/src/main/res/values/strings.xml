@@ -104,7 +104,8 @@
     </string-array>
 
     <string-array name="realestate_floors_min_array">
-        <item>min szuterén</item>
+        <item>Mindegy</item>
+        <item>Szuterén</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -112,7 +113,8 @@
     </string-array>
 
     <string-array name="realestate_floors_max_array">
-        <item>max 10+</item>
+        <item>Mindegy</item>
+        <item>10+</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -120,6 +122,7 @@
     </string-array>
 
     <string-array name="realestate_rooms_min_array">
+        <item>Mindegy</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -127,6 +130,7 @@
     </string-array>
 
     <string-array name="realestate_rooms_max_array">
+        <item>Mindegy</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
