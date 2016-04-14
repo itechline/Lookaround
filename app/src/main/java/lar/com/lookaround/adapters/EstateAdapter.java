@@ -39,13 +39,14 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_realestate, parent, false);
+            new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic)).execute(estate.getUrls());
         }
         // Lookup view for data population
-        final TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
+        TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
         TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
         TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
         TextView price = (TextView) convertView.findViewById(R.id.Price);
-        final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
+        CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
         // Populate the data into the template view using the data object
 
         adress.setText(estate.getAdress());
@@ -54,13 +55,14 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         price.setText(estate.getPrice());
         fav.setChecked(estate.isFavourite());
         //loadEstateImages(convertView, estate.getUrls());
-        new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic))
-                .execute(estate.getUrls());
+
 
 
 
         return convertView;
     }
+
+
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
