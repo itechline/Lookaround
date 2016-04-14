@@ -144,6 +144,12 @@
         <item>Van</item>
         <item>Nincs</item>
     </string-array>
+    
+    <string-array name="realestate_innerheight_array">
+        <item>Mindegy</item>
+        <item>3m-nél alacsonyabb</item>
+        <item>3m vagy magasabb</item>
+    </string-array>
 
 
 </resources>

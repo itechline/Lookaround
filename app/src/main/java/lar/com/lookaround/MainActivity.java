@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity
 
 
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
-    Spinner elevatorSpinner, balconySpinner;
+    Spinner elevatorSpinner, balconySpinner, iheightSpinner;
     ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
-    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter;
+    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter, iheightSpinnerAdapter;
 
 
     @Override
@@ -256,6 +256,21 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        iheightSpinner = (Spinner)findViewById(R.id.realestate_innerheight_spinner);
+        iheightSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_innerheight_array, android.R.layout.simple_spinner_item);
+        iheightSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        iheightSpinner.setAdapter(iheightSpinnerAdapter);
+        iheightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
