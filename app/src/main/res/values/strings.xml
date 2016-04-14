@@ -74,6 +74,7 @@
     <string name="keyword_hint">Ami biztos szerepeljen a hírdetésben</string>
     <string name="idontwant_hint">Ami biztos ne szerepeljen a hírdetésben</string>
 
+
     <string-array name="realestate_type_spinner_array">
         <item>Mindegy</item>
         <item>Tégla</item>
@@ -186,6 +187,8 @@
         <item>Zárószint</item>
         <item>Penthouse</item>
     </string-array>
+
+    <string name="advertinfo">Hírdetés információk</string>
 
 
 </resources>
