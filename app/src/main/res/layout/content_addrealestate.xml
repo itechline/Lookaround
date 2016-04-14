@@ -5,6 +5,7 @@
 
 
     <LinearLayout
+        android:id="@+id/adding_advertinfo_linerlayout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
