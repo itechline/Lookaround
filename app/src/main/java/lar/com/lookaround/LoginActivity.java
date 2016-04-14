@@ -32,14 +32,15 @@ import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
 import lar.com.lookaround.util.LoginUtil;
+import lar.com.lookaround.util.SettingUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip;
     private int mCurrentLayoutState;
 
-    private static final int REGISTRATION = 0;
-    private static final int LOGIN = 1;
+    private static final int REGISTRATION = 1;
+    private static final int LOGIN = 0;
 
     private EditText emailEditText;
     private EditText passEditText;
@@ -62,6 +63,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(SettingUtil.getToken(this) != "") {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+
 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -72,8 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         regist = inflater.inflate(R.layout.content_registration, null);
 
         viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
-        viewFlip.addView(regist, REGISTRATION);
         viewFlip.addView(login, LOGIN);
+        viewFlip.addView(regist, REGISTRATION);
     }
 
     public void openBlankPage(View view) {
@@ -173,6 +178,9 @@ public class LoginActivity extends AppCompatActivity {
                 emailEditText.setError("Hibás Email");
                 emailEditText.invalidate();
             }
+
+            //SettingUtil.setToken(this, firstName);
+
         } else {
             emailCompanyEditText = (EditText) findViewById(R.id.mail2);
             passCompanyEditText = (EditText) findViewById(R.id.passw2);
@@ -226,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
         if(isAbleToJoin) {
             launchRingDialog(view);
             LoginUtil loginUtil = new LoginUtil();
-            loginUtil.login(new SoapObjectResult() {
+            loginUtil.login(this,new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
                     if((boolean)result) {
@@ -243,8 +251,8 @@ public class LoginActivity extends AppCompatActivity {
             }, email, passw);
         }
     }
-    ProgressDialog ringProgressDialog;
 
+    ProgressDialog ringProgressDialog;
     public void launchRingDialog(View view) {
         ringProgressDialog = ProgressDialog.show(LoginActivity.this, "Please wait ...", "Logging In ...", true);
         ringProgressDialog.setCancelable(true);
