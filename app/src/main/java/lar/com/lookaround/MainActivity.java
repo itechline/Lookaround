@@ -36,6 +36,7 @@ import java.util.List;
 
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.models.RealEstate;
+import lar.com.lookaround.util.SettingUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -552,6 +553,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_logout:
                 //finishActivity();
+                SettingUtil.setToken(this, "");
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
                 break;

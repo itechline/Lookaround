@@ -1,5 +1,6 @@
 package lar.com.lookaround.util;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -21,9 +22,10 @@ import lar.com.lookaround.restapi.SoapService;
 
 
 public class LoginUtil {
-    private static final String datas = "logged_in";
+    private static final String LOGIN = "logged_in";
+    private static final String TOKEN = "token";
 
-    public static void login(final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
+    public static void login(final Context ctx, final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
         try {
             String url = "http://lookrnd.me/dev/api/do_login";
 
@@ -45,8 +47,11 @@ public class LoginUtil {
                             JSONObject jsonObj = new JSONObject(result);
 
 
-                            Object isAbleObj = jsonObj.getBoolean(datas);
+                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
+                            String token = jsonObj.getString(TOKEN);
+
                             getBackWhenItsDone.parseRerult(isAbleObj);
+                            SettingUtil.setToken(ctx, token);
 
 
 
