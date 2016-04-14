@@ -55,10 +55,11 @@ public class MainActivity extends AppCompatActivity
 
 
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
-    Spinner elevatorSpinner, balconySpinner, iheightSpinner;
+    Spinner elevatorSpinner, balconySpinner, iheightSpinner, bathroomwcSpinner, aircondiSpinner;
+    Spinner gardenRSpinner, conditionSpinner, atticSpinner;
     ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
-    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter, iheightSpinnerAdapter;
-
+    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter, iheightSpinnerAdapter, bathroomwcSpinnerAdapter, aircondiSPAdapter;
+    ArrayAdapter<CharSequence> gardenRSpinnerAdapter, conditionSpinnerAdapter, atticSpinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        localSpinner = (Spinner)findViewById(R.id.realestate_localisaton_spinner);
+        localSpinner = (Spinner)findViewById(R.id.realestate_localisation_spinner);
         localSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_local_spinner_array, android.R.layout.simple_spinner_item);
         localSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         localSpinner.setAdapter(localSpinnerAdapter);
@@ -261,6 +262,86 @@ public class MainActivity extends AppCompatActivity
         iheightSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         iheightSpinner.setAdapter(iheightSpinnerAdapter);
         iheightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bathroomwcSpinner = (Spinner)findViewById(R.id.bathroom_wc_realestate_spinner);
+        bathroomwcSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.bathroom_wc_array, android.R.layout.simple_spinner_item);
+        bathroomwcSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bathroomwcSpinner.setAdapter(bathroomwcSpinnerAdapter);
+        bathroomwcSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        aircondiSpinner = (Spinner)findViewById(R.id.aircondition_spinner);
+        aircondiSPAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
+        aircondiSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        aircondiSpinner.setAdapter(aircondiSPAdapter);
+        aircondiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        gardenRSpinner = (Spinner)findViewById(R.id.gardenrelation_spinner);
+        gardenRSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
+        gardenRSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gardenRSpinner.setAdapter(gardenRSpinnerAdapter);
+        gardenRSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        conditionSpinner = (Spinner)findViewById(R.id.condition_spinner);
+        conditionSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.condition_array, android.R.layout.simple_spinner_item);
+        conditionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        conditionSpinner.setAdapter(conditionSpinnerAdapter);
+        conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        atticSpinner = (Spinner)findViewById(R.id.attic_spinner);
+        atticSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.attic_array, android.R.layout.simple_spinner_item);
+        atticSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        atticSpinner.setAdapter(atticSpinnerAdapter);
+        atticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

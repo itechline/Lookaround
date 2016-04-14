@@ -3,7 +3,7 @@
 
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+    android:layout_height="fill_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
         android:id="@+id/search_title_text"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_gravity="left"
         android:layout_below="@+id/search_title_text"
         android:textStyle="bold"
-        android:layout_margin="10sp" />
+        android:layout_margin="15sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,19 +37,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/keyword_search"
-        android:id="@+id/text_kexword_search"
+        android:id="@+id/text_keyword_search"
         android:layout_below="@+id/text_localisation_search"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,11 +57,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/idontwant_search"
         android:id="@+id/text_idontwant_search"
-        android:layout_below="@+id/text_kexword_search"
+        android:layout_below="@+id/text_keyword_search"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,19 +73,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/rooms_count_search"
-        android:id="@+id/text_rooms_count_serach"
+        android:id="@+id/text_rooms_count_search"
         android:layout_below="@+id/text_floors_search"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,11 +93,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/elevator_search"
         android:id="@+id/text_elevator_search"
-        android:layout_below="@+id/text_rooms_count_serach"
+        android:layout_below="@+id/text_rooms_count_search"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp" />
+        android:layout_margin="15sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,7 +181,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="bold"
-        android:layout_margin="10sp"/>
+        android:layout_margin="15sp"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -190,71 +190,76 @@
         android:layout_below="@+id/search_title_text"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/type_realestate_textview"
-        android:layout_toEndOf="@+id/type_realestate_textview"
-        android:layout_above="@+id/text_localisation_search" />
+        android:layout_toEndOf="@+id/text_rooms_count_search"
+        android:layout_above="@+id/text_localisation_search"
+        android:layout_alignLeft="@+id/realestate_localisation_spinner"
+        android:layout_alignStart="@+id/realestate_localisation_spinner" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/realestate_localisaton_spinner"
+        android:id="@+id/realestate_localisation_spinner"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/text_localisation_search"
-        android:layout_toEndOf="@+id/text_localisation_search"
+        android:layout_toEndOf="@+id/text_rooms_count_search"
         android:layout_below="@+id/type_realestate_textview"
-        android:layout_above="@+id/text_kexword_search" />
+        android:layout_above="@+id/text_keyword_search"
+        android:layout_alignLeft="@+id/keyword_editText"
+        android:layout_alignStart="@+id/keyword_editText" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/keyword_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/text_air_condition_search"
         android:layout_toEndOf="@+id/text_air_condition_search"
         android:layout_above="@+id/text_idontwant_search"
-        android:layout_below="@+id/text_localisation_search" />
+        android:layout_below="@+id/text_localisation_search"
+        android:layout_alignLeft="@+id/keyword_editText"
+        android:layout_alignStart="@+id/keyword_editText" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/keyword_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/text_idontwant_search"
         android:layout_toEndOf="@+id/text_idontwant_search"
         android:layout_above="@+id/text_floors_search"
-        android:layout_below="@+id/editText" />
+        android:layout_below="@+id/text_keyword_search" />
 
     <Spinner
-        android:layout_width="100sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/realestate_floors_min_spinner"
-        android:layout_toRightOf="@+id/text_floors_search"
         android:layout_alignTop="@+id/realestate_floors_max_spinner"
-        android:layout_above="@+id/text_rooms_count_serach"
-        />
+        android:layout_above="@+id/text_rooms_count_search"
+        android:layout_toLeftOf="@+id/realestate_floors_max_spinner"
+        android:layout_alignLeft="@+id/keyword_editText"
+        android:layout_alignStart="@+id/keyword_editText" />
 
     <Spinner
-        android:layout_width="100sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/realestate_floors_max_spinner"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_toRightOf="@+id/realestate_floors_min_spinner"
-        android:layout_toEndOf="@+id/realestate_floors_min_spinner"
-        android:layout_below="@+id/editText2"
-        android:layout_above="@+id/text_rooms_count_serach" />
+        android:layout_alignRight="@+id/keyword_editText"
+        android:layout_alignEnd="@+id/keyword_editText"
+        android:layout_toEndOf="@+id/search_confirm_button"
+        android:layout_below="@+id/keyword_editText"
+        android:layout_above="@+id/text_rooms_count_search"
+        android:layout_toRightOf="@+id/search_confirm_button" />
 
     <Spinner
-        android:layout_width="100sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/realestate_roomcount_min_spinner"
-        android:layout_toRightOf="@+id/text_inner_height_search"
-        android:layout_toEndOf="@+id/text_inner_height_search"
         android:layout_above="@+id/text_elevator_search"
-        android:layout_below="@+id/realestate_floors_min_spinner" />
+        android:layout_below="@+id/realestate_floors_min_spinner"
+        android:layout_toLeftOf="@+id/realestate_floors_max_spinner"
+        android:layout_alignLeft="@+id/realestate_floors_min_spinner"
+        android:layout_alignStart="@+id/realestate_floors_min_spinner" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -262,10 +267,10 @@
         android:id="@+id/realestate_roomcount_max_spinner"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/realestate_roomcount_min_spinner"
-        android:layout_toEndOf="@+id/realestate_roomcount_min_spinner"
+        android:layout_toEndOf="@+id/realestate_floors_min_spinner"
         android:layout_above="@+id/text_elevator_search"
-        android:layout_below="@+id/realestate_floors_max_spinner" />
+        android:layout_below="@+id/realestate_floors_max_spinner"
+        android:layout_toRightOf="@+id/realestate_floors_min_spinner" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -276,7 +281,7 @@
         android:layout_alignLeft="@+id/realestate_type_spinner"
         android:layout_alignStart="@+id/realestate_type_spinner"
         android:layout_above="@+id/text_balcony_search"
-        android:layout_below="@+id/text_rooms_count_serach" />
+        android:layout_below="@+id/text_rooms_count_search" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -284,10 +289,10 @@
         android:id="@+id/realestate_balcony_spinner"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/realestate_floors_min_spinner"
-        android:layout_alignStart="@+id/realestate_floors_min_spinner"
         android:layout_below="@+id/realestate_elevator_spinner"
-        android:layout_above="@+id/text_inner_height_search" />
+        android:layout_above="@+id/text_inner_height_search"
+        android:layout_alignLeft="@+id/keyword_editText"
+        android:layout_alignStart="@+id/keyword_editText" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -296,9 +301,83 @@
         android:layout_below="@+id/realestate_balcony_spinner"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/text_inner_height_search"
         android:layout_toEndOf="@+id/text_inner_height_search"
-        android:layout_above="@+id/text_bathroom_wc_realestate" />
+        android:layout_above="@+id/text_bathroom_wc_realestate"
+        android:layout_alignLeft="@+id/realestate_balcony_spinner"
+        android:layout_alignStart="@+id/realestate_balcony_spinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bathroom_wc_realestate_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/text_bathroom_wc_realestate"
+        android:layout_above="@+id/text_air_condition_search"
+        android:layout_below="@+id/text_inner_height_search"
+        android:layout_alignLeft="@+id/realestate_innerheight_spinner"
+        android:layout_alignStart="@+id/realestate_innerheight_spinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aircondition_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/text_garden_realtion_search"
+        android:layout_below="@+id/text_bathroom_wc_realestate"
+        android:layout_toEndOf="@+id/text_air_condition_search"
+        android:layout_alignLeft="@+id/bathroom_wc_realestate_spinner"
+        android:layout_alignStart="@+id/bathroom_wc_realestate_spinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gardenrelation_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/text_garden_realtion_search"
+        android:layout_above="@+id/text_condition_search"
+        android:layout_below="@+id/aircondition_spinner"
+        android:layout_alignLeft="@+id/aircondition_spinner"
+        android:layout_alignStart="@+id/aircondition_spinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/condition_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/text_condition_search"
+        android:layout_above="@+id/text_attic_search"
+        android:layout_below="@+id/gardenrelation_spinner"
+        android:layout_alignLeft="@+id/gardenrelation_spinner"
+        android:layout_alignStart="@+id/gardenrelation_spinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/attic_spinner"
+        android:layout_below="@+id/condition_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/text_attic_search"
+        android:layout_alignLeft="@+id/condition_spinner"
+        android:layout_alignStart="@+id/condition_spinner"
+        android:layout_above="@+id/search_confirm_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_go"
+        android:id="@+id/search_confirm_button"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/colorbutton"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="15sp"
+        android:layout_below="@+id/text_attic_search" />
 
 
 </RelativeLayout>

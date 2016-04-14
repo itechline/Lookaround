@@ -23,6 +23,7 @@
     <string name="send">Küldés</string>
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
+    <string name="button_go">Mehet</string>
 
 <!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
@@ -149,6 +150,35 @@
         <item>Mindegy</item>
         <item>3m-nél alacsonyabb</item>
         <item>3m vagy magasabb</item>
+    </string-array>
+
+    <string-array name="bathroom_wc_array">
+        <item>Mindegy</item>
+        <item>Külön helyiségben</item>
+        <item>Egy helyiségben</item>
+        <item>Külön és egyben is</item>
+    </string-array>
+
+    <string-array name="mindegy_van_nincs_array">
+        <item>Mindegy</item>
+        <item>Van</item>
+        <item>Nincs</item>
+    </string-array>
+
+    <string-array name="condition_array">
+        <item>Mindegy</item>
+        <item>Új</item>
+        <item>Újszerű</item>
+        <item>Felújított</item>
+    </string-array>
+
+    <string-array name="attic_array">
+        <item>Mindegy</item>
+        <item>Tetőtéri</item>
+        <item>Nem tetőtéri</item>
+        <item>Legfelső emelet, nem tetőtéri</item>
+        <item>Zárószint</item>
+        <item>Penthouse</item>
     </string-array>
 
 
