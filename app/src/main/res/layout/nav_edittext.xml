@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/type_search"
         android:id="@+id/type_realestate_textview"
         android:layout_gravity="left"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/localisation_search"
         android:id="@+id/text_localisation_search"
         android:layout_below="@+id/type_realestate_textview"
@@ -42,7 +42,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/keyword_search"
         android:id="@+id/text_keyword_search"
         android:layout_below="@+id/text_localisation_search"
@@ -54,7 +54,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/idontwant_search"
         android:id="@+id/text_idontwant_search"
         android:layout_below="@+id/text_keyword_search"
@@ -66,7 +66,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/floors_search"
         android:id="@+id/text_floors_search"
         android:layout_below="@+id/text_idontwant_search"
@@ -78,7 +78,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/rooms_count_search"
         android:id="@+id/text_rooms_count_search"
         android:layout_below="@+id/text_floors_search"
@@ -90,7 +90,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/elevator_search"
         android:id="@+id/text_elevator_search"
         android:layout_below="@+id/text_rooms_count_search"
@@ -102,7 +102,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/balcony_search"
         android:id="@+id/text_balcony_search"
         android:layout_below="@+id/text_elevator_search"
@@ -114,7 +114,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/inner_height_search"
         android:id="@+id/text_inner_height_search"
         android:layout_below="@+id/text_balcony_search"
@@ -126,7 +126,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/bathroom_wc_realestate"
         android:id="@+id/text_bathroom_wc_realestate"
         android:layout_below="@+id/text_inner_height_search"
@@ -138,7 +138,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/air_condition_search"
         android:id="@+id/text_air_condition_search"
         android:layout_below="@+id/text_bathroom_wc_realestate"
@@ -150,7 +150,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/garden_realtion_search"
         android:id="@+id/text_garden_realtion_search"
         android:layout_below="@+id/text_air_condition_search"
@@ -162,7 +162,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/condition_search"
         android:id="@+id/text_condition_search"
         android:layout_below="@+id/text_garden_realtion_search"
@@ -174,7 +174,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/attic_search"
         android:id="@+id/text_attic_search"
         android:layout_below="@+id/text_condition_search"
