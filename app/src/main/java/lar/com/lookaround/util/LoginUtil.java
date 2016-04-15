@@ -26,6 +26,7 @@ public class LoginUtil {
     private static final String TOKEN = "token";
     private static final String TOKEN_ACTIVE = "token_active";
     private static final String STATUS = "status";
+    private static final String LOGGED_IN = "logged_in";
 
     public static void login(final Context ctx, final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
         try {
@@ -39,9 +40,7 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("TESTADATOK", "Return: " + result);
-
-                    //jsonParser(result);
+                    Log.d("LOGIN", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -50,10 +49,12 @@ public class LoginUtil {
 
 
                             Object isAbleObj = jsonObj.getBoolean(LOGIN);
-                            String token = jsonObj.getString(TOKEN);
+                            if ((boolean)isAbleObj) {
+                                String token = jsonObj.getString(TOKEN);
+                                SettingUtil.setToken(ctx, token);
+                            }
 
                             getBackWhenItsDone.parseRerult(isAbleObj);
-                            SettingUtil.setToken(ctx, token);
 
 
 
@@ -76,6 +77,48 @@ public class LoginUtil {
     }
 
 
+    public static void logout(final Context ctx, final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/do_logout";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", SettingUtil.getToken(ctx));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("LOGOUT", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(result);
+
+
+                            /*Object isAbleObj = jsonObj.getBoolean(LOGIN);
+                            String token = jsonObj.getString(TOKEN);
+
+                            getBackWhenItsDone.parseRerult(isAbleObj);
+                            SettingUtil.setToken(ctx, token);*/
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+
+
+
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void tokenValidator(final Context ctx, final SoapObjectResult getBackWhenItsDone, String token) {
         try {
@@ -86,7 +129,7 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    //Log.d("TESTADATOK_TOKEN", "Return: " + result);
+                    Log.d("TOKENVALIDATOR", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -126,16 +169,16 @@ public class LoginUtil {
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("fel_vezeteknev", vezeteknev);
-            postadatok.put("fel_keresztnev", vezeteknev);
-            postadatok.put("fel_email", vezeteknev);
-            postadatok.put("fel_jelszo", vezeteknev);
+            postadatok.put("fel_keresztnev", keresztnev);
+            postadatok.put("fel_email", email);
+            postadatok.put("fel_jelszo", jelszo);
             postadatok.put("fel_mobilszam", "+36306969696");
             postadatok.put("fel_tipus", tipus);
             postadatok.put("fel_status", "1");
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("TESTADATOK_TOKEN", "Return: " + result);
+                    Log.d("REGISTRATION", "Return: " + result);
 
                     if (result != null) {
                         try {

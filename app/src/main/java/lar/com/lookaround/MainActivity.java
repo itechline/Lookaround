@@ -652,6 +652,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_logout:
                 //finishActivity();
+                LoginUtil.logout(this, new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+
+                    }
+                });
                 SettingUtil.setToken(this, "");
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();

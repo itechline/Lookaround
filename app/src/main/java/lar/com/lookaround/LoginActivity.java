@@ -182,16 +182,18 @@ public class LoginActivity extends AppCompatActivity {
                     if((boolean)result) {
                         Log.d("RESULT: ", result.toString());
                         launchRingDialog(view);
+                        launchRingDialog(view);
                         /*LoginUtil.login(ctx, new SoapObjectResult() {
                             @Override
                             public void parseRerult(Object result) {
-                                if((boolean)result) {
+                                if ((boolean) result) {
                                     Log.d("RESULT: ", result.toString());
                                     ringProgressDialog.dismiss();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 } else {
                                     Log.d("RESULT: ", result.toString());
                                     ringProgressDialog.dismiss();
+                                    showAlert(view);
                                 }
 
                             }
@@ -258,11 +260,10 @@ public class LoginActivity extends AppCompatActivity {
 
         if(isAbleToJoin) {
             launchRingDialog(view);
-            LoginUtil loginUtil = new LoginUtil();
-            loginUtil.login(this,new SoapObjectResult() {
+            LoginUtil.login(this, new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
-                    if((boolean)result) {
+                    if ((boolean) result) {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
