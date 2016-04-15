@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_realestate);
         //addContentView(R.layout.activity_search);
 
-        if(SettingUtil.getToken(this) != "") {
+        if(!SettingUtil.getToken(this).equals("")) {
             tokenValidation();
         } else {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));

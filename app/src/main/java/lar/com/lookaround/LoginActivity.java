@@ -176,6 +176,19 @@ public class LoginActivity extends AppCompatActivity {
                 emailEditText.invalidate();
             }
 
+            LoginUtil.sendRegistration(this, new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    if((boolean)result) {
+                        Log.d("RESULT: ", result.toString());
+                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    } else {
+                        Log.d("RESULT: ", result.toString());
+                    }
+
+                }
+            },firstName, lastName, email, passw, "maganyszemely");
+
             //SettingUtil.setToken(this, firstName);
 
         } else {

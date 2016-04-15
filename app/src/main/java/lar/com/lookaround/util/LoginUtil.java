@@ -25,6 +25,7 @@ public class LoginUtil {
     private static final String LOGIN = "logged_in";
     private static final String TOKEN = "token";
     private static final String TOKEN_ACTIVE = "token_active";
+    private static final String STATUS = "status";
 
     public static void login(final Context ctx, final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
         try {
@@ -99,6 +100,51 @@ public class LoginUtil {
                                 SettingUtil.setToken(ctx, "");
                             }
 
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+
+
+
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendRegistration(final Context ctx, final SoapObjectResult getBackWhenItsDone, String vezeteknev, String keresztnev, String email, String jelszo, String tipus) {
+        try {
+            String url = "http://lookrnd.me/dev/api/reg";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("fel_vezeteknev", vezeteknev);
+            postadatok.put("fel_keresztnev", vezeteknev);
+            postadatok.put("fel_email", vezeteknev);
+            postadatok.put("fel_jelszo", vezeteknev);
+            postadatok.put("fel_mobilszam", "+36306969696");
+            postadatok.put("fel_tipus", tipus);
+            postadatok.put("fel_status", "1");
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("TESTADATOK_TOKEN", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(result);
+
+                            Object isStatus = jsonObj.getBoolean(STATUS);
+                            getBackWhenItsDone.parseRerult(isStatus);
+                            //Log.d("TESTADATOK_TOKEN", "Return: " + isTokenValid);
 
 
 
