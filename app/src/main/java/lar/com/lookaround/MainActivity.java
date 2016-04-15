@@ -662,7 +662,7 @@ public class MainActivity extends AppCompatActivity
                 viewFlip.setOutAnimation(outToLeftAnimation());
                 viewFlip.setDisplayedChild(switchTo);
             }
-        };
+        }
     }
 
     protected Animation inFromRightAnimation() {
