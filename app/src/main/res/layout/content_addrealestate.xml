@@ -77,9 +77,9 @@
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/advert_description_textveiw"
         android:layout_toEndOf="@+id/advert_description_textveiw"
-        android:layout_above="@+id/advert_description_textveiw"
         android:hint="@string/advert_title_hint"
-        android:layout_below="@+id/below_advertinfo_text" />
+        android:layout_below="@+id/below_advertinfo_text"
+        android:layout_above="@+id/advert_description_edittext" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -102,4 +102,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="5sp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_advert_type_spinner"
+        android:layout_below="@+id/advert_description_edittext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/advert_description_edittext"
+        android:layout_alignStart="@+id/advert_description_edittext"
+        android:layout_alignBottom="@+id/advert_type_textview" />
 </RelativeLayout>

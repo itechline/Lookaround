@@ -196,5 +196,10 @@
     <string name="advert_description_hint">Meséld el mit akarsz eladni másoknak</string>
     <string name="advert_type">Hírdetés típusa*: </string>
 
+    <string-array name="advert_tpye_array">
+        <item>Eladó</item>
+        <item>Kiadó</item>
+    </string-array>
+
 
 </resources>

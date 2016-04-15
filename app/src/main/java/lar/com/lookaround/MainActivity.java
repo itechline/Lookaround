@@ -60,13 +60,17 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
-
+        //keresés szűkítése spinnerek
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
     Spinner elevatorSpinner, balconySpinner, iheightSpinner, bathroomwcSpinner, aircondiSpinner;
     Spinner gardenRSpinner, conditionSpinner, atticSpinner;
     ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
     ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter, iheightSpinnerAdapter, bathroomwcSpinnerAdapter, aircondiSPAdapter;
     ArrayAdapter<CharSequence> gardenRSpinnerAdapter, conditionSpinnerAdapter, atticSpinnerAdapter;
+        //hirdetés feladás spinnerek
+    Spinner advertTypeSpinner;
+    ArrayAdapter<CharSequence> advertTypeSPAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -422,6 +426,22 @@ public class MainActivity extends AppCompatActivity
         atticSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         atticSpinner.setAdapter(atticSpinnerAdapter);
         atticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(8);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(8);
+            }
+        });
+
+        advertTypeSpinner = (Spinner)findViewById(R.id.add_advert_type_spinner);
+        advertTypeSPAdapter = ArrayAdapter.createFromResource(this, R.array.advert_tpye_array, android.R.layout.simple_spinner_item);
+        advertTypeSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        advertTypeSpinner.setAdapter(advertTypeSPAdapter);
+        advertTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextSize(8);
