@@ -78,19 +78,20 @@
         android:layout_toRightOf="@+id/advert_description_textveiw"
         android:layout_toEndOf="@+id/advert_description_textveiw"
         android:hint="@string/advert_title_hint"
-        android:layout_below="@+id/below_advertinfo_text"
-        android:layout_above="@+id/advert_description_edittext" />
+        android:layout_above="@+id/advert_description_edittext"
+        android:layout_alignTop="@+id/adverttitle_textview"
+        android:singleLine="true"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="100sp"
         android:id="@+id/advert_description_edittext"
-        android:layout_below="@+id/adverttitle_textview"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/adverttitle_edittext"
         android:layout_alignStart="@+id/adverttitle_edittext"
-        android:hint="@string/advert_description_hint"/>
+        android:hint="@string/advert_description_hint"
+        android:layout_alignTop="@+id/advert_description_textveiw" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,10 +108,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_advert_type_spinner"
-        android:layout_below="@+id/advert_description_edittext"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/advert_description_edittext"
         android:layout_alignStart="@+id/advert_description_edittext"
-        android:layout_alignBottom="@+id/advert_type_textview" />
+        android:layout_alignBottom="@+id/advert_type_textview"
+        android:layout_alignTop="@+id/advert_type_textview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/advert_price1"
+        android:id="@+id/add_advert_price_textview"
+        android:layout_below="@+id/advert_type_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_advert_price_edittext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/add_advert_type_spinner"
+        android:layout_alignStart="@+id/add_advert_type_spinner"
+        android:layout_alignBottom="@+id/add_advert_price_textview"
+        android:layout_alignTop="@+id/add_advert_price_textview"
+        android:hint="@string/advert_price_hint1"/>
 </RelativeLayout>

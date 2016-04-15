@@ -195,6 +195,9 @@
     <string name="advert_description">Hírdetés leírása*:</string>
     <string name="advert_description_hint">Meséld el mit akarsz eladni másoknak</string>
     <string name="advert_type">Hírdetés típusa*: </string>
+    <string name="advert_price1">Ingatlan Ára*:</string>
+    <string name="advert_price2">Bérleti díj*:</string>
+    <string name="advert_price_hint1">Pl.: 15 600 000 Ft</string>
 
     <string-array name="advert_tpye_array">
         <item>Eladó</item>
