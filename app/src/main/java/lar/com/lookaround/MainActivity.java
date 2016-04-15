@@ -1,6 +1,9 @@
 package lar.com.lookaround;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +40,8 @@ import java.util.List;
 
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.models.RealEstate;
+import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.SettingUtil;
 
 public class MainActivity extends AppCompatActivity
@@ -67,6 +73,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
         //addContentView(R.layout.activity_search);
+
+        if(SettingUtil.getToken(this) != "") {
+            tokenValidation();
+        } else {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -128,7 +140,73 @@ public class MainActivity extends AppCompatActivity
         navigationView2.setNavigationItemSelectedListener(this);
 
         spinnerCreator();
+    }
 
+
+    public void tokenValidation() {
+            launchRingDialog();
+            LoginUtil.tokenValidator(this, new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    if((boolean)result) {
+                        Log.d("RESULT: ", result.toString());
+                        ringProgressDialog.dismiss();
+                    } else {
+                        Log.d("RESULT: ", result.toString());
+                        ringProgressDialog.dismiss();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+
+                }
+            },SettingUtil.getToken(this));
+    }
+
+    ProgressDialog ringProgressDialog;
+    public void launchRingDialog() {
+        ringProgressDialog = ProgressDialog.show(MainActivity.this, "Please wait ...", "Logging In ...", true);
+        ringProgressDialog.setCancelable(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Here you should write your time consuming task...
+                    // Let the progress ring for 10 seconds...
+                    Thread.sleep(10000);
+                } catch (Exception e) {
+
+                }
+                ringProgressDialog.dismiss();
+            }
+        }).start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+    }
+
+    public void showAlert(View view) {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage("Rossz felhasználónév vagy jelszó!")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText abc = (EditText)findViewById(R.id.keresztNev);
+                        abc.getText().toString();
+                        Log.d("DEBUG: ", abc.getText().toString());
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("HIBA")
+                .create();
+        myAlert.show();
     }
 
     public void spinnerCreator() {

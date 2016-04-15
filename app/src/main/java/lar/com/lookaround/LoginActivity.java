@@ -63,9 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(SettingUtil.getToken(this) != "") {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
 
 
 

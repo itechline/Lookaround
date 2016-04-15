@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +51,13 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             //new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic), convertView.getId()).execute(estate.getUrls());
         } else {
             ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
+            if (image!= null && image.getDrawable() != null && ((BitmapDrawable)image.getDrawable()).getBitmap() != null) {
+                ((BitmapDrawable) image.getDrawable()).getBitmap().recycle();
+            }
+            ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
+            progressBar.setVisibility(View.VISIBLE);
             image.setImageBitmap(null);
+
         }
 
 
@@ -70,11 +77,9 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         price.setText(estate.getPrice());
         fav.setChecked(estate.isFavourite());
 
-
-        DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId());
+        DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId(), convertView);
+        //imageTask.cancel(true);
         imageTask.execute(estate.getUrls());
-        //}
-        //loadEstateImages(convertView, estate.getUrls());*/
 
         return convertView;
     }
@@ -85,13 +90,15 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
+        View convertView;
         int id;
 
 
 
-        public DownloadImageTask(ImageView bmImage, int id) {
+        public DownloadImageTask(ImageView bmImage, int id, View convertView) {
             this.bmImage = bmImage;
             this.id = id;
+            this.convertView = convertView;
         }
 
         protected Bitmap doInBackground(String... urls) {
@@ -108,9 +115,10 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         }
 
         protected void onPostExecute(Bitmap result) {
-
                 bmImage.setImageBitmap(result);
-                bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 

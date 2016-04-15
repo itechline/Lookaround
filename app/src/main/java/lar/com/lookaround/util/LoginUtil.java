@@ -24,6 +24,7 @@ import lar.com.lookaround.restapi.SoapService;
 public class LoginUtil {
     private static final String LOGIN = "logged_in";
     private static final String TOKEN = "token";
+    private static final String TOKEN_ACTIVE = "token_active";
 
     public static void login(final Context ctx, final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
         try {
@@ -52,6 +53,51 @@ public class LoginUtil {
 
                             getBackWhenItsDone.parseRerult(isAbleObj);
                             SettingUtil.setToken(ctx, token);
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+
+
+
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public static void tokenValidator(final Context ctx, final SoapObjectResult getBackWhenItsDone, String token) {
+        try {
+            String url = "http://lookrnd.me/dev/api/token_validator";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    //Log.d("TESTADATOK_TOKEN", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(result);
+
+                            Object isTokenValid = jsonObj.getBoolean(TOKEN_ACTIVE);
+                            getBackWhenItsDone.parseRerult(isTokenValid);
+                            //Log.d("TESTADATOK_TOKEN", "Return: " + isTokenValid);
+                            if (!(boolean)isTokenValid) {
+                                SettingUtil.setToken(ctx, "");
+                            }
 
 
 
