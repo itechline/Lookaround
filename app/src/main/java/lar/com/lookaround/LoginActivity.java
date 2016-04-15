@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
         switchLayoutTo(LOGIN);
     }
 
-    public void sendRegistration(final View view, final Context ctx) {
+    public void sendRegistration(final View view) {
         if (!isCompany) {
             emailEditText = (EditText) findViewById(R.id.mail);
             passEditText = (EditText) findViewById(R.id.passw);
@@ -181,23 +181,8 @@ public class LoginActivity extends AppCompatActivity {
                 public void parseRerult(Object result) {
                     if((boolean)result) {
                         Log.d("RESULT: ", result.toString());
-                        launchRingDialog(view);
-                        launchRingDialog(view);
-                        /*LoginUtil.login(ctx, new SoapObjectResult() {
-                            @Override
-                            public void parseRerult(Object result) {
-                                if ((boolean) result) {
-                                    Log.d("RESULT: ", result.toString());
-                                    ringProgressDialog.dismiss();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                } else {
-                                    Log.d("RESULT: ", result.toString());
-                                    ringProgressDialog.dismiss();
-                                    showAlert(view);
-                                }
-
-                            }
-                        }, email, passw);*/
+                        //launchRingDialog(view);
+                        sendLoginAfterReg(view, email, passw);
                         //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {
                         Log.d("RESULT: ", result.toString());
@@ -235,6 +220,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+    public void sendLoginAfterReg(final View view, String mail, String pass) {
+        launchRingDialog(view);
+        LoginUtil.login(this, new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if ((boolean) result) {
+                    Log.d("RESULT: ", result.toString());
+                    ringProgressDialog.dismiss();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                } else {
+                    Log.d("RESULT: ", result.toString());
+                    ringProgressDialog.dismiss();
+                    showAlert(view);
+                }
+
+            }
+        }, mail, pass);
+    }
 
 
 
