@@ -144,6 +144,8 @@ public class LoginUtil {
 
                             Object isStatus = jsonObj.getBoolean(STATUS);
                             getBackWhenItsDone.parseRerult(isStatus);
+
+
                             //Log.d("TESTADATOK_TOKEN", "Return: " + isTokenValid);
 
 
