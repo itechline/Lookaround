@@ -39,6 +39,8 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Log.e("KURVAFASZA", "1");
+
         // Get the data item for this position
         RealEstate estate = getItem(position);
 
@@ -68,17 +70,11 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         price.setText(estate.getPrice());
         fav.setChecked(estate.isFavourite());
 
-        if (image != null) {
-            //Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
 
-            //if (bitmap == null)
-                //new DownloadImageTask(image, estate.getId()).execute(estate.getUrls());
-
-            //bitmap.recycle();
-
-
-        }
-        //loadEstateImages(convertView, estate.getUrls());
+        DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId());
+        imageTask.execute(estate.getUrls());
+        //}
+        //loadEstateImages(convertView, estate.getUrls());*/
 
         return convertView;
     }
@@ -91,9 +87,11 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         ImageView bmImage;
         int id;
 
+
+
         public DownloadImageTask(ImageView bmImage, int id) {
             this.bmImage = bmImage;
-            //this.id = id;
+            this.id = id;
         }
 
         protected Bitmap doInBackground(String... urls) {

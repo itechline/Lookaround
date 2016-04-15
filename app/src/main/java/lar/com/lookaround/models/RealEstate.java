@@ -34,11 +34,11 @@ public class RealEstate {
 
     public static ArrayList<RealEstate> getUsers() {
         ArrayList<RealEstate> estates = new ArrayList<RealEstate>();
-        estates.add(new RealEstate(0001,"Nyírbátor", "Zrínyi 72", "Úgybizonydááá", "69 Huf", true, "http://interiii.com/wp-content/uploads/2013/03/Best-R-House-a-Minimalist-Villa-in-Hungary-House-Design-Pictures.jpg"));
-        estates.add(new RealEstate(0002,"Nyírpócs", "Street", "Igen", "6969 Huf", false, "http://o.homedsgn.com/wp-content/uploads/2012/02/House-in-a-Hungarian-Town-01-800x800.jpg"));
-        estates.add(new RealEstate(0003,"Asdf", "Street2", "Nem", "100 Huf", true, "http://cdn.designrulz.com/wp-content/uploads/2015/01/Holiday-Cottage_designrulz-1.jpg"));
-        estates.add(new RealEstate(0004,"Asdf2", "Stree3", "Lofasz", "6969 Huf", false, "https://s-media-cache-ak0.pinimg.com/736x/58/69/cb/5869cb4d71b26273e2baa31502d084c9.jpg"));
-        estates.add(new RealEstate(0005,"Asdf3", "Street4", "Hogyishijjak", "100 Huf", false, "http://assets.inhabitat.com/wp-content/blogs.dir/1/files/2012/09/ODOO-by-Team-Hungary-SDE-2012-lead.jpg"));
+        estates.add(new RealEstate(0001,"Nyírbátor", "Zrínyi 72", "Úgybizonydááá", "69 Huf", true, "http://completehome.com.au/wp-content/uploads/2013/07/real-home-interior-house-rejuvenated8.jpg"));
+        estates.add(new RealEstate(0002,"Nyírpócs", "Street", "Igen", "6969 Huf", false, "https://www.withfriendship.com/images/i/40443/shotgun-house.jpg"));
+        estates.add(new RealEstate(0003,"Asdf", "Street2", "Nem", "100 Huf", true, "http://images.locanto.ph/1155062564/House-and-Lot-for-SALE-in-a-SUBDIVISION-near-METRO-MANILA-Cavite_1.jpg"));
+        estates.add(new RealEstate(0004,"Asdf2", "Stree3", "Lofasz", "6969 Huf", false, "http://materia.nl/wp-content/uploads/2015/11/beautifully-textured-house-innovates-with-hemp-based-material-01-300x400.jpg"));
+        estates.add(new RealEstate(0005,"Asdf3", "Street4", "Hogyishijjak", "100 Huf", false, "https://psyc2301.wikispaces.com/file/view/dr-house.jpg/132240505/dr-house.jpg"));
         return estates;
     }
 
