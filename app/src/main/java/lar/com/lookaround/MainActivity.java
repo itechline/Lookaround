@@ -221,12 +221,12 @@ public class MainActivity extends AppCompatActivity
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
         localSpinner = (Spinner)findViewById(R.id.realestate_localisation_spinner);
@@ -236,12 +236,12 @@ public class MainActivity extends AppCompatActivity
         localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -252,12 +252,12 @@ public class MainActivity extends AppCompatActivity
         minfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -268,12 +268,12 @@ public class MainActivity extends AppCompatActivity
         maxfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -284,12 +284,12 @@ public class MainActivity extends AppCompatActivity
         minroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -300,12 +300,12 @@ public class MainActivity extends AppCompatActivity
         maxroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -316,12 +316,12 @@ public class MainActivity extends AppCompatActivity
         elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -332,12 +332,12 @@ public class MainActivity extends AppCompatActivity
         balconySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -348,12 +348,12 @@ public class MainActivity extends AppCompatActivity
         iheightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -364,12 +364,12 @@ public class MainActivity extends AppCompatActivity
         bathroomwcSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -380,12 +380,12 @@ public class MainActivity extends AppCompatActivity
         aircondiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -396,12 +396,12 @@ public class MainActivity extends AppCompatActivity
         gardenRSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -412,12 +412,12 @@ public class MainActivity extends AppCompatActivity
         conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -428,12 +428,12 @@ public class MainActivity extends AppCompatActivity
         atticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
 
@@ -444,12 +444,12 @@ public class MainActivity extends AppCompatActivity
         advertTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(8);
+                ((TextView) parent.getChildAt(0)).setTextSize(9);
             }
         });
     }
