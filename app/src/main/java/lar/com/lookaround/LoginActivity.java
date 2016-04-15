@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
         switchLayoutTo(LOGIN);
     }
 
-    public void sendRegistration(View view) {
+    public void sendRegistration(final View view, final Context ctx) {
         if (!isCompany) {
             emailEditText = (EditText) findViewById(R.id.mail);
             passEditText = (EditText) findViewById(R.id.passw);
@@ -153,8 +153,8 @@ public class LoginActivity extends AppCompatActivity {
 
             String firstName = firstnameEditText.getText().toString();
             String lastName = lastnameEditText.getText().toString();
-            String passw = passEditText.getText().toString();
-            String email = emailEditText.getText().toString();
+            final String passw = passEditText.getText().toString();
+            final String email = emailEditText.getText().toString();
 
             if (!isValidName(firstName)) {
                 firstnameEditText.setError("Hibás név!");
@@ -181,6 +181,21 @@ public class LoginActivity extends AppCompatActivity {
                 public void parseRerult(Object result) {
                     if((boolean)result) {
                         Log.d("RESULT: ", result.toString());
+                        launchRingDialog(view);
+                        /*LoginUtil.login(ctx, new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                if((boolean)result) {
+                                    Log.d("RESULT: ", result.toString());
+                                    ringProgressDialog.dismiss();
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                } else {
+                                    Log.d("RESULT: ", result.toString());
+                                    ringProgressDialog.dismiss();
+                                }
+
+                            }
+                        }, email, passw);*/
                         //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {
                         Log.d("RESULT: ", result.toString());
