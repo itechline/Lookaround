@@ -130,7 +130,8 @@
             android:hint="@string/password"
             android:layout_above="@+id/LL_login"
             android:layout_centerHorizontal="true"
-            android:drawableRight="@drawable/lakatosz"/>
+            android:drawableRight="@drawable/lakatosz"
+            />
 
         <Button
             style="?android:attr/buttonStyleSmall"
