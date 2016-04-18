@@ -101,6 +101,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="min"
+            android:textSize="8pt"
              />
 
         <Spinner
@@ -115,6 +116,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="max"
+            android:textSize="8pt"
              />
 
         <Spinner
@@ -152,7 +154,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="min"
-            android:id="@+id/realestate_rooms_min_text" />
+            android:id="@+id/realestate_rooms_min_text"
+            android:textSize="8pt"
+            />
 
         <Spinner
             android:layout_width="wrap_content"
@@ -165,7 +169,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="max"
-            android:id="@+id/realestate_rooms_max_text" />
+            android:id="@+id/realestate_rooms_max_text"
+            android:textSize="8pt"
+            />
 
         <Spinner
             android:layout_width="wrap_content"

@@ -67,17 +67,23 @@
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/realestate_type_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/realestate_type_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_border"
                     android:layout_below="@+id/type_realestate_textview"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:paddingTop="5sp"
-                    android:paddingBottom="5sp"
-                    android:background="@drawable/spinner_border" />
+                    android:paddingBottom="5sp">
+                    <Spinner
+                    android:id="@+id/realestate_type_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_localisation_search"
@@ -85,25 +91,30 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/localisation_search"
-                    android:layout_below="@+id/realestate_type_spinner"
+                    android:layout_below="@+id/realestate_type_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/realestate_localisation_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/realestate_localisation_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_localisation_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
                     android:paddingBottom="5sp"
-                    android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
-
+                    android:layout_marginRight="10sp"
+                    android:background="@drawable/spinner_border">
+                    <Spinner
+                    android:id="@+id/realestate_localisation_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
 
                 <TextView
@@ -112,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/floors_search"
-                    android:layout_below="@+id/realestate_localisation_spinner"
+                    android:layout_below="@+id/realestate_localisation_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
@@ -144,16 +155,20 @@
                         android:layout_marginTop="5sp"
                         android:layout_marginBottom="5sp"
                         />
-
-                    <Spinner
-                        android:id="@+id/realestate_floors_min_spinner"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
+                        android:background="@drawable/spinner_border">
+                    <Spinner
+                        android:id="@+id/realestate_floors_min_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
+                    </RelativeLayout>
+
                     <TextView
                         android:id="@+id/realestate_floors_max_text"
                         android:layout_width="wrap_content"
@@ -164,15 +179,19 @@
                         android:layout_margin="5sp"
                         />
 
-                    <Spinner
-                        android:id="@+id/realestate_floors_max_spinner"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
+                        android:background="@drawable/spinner_border">
+                    <Spinner
+                        android:id="@+id/realestate_floors_max_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <TextView
@@ -213,18 +232,20 @@
                         android:layout_marginBottom="5sp"
                         />
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/realestate_roomcount_min_spinner"
-                        android:layout_weight="1"
-
-                        android:paddingTop="5sp"
-                        android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
-
                         android:textSize="10pt"
                         />
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -234,18 +255,20 @@
                         android:id="@+id/realestate_rooms_max_text"
                         android:layout_margin="5sp"/>
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/realestate_roomcount_max_spinner"
-                        android:layout_weight="1"
-
-                        android:paddingTop="5sp"
-                        android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
-
                         android:textSize="10pt"
                         />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -263,9 +286,9 @@
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/realestate_elevator_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/realestate_elevator_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_elevator_search"
                     android:layout_centerHorizontal="true"
@@ -273,7 +296,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/realestate_elevator_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_balcony_search"
@@ -281,16 +310,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/balcony_search"
-                    android:layout_below="@+id/realestate_elevator_spinner"
+                    android:layout_below="@+id/realestate_elevator_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/realestate_balcony_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/realestate_balcony_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_balcony_search"
                     android:layout_centerHorizontal="true"
@@ -298,7 +327,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/realestate_balcony_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_inner_height_search"
@@ -306,16 +341,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/inner_height_search"
-                    android:layout_below="@+id/realestate_balcony_spinner"
+                    android:layout_below="@+id/realestate_balcony_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/realestate_innerheight_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/realestate_innerheight_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_inner_height_search"
                     android:layout_centerHorizontal="true"
@@ -323,7 +358,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/realestate_innerheight_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_bathroom_wc_realestate"
@@ -331,16 +372,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/bath_wc_search"
-                    android:layout_below="@+id/realestate_innerheight_spinner"
+                    android:layout_below="@+id/realestate_innerheight_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/bathroom_wc_realestate_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/bathroom_wc_realestate_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_bathroom_wc_realestate"
                     android:layout_centerHorizontal="true"
@@ -348,7 +389,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/bathroom_wc_realestate_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_air_condition_search"
@@ -356,16 +403,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/air_condition_search"
-                    android:layout_below="@+id/bathroom_wc_realestate_spinner"
+                    android:layout_below="@+id/bathroom_wc_realestate_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/aircondition_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/aircondition_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_air_condition_search"
                     android:layout_centerHorizontal="true"
@@ -373,7 +420,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/aircondition_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_garden_realtion_search"
@@ -381,16 +434,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/garden_realtion_search"
-                    android:layout_below="@+id/aircondition_spinner"
+                    android:layout_below="@+id/aircondition_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/gardenrelation_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/gardenrelation_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_garden_realtion_search"
                     android:layout_centerHorizontal="true"
@@ -398,7 +451,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/gardenrelation_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_condition_search"
@@ -406,16 +465,17 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/condition_search"
-                    android:layout_below="@+id/gardenrelation_spinner"
+                    android:layout_below="@+id/gardenrelation_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/condition_spinner"
-                    android:layout_width="match_parent"
+
+                <RelativeLayout
+                    android:id="@+id/condition_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_condition_search"
                     android:layout_centerHorizontal="true"
@@ -423,7 +483,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/condition_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/text_attic_search"
@@ -431,16 +497,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/attic_search"
-                    android:layout_below="@+id/condition_spinner"
+                    android:layout_below="@+id/condition_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="10pt"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <Spinner
-                    android:id="@+id/attic_spinner"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/attic_spinner_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_attic_search"
                     android:layout_centerHorizontal="true"
@@ -448,7 +514,13 @@
                     android:paddingBottom="5sp"
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp">
+                <Spinner
+                    android:id="@+id/attic_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                </RelativeLayout>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -456,7 +528,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button_go"
                     android:id="@+id/search_button_go"
-                    android:layout_below="@+id/attic_spinner"
+                    android:layout_below="@+id/attic_spinner_layout"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/colorbutton"
                     android:textColor="#ffffff"
