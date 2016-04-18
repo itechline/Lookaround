@@ -118,7 +118,8 @@
             android:hint="@string/mail"
             android:layout_above="@+id/passwLogin"
             android:layout_alignLeft="@+id/passwLogin"
-            android:layout_alignStart="@+id/passwLogin" />
+            android:layout_alignStart="@+id/passwLogin"
+            android:drawableRight="@drawable/mail_icon"/>
 
         <EditText
             android:layout_width="wrap_content"
