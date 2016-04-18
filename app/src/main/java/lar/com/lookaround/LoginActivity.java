@@ -123,9 +123,9 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showAlert(View view) {
+    public void showAlert(View view, String message) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage("Rossz felhasználónév vagy jelszó!")
+        myAlert.setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void sendRegistration(final View view) {
+        boolean isAbleToJoin = true;
         if (!isCompany) {
             emailEditText = (EditText) findViewById(R.id.mail);
             passEditText = (EditText) findViewById(R.id.passw);
@@ -159,37 +160,44 @@ public class LoginActivity extends AppCompatActivity {
             if (!isValidName(firstName)) {
                 firstnameEditText.setError("Hibás név!");
                 firstnameEditText.invalidate();
+                isAbleToJoin=false;
             }
 
             if (!isValidName(lastName)) {
                 lastnameEditText.setError(("Hibás név!"));
                 lastnameEditText.invalidate();
+                isAbleToJoin=false;
             }
 
             if (!isValidPassword(passw)) {
                 passEditText.setError("Hibás jelszó!");
                 passEditText.invalidate();
+                isAbleToJoin=false;
             }
 
             if (!isValidEmail(email)) {
                 emailEditText.setError("Hibás Email");
                 emailEditText.invalidate();
+                isAbleToJoin=false;
             }
 
-            LoginUtil.sendRegistration(this, new SoapObjectResult() {
-                @Override
-                public void parseRerult(Object result) {
-                    if((boolean)result) {
-                        Log.d("RESULT: ", result.toString());
-                        //launchRingDialog(view);
-                        sendLoginAfterReg(view, email, passw);
-                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    } else {
-                        Log.d("RESULT: ", result.toString());
-                    }
+            if (isAbleToJoin) {
+                LoginUtil.sendRegistration(this, new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                        if ((boolean) result) {
+                            Log.d("RESULT: ", result.toString());
+                            //launchRingDialog(view);
+                            sendLoginAfterReg(view, email, passw);
+                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        } else {
+                            Log.d("RESULT: ", result.toString());
+                            showAlert(view, "Hibás Adatok!");
+                        }
 
-                }
-            },firstName, lastName, email, passw, "maganyszemely");
+                    }
+                }, firstName, lastName, email, passw, "maganyszemely");
+            }
 
             //SettingUtil.setToken(this, firstName);
 
@@ -198,24 +206,47 @@ public class LoginActivity extends AppCompatActivity {
             passCompanyEditText = (EditText) findViewById(R.id.passw2);
             companyNameEditText = (EditText) findViewById(R.id.entry_company);
 
-            String passwCompany = passCompanyEditText.getText().toString();
-            String emailCompany = emailCompanyEditText.getText().toString();
+            final String passwCompany = passCompanyEditText.getText().toString();
+            final String emailCompany = emailCompanyEditText.getText().toString();
             String companyName = companyNameEditText.getText().toString();
 
             if(!isValidName(companyName)) {
                 companyNameEditText.setError("Hibás Cégnév!");
                 companyNameEditText.invalidate();
+                isAbleToJoin=false;
             }
 
             if (!isValidPassword(passwCompany)) {
                 passCompanyEditText.setError("Hibás jelszó!");
                 passCompanyEditText.invalidate();
+                isAbleToJoin=false;
             }
 
             if (!isValidEmail(emailCompany)) {
                 emailCompanyEditText.setError("Hibás Email");
                 emailCompanyEditText.invalidate();
+                isAbleToJoin=false;
             }
+
+            if (isAbleToJoin) {
+                LoginUtil.sendRegistration(this, new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                        if ((boolean) result) {
+                            Log.d("RESULT: ", result.toString());
+                            //launchRingDialog(view);
+                            sendLoginAfterReg(view, emailCompany, passwCompany);
+                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        } else {
+                            Log.d("RESULT: ", result.toString());
+                            showAlert(view, "Hibás Adatok!");
+
+                        }
+
+                    }
+                }, companyName, "", emailCompany, passwCompany, "ingatlanos");
+            }
+
         }
     }
 
@@ -230,10 +261,11 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("RESULT: ", result.toString());
                     ringProgressDialog.dismiss();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     Log.d("RESULT: ", result.toString());
                     ringProgressDialog.dismiss();
-                    showAlert(view);
+                    showAlert(view, "Hiba Történt!");
                 }
 
             }
@@ -271,10 +303,11 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     } else {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
-                        showAlert(view);
+                        showAlert(view, "Hibás felhasználónév vagy jelszó!");
                     }
 
                 }

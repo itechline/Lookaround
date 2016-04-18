@@ -1,10 +1,12 @@
 package lar.com.lookaround.adapters;
 
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -37,10 +39,24 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         super(context, 0, users);
     }
 
+    public void stopDownloadingImage(int firstVisibleItem, int lastVisibleItem) {
+        ArrayList<DownloadImageTask> tmp = new ArrayList<>();
+        for (DownloadImageTask tsk :
+                imageList) {
+            if(tsk.position < firstVisibleItem || tsk.position > lastVisibleItem) {
+                tmp.add(tsk);
+            }
+        }
+        for (DownloadImageTask tsk: tmp) {
+            imageList.remove(tsk);
+            tsk.cancel(true);
+        }
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.e("KURVAFASZA", "1");
+        //Log.e("KURVAFASZA", "1");
 
         // Get the data item for this position
         RealEstate estate = getItem(position);
@@ -51,7 +67,7 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             //new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic), convertView.getId()).execute(estate.getUrls());
         } else {
             ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
-            if (image!= null && image.getDrawable() != null && ((BitmapDrawable)image.getDrawable()).getBitmap() != null) {
+            if (image != null && image.getDrawable() != null && ((BitmapDrawable) image.getDrawable()).getBitmap() != null) {
                 ((BitmapDrawable) image.getDrawable()).getBitmap().recycle();
             }
             ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
@@ -59,8 +75,6 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             image.setImageBitmap(null);
 
         }
-
-
 
 
         TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
@@ -77,27 +91,40 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         price.setText(estate.getPrice());
         fav.setChecked(estate.isFavourite());
 
-        DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId(), convertView);
-        //imageTask.cancel(true);
-        imageTask.execute(estate.getUrls());
+        //DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId(), convertView);
+        ////imageTask.cancel(true);
+        //imageTask.execute(estate.getUrls());
+
+        final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
+        //final AsyncDrawable asyncDrawable = new AsyncDrawable(task);
+
+        imageList.add(task);
+
+        //image.setImageDrawable(asyncDrawable);
+        task.execute(estate.getUrls());
+
 
         return convertView;
     }
 
 
 
+    private static ArrayList<DownloadImageTask> imageList= new ArrayList<>();
+
 
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+        //ImageView bmImage;
         View convertView;
-        int id;
+        public int position;
+        private final WeakReference<ImageView> imageViewReference;
 
 
 
-        public DownloadImageTask(ImageView bmImage, int id, View convertView) {
-            this.bmImage = bmImage;
-            this.id = id;
+        public DownloadImageTask(ImageView bmImage, int position, View convertView) {
+            //this.bmImage = bmImage;
+            imageViewReference = new WeakReference<ImageView>(bmImage);
+            this.position = position;
             this.convertView = convertView;
         }
 
@@ -115,12 +142,70 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         }
 
         protected void onPostExecute(Bitmap result) {
-                bmImage.setImageBitmap(result);
-            bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
-            progressBar.setVisibility(View.INVISIBLE);
+
+            if (isCancelled())
+                result = null;
+
+            if(Thread.interrupted()) {
+                result = null;
+            }
+
+            if (imageList == null) {
+                imageList = new ArrayList<>();
+            }
+            imageList.remove(this);
+            Log.e("LOSHIT", "darabszám: "+imageList.size());
+
+            if (result != null) {
+                //bmImage.setImageBitmap(result);
+                //bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                if (imageViewReference != null && result != null) {
+                    final ImageView imageView = imageViewReference.get();
+                    if (imageView != null) {
+                        imageView.setImageBitmap(result);
+                    }
+                }
+
+                ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
+                progressBar.setVisibility(View.INVISIBLE);
+            }
         }
     }
+
+    static class AsyncDrawable extends BitmapDrawable {
+        private final WeakReference<DownloadImageTask> bitmapWorkerTaskReference;
+
+        public AsyncDrawable(DownloadImageTask bitmapWorkerTask) {
+            //super(res, bitmap);
+            bitmapWorkerTaskReference = new WeakReference<DownloadImageTask>(bitmapWorkerTask);
+        }
+
+        public DownloadImageTask getBitmapWorkerTask() {
+            return bitmapWorkerTaskReference.get();
+        }
+    }
+
+    private static DownloadImageTask getBitmapWorkerTask(ImageView imageView) {
+        if (imageView != null) {
+            final Drawable drawable = imageView.getDrawable();
+            if (drawable instanceof AsyncDrawable) {
+                final AsyncDrawable asyncDrawable = (AsyncDrawable) drawable;
+                return asyncDrawable.getBitmapWorkerTask();
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /*public void loadEstateImages(View view, String url) {
         SliderLayout sliderLayout = (SliderLayout) view.findViewById(R.id.sliderSmall);

@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -532,11 +533,22 @@ public class MainActivity extends AppCompatActivity
 
         ArrayList<RealEstate> arrayOfUsers = RealEstate.getUsers();
         // Create the adapter to convert the array to views
-        EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
+        final EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
         // Attach the adapter to a ListView
         final ListView listView = (ListView) findViewById(R.id.estateListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ItemList());
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
+            }
+        });
         supportInvalidateOptionsMenu();
     }
 
@@ -655,12 +667,16 @@ public class MainActivity extends AppCompatActivity
                 LoginUtil.logout(this, new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
+                        if ((boolean) result) {
 
+                        } else {
+
+                        }
                     }
                 });
                 SettingUtil.setToken(this, "");
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
+                //finish();
                 break;
         }
 

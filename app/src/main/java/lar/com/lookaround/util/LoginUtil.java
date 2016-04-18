@@ -94,11 +94,11 @@ public class LoginUtil {
                             JSONObject jsonObj = new JSONObject(result);
 
 
-                            /*Object isAbleObj = jsonObj.getBoolean(LOGIN);
-                            String token = jsonObj.getString(TOKEN);
+                            Object isLoggedOut = jsonObj.getBoolean(LOGGED_IN);
+                            //String token = jsonObj.getString(TOKEN);
 
-                            getBackWhenItsDone.parseRerult(isAbleObj);
-                            SettingUtil.setToken(ctx, token);*/
+                            getBackWhenItsDone.parseRerult(isLoggedOut);
+                            //SettingUtil.setToken(ctx, token);
 
 
 
