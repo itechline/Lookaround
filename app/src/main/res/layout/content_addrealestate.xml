@@ -36,7 +36,7 @@
             android:text="@string/advertinfo"
             android:id="@+id/adding_advertinfo_text"
             android:layout_alignParentTop="true"
-            android:layout_margin="5sp"
+            android:layout_margin="7sp"
             android:textStyle="bold"
             android:layout_gravity="center_vertical" />
 
@@ -51,7 +51,8 @@
         android:layout_below="@+id/adding_advertinfo_linerlayout"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:layout_margin="5sp" />
+        android:layout_margin="7sp"
+        android:textSize="5pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
         android:layout_below="@+id/below_advertinfo_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <TextView
@@ -74,7 +75,7 @@
         android:layout_below="@+id/adverttitle_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <EditText
@@ -88,18 +89,20 @@
         android:hint="@string/advert_title_hint"
         android:layout_above="@+id/advert_description_edittext"
         android:singleLine="true"
-        android:layout_below="@+id/below_advertinfo_text" />
+        android:layout_below="@+id/below_advertinfo_text"
+        android:textSize="8pt"/>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="100sp"
+        android:layout_height="70sp"
         android:id="@+id/advert_description_edittext"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/adverttitle_edittext"
         android:layout_alignStart="@+id/adverttitle_edittext"
         android:hint="@string/advert_description_hint"
-        android:layout_alignTop="@+id/advert_description_textveiw" />
+        android:layout_alignTop="@+id/advert_description_textveiw"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,7 +113,7 @@
         android:layout_below="@+id/advert_description_edittext"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <Spinner
@@ -133,7 +136,7 @@
         android:layout_below="@+id/advert_type_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <EditText
@@ -146,7 +149,8 @@
         android:layout_below="@+id/advert_type_textview"
         android:layout_alignLeft="@+id/add_advert_price_edittext"
         android:layout_alignStart="@+id/add_advert_price_edittext"
-        android:layout_above="@+id/add_advert_city_text" />
+        android:layout_above="@+id/add_advert_city_text"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -157,7 +161,7 @@
         android:layout_below="@+id/add_advert_price_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <EditText
@@ -170,7 +174,8 @@
         android:hint="@string/advert_city_hint"
         android:layout_toEndOf="@+id/advert_description_textveiw"
         android:layout_toRightOf="@+id/advert_description_textveiw"
-        android:layout_above="@+id/add_advert_street_textview" />
+        android:layout_above="@+id/add_advert_street_textview"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,7 +186,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_advert_city_text"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <EditText
@@ -193,7 +198,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/add_advert_price_edittext"
         android:layout_alignStart="@+id/add_advert_price_edittext"
-        android:hint="@string/advert_street_hint"/>
+        android:hint="@string/advert_street_hint"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -204,7 +210,7 @@
         android:layout_below="@+id/add_advert_street_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
+        android:layout_margin="7sp"
         android:textSize="8pt"/>
 
     <EditText
@@ -216,7 +222,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/add_advert_street_edittext"
         android:layout_alignStart="@+id/add_advert_street_edittext"
-        android:hint="@string/advert_str_number_hint"/>
+        android:hint="@string/advert_str_number_hint"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
