@@ -504,6 +504,7 @@ public class MainActivity extends AppCompatActivity
             //abc.getText().toString();
             //viewFlip.setDisplayedChild(CONTENTESTATE);
             switchLayoutTo(CONTENTESTATE);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_agencies);
             Log.d("DEBUG: ", textv.getText().toString());
             loadRealEstateContent(view);
             supportInvalidateOptionsMenu();
@@ -566,7 +567,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case CONTENTESTATE:
                 //findViewById(R.id.estateListView).invalidate();
-
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 switchLayoutTo(ESTATESLIST);
                 loadRealEstates();
                 break;
@@ -620,11 +621,27 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == android.R.id.home) {
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                drawer.openDrawer(GravityCompat.START);
+            switch (viewFlip.getDisplayedChild()) {
+                case ESTATESLIST:
+                    if (drawer.isDrawerOpen(GravityCompat.START)) {
+                        drawer.closeDrawer(GravityCompat.START);
+                    } else {
+                        drawer.openDrawer(GravityCompat.START);
+                    }
+                    break;
+                case CONTENTESTATE:
+                    //findViewById(R.id.estateListView).invalidate();
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    switchLayoutTo(ESTATESLIST);
+                    loadRealEstates();
+                    break;
+                case ADDESTATE:
+                    switchLayoutTo(prewView);
+                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                    fab.setVisibility(View.VISIBLE);
+                    break;
             }
+
             return true;
         }
 
