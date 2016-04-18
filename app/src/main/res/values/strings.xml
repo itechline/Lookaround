@@ -24,6 +24,7 @@
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
     <string name="button_go">MEHET</string>
+    <string name="button_next">KÖVETKEZŐ</string>
 
 <!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
@@ -206,6 +207,7 @@
     <string name="advert_street_hint">Pl.: Fő út</string>
     <string name="advert_str_number">Házszám*:</string>
     <string name="advert_str_number_hint">Pl.: 54/A</string>
+
 
     <string-array name="advert_tpye_array">
         <item>Eladó</item>
