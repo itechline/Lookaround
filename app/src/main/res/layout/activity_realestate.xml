@@ -155,16 +155,20 @@
                         android:layout_marginTop="5sp"
                         android:layout_marginBottom="5sp"
                         />
-
-                    <Spinner
-                        android:id="@+id/realestate_floors_min_spinner"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
+                        android:background="@drawable/spinner_border">
+                    <Spinner
+                        android:id="@+id/realestate_floors_min_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
+                    </RelativeLayout>
+
                     <TextView
                         android:id="@+id/realestate_floors_max_text"
                         android:layout_width="wrap_content"
@@ -175,15 +179,19 @@
                         android:layout_margin="5sp"
                         />
 
-                    <Spinner
-                        android:id="@+id/realestate_floors_max_spinner"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
+                        android:background="@drawable/spinner_border">
+                    <Spinner
+                        android:id="@+id/realestate_floors_max_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <TextView
@@ -224,18 +232,20 @@
                         android:layout_marginBottom="5sp"
                         />
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/realestate_roomcount_min_spinner"
-                        android:layout_weight="1"
-
-                        android:paddingTop="5sp"
-                        android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
-
                         android:textSize="10pt"
                         />
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -245,18 +255,20 @@
                         android:id="@+id/realestate_rooms_max_text"
                         android:layout_margin="5sp"/>
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/realestate_roomcount_max_spinner"
-                        android:layout_weight="1"
-
-                        android:paddingTop="5sp"
-                        android:paddingBottom="5sp"
-                        android:background="@drawable/spinner_border"
-
                         android:textSize="10pt"
                         />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
