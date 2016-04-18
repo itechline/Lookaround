@@ -115,17 +115,24 @@
         android:layout_alignParentStart="true"
         android:layout_margin="7sp"
         android:textSize="8pt"/>
+        <RelativeLayout
+            android:id="@+id/add_advert_type_spinner_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/advert_description_edittext"
+            android:layout_alignStart="@+id/advert_description_edittext"
+            android:layout_alignBottom="@+id/advert_type_textview"
+            android:layout_alignTop="@+id/advert_type_textview"
+            android:background="@drawable/spinner_border">
 
-    <Spinner
+        <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_advert_type_spinner"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/advert_description_edittext"
-        android:layout_alignStart="@+id/advert_description_edittext"
-        android:layout_alignBottom="@+id/advert_type_textview"
-        android:layout_alignTop="@+id/advert_type_textview" />
+            android:layout_alignParentBottom="true" />
+        </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -146,11 +153,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="@string/advert_price_hint1"
-        android:layout_below="@+id/advert_type_textview"
         android:layout_alignLeft="@+id/add_advert_price_edittext"
         android:layout_alignStart="@+id/add_advert_price_edittext"
         android:layout_above="@+id/add_advert_city_text"
-        android:textSize="8pt"/>
+        android:textSize="8pt"
+        android:layout_below="@+id/add_advert_type_spinner_layout" />
 
     <TextView
         android:layout_width="wrap_content"
