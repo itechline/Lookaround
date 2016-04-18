@@ -56,7 +56,8 @@
         android:layout_below="@+id/below_advertinfo_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="5sp" />
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,7 +68,8 @@
         android:layout_below="@+id/adverttitle_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="5sp" />
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -79,8 +81,8 @@
         android:layout_toEndOf="@+id/advert_description_textveiw"
         android:hint="@string/advert_title_hint"
         android:layout_above="@+id/advert_description_edittext"
-        android:layout_alignTop="@+id/adverttitle_textview"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:layout_below="@+id/below_advertinfo_text" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -102,7 +104,8 @@
         android:layout_below="@+id/advert_description_edittext"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="5sp" />
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -124,7 +127,8 @@
         android:layout_below="@+id/advert_type_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="5sp"/>
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -132,9 +136,93 @@
         android:id="@+id/add_advert_price_edittext"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/add_advert_type_spinner"
-        android:layout_alignStart="@+id/add_advert_type_spinner"
-        android:layout_alignBottom="@+id/add_advert_price_textview"
-        android:layout_alignTop="@+id/add_advert_price_textview"
-        android:hint="@string/advert_price_hint1"/>
+        android:hint="@string/advert_price_hint1"
+        android:layout_below="@+id/advert_type_textview"
+        android:layout_alignLeft="@+id/add_advert_price_edittext"
+        android:layout_alignStart="@+id/add_advert_price_edittext"
+        android:layout_above="@+id/add_advert_city_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/advert_city"
+        android:id="@+id/add_advert_city_text"
+        android:layout_below="@+id/add_advert_price_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_advert_price_edittext"
+        android:layout_below="@+id/add_advert_price_textview"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="@string/advert_city_hint"
+        android:layout_toEndOf="@+id/advert_description_textveiw"
+        android:layout_toRightOf="@+id/advert_description_textveiw"
+        android:layout_above="@+id/add_advert_street_textview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/advert_street"
+        android:id="@+id/add_advert_street_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/add_advert_city_text"
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_advert_street_edittext"
+        android:layout_below="@+id/add_advert_city_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/add_advert_price_edittext"
+        android:layout_alignStart="@+id/add_advert_price_edittext"
+        android:hint="@string/advert_street_hint"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/advert_str_number"
+        android:id="@+id/add_advert_str_number_textview"
+        android:layout_below="@+id/add_advert_street_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10sp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_advert_str_number_edittext"
+        android:layout_below="@+id/add_advert_street_edittext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/add_advert_street_edittext"
+        android:layout_alignStart="@+id/add_advert_street_edittext"
+        android:hint="@string/advert_str_number_hint"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/button_next"
+        android:id="@+id/advert1_next_button"
+        android:layout_below="@+id/add_advert_str_number_textview"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/colorbutton"
+        android:textColor="#ffffff"
+        android:textSize="8pt"
+        android:padding="5sp"
+        android:layout_margin="20sp" />
 </RelativeLayout>

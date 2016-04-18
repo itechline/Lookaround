@@ -24,6 +24,7 @@
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
     <string name="button_go">MEHET</string>
+    <string name="button_next">KÖVETKEZŐ</string>
 
 <!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
@@ -188,6 +189,8 @@
         <item>Penthouse</item>
     </string-array>
 
+    <!-- hírdetésfeladás szövegek -->
+
     <string name="advertinfo">Hírdetés információk</string>
     <string name="below_advertinfo">50 simajobb tempó, vége ki és 100 a balon, jobb 11 útonból sima bal, sima bal után 200 a balon mész, bukkan a balon tempó 150 simajobb tő át, simajobb fűszéle</string>
     <string name="advert_title">Hírdetés címe*:</string>
@@ -198,6 +201,13 @@
     <string name="advert_price1">Ingatlan Ára*:</string>
     <string name="advert_price2">Bérleti díj*:</string>
     <string name="advert_price_hint1">Pl.: 15 600 000 Ft</string>
+    <string name="advert_city">Település*:</string>
+    <string name="advert_city_hint">Pl.: Budapest</string>
+    <string name="advert_street">Utca*:</string>
+    <string name="advert_street_hint">Pl.: Fő út</string>
+    <string name="advert_str_number">Házszám*:</string>
+    <string name="advert_str_number_hint">Pl.: 54/A</string>
+
 
     <string-array name="advert_tpye_array">
         <item>Eladó</item>
