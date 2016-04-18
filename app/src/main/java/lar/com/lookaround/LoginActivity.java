@@ -261,6 +261,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("RESULT: ", result.toString());
                     ringProgressDialog.dismiss();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     Log.d("RESULT: ", result.toString());
                     ringProgressDialog.dismiss();
@@ -302,6 +303,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     } else {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
