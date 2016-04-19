@@ -782,8 +782,44 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
+        android:background="#ffffff"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textAlignment="center"
+                android:textSize="9pt"
+                android:textColor="#ffffff"
+                android:background="@drawable/gps_1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/gps_indicator_3"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_estate_pictures"
+                android:id="@+id/adding_estateinfo_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/gps_indicator_3"
+                android:layout_toEndOf="@+id/gps_indicator_3"
+                android:layout_margin="5sp" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>
