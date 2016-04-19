@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:id="@+id/relativeLayout_withcontent"
+        android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_alignParentTop="true"
         android:layout_margin="5sp"
         android:visibility="visible">
@@ -29,12 +29,12 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textAlignment="center"
-            android:textSize="10pt"
+            android:textSize="9pt"
             android:textColor="#ffffff"
             android:background="@drawable/gps_1"
             android:layout_gravity="center_horizontal"
             android:gravity="center_vertical|center_horizontal"
-            android:id="@+id/textView"
+            android:id="@+id/gps_indicator_1"
             android:layout_centerVertical="true"
             android:layout_margin="5sp" />
 
@@ -47,8 +47,8 @@
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView"
+            android:layout_toRightOf="@+id/gps_indicator_1"
+            android:layout_toEndOf="@+id/gps_indicator_1"
             android:layout_margin="5sp" />
 
     </RelativeLayout>
@@ -75,7 +75,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         android:singleLine="true"
         android:layout_below="@+id/below_advertinfo_text"
         android:textSize="8pt"
-        android:padding="7sp"
+        android:padding="0dp"
         android:layout_above="@+id/advert_description_edittext"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
@@ -118,7 +118,7 @@
         android:layout_alignTop="@+id/advert_description_textveiw"
         android:textSize="8pt"
         android:singleLine="true"
-        android:padding="7sp"
+        android:padding="0dp"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
         android:layout_marginTop="5sp"
@@ -136,7 +136,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
         <RelativeLayout
             android:id="@+id/add_advert_type_spinner_layout"
             android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
         android:textSize="8pt"
         android:singleLine="true"
         android:layout_below="@+id/add_advert_type_spinner_layout"
-        android:padding="7sp"
+        android:padding="0dp"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
         android:layout_marginTop="5sp"
@@ -203,7 +203,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
         android:layout_toEndOf="@+id/advert_type_textview"
         android:textSize="8pt"
         android:singleLine="true"
-        android:padding="7sp"
+        android:padding="0dp"
         android:layout_above="@+id/add_advert_street_edittext"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
@@ -234,7 +234,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_advert_city_text"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
         android:hint="@string/advert_street_hint"
         android:textSize="8pt"
         android:singleLine="true"
-        android:padding="7sp"
+        android:padding="0dp"
         android:layout_above="@+id/add_advert_str_number_textview"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
@@ -265,7 +265,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="9sp"
-        android:textSize="9pt"/>
+        android:textSize="15sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -277,7 +277,7 @@
         android:hint="@string/advert_str_number_hint"
         android:textSize="8pt"
         android:singleLine="true"
-        android:padding="7sp"
+        android:padding="0dp"
         android:layout_above="@+id/advert1_next_button"
         android:background="@drawable/spinner_border"
         android:layout_marginRight="5sp"
@@ -296,9 +296,9 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/colorbutton"
         android:textColor="#ffffff"
-        android:textSize="10pt"
+        android:textSize="15sp"
         android:padding="5sp"
-        android:layout_margin="10sp" />
+        android:layout_margin="20sp" />
 
     </RelativeLayout>
 
@@ -308,7 +308,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/relativeLayout_progress_indicator_addadvert"
-        android:layout_below="@+id/relativeLayout_withcontent"
+        android:layout_below="@+id/relativeLayout_withcontent_page1"
         android:layout_margin="5sp">
 
         <ImageView
@@ -359,6 +359,201 @@
             android:layout_toRightOf="@+id/image_step4"
             android:layout_toEndOf="@+id/image_step4"
             android:layout_margin="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_withcontent_page2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
+        android:layout_margin="5sp"
+        android:background="#ffffff"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/adding_estateinfo_relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="5sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textAlignment="center"
+                android:textSize="9pt"
+                android:textColor="#ffffff"
+                android:background="@drawable/gps_1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/gps_indicator_2"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/estate_info"
+                android:id="@+id/adding_estateinfo_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/gps_indicator_2"
+                android:layout_toEndOf="@+id/gps_indicator_2"
+                android:layout_margin="5sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/below_advertinfo"
+            android:id="@+id/below_estateinfo_text"
+            android:layout_below="@+id/adding_estateinfo_relativelayout"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_margin="5sp"
+            android:textSize="6pt"/>
+
+        <TextView
+            android:id="@+id/addestate_rooms_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_rooms_count"
+            android:layout_below="@+id/below_estateinfo_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_condition_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_condition"
+            android:layout_below="@+id/addestate_rooms_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_floors_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_floors"
+            android:layout_below="@+id/addestate_condition_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_type_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_type"
+            android:layout_below="@+id/addestate_floors_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_balcony_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_balcony"
+            android:layout_below="@+id/addestate_type_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_parking_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_parking"
+            android:layout_below="@+id/addestate_balcony_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_size_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_size"
+            android:layout_below="@+id/addestate_parking_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_heatingtype_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_heating"
+            android:layout_below="@+id/addestate_size_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_elevator_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_elevator"
+            android:layout_below="@+id/addestate_heatingtype_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_e_certification_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_ecertification"
+            android:layout_below="@+id/addestate_elevator_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/addestate_view_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_view"
+            android:layout_below="@+id/addestate_e_certification_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="7sp"
+            android:textSize="15sp"/>
     </RelativeLayout>
 
 </RelativeLayout>
