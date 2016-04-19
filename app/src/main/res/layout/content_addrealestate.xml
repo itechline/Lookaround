@@ -537,11 +537,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/add_advert_view"
-            android:layout_below="@+id/addestate_e_certification_textview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="15sp"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/addestate_e_certification_textview"
             android:layout_margin="7sp" />
 
         <LinearLayout
@@ -575,126 +575,203 @@
                 android:padding="5sp" />
         </LinearLayout>
 
-        <Spinner
+
+        <RelativeLayout
+            android:id="@+id/addestate_rooms_spinner_rlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addestate_rooms_spinner"
             android:layout_below="@+id/adding_estateinfo_relativelayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_toRightOf="@+id/addestate_type_textview"
             android:layout_toEndOf="@+id/addestate_type_textview"
-            android:layout_above="@+id/addestate_condition_textview" />
+            android:layout_above="@+id/addestate_condition_textview"
+            android:background="@drawable/spinner_border">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addestate_rooms_spinner"
+             />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/addestate_condition_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_rooms_spinner_rlayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/addestate_rooms_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_rooms_spinner_rlayout"
+            android:layout_above="@+id/addestate_floors_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_condition_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_rooms_spinner"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_rooms_spinner"
-            android:layout_alignStart="@+id/addestate_rooms_spinner"
-            android:layout_above="@+id/addestate_floors_textview" />
+             />
+        </RelativeLayout>
 
-        <Spinner
-            android:id="@+id/addestate_floors_spinner"
+        <RelativeLayout
+            android:id="@+id/addestate_floors_spinner_rlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addestate_condition_textview"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_condition_spinner"
-            android:layout_alignStart="@+id/addestate_condition_spinner"
-            android:layout_above="@+id/addestate_type_textview" />
+            android:layout_alignLeft="@+id/addestate_condition_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_condition_spinner_rlayout"
+            android:layout_above="@+id/addestate_type_textview"
+            android:background="@drawable/spinner_border">
+        <Spinner
+            android:id="@+id/addestate_floors_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/addestate_type_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_floors_spinner_rlayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/addestate_floors_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_floors_spinner_rlayout"
+            android:layout_above="@+id/addestate_balcony_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_type_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_floors_spinner"
+            />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/addestate_balcony_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_type_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_floors_spinner"
-            android:layout_alignStart="@+id/addestate_floors_spinner"
-            android:layout_above="@+id/addestate_balcony_textview" />
-
+            android:layout_alignLeft="@+id/addestate_type_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_type_spinner_rlayout"
+            android:layout_above="@+id/addestate_parking_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_balcony_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_type_spinner"
+             />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/addestate_parking_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_balcony_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_type_spinner"
-            android:layout_alignStart="@+id/addestate_type_spinner"
-            android:layout_above="@+id/addestate_parking_textview" />
-
+            android:layout_alignLeft="@+id/addestate_balcony_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_balcony_spinner_rlayout"
+            android:layout_above="@+id/addestate_size_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_parking_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_balcony_spinner"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_balcony_spinner"
-            android:layout_alignStart="@+id/addestate_balcony_spinner"
-            android:layout_above="@+id/addestate_size_textview" />
+             />
+        </RelativeLayout>
 
-        <EditText
-            android:id="@+id/addestate_size_edittext"
+        <RelativeLayout
+            android:id="@+id/addestate_size_edittext_rlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_parking_spinner"
+            android:layout_below="@+id/addestate_parking_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_parking_spinner"
-            android:layout_alignStart="@+id/addestate_parking_spinner"
-            android:layout_above="@+id/addestate_heatingtype_textview" />
+            android:layout_alignLeft="@+id/addestate_parking_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_parking_spinner_rlayout"
+            android:layout_above="@+id/addestate_heatingtype_textview"
+            android:background="@drawable/spinner_border">
+        <EditText
+            android:id="@+id/addestate_size_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/addestate_heatingtype_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_size_edittext_rlayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/addestate_size_edittext_rlayout"
+            android:layout_alignStart="@+id/addestate_size_edittext_rlayout"
+            android:layout_above="@+id/addestate_elevator_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_heatingtype_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_size_edittext"
+             />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/addestate_elevator_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_heatingtype_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_size_edittext"
-            android:layout_alignStart="@+id/addestate_size_edittext"
-            android:layout_above="@+id/addestate_elevator_textview" />
-
+            android:layout_alignLeft="@+id/addestate_heatingtype_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_heatingtype_spinner_rlayout"
+            android:layout_above="@+id/addestate_e_certification_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_elevator_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_heatingtype_spinner"
+             />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/addestate_ecertificate_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_elevator_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_heatingtype_spinner"
-            android:layout_alignStart="@+id/addestate_heatingtype_spinner"
-            android:layout_above="@+id/addestate_e_certification_textview" />
-
+            android:layout_alignLeft="@+id/addestate_elevator_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_elevator_spinner_rlayout"
+            android:layout_above="@+id/addestate_view_textview"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/addestate_ecertificate_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_elevator_spinner"
+             />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/adestate_view_spinner_rlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addestate_ecertificate_spinner_rlayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_elevator_spinner"
-            android:layout_alignStart="@+id/addestate_elevator_spinner"
-            android:layout_above="@+id/addestate_view_textview" />
-
+            android:layout_alignLeft="@+id/addestate_ecertificate_spinner_rlayout"
+            android:layout_alignStart="@+id/addestate_ecertificate_spinner_rlayout"
+            android:background="@drawable/spinner_border">
         <Spinner
             android:id="@+id/adestate_view_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addestate_ecertificate_spinner"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/addestate_ecertificate_spinner"
-            android:layout_alignStart="@+id/addestate_ecertificate_spinner"
-            android:layout_above="@+id/linearLayout2" />
+            />
+        </RelativeLayout>
 
     </RelativeLayout>
 
