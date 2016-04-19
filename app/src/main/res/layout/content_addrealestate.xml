@@ -9,9 +9,8 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:id="@+id/relativeLayout_withcontent"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_margin="5sp">
 
     <RelativeLayout
         android:id="@+id/adding_advertinfo_relativelayout"
@@ -298,7 +297,7 @@
         android:textColor="#ffffff"
         android:textSize="10pt"
         android:padding="5sp"
-        android:layout_margin="20sp" />
+        android:layout_margin="25sp" />
 
     </RelativeLayout>
 
@@ -362,4 +361,9 @@
             android:layout_toEndOf="@+id/image_step4"
             android:layout_margin="10sp" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"></RelativeLayout>
 </RelativeLayout>
