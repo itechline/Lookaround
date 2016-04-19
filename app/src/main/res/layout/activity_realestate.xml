@@ -522,8 +522,9 @@
                     />
                 </RelativeLayout>
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
+
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_go"
@@ -532,10 +533,12 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/colorbutton"
                     android:textColor="#ffffff"
-                    android:layout_margin="10sp"
-                    android:paddingLeft="5sp"
-                    android:paddingRight="5sp"
-                    />
+                    android:layout_margin="15sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:paddingLeft="15sp"
+                    android:paddingRight="15sp"
+                    android:textStyle="bold"/>
 
 
             </RelativeLayout>
