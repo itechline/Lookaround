@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_alignParentTop="true"
         android:layout_margin="5sp"
-        android:visibility="invisible">
+        android:visibility="gone">
 
     <RelativeLayout
         android:id="@+id/adding_advertinfo_relativelayout"
@@ -368,7 +368,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:id="@+id/adding_estateinfo_relativelayout"
@@ -777,6 +777,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout_withcontent_page3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
