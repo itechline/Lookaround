@@ -26,6 +26,7 @@
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
     <string name="button_go">MEHET</string>
     <string name="button_next">KÖVETKEZŐ</string>
+    <string name="button_back">VISSZA</string>
 
 <!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
@@ -208,6 +209,20 @@
     <string name="advert_street_hint">Pl.: Fő út</string>
     <string name="advert_str_number">Házszám*:</string>
     <string name="advert_str_number_hint">Pl.: 54/A</string>
+
+    <string name="estate_info">Ingatlan információk</string>
+    <string name="add_advert_rooms_count">Szobák száma*:</string>
+    <string name="add_advert_condition">Állapot*:</string>
+    <string name="add_advert_floors">Emelet*:</string>
+    <string name="add_advert_type">Ingatlan típusa*:</string>
+    <string name="add_advert_balcony">Erkély*:</string>
+    <string name="add_advert_parking">Parkolás*:</string>
+    <string name="add_advert_size">Méret*:</string>
+    <string name="add_advert_heating">Fűtés*:</string>
+    <string name="add_advert_elevator">Lift*:</string>
+    <string name="add_advert_ecertification">E.tanúsítvány:</string>
+    <string name="add_advert_view">Kilátás*:</string>
+    <string name="add_estate_pictures">Képek hozzáadása</string>
 
 
     <string-array name="advert_tpye_array">
