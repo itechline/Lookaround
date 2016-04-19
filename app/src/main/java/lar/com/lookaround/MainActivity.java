@@ -504,7 +504,7 @@ public class MainActivity extends AppCompatActivity
             //abc.getText().toString();
             //viewFlip.setDisplayedChild(CONTENTESTATE);
             switchLayoutTo(CONTENTESTATE);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_agencies);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
             Log.d("DEBUG: ", textv.getText().toString());
             loadRealEstateContent(view);
             supportInvalidateOptionsMenu();
