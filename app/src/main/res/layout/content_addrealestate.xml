@@ -10,7 +10,8 @@
         android:background="#ffffff"
         android:id="@+id/relativeLayout_withcontent"
         android:layout_alignParentTop="true"
-        android:layout_margin="5sp">
+        android:layout_margin="5sp"
+        android:visibility="visible">
 
     <RelativeLayout
         android:id="@+id/adding_advertinfo_relativelayout"
@@ -61,8 +62,8 @@
         android:layout_below="@+id/adding_advertinfo_relativelayout"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:layout_margin="10sp"
-        android:textSize="7pt"/>
+        android:layout_margin="5sp"
+        android:textSize="6pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,8 +74,8 @@
         android:layout_below="@+id/below_advertinfo_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,8 +86,8 @@
         android:layout_below="@+id/adverttitle_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -134,8 +135,8 @@
         android:layout_below="@+id/advert_description_edittext"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
         <RelativeLayout
             android:id="@+id/add_advert_type_spinner_layout"
             android:layout_width="wrap_content"
@@ -170,8 +171,8 @@
         android:layout_below="@+id/advert_type_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -201,8 +202,8 @@
         android:layout_below="@+id/add_advert_price_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -232,8 +233,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_advert_city_text"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -263,8 +264,8 @@
         android:layout_below="@+id/add_advert_street_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10sp"
-        android:textSize="10pt"/>
+        android:layout_margin="9sp"
+        android:textSize="9pt"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -297,7 +298,7 @@
         android:textColor="#ffffff"
         android:textSize="10pt"
         android:padding="5sp"
-        android:layout_margin="25sp" />
+        android:layout_margin="10sp" />
 
     </RelativeLayout>
 
@@ -307,10 +308,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/relativeLayout_progress_indicator_addadvert"
-        android:layout_marginLeft="5sp"
-        android:layout_marginRight="5sp"
-        android:layout_marginBottom="5sp"
-        android:layout_below="@+id/relativeLayout_withcontent">
+        android:layout_below="@+id/relativeLayout_withcontent"
+        android:layout_margin="5sp">
 
         <ImageView
             android:id="@+id/image_step3"
@@ -362,11 +361,4 @@
             android:layout_margin="10sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5sp"
-        android:layout_marginRight="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_alignBottom="@+id/relativeLayout_withcontent"></RelativeLayout>
 </RelativeLayout>
