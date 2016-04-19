@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +63,13 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
-        //keresés szűkítése spinnerek
+    private SwipeRefreshLayout swipeContainer;
+
+    private static int page = 0;
+    private static String id;
+
+
+    //keresés szűkítése spinnerek
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
     Spinner elevatorSpinner, balconySpinner, iheightSpinner, bathroomwcSpinner, aircondiSpinner;
     Spinner gardenRSpinner, conditionSpinner, atticSpinner;
@@ -135,7 +142,9 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(addEstate, ADDESTATE);
 
         viewFlip.setDisplayedChild(ESTATESLIST);
-        loadRealEstates();
+
+
+        loadRealEstates("0", "0");
 
         loadEstateImages();
 
@@ -145,6 +154,26 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view_search);
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView2.setNavigationItemSelectedListener(this);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                //fetchTimelineAsync(0);
+                String lrgst = String.valueOf(EstateUtil.largestId);
+                loadRealEstates(lrgst, "1");
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
 
         spinnerCreator();
 
@@ -530,34 +559,37 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void loadRealEstates() {
-        /*ListView listView = (ListView) findViewById(R.id.estateListView);
-        ArrayList<RealEstate> arrayOfEstates = new ArrayList<RealEstate>();
-        EstateAdapter abc = new EstateAdapter(this,arrayOfEstates);
-        listView.setAdapter(abc);*/
-
-        ArrayList<RealEstate> arrayOfUsers = RealEstate.getUsers();
-        //ArrayList<EstateUtil> arrayOfUsers = EstateUtil.listEstates();
-
-
-
-        // Create the adapter to convert the array to views
-        final EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
-        // Attach the adapter to a ListView
-        final ListView listView = (ListView) findViewById(R.id.estateListView);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new ItemList());
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+    public void loadRealEstates(String idPost, String pagePost) {
+        EstateUtil.listEstates(new SoapObjectResult() {
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            public void parseRerult(Object result) {
+                ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
-            }
+                //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
+
+                // Create the adapter to convert the array to views
+                final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
+                // Attach the adapter to a ListView
+                final ListView listView = (ListView) findViewById(R.id.estateListView);
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new ItemList());
+                listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
+                    }
+                });
+                swipeContainer.setRefreshing(false);
             }
-        });
+        }, idPost, pagePost);
+
+
         supportInvalidateOptionsMenu();
     }
 
@@ -577,7 +609,7 @@ public class MainActivity extends AppCompatActivity
                 //findViewById(R.id.estateListView).invalidate();
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 switchLayoutTo(ESTATESLIST);
-                loadRealEstates();
+                loadRealEstates("0", "0");
                 break;
             case ADDESTATE:
                 if (prewView == CONTENTESTATE) {
@@ -646,7 +678,7 @@ public class MainActivity extends AppCompatActivity
                     //findViewById(R.id.estateListView).invalidate();
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     switchLayoutTo(ESTATESLIST);
-                    loadRealEstates();
+                    loadRealEstates("0", "0");
                     break;
                 case ADDESTATE:
                     if (prewView == CONTENTESTATE) {

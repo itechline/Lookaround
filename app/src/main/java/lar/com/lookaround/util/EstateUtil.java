@@ -22,11 +22,58 @@ import lar.com.lookaround.restapi.SoapService;
 public class EstateUtil {
     int id;
     private String adress;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     private String street;
     private String description;
     private String price;
     //private boolean isFavourite;
     //private String urls;
+
+    public static int largestId = 0;
+
+    public int getlargestId() {
+        return largestId;
+    }
 
     private static final String INGATLAN_ID = "ingatlan_id";
     private static final String INGATLAN_VAROS = "ingatlan_varos";
@@ -44,11 +91,14 @@ public class EstateUtil {
         //this.urls = urls;
     }
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone) {
+
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost) {
         try {
             String url = "http://lookrnd.me/dev/api/list_estates";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("ingatlan_id", idPost);
+            postadatok.put("page", pagePost);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -71,7 +121,7 @@ public class EstateUtil {
                             getBackWhenItsDone.parseRerult(isAbleObj);*/
 
                             JSONArray jsonArray = new JSONArray(result);
-
+                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
                             //Log.d("listEstatesArray", "Return: " + jsonArray.toString());
                             ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
 
@@ -82,11 +132,16 @@ public class EstateUtil {
                                 String adressJson = json_data.getString(INGATLAN_VAROS);
                                 String streetJson = json_data.getString(INGATLAN_UTCA);
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
-                                String priceJson = json_data.getString(INGATLAN_AR);
+                                String priceJson = json_data.getString(INGATLAN_AR) + " Ft";
 
 
                                 estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson));
-                                Log.d("LOFASZ", "Return: " + adressJson.toString());
+                                Log.d("LOFASZ", "Return: " + idJson);
+
+                                if (idJson > largestId) {
+                                    largestId = idJson;
+                                    Log.d("LOFASZ_largestId", "Return: " + largestId);
+                                }
                             }
 
 

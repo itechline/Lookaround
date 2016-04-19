@@ -32,12 +32,16 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import lar.com.lookaround.MainActivity;
 import lar.com.lookaround.R;
 import lar.com.lookaround.models.RealEstate;
+import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.EstateUtil;
 
-public class EstateAdapter extends ArrayAdapter<RealEstate> {
+public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
-    public EstateAdapter(Context context, ArrayList<RealEstate> users) {
-        super(context, 0, users);
+    public EstateAdapter(Context context, ArrayList<EstateUtil> users) {
+        super(context, R.layout.item_realestate, users);
     }
+
+
 
     public void stopDownloadingImage(int firstVisibleItem, int lastVisibleItem) {
         ArrayList<DownloadImageTask> tmp = new ArrayList<>();
@@ -59,7 +63,7 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         //Log.e("KURVAFASZA", "1");
 
         // Get the data item for this position
-        RealEstate estate = getItem(position);
+        EstateUtil estate = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
@@ -89,16 +93,14 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
         street.setText(estate.getStreet());
         description.setText(estate.getDescription());
         price.setText(estate.getPrice());
-        fav.setChecked(estate.isFavourite());
+        //fav.setChecked(estate.isFavourite());
 
-        //DownloadImageTask imageTask = new DownloadImageTask(image, estate.getId(), convertView);
-        ////imageTask.cancel(true);
-        //imageTask.execute(estate.getUrls());
 
-        final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
 
-        imageList.add(task);
-        task.execute(estate.getUrls());
+
+        //final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
+        //imageList.add(task);
+        //task.execute(estate.getUrls());
 
         return convertView;
     }
@@ -167,42 +169,4 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*public void loadEstateImages(View view, String url) {
-        SliderLayout sliderLayout = (SliderLayout) view.findViewById(R.id.sliderSmall);
-
-
-
-        DefaultSliderView defaultSliderView = new DefaultSliderView(view.getContext());
-
-        defaultSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
-        defaultSliderView.image(url)
-                .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                    @Override
-                    public void onSliderClick(BaseSliderView slider) {
-                        //Log.d("CLICKED ON: ", SmallURLS.get(finalI));
-
-                    }
-                });
-        sliderLayout.stopAutoCycle();
-        sliderLayout.setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
-        sliderLayout.removeAllSliders();
-        sliderLayout.addSlider(defaultSliderView);
-
-
-    }*/
-
-
 }
