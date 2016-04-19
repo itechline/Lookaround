@@ -42,6 +42,7 @@ import java.util.List;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.models.RealEstate;
 import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.SettingUtil;
 
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();*/
                 prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(ADDESTATE);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
 
             }
@@ -145,6 +147,8 @@ public class MainActivity extends AppCompatActivity
         navigationView2.setNavigationItemSelectedListener(this);
 
         spinnerCreator();
+
+
     }
 
 
@@ -153,7 +157,7 @@ public class MainActivity extends AppCompatActivity
             LoginUtil.tokenValidator(this, new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
-                    if((boolean)result) {
+                    if ((boolean) result) {
                         Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
                     } else {
@@ -163,7 +167,7 @@ public class MainActivity extends AppCompatActivity
                     }
 
                 }
-            },SettingUtil.getToken(this));
+            }, SettingUtil.getToken(this));
     }
 
     ProgressDialog ringProgressDialog;
@@ -533,6 +537,10 @@ public class MainActivity extends AppCompatActivity
         listView.setAdapter(abc);*/
 
         ArrayList<RealEstate> arrayOfUsers = RealEstate.getUsers();
+        //ArrayList<EstateUtil> arrayOfUsers = EstateUtil.listEstates();
+
+
+
         // Create the adapter to convert the array to views
         final EstateAdapter adapter = new EstateAdapter(this, arrayOfUsers);
         // Attach the adapter to a ListView
@@ -572,6 +580,11 @@ public class MainActivity extends AppCompatActivity
                 loadRealEstates();
                 break;
             case ADDESTATE:
+                if (prewView == CONTENTESTATE) {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                } else {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                }
                 switchLayoutTo(prewView);
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 fab.setVisibility(View.VISIBLE);
@@ -636,6 +649,11 @@ public class MainActivity extends AppCompatActivity
                     loadRealEstates();
                     break;
                 case ADDESTATE:
+                    if (prewView == CONTENTESTATE) {
+                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                    } else {
+                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    }
                     switchLayoutTo(prewView);
                     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                     fab.setVisibility(View.VISIBLE);
