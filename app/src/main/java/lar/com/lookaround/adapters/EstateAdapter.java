@@ -150,7 +150,7 @@ public class EstateAdapter extends ArrayAdapter<RealEstate> {
                 imageList = new ArrayList<>();
             }
             imageList.remove(this);
-            Log.e("LOSHIT", "darabszám: "+imageList.size());
+            //Log.e("LOSHIT", "darabszám: "+imageList.size());
 
             if (result != null) {
                 //bmImage.setImageBitmap(result);
