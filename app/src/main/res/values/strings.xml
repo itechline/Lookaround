@@ -26,6 +26,7 @@
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
     <string name="button_go">MEHET</string>
     <string name="button_next">KÖVETKEZŐ</string>
+    <string name="button_back">VISSZA</string>
 
 <!-- activity drawer stringek -->
     <string name="profile">Személyes</string>
