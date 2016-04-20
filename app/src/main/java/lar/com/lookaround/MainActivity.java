@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.PagerAdapter;
@@ -93,10 +96,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_realestate);
         //addContentView(R.layout.activity_search);
 
-        if(!SettingUtil.getToken(this).equals("")) {
-            tokenValidation();
+        if (isNetworkAvailable()) {
+            if (!SettingUtil.getToken(this).equals("")) {
+                tokenValidation();
+            } else {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
         } else {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            showAlert();
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -190,6 +197,25 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ) {
+
+            return true;
+
+        }
+        else if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+
+            return false;
+        }
+
+        return true;
 
     }
 
@@ -308,19 +334,26 @@ private int whichAddestatePage = 0;
 
     @Override
     public void onResume() {
+        if (isNetworkAvailable()) {
+            if (!SettingUtil.getToken(this).equals("")) {
+                tokenValidation();
+            } else {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        } else {
+            showAlert();
+        }
         super.onResume();  // Always call the superclass method first
 
     }
 
-    public void showAlert(View view) {
+    public void showAlert() {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage("Rossz felhasználónév vagy jelszó!")
+        myAlert.setMessage("Napasztmek! Nincs internet! :'(")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText abc = (EditText)findViewById(R.id.keresztNev);
-                        abc.getText().toString();
-                        Log.d("DEBUG: ", abc.getText().toString());
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
                         dialog.dismiss();
                     }
                 })
