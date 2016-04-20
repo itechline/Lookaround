@@ -227,6 +227,8 @@
     <string name="add_camera_image_text">Kép készítése</string>
     <string name="add_gallery_image_hint">A telefonon meglévő képek közül a fotók kiválasztása</string>
     <string name="add_gallery_image_text">Feltöltés</string>
+    <string name="add_seeing_date">Megtekintés megadása</string>
+    <string name="add_commit_n_service">Véglegesítés, szolgáltatások</string>
 
 
     <string-array name="advert_tpye_array">
