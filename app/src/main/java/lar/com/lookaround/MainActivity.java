@@ -164,8 +164,9 @@ public class MainActivity extends AppCompatActivity
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
                 //fetchTimelineAsync(0);
-                String lrgst = String.valueOf(EstateUtil.largestId);
-                loadRealEstates(lrgst, "1");
+
+                //String lrgst = String.valueOf(EstateUtil.largestId);
+                loadRealEstates("0", "0");
             }
         });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -558,12 +559,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private int pageCount = 0;
+    private boolean isRefreshing = false;
 
     public void loadRealEstates(String idPost, String pagePost) {
+        pageCount = 0;
+        isRefreshing = false;
+        EstateUtil.largestId = 0;
         EstateUtil.listEstates(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
+                final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
                 //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
 
@@ -583,6 +589,25 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                         adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
+                        if (firstVisibleItem + visibleItemCount == totalItemCount) {
+                            if (!isRefreshing) {
+                                Log.e("REFRESHING", "PAGE 1");
+
+                                isRefreshing = true;
+                                pageCount += 1;
+
+                                String pageStr = String.valueOf(pageCount);
+                                String lrgst = String.valueOf(EstateUtil.largestId);
+                                EstateUtil.listEstates(new SoapObjectResult() {
+                                    @Override
+                                    public void parseRerult(Object result) {
+                                        ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
+                                        adapter.addAll(arrayOfUsers);
+                                        isRefreshing = false;
+                                    }
+                                }, lrgst, pageStr);
+                            }
+                        }
                     }
                 });
                 swipeContainer.setRefreshing(false);
@@ -592,6 +617,7 @@ public class MainActivity extends AppCompatActivity
 
         supportInvalidateOptionsMenu();
     }
+
 
     @Override
     public void onBackPressed() {
