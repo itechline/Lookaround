@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.util.Log;
@@ -29,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -143,6 +146,9 @@ public class MainActivity extends AppCompatActivity
 
         viewFlip.setDisplayedChild(ESTATESLIST);
 
+        //ViewPager viewPager = (ViewPager) findViewById(R.id.addrealestateViewpager);
+        //viewPager.setAdapter(new CustomPagerAdapter(this));
+
 
         loadRealEstates("0", "0");
 
@@ -178,6 +184,54 @@ public class MainActivity extends AppCompatActivity
 
         spinnerCreator();
 
+
+    }
+
+
+private int whichAddestatePage = 0;
+    public void nextAddestatePage(View view) {
+        whichAddestatePage += 1;
+        setAddestatePage(whichAddestatePage);
+    }
+
+    public void prewAddestatePage(View view) {
+        whichAddestatePage -= 1;
+        setAddestatePage(whichAddestatePage);
+    }
+
+    public void setAddestatePage(int page) {
+        RelativeLayout layone = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page1);
+        RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page2);
+        RelativeLayout laythree = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page3);
+        RelativeLayout layfour = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page4);
+        RelativeLayout layfive = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page5);
+
+        layone.setVisibility(View.INVISIBLE);
+        laytwo.setVisibility(View.INVISIBLE);
+        laythree.setVisibility(View.INVISIBLE);
+        layfour.setVisibility(View.INVISIBLE);
+        layfive.setVisibility(View.INVISIBLE);
+
+        switch (page) {
+            case 0:
+                layone.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                laytwo.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                laythree.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                layfour.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                layfive.setVisibility(View.VISIBLE);
+                break;
+        }
+
+
+        //layone.setVisibility(View.VISIBLE);
 
     }
 
