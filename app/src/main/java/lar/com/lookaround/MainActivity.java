@@ -635,7 +635,7 @@ public class MainActivity extends AppCompatActivity
                 //findViewById(R.id.estateListView).invalidate();
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 switchLayoutTo(ESTATESLIST);
-                loadRealEstates("0", "0");
+                //loadRealEstates("0", "0");
                 break;
             case ADDESTATE:
                 if (prewView == CONTENTESTATE) {
@@ -704,7 +704,7 @@ public class MainActivity extends AppCompatActivity
                     //findViewById(R.id.estateListView).invalidate();
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     switchLayoutTo(ESTATESLIST);
-                    loadRealEstates("0", "0");
+                    //loadRealEstates("0", "0");
                     break;
                 case ADDESTATE:
                     if (prewView == CONTENTESTATE) {

@@ -23,11 +23,11 @@ public class EstateUtil {
     int id;
     private String adress;
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -65,7 +65,7 @@ public class EstateUtil {
 
     private String street;
     private String description;
-    private String price;
+    private int price;
     //private boolean isFavourite;
     //private String urls;
 
@@ -81,7 +81,7 @@ public class EstateUtil {
     private static final String INGATLAN_ROVIDLEIRAS = "ingatlan_rovidleiras";
     private static final String INGATLAN_AR = "ingatlan_ar";
 
-    public EstateUtil(int id, String adress, String street, String description, String price) {
+    public EstateUtil(int id, String adress, String street, String description, int price) {
         this.id = id;
         this.adress = adress;
         this.street = street;
@@ -132,7 +132,7 @@ public class EstateUtil {
                                 String adressJson = json_data.getString(INGATLAN_VAROS);
                                 String streetJson = json_data.getString(INGATLAN_UTCA);
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
-                                String priceJson = json_data.getString(INGATLAN_AR) + " Ft";
+                                int priceJson = json_data.getInt(INGATLAN_AR);
 
 
                                 estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson));

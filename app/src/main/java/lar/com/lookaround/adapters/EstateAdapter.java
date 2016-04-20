@@ -2,8 +2,11 @@ package lar.com.lookaround.adapters;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -92,7 +95,18 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         adress.setText(estate.getAdress());
         street.setText(estate.getStreet());
         description.setText(estate.getDescription());
-        price.setText(estate.getPrice());
+
+        Locale locale = new Locale("en", "UK");
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+        //symbols.setDecimalSeparator(';');
+        symbols.setGroupingSeparator('.');
+
+        String pattern = "###,###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+        String format = decimalFormat.format(estate.getPrice());
+
+        price.setText(format + " Ft");
         //fav.setChecked(estate.isFavourite());
 
 
