@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_alignParentTop="true"
         android:layout_margin="5sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:touchscreenBlocksFocus="false">
 
     <RelativeLayout
@@ -370,7 +370,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:id="@+id/adding_estateinfo_relativelayout"
