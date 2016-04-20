@@ -370,7 +370,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/adding_estateinfo_relativelayout"
@@ -769,7 +769,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignLeft="@+id/addestate_ecertificate_spinner_rlayout"
             android:layout_alignStart="@+id/addestate_ecertificate_spinner_rlayout"
-            android:background="@drawable/spinner_border">
+            android:background="@drawable/spinner_border"
+            android:layout_above="@+id/linearLayout_forbuttons">
         <Spinner
             android:id="@+id/adestate_view_spinner"
             android:layout_width="wrap_content"
@@ -1052,7 +1053,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:layout_width="match_parent"
