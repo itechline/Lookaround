@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
@@ -30,6 +32,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();*/
                 prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(ADDESTATE);
+                setAddestatePage(whichAddestatePage);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
 
@@ -185,18 +189,24 @@ public class MainActivity extends AppCompatActivity
         spinnerCreator();
 
 
+
+
     }
 
 
 private int whichAddestatePage = 0;
     public void nextAddestatePage(View view) {
-        whichAddestatePage += 1;
-        setAddestatePage(whichAddestatePage);
+        if (whichAddestatePage < 4) {
+            whichAddestatePage += 1;
+            setAddestatePage(whichAddestatePage);
+        }
     }
 
     public void prewAddestatePage(View view) {
-        whichAddestatePage -= 1;
-        setAddestatePage(whichAddestatePage);
+        if (whichAddestatePage > 0) {
+            whichAddestatePage -= 1;
+            setAddestatePage(whichAddestatePage);
+        }
     }
 
     public void setAddestatePage(int page) {
@@ -205,6 +215,22 @@ private int whichAddestatePage = 0;
         RelativeLayout laythree = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page3);
         RelativeLayout layfour = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page4);
         RelativeLayout layfive = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page5);
+
+        ImageView layoneIndicator = (ImageView) findViewById(R.id.image_step1);
+        ImageView laytwoIndicator = (ImageView) findViewById(R.id.image_step2);
+        ImageView laythreendicator = (ImageView) findViewById(R.id.image_step3);
+        ImageView layfourIndicator = (ImageView) findViewById(R.id.image_step4);
+        ImageView layfiveIndicator = (ImageView) findViewById(R.id.image_step5);
+
+        Resources res = getResources();
+        Drawable kekpotty = res.getDrawable(R.drawable.kekpotty);
+        Drawable szurkepotty = res.getDrawable(R.drawable.szurkepotty);
+
+        layoneIndicator.setImageDrawable(szurkepotty);
+        laytwoIndicator.setImageDrawable(szurkepotty);
+        laythreendicator.setImageDrawable(szurkepotty);
+        layfourIndicator.setImageDrawable(szurkepotty);
+        layfiveIndicator.setImageDrawable(szurkepotty);
 
         layone.setVisibility(View.INVISIBLE);
         laytwo.setVisibility(View.INVISIBLE);
@@ -215,24 +241,25 @@ private int whichAddestatePage = 0;
         switch (page) {
             case 0:
                 layone.setVisibility(View.VISIBLE);
+                layoneIndicator.setImageDrawable(kekpotty);
                 break;
             case 1:
                 laytwo.setVisibility(View.VISIBLE);
+                laytwoIndicator.setImageDrawable(kekpotty);
                 break;
             case 2:
                 laythree.setVisibility(View.VISIBLE);
+                laythreendicator.setImageDrawable(kekpotty);
                 break;
             case 3:
                 layfour.setVisibility(View.VISIBLE);
+                layfourIndicator.setImageDrawable(kekpotty);
                 break;
             case 4:
                 layfive.setVisibility(View.VISIBLE);
+                layfiveIndicator.setImageDrawable(kekpotty);
                 break;
         }
-
-
-        //layone.setVisibility(View.VISIBLE);
-
     }
 
 
