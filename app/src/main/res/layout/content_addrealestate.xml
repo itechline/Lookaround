@@ -11,7 +11,8 @@
         android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_alignParentTop="true"
         android:layout_margin="5sp"
-        android:visibility="gone">
+        android:visibility="visible"
+        android:touchscreenBlocksFocus="false">
 
     <RelativeLayout
         android:id="@+id/adding_advertinfo_relativelayout"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textAlignment="center"
-            android:textSize="9pt"
+            android:textSize="12sp"
             android:textColor="#ffffff"
             android:background="@drawable/gps_1"
             android:layout_gravity="center_horizontal"
@@ -49,7 +50,8 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/gps_indicator_1"
             android:layout_toEndOf="@+id/gps_indicator_1"
-            android:layout_margin="5sp" />
+            android:layout_margin="5sp"
+            android:textSize="15sp"/>
 
     </RelativeLayout>
 
@@ -63,7 +65,7 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:layout_margin="5sp"
-        android:textSize="6pt"/>
+        android:textSize="10sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -387,7 +389,7 @@
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:textAlignment="center"
-                android:textSize="9pt"
+                android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:background="@drawable/gps_1"
                 android:layout_gravity="center_horizontal"
@@ -407,7 +409,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/gps_indicator_2"
                 android:layout_toEndOf="@+id/gps_indicator_2"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:textSize="15sp"/>
 
         </RelativeLayout>
 
@@ -783,7 +786,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        >
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -791,14 +794,15 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/border"
-            android:id="@+id/relativeLayout">
+            android:id="@+id/relativeLayout"
+            android:layout_margin="5sp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:textAlignment="center"
-                android:textSize="9pt"
+                android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:background="@drawable/gps_1"
                 android:layout_gravity="center_horizontal"
@@ -818,7 +822,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/gps_indicator_3"
                 android:layout_toEndOf="@+id/gps_indicator_3"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:textSize="15sp"/>
 
         </RelativeLayout>
 
@@ -832,7 +837,7 @@
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:layout_margin="5sp"
-            android:textSize="6pt"/>
+            android:textSize="10sp"/>
 
         <LinearLayout
             android:id="@+id/layout_forbuttons_2"
