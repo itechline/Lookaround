@@ -3,7 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:layout_height="match_parent"
-    android:id="@+id/item_realestate_layout">
+    android:id="@+id/item_realestate_layout"
+    android:paddingTop="3sp"
+    android:paddingBottom="3sp"
+    android:paddingLeft="3sp"
+    android:paddingRight="3sp"
+    android:backgroundTint="@color/colorPrimary">
+
 
     <RelativeLayout
         android:orientation="vertical"
