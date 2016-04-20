@@ -579,6 +579,8 @@ public class MainActivity extends AppCompatActivity
                 // Attach the adapter to a ListView
                 final ListView listView = (ListView) findViewById(R.id.estateListView);
                 listView.setAdapter(adapter);
+                listView.setDivider(null);
+                listView.setDividerHeight(0);
                 listView.setOnItemClickListener(new ItemList());
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
@@ -655,6 +657,8 @@ public class MainActivity extends AppCompatActivity
         } else if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         }
+
+        supportInvalidateOptionsMenu();
     }
 
     @Override
@@ -702,6 +706,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case CONTENTESTATE:
                     //findViewById(R.id.estateListView).invalidate();
+                    supportInvalidateOptionsMenu();
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     switchLayoutTo(ESTATESLIST);
                     //loadRealEstates("0", "0");

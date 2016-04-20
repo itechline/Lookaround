@@ -4,6 +4,7 @@
         <shape>
             <solid
                 android:color="#f25e36" />
+            <corners android:radius="5dp"/>
             </shape>
     </item>
 
@@ -11,6 +12,7 @@
         <shape>
             <solid
                 android:color="#0066cc" />
+            <corners android:radius="5dp"/>
             </shape>
     </item>
 
@@ -18,6 +20,7 @@
         <shape>
             <solid
                 android:color="#0066cc" />
+            <corners android:radius="5dp"/>
             </shape>
     </item>
 </selector>
