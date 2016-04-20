@@ -25,7 +25,8 @@
             android:layout_height="match_parent"
             android:id="@+id/estateListView"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="#ededed"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
