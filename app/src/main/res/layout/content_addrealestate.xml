@@ -11,7 +11,7 @@
         android:background="#ffffff"
         android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_alignParentTop="true"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:touchscreenBlocksFocus="false"
         android:layout_marginLeft="5sp"
         android:layout_marginRight="5sp"
@@ -972,7 +972,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="invisible">
+        android:visibility="visible">
 
 
         <RelativeLayout
@@ -1048,6 +1048,51 @@
                 android:textColor="#ffffff"
                 android:padding="5sp"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/below_advertinfo"
+            android:id="@+id/below_advertinfo_text_page4"
+            android:layout_below="@+id/add_seeing_date_rlayout"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:layout_margin="5sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/below_advertinfo_text_page4"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/layout_forbuttons_3"
+            android:layout_margin="15sp">
+
+            <TextView
+                android:id="@+id/timepicker_start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/advert_seeing_start"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:id="@+id/timepicker_finish_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/advert_seeing_finish"
+                android:layout_below="@+id/timepicker_start_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -1057,7 +1102,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -1065,7 +1110,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/border"
-            android:layout_margin="5sp">
+            android:layout_margin="5sp"
+            android:id="@+id/relativeLayout">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1129,6 +1175,15 @@
                 android:textColor="#ffffff"
                 android:padding="5sp"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

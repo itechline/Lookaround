@@ -230,6 +230,8 @@
     <string name="add_gallery_image_text">Feltöltés</string>
     <string name="add_seeing_date">Megtekintés megadása</string>
     <string name="add_commit_n_service">Véglegesítés, szolgáltatások</string>
+    <string name="advert_seeing_start">Kezdés</string>
+    <string name="advert_seeing_finish">Vége</string>
 
 
     <string-array name="advert_tpye_array">

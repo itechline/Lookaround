@@ -1,7 +1,9 @@
 package lar.com.lookaround;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,12 +36,15 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -58,6 +63,7 @@ import lar.com.lookaround.util.SettingUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     ViewFlipper viewFlip;
     LayoutInflater inflater;
@@ -199,6 +205,7 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
 
     public boolean isNetworkAvailable() {
         ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
