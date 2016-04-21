@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             showAlert();
-        }
+       }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -295,11 +295,13 @@ private int whichAddestatePage = 0;
                 @Override
                 public void parseRerult(Object result) {
                     if ((boolean) result) {
-                        Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
+                        Log.d("RESULT: ", result.toString());
+
                     } else {
-                        Log.d("RESULT: ", result.toString());
                         ringProgressDialog.dismiss();
+                        Log.d("RESULT: ", result.toString());
+
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
 
@@ -334,7 +336,8 @@ private int whichAddestatePage = 0;
 
     @Override
     public void onResume() {
-        if (isNetworkAvailable()) {
+        super.onResume();  // Always call the superclass method first
+        /*if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
                 tokenValidation();
             } else {
@@ -342,8 +345,7 @@ private int whichAddestatePage = 0;
             }
         } else {
             showAlert();
-        }
-        super.onResume();  // Always call the superclass method first
+        }*/
 
     }
 

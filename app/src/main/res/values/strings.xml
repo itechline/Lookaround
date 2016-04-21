@@ -29,6 +29,7 @@
     <string name="button_back">VISSZA</string>
 
 <!-- activity drawer stringek -->
+    <string name="mainpage">Összes hirdetés</string>
     <string name="profile">Személyes</string>
     <string name="messages">Üzenetek</string>
     <string name="billing">Számlázás</string>
