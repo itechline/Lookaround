@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity
     private static int page = 0;
     private static String id;
 
+    private boolean isShowingFavorites = false;
+
 
     //keresés szűkítése spinnerek
     Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity
         //viewPager.setAdapter(new CustomPagerAdapter(this));
 
 
-        loadRealEstates("0", "0", SettingUtil.getToken(this));
+        loadRealEstates("0", "0", SettingUtil.getToken(this), "0");
 
         loadEstateImages();
 
@@ -189,7 +191,11 @@ public class MainActivity extends AppCompatActivity
                 //fetchTimelineAsync(0);
 
                 //String lrgst = String.valueOf(EstateUtil.largestId);
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this));
+                if (!isShowingFavorites) {
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                } else {
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
+                }
             }
         });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -205,6 +211,31 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+    static final int DIALOG_ID = 0;
+    int hour_x;
+    int minute_x;
+
+    public void showTimePicker(View view) {
+        showDialog(DIALOG_ID);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_ID) {
+            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, false);
+        }
+        return null;
+    }
+
+    protected TimePickerDialog.OnTimeSetListener kTimpePickerDialog =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    hour_x = hourOfDay;
+                    minute_x = minute;
+                }
+    };
 
 
     public boolean isNetworkAvailable() {
@@ -685,7 +716,7 @@ private int whichAddestatePage = 0;
     private int pageCount = 0;
     private boolean isRefreshing = false;
 
-    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend) {
+    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav) {
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
@@ -695,7 +726,6 @@ private int whichAddestatePage = 0;
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
                 //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
-
 
                 // Create the adapter to convert the array to views
                 final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
@@ -716,7 +746,7 @@ private int whichAddestatePage = 0;
                         adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
                         if (firstVisibleItem + visibleItemCount == totalItemCount) {
                             if (!isRefreshing) {
-                                Log.e("REFRESHING", "PAGE 1");
+                                //Log.e("REFRESHING", "PAGE 1");
 
                                 isRefreshing = true;
                                 pageCount += 1;
@@ -730,14 +760,14 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = false;
                                     }
-                                }, lrgst, pageStr, tokenToSend);
+                                }, lrgst, pageStr, tokenToSend, fav);
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend);
+        }, idPost, pagePost, tokenToSend, fav);
 
 
         supportInvalidateOptionsMenu();
@@ -865,7 +895,8 @@ private int whichAddestatePage = 0;
 
         switch (id) {
             case R.id.nav_mainpage:
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this));
+                isShowingFavorites = false;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 break;
             case R.id.nav_profile:
 
@@ -880,7 +911,8 @@ private int whichAddestatePage = 0;
 
                 break;
             case R.id.nav_myfavs:
-                loadFavouriteEstates();
+                isShowingFavorites = true;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
                 break;
             case R.id.nav_admonitor:
 

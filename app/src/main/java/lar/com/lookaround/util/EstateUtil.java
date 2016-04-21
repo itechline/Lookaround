@@ -102,7 +102,7 @@ public class EstateUtil {
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites) {
         try {
             String url = "http://lookrnd.me/dev/api/list_estates";
 
@@ -110,6 +110,7 @@ public class EstateUtil {
             postadatok.put("ingatlan_id", idPost);
             postadatok.put("page", pagePost);
             postadatok.put("token", tokenTosend);
+            postadatok.put("favorites", favorites);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -170,13 +171,86 @@ public class EstateUtil {
                     }
                 }
             }, postadatok);
-
-
-
             ss.execute(new URL(url));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
+
+
+    public static void setFavorite(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites) {
+        try {
+            String url = "http://lookrnd.me/dev/api/set_favorite";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("ingatlan_id", idPost);
+            postadatok.put("page", pagePost);
+            postadatok.put("token", tokenTosend);
+            postadatok.put("favorites", favorites);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("listEstates", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+
+                            /*JSONObject jsonObj = new JSONObject(result);
+
+
+
+
+                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
+                            if ((boolean)isAbleObj) {
+                                String token = jsonObj.getString(TOKEN);
+                                SettingUtil.setToken(ctx, token);
+                            }
+
+                            getBackWhenItsDone.parseRerult(isAbleObj);*/
+
+                            JSONArray jsonArray = new JSONArray(result);
+                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
+                            //Log.d("listEstatesArray", "Return: " + jsonArray.toString());
+                            ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                //estates.add(new EstateUtil(jsonArray.getInt(INGATLAN_ID)));
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(INGATLAN_ID);
+                                String adressJson = json_data.getString(INGATLAN_VAROS);
+                                String streetJson = json_data.getString(INGATLAN_UTCA);
+                                String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
+                                int priceJson = json_data.getInt(INGATLAN_AR);
+                                boolean isFav = json_data.getBoolean(ISFAVOURITE);
+
+
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav));
+                                Log.d("LOFASZ", "Return: " + idJson);
+
+                                if (idJson > largestId) {
+                                    largestId = idJson;
+                                    Log.d("LOFASZ_largestId", "Return: " + largestId);
+                                }
+                            }
+
+
+                            getBackWhenItsDone.parseRerult(estates);
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 }
