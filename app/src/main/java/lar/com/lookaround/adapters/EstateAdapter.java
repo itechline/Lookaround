@@ -107,7 +107,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         String format = decimalFormat.format(estate.getPrice());
 
         price.setText(format + " Ft");
-        //fav.setChecked(estate.isFavourite());
+        fav.setChecked(estate.isFavourite());
 
 
 

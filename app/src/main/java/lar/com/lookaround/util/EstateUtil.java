@@ -89,6 +89,7 @@ public class EstateUtil {
     private static final String INGATLAN_UTCA = "ingatlan_utca";
     private static final String INGATLAN_ROVIDLEIRAS = "ingatlan_rovidleiras";
     private static final String INGATLAN_AR = "ingatlan_ar";
+    private static final String ISFAVOURITE = "kedvenc";
 
     public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite) {
         this.id = id;
@@ -143,9 +144,10 @@ public class EstateUtil {
                                 String streetJson = json_data.getString(INGATLAN_UTCA);
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
                                 int priceJson = json_data.getInt(INGATLAN_AR);
+                                boolean isFav = json_data.getBoolean(ISFAVOURITE);
 
 
-                                //estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav));
                                 Log.d("LOFASZ", "Return: " + idJson);
 
                                 if (idJson > largestId) {
