@@ -232,6 +232,9 @@
     <string name="add_commit_n_service">Véglegesítés, szolgáltatások</string>
     <string name="advert_seeing_start">Kezdés</string>
     <string name="advert_seeing_finish">Vége</string>
+    <string name="advert_seeing_days">Napok:</string>
+    <string name="timepicker_start_text">Adja meg a megtikintések kezdőidőpontját</string>
+    <string name="timepicker_finish_text">Adja meg a megtekintések végének időpontját</string>
 
 
     <string-array name="advert_tpye_array">

@@ -1062,12 +1062,13 @@
             android:layout_margin="5sp"/>
 
         <RelativeLayout
+            android:id="@+id/add_seeing_dateTime_rlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/below_advertinfo_text_page4"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/layout_forbuttons_3"
-            android:layout_margin="15sp">
+            android:layout_margin="10sp">
 
             <TextView
                 android:id="@+id/timepicker_start_button"
@@ -1080,7 +1081,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_margin="10sp"
                 android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:padding="5sp" />
 
             <TextView
                 android:id="@+id/timepicker_finish_button"
@@ -1092,7 +1094,157 @@
                 android:layout_alignParentStart="true"
                 android:layout_margin="10sp"
                 android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:padding="5sp" />
+
+            <LinearLayout
+                android:id="@+id/dayselector_linear_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timepicker_finish_button"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/dayselector_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/advert_seeing_days"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginBottom="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="H"
+                    android:id="@+id/daypicker_day1"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="K"
+                    android:id="@+id/daypicker_day2"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="SZ"
+                    android:id="@+id/daypicker_day3"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="CS"
+                    android:id="@+id/daypicker_day4"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="P"
+                    android:id="@+id/daypicker_day5"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="SZ"
+                    android:id="@+id/daypicker_day6"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="V"
+                    android:id="@+id/daypicker_day7"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dayselector_linear_layout"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10sp">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nagy loremipszumok meg mindenek, tudod..."
+                    android:id="@+id/checkBox"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ezmeg egy ilyen kis rövid"
+                    android:id="@+id/checkBox2"
+                    android:layout_below="@+id/checkBox"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nem van takarékon a kotorékszeretet"
+                    android:id="@+id/checkBox3"
+                    android:layout_below="@+id/checkBox2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/timepicker_start_text"
+                android:id="@+id/timepicker_start_textView"
+                android:layout_alignTop="@+id/timepicker_start_button"
+                android:layout_toRightOf="@+id/timepicker_start_button"
+                android:layout_toEndOf="@+id/timepicker_start_button"
+                android:layout_above="@+id/timepicker_finish_button"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/timepicker_finish_text"
+                android:id="@+id/timepicker_finish_textView"
+                android:layout_alignTop="@+id/timepicker_finish_button"
+                android:layout_alignLeft="@+id/timepicker_start_textView"
+                android:layout_alignStart="@+id/timepicker_start_textView"
+                android:layout_above="@+id/dayselector_linear_layout"
+                android:textSize="12sp"/>
+
         </RelativeLayout>
     </RelativeLayout>
 
