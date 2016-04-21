@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG_ID) {
-            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, false);
+            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, true);
         }
         return null;
     }
@@ -754,7 +754,7 @@ private int whichAddestatePage = 0;
                             if (!isRefreshing) {
                                 //Log.e("REFRESHING", "PAGE 1");
 
-                                isRefreshing = true;
+                                //isRefreshing = true;
                                 pageCount += 1;
 
                                 String pageStr = String.valueOf(pageCount);
@@ -764,7 +764,7 @@ private int whichAddestatePage = 0;
                                     public void parseRerult(Object result) {
                                         ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
                                         adapter.addAll(arrayOfUsers);
-                                        isRefreshing = false;
+                                        isRefreshing = true;
                                     }
                                 }, lrgst, pageStr, tokenToSend, fav);
                             }

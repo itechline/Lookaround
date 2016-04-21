@@ -121,8 +121,6 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                 } else {
                     setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
                 }
-
-
             }
         });
 
