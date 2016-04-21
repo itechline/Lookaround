@@ -116,6 +116,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             public void onClick(View v) {
                 //is chkIos checked?
                 if (((CheckBox) v).isChecked()) {
+                //if (fav.isChecked()) {
                     setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
                 } else {
                     setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
