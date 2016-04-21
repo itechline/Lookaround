@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity
         //viewPager.setAdapter(new CustomPagerAdapter(this));
 
 
-        loadRealEstates("0", "0");
+        loadRealEstates("0", "0", SettingUtil.getToken(this));
 
         loadEstateImages();
 
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 //fetchTimelineAsync(0);
 
                 //String lrgst = String.valueOf(EstateUtil.largestId);
-                loadRealEstates("0", "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this));
             }
         });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -678,7 +678,7 @@ private int whichAddestatePage = 0;
     private int pageCount = 0;
     private boolean isRefreshing = false;
 
-    public void loadRealEstates(String idPost, String pagePost) {
+    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend) {
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
@@ -723,14 +723,14 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = false;
                                     }
-                                }, lrgst, pageStr);
+                                }, lrgst, pageStr, tokenToSend);
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost);
+        }, idPost, pagePost, tokenToSend);
 
 
         supportInvalidateOptionsMenu();
@@ -858,7 +858,7 @@ private int whichAddestatePage = 0;
 
         switch (id) {
             case R.id.nav_mainpage:
-                loadRealEstates("0", "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this));
                 break;
             case R.id.nav_profile:
 

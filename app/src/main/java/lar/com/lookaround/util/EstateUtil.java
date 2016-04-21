@@ -22,6 +22,20 @@ import lar.com.lookaround.restapi.SoapService;
 public class EstateUtil {
     int id;
     private String adress;
+    private String street;
+    private String description;
+    private int price;
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setIsFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+    }
+
+    private boolean isFavourite;
+    //private String urls;
 
     public int getPrice() {
         return price;
@@ -63,11 +77,6 @@ public class EstateUtil {
         this.description = description;
     }
 
-    private String street;
-    private String description;
-    private int price;
-    //private boolean isFavourite;
-    //private String urls;
 
     public static int largestId = 0;
 
@@ -81,24 +90,25 @@ public class EstateUtil {
     private static final String INGATLAN_ROVIDLEIRAS = "ingatlan_rovidleiras";
     private static final String INGATLAN_AR = "ingatlan_ar";
 
-    public EstateUtil(int id, String adress, String street, String description, int price) {
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite) {
         this.id = id;
         this.adress = adress;
         this.street = street;
         this.description = description;
         this.price = price;
-        //this.isFavourite = isFavourite;
+        this.isFavourite = isFavourite;
         //this.urls = urls;
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend) {
         try {
             String url = "http://lookrnd.me/dev/api/list_estates";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_id", idPost);
             postadatok.put("page", pagePost);
+            postadatok.put("token", tokenTosend);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -135,7 +145,7 @@ public class EstateUtil {
                                 int priceJson = json_data.getInt(INGATLAN_AR);
 
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson));
+                                //estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson));
                                 Log.d("LOFASZ", "Return: " + idJson);
 
                                 if (idJson > largestId) {
