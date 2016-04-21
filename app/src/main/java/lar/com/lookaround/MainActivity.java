@@ -736,6 +736,10 @@ private int whichAddestatePage = 0;
         supportInvalidateOptionsMenu();
     }
 
+    public void loadFavouriteEstates() {
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -852,6 +856,9 @@ private int whichAddestatePage = 0;
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.nav_mainpage:
+                loadRealEstates("0", "0");
+                break;
             case R.id.nav_profile:
 
                 break;
@@ -865,7 +872,7 @@ private int whichAddestatePage = 0;
 
                 break;
             case R.id.nav_myfavs:
-
+                loadFavouriteEstates();
                 break;
             case R.id.nav_admonitor:
 
@@ -884,12 +891,12 @@ private int whichAddestatePage = 0;
                         if ((boolean) result) {
 
                         } else {
-
+                            SettingUtil.setToken(MainActivity.this, "");
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         }
                     }
                 });
-                SettingUtil.setToken(this, "");
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
                 //finish();
                 break;
         }
