@@ -37,6 +37,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -691,6 +692,8 @@ private int whichAddestatePage = 0;
             //EditText abc = (EditText)findViewById(R.id.keresztNev);
             //abc.getText().toString();
             //viewFlip.setDisplayedChild(CONTENTESTATE);
+
+
             switchLayoutTo(CONTENTESTATE);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
             Log.d("DEBUG: ", textv.getText().toString());
@@ -698,6 +701,9 @@ private int whichAddestatePage = 0;
             supportInvalidateOptionsMenu();
         }
     }
+
+
+
 
 
     public void loadRealEstateContent(View view) {
@@ -771,11 +777,6 @@ private int whichAddestatePage = 0;
 
 
         supportInvalidateOptionsMenu();
-    }
-
-    public void loadFavouriteEstates() {
-
-
     }
 
 
