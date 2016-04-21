@@ -37,6 +37,7 @@ import lar.com.lookaround.R;
 import lar.com.lookaround.models.RealEstate;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
+import lar.com.lookaround.util.SettingUtil;
 
 public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
@@ -66,7 +67,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         //Log.e("KURVAFASZA", "1");
 
         // Get the data item for this position
-        EstateUtil estate = getItem(position);
+        final EstateUtil estate = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
@@ -88,7 +89,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
         TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
         TextView price = (TextView) convertView.findViewById(R.id.Price);
-        CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
+        final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
         ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
 
 
@@ -109,7 +110,21 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         price.setText(format + " Ft");
         fav.setChecked(estate.isFavourite());
 
+        fav.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                //is chkIos checked?
+                if (((CheckBox) v).isChecked()) {
+                //if (fav.isChecked()) {
+                    setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
+                } else {
+                    setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
+                }
+
+
+            }
+        });
 
         // TODO: remove comment signs to load images
         //final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
@@ -117,6 +132,23 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         //task.execute(estate.getUrls());
 
         return convertView;
+    }
+
+
+    public void setEstateFavourite(final CheckBox fav, final String idSend, final String tokenSend, final String favSend) {
+
+        EstateUtil.setFavorite(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if((boolean)result){
+                    if (fav.isChecked()) {
+                        fav.setChecked(false);
+                    } else {
+                        fav.setChecked(true);
+                    }
+                }
+            }
+        },idSend, tokenSend, favSend);
     }
 
 
