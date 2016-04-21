@@ -111,7 +111,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
 
 
-
+        // TODO: remove comment signs to load images
         //final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
         //imageList.add(task);
         //task.execute(estate.getUrls());
