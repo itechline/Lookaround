@@ -117,9 +117,9 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                 //is chkIos checked?
                 if (((CheckBox) v).isChecked()) {
                 //if (fav.isChecked()) {
-                    setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
+                    setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
                 } else {
-                    setEstateFavourite(fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
+                    setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
                 }
             }
         });
@@ -133,7 +133,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
     }
 
 
-    public void setEstateFavourite(final CheckBox fav, final String idSend, final String tokenSend, final String favSend) {
+    public void setEstateFavourite(final EstateUtil estate,final CheckBox fav, final String idSend, final String tokenSend, final String favSend) {
 
         EstateUtil.setFavorite(new SoapObjectResult() {
             @Override
@@ -143,6 +143,12 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                         fav.setChecked(false);
                     } else {
                         fav.setChecked(true);
+                    }
+                } else {
+                    if (fav.isChecked()){
+                        estate.setIsFavourite(true);
+                    } else {
+                        estate.setIsFavourite(false);
                     }
                 }
             }

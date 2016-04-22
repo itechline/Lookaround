@@ -207,24 +207,32 @@ public class MainActivity extends AppCompatActivity
 
 
         spinnerCreator();
-
-
-
-
     }
 
+
+
+
     static final int DIALOG_ID = 0;
+    static final int DIALOGEND_ID = 1;
     int hour_x;
     int minute_x;
+    int hour_x_end;
+    int minute_x_end;
 
     public void showTimePicker(View view) {
         showDialog(DIALOG_ID);
+    }
+
+    public void showTimePickerEnd(View view) {
+        showDialog(DIALOGEND_ID);
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG_ID) {
             return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, true);
+        } else if (id == DIALOGEND_ID) {
+            return new TimePickerDialog(MainActivity.this, kTimePickerEndDialog, hour_x_end, minute_x_end, true);
         }
         return null;
     }
@@ -237,6 +245,15 @@ public class MainActivity extends AppCompatActivity
                     minute_x = minute;
                 }
     };
+
+    protected TimePickerDialog.OnTimeSetListener kTimePickerEndDialog =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    hour_x_end = hourOfDay;
+                    minute_x_end = minute;
+                }
+            };
 
 
     public boolean isNetworkAvailable() {

@@ -787,7 +787,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -896,6 +896,7 @@
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:layout_margin="10sp"
+                    android:onClick="pickImage"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -1110,6 +1111,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/advert_seeing_finish"
                 android:layout_below="@+id/timepicker_start_button_layout"
+                android:onClick="showTimePickerEnd"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="10sp"
@@ -1262,7 +1264,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:layout_width="match_parent"
