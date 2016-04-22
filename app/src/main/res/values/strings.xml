@@ -235,6 +235,7 @@
     <string name="advert_seeing_days">Napok:</string>
     <string name="timepicker_start_text">Adja meg a megtikintések kezdőidőpontját</string>
     <string name="timepicker_finish_text">Adja meg a megtekintések végének időpontját</string>
+    <string name="add_more_seeingdate">További időpont hozzáadása</string>
 
 
     <string-array name="advert_tpye_array">
