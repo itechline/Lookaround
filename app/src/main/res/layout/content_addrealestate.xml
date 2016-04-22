@@ -973,7 +973,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="visible">
+        android:visibility="invisible">
 
 
         <RelativeLayout
@@ -1237,7 +1237,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ezmeg egy ilyen kis rövid"
+                    android:text="Cipőre jobb mint a szemrehányás"
                     android:id="@+id/checkBox2"
                     android:layout_below="@+id/checkBox"
                     android:layout_alignParentLeft="true"
@@ -1297,7 +1297,7 @@
         android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
