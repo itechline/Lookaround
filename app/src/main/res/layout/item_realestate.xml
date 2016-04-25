@@ -103,6 +103,77 @@
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp"
             />
+
+        <LinearLayout
+            android:id="@+id/icons_linera_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Price"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic">
+
+            <ImageView
+                android:src="@drawable/list_size"
+                android:layout_width="wrap_content"
+                android:layout_height="25sp"
+                android:id="@+id/list_size_imageview"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="2sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="100"
+                android:id="@+id/list_size_textView"
+                android:layout_margin="5sp" />
+
+            <ImageView
+                android:src="@drawable/list_roomcount"
+                android:layout_width="wrap_content"
+                android:layout_height="25sp"
+                android:id="@+id/list_roomcount_imageview"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="2sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="3"
+                android:id="@+id/list_roomcount_textView"
+                android:layout_margin="5sp" />
+
+            <ImageView
+                android:src="@drawable/list_furniture"
+                android:layout_width="wrap_content"
+                android:layout_height="25sp"
+                android:id="@+id/list_furniture_imageview"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="2sp" />
+
+            <ImageView
+                android:src="@drawable/list_balcony"
+                android:layout_width="wrap_content"
+                android:layout_height="25sp"
+                android:id="@+id/list_balcony_imageview"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="2sp" />
+
+            <ImageView
+                android:src="@drawable/list_parking"
+                android:layout_width="wrap_content"
+                android:layout_height="25sp"
+                android:id="@+id/list_parking_imageview"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="2sp" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
