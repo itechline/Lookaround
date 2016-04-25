@@ -285,20 +285,30 @@
             android:layout_alignStart="@+id/add_advert_street_edittext"
             android:layout_alignBottom="@+id/add_advert_str_number_textview" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_forbuttons_firstpage"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/button_next"
-            android:onClick="nextAddestatePage"
-            android:id="@+id/advert1_next_button"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/colorbutton"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:padding="5sp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10sp" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/button_next"
+                android:onClick="nextAddestatePage"
+                android:id="@+id/advert1_next_button"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:padding="5sp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10sp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
