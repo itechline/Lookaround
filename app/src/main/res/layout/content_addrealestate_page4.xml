@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout_progress_indicator_addadvert">
+
+        <ImageView
+            android:id="@+id/image_step3"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10sp"/>
+
+        <ImageView
+            android:id="@+id/image_step2"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step3"
+            android:layout_toStartOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step1"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step2"
+            android:layout_toStartOf="@+id/image_step2"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step4"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step3"
+            android:layout_toEndOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step5"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step4"
+            android:layout_toEndOf="@+id/image_step4"
+            android:layout_margin="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_withcontent_page4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
+        android:layout_margin="5sp"
+        android:background="#ffffff"
+        android:visibility="visible">
+
+
+        <RelativeLayout
+            android:id="@+id/add_seeing_date_rlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border"
+            android:layout_margin="5sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:background="@drawable/gps_1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/gps_indicator_4"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_seeing_date"
+                android:id="@+id/adding_seeing_date_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/gps_indicator_4"
+                android:layout_toEndOf="@+id/gps_indicator_4"
+                android:layout_margin="5sp"
+                android:textSize="15sp" />
+
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_forbuttons_3"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_back"
+                android:onClick="prewAddestatePage"
+                android:id="@+id/back_button_page4"
+                android:layout_margin="10sp"
+                android:textColor="#0066cc"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_next"
+                android:onClick="nextAddestatePage"
+                android:id="@+id/button_go_page4"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="5sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/below_advertinfo"
+            android:id="@+id/below_advertinfo_text_page4"
+            android:layout_below="@+id/add_seeing_date_rlayout"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:layout_margin="5sp"/>
+
+        <RelativeLayout
+            android:id="@+id/add_seeing_dateTime_rlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/below_advertinfo_text_page4"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/layout_forbuttons_3"
+            android:layout_margin="10sp">
+
+            <LinearLayout
+                android:id="@+id/timepicker_start_button_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/timepicker_start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/advert_seeing_start"
+                android:onClick="showTimePicker"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="5sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/timepicker_start_text"
+                    android:id="@+id/timepicker_stert_textView"
+                    android:layout_margin="10sp"
+                    android:gravity="center_vertical|right"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/timepicker_finish_button_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timepicker_start_button_layout">
+            <TextView
+                android:id="@+id/timepicker_finish_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/advert_seeing_finish"
+                android:layout_below="@+id/timepicker_start_button_layout"
+                android:onClick="showTimePickerEnd"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="5sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/timepicker_finish_text"
+                    android:id="@+id/timepicker_finish_textView"
+                    android:layout_margin="10sp"
+                    android:gravity="center_vertical|right"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dayselector_linear_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timepicker_finish_button_layout"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/dayselector_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/advert_seeing_days"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginBottom="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="H"
+                    android:id="@+id/daypicker_day1"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="K"
+                    android:id="@+id/daypicker_day2"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="SZ"
+                    android:id="@+id/daypicker_day3"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="CS"
+                    android:id="@+id/daypicker_day4"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="P"
+                    android:id="@+id/daypicker_day5"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="SZ"
+                    android:id="@+id/daypicker_day6"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="V"
+                    android:id="@+id/daypicker_day7"
+                    android:layout_margin="15sp"
+                    android:background="@drawable/daypicker_design"/>
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/page_4_checkboxes_rlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dayselector_linear_layout"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10sp">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nagy loremipszumok meg mindenek, tudod..."
+                    android:id="@+id/checkBox"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cipőre jobb mint a szemrehányás"
+                    android:id="@+id/checkBox2"
+                    android:layout_below="@+id/checkBox"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nem van takarékon a kotorékszeretet"
+                    android:id="@+id/checkBox3"
+                    android:layout_below="@+id/checkBox2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="10sp"/>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/page_4_checkboxes_rlayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true">
+            <ImageView
+                android:src="@drawable/plus_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"
+                android:id="@+id/imageView5"
+                android:layout_below="@+id/page_4_checkboxes_rlayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/add_more_seeingdate"
+                android:id="@+id/add_more_seedate_textview"
+                android:layout_toRightOf="@+id/imageView5"
+                android:layout_toEndOf="@+id/imageView5"
+                android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

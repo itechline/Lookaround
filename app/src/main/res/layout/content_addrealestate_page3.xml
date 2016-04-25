@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout_progress_indicator_addadvert">
+
+        <ImageView
+            android:id="@+id/image_step3"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10sp"/>
+
+        <ImageView
+            android:id="@+id/image_step2"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step3"
+            android:layout_toStartOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step1"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step2"
+            android:layout_toStartOf="@+id/image_step2"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step4"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step3"
+            android:layout_toEndOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step5"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step4"
+            android:layout_toEndOf="@+id/image_step4"
+            android:layout_margin="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_withcontent_page3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
+        android:layout_margin="5sp"
+        android:background="#ffffff"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border"
+            android:id="@+id/add_photos_title_rlayout"
+            android:layout_margin="5sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:background="@drawable/gps_1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/gps_indicator_3"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_estate_pictures"
+                android:id="@+id/adding_estateinfo_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/gps_indicator_3"
+                android:layout_toEndOf="@+id/gps_indicator_3"
+                android:layout_margin="5sp"
+                android:textSize="15sp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/below_advertinfo"
+            android:id="@+id/below_advertinfo_text_page3"
+            android:layout_below="@+id/add_photos_title_rlayout"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_margin="5sp"
+            android:textSize="10sp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_forbuttons_2"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_back"
+                android:onClick="prewAddestatePage"
+                android:id="@+id/back_button_page3"
+                android:layout_margin="10sp"
+                android:textColor="#0066cc"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_next"
+                android:onClick="nextAddestatePage"
+                android:id="@+id/button_go_page3"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="5sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/upload_camera_rlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/layout_forbuttons_2"
+            android:layout_below="@+id/below_advertinfo_text_page3">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+                <ImageView
+                    android:src="@drawable/feltoltes"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/upload_image_imageview"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="10sp"
+                    android:onClick="pickImage"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/add_gallery_image_text"
+                    android:id="@+id/add_gallery_img_text"
+                    android:layout_below="@+id/upload_image_imageview"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5sp"
+                    android:textSize="15sp"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/add_gallery_image_hint"
+                    android:id="@+id/add_gallery_hing_textview"
+                    android:layout_below="@+id/add_gallery_img_text"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="60sp"
+                    android:layout_marginRight="60sp"
+                    android:textAlignment="center"
+                    android:layout_above="@+id/add_campic_imageview" />
+
+                <ImageView
+                    android:src="@drawable/fenykepezo"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_campic_imageview"
+                    android:layout_above="@+id/add_cam_pic_text"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="10sp"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/add_camera_image_text"
+                    android:id="@+id/add_cam_pic_text"
+                    android:layout_above="@+id/add_cam_pic_hint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5sp"
+                    android:textSize="15sp"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/add_camera_image_hint"
+                    android:id="@+id/add_cam_pic_hint"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20sp"
+                    android:layout_marginLeft="60sp"
+                    android:layout_marginRight="60sp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

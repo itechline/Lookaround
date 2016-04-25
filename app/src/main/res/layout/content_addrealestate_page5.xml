@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout_progress_indicator_addadvert">
+
+        <ImageView
+            android:id="@+id/image_step3"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10sp"/>
+
+        <ImageView
+            android:id="@+id/image_step2"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step3"
+            android:layout_toStartOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step1"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/image_step2"
+            android:layout_toStartOf="@+id/image_step2"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step4"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step3"
+            android:layout_toEndOf="@+id/image_step3"
+            android:layout_margin="10sp" />
+
+        <ImageView
+            android:id="@+id/image_step5"
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/image_step4"
+            android:layout_toEndOf="@+id/image_step4"
+            android:layout_margin="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_withcontent_page5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
+        android:layout_margin="5sp"
+        android:background="#ffffff"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border"
+            android:layout_margin="5sp"
+            android:id="@+id/relativeLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:background="@drawable/gps_1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/gps_indicator_5"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp"  />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_commit_n_service"
+                android:id="@+id/advert_commit_text"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/gps_indicator_5"
+                android:layout_toEndOf="@+id/gps_indicator_5"
+                android:layout_margin="5sp"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_forbuttons_4"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_back"
+                android:onClick="prewAddestatePage"
+                android:id="@+id/back_button_page5"
+                android:layout_margin="10sp"
+                android:textColor="#0066cc"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_next"
+                android:onClick="nextAddestatePage"
+                android:id="@+id/button_go_page5"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="5sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/below_advertinfo"
+            android:id="@+id/below_advertinfo_text_page4"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5sp"
+            android:textAlignment="center"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/layout_forbuttons_4"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10sp">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A menyét meg leitattatta a menyét"
+                android:id="@+id/checkBox4"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="10sp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nyú csekboksz"
+                android:id="@+id/checkBox5"
+                android:layout_below="@+id/checkBox4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="10sp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tazmán? Hát azmán dél óta tép, a tapírt küldte el a trafikba papírért"
+                android:id="@+id/checkBox6"
+                android:layout_below="@+id/checkBox5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="10sp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
