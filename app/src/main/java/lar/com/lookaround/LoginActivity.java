@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,10 +25,13 @@ import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 import android.view.LayoutInflater;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,10 +45,15 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,6 +80,13 @@ public class LoginActivity extends AppCompatActivity {
     LayoutInflater inflater;
 
     CallbackManager callbackManager;
+    List<String> permissionNeeds= Arrays.asList("user_photos", "email", "user_friends");
+    String email_FB;
+    String first_name_FB;
+    String last_name_FB;
+    String user_fb_id;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,26 +96,10 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-                        Log.d("FACEBOOK: ", loginResult.getAccessToken().getUserId());
-                        //loginResult.getAccessToken().getUserId()
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
 
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
+
+
 
 
 
@@ -120,11 +121,141 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        Log.d("FACEBOOKLOFASZ: ", data.toString());
     }
 
-    public void fbLogin() {
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+    protected String generateRandomPass() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 12) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
     }
+
+    public void fb_login(final View view) {
+        launchRingDialog(view);
+        LoginManager.getInstance().logInWithReadPermissions(this, permissionNeeds);
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+                        Log.d("FACEBOOK: ", loginResult.getAccessToken().toString());
+
+                        //loginResult.getAccessToken().getUserId()
+                        //loginResult.getAccessToken().toString();
+                        Log.d("LOFASZFACEBOOK: ", Arrays.asList(loginResult.getAccessToken()).toString());
+
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(),
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(JSONObject object, GraphResponse response) {
+                                        Log.v("LoginActivity", response.toString());
+
+                                        try {
+                                            user_fb_id = object.getString("id");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                        try {
+                                            URL image_value = new URL("http://graph.facebook.com/"+ user_fb_id+ "/picture?type=large");
+                                            Bitmap bmp = null;
+                                            try {
+                                                bmp = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            //profile_pic.setImageBitmap(bmp);
+                                        } catch (MalformedURLException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        // Application code
+                                        try {
+                                            email_FB = object.getString("email");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            first_name_FB = object.getString("first_name");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            last_name_FB = object.getString("last_name");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        final String passw_fb = generateRandomPass();
+                                        Log.d("PASSW: ", passw_fb.toString());
+
+                                        LoginUtil.sendRegistration(getBaseContext(), new SoapObjectResult() {
+                                            @Override
+                                            public void parseRerult(Object result) {
+                                                if ((boolean) result) {
+                                                    Log.d("RESULT: ", result.toString());
+                                                    LoginUtil.login(getBaseContext(), new SoapObjectResult() {
+                                                        @Override
+                                                        public void parseRerult(Object result) {
+                                                            if ((boolean) result) {
+                                                                Log.d("RESULT: ", result.toString());
+                                                                ringProgressDialog.dismiss();
+                                                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                                finish();
+                                                            } else {
+                                                                Log.d("RESULT: ", result.toString());
+                                                                ringProgressDialog.dismiss();
+                                                                showAlert(view, "Hiba Történt!");
+                                                            }
+
+                                                        }
+                                                    }, email_FB, passw_fb);
+                                                } else {
+                                                    Log.d("RESULT: ", result.toString());
+                                                    //showAlert(view, "Hiba történt!");
+                                                }
+
+                                            }
+                                        }, first_name_FB, last_name_FB, email_FB, passw_fb, "maganyszemely");
+
+
+                                    }
+                                });
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "id, first_name, last_name, email, location");
+                        Log.d("LoginActivityFASZBUK: ", parameters.toString());
+                        request.setParameters(parameters);
+                        request.executeAsync();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                        showAlert(view, "Hiba Történt!");
+                    }
+                });
+    }
+
+
+
+
+
 
 
 

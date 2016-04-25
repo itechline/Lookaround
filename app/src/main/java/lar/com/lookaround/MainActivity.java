@@ -331,7 +331,7 @@ private int whichAddestatePage = 0;
     }
 
     public void setAddestatePage(int page) {
-        RelativeLayout layone = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page1);
+        /*RelativeLayout layone = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page1);
         RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page2);
         RelativeLayout laythree = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page3);
         RelativeLayout layfour = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page4);
@@ -380,7 +380,7 @@ private int whichAddestatePage = 0;
                 layfive.setVisibility(View.VISIBLE);
                 layfiveIndicator.setImageDrawable(kekpotty);
                 break;
-        }
+        }*/
     }
 
 
