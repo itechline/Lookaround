@@ -27,6 +27,7 @@
     <string name="button_go">MEHET</string>
     <string name="button_next">KÖVETKEZŐ</string>
     <string name="button_back">VISSZA</string>
+    <string name="button_save">MENTÉS</string>
 
 <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
@@ -235,6 +236,19 @@
     <string name="advert_seeing_days">Napok:</string>
     <string name="timepicker_start_text">Adja meg a megtikintések kezdőidőpontját</string>
     <string name="timepicker_finish_text">Adja meg a megtekintések végének időpontját</string>
+    <string name="add_more_seeingdate">További időpont hozzáadása</string>
+
+    <!-- profile -->
+
+    <string name="surename">Vezetéknév:</string>
+    <string name="firstname_profile">Keresztnév:</string>
+    <string name="phone_number">Telefonszám:</string>
+    <string name="email">E-mail:</string>
+    <string name="passw_change">Jelszó módosítása</string>
+    <string name="passw_actual">Jelenlegi jelszó:</string>
+    <string name="passw_new">Új jelszó:</string>
+    <string name="passw_again">Még egyszer:</string>
+
 
 
     <string-array name="advert_tpye_array">
