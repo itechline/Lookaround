@@ -1,4 +1,7 @@
 <resources>
+    <!-- FACEBOOK APP ID -->
+    <string name="facebook_app_id">694016577368021</string>
+
     <string name="app_name">Lookaround</string>
     <string name="action_settings">Settings</string>
     <string name="button_login">BEJELENTKEZÉS</string>
