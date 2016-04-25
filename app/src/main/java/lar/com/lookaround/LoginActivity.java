@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,6 +41,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -73,28 +75,30 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
 
-            }
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+                        Log.d("FACEBOOK: ", loginResult.getAccessToken().getUserId());
+                        //loginResult.getAccessToken().getUserId()
+                    }
 
-            @Override
-            public void onCancel() {
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
 
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
 
 
 
@@ -110,6 +114,16 @@ public class LoginActivity extends AppCompatActivity {
         viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
         viewFlip.addView(login, LOGIN);
         viewFlip.addView(regist, REGISTRATION);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void fbLogin() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
     }
 
 
