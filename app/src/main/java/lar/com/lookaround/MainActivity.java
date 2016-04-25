@@ -223,10 +223,10 @@ public class MainActivity extends AppCompatActivity
 
     public void pickImage(View view) {
         Intent intent = new Intent();
-// Show only images, no videos or anything else
+        // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-// Always show the chooser (if there are multiple options available)
+        // Always show the chooser (if there are multiple options available)
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
@@ -236,101 +236,20 @@ public class MainActivity extends AppCompatActivity
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
-
             Uri uri = data.getData();
-
-
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                String lofasz = getRealPathFromURI(uri);
-                Log.d("IMAGE_PATH: ", lofasz);
-                decodeFile(lofasz);
-                // Log.d(TAG, String.valueOf(bitmap));
+                //ScalingUtilities.createScaledBitmap(bitmap, 500, 500, ScalingUtilities.ScalingLogic.FIT);
 
                 ImageView imageView = (ImageView) findViewById(R.id.upload_image_imageview);
-                imageView.setImageBitmap(bitmap);
+                //imageView.setImageBitmap(bitmap);
+                imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 10, 10, ScalingUtilities.ScalingLogic.FIT));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-    private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            //int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            //result = cursor.getString(idx);
-            result = contentURI.getPath();
-            cursor.close();
-        }
-        return result;
-    }
-
-    private String decodeFile(String path) {
-        String strMyImagePath = null;
-        Bitmap scaledBitmap = null;
-
-        try {
-            // Part 1: Decode image
-            Bitmap unscaledBitmap = ScalingUtilities.decodeFile(path, 500, 500, ScalingUtilities.ScalingLogic.FIT);
-
-            if (!(unscaledBitmap.getWidth() <= 800 && unscaledBitmap.getHeight() <= 800)) {
-                // Part 2: Scale image
-                scaledBitmap = ScalingUtilities.createScaledBitmap(unscaledBitmap, 500, 500, ScalingUtilities.ScalingLogic.FIT);
-            } else {
-                unscaledBitmap.recycle();
-                return path;
-            }
-
-            // Store to tmp file
-
-            String extr = Environment.getExternalStorageDirectory().toString();
-            File mFolder = new File(extr + "/myTmpDir");
-            if (!mFolder.exists()) {
-                mFolder.mkdir();
-            }
-
-            String s = "tmp.png";
-
-            File f = new File(mFolder.getAbsolutePath(), s);
-
-            strMyImagePath = f.getAbsolutePath();
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(f);
-                scaledBitmap.compress(Bitmap.CompressFormat.PNG, 70, fos);
-                fos.flush();
-                fos.close();
-            } catch (FileNotFoundException e) {
-
-                e.printStackTrace();
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-
-            scaledBitmap.recycle();
-        } catch (Throwable e) {
-        }
-
-        if (strMyImagePath == null) {
-            return path;
-        }
-        return strMyImagePath;
-
-    }
-
-
-
-
-
-
-
 
     static final int DIALOG_ID = 0;
     static final int DIALOGEND_ID = 1;
