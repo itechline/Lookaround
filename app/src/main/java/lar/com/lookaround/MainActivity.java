@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private int PICK_IMAGE_REQUEST = 1;
+    private int TAKE_IMAGE_REQUEST = 2;
 
     public void pickImage(View view) {
         Intent intent = new Intent();
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity
 
     public void TakeImage(View view) {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivity(intent);
+        startActivityForResult(intent, TAKE_IMAGE_REQUEST);
     }
 
     @Override
@@ -255,19 +256,23 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             Uri uri = data.getData();
-
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 //ScalingUtilities.createScaledBitmap(bitmap, 500, 500, ScalingUtilities.ScalingLogic.FIT);
 
                 ImageView imageView = (ImageView) findViewById(R.id.upload_image_imageview);
                 //imageView.setImageBitmap(bitmap);
-                imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 10, 10, ScalingUtilities.ScalingLogic.FIT));
+                imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (requestCode == TAKE_IMAGE_REQUEST) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            ImageView imageView = (ImageView) findViewById(R.id.add_campic_imageview);
+            imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
         }
     }
 
