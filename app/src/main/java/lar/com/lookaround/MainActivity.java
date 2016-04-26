@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity
     ViewFlipper viewFlip, viewFlipAddEstate;
     LayoutInflater inflater;
     private int mCurrentLayoutState;
+    private int mCurrentLayoutStateAddEstate;
     private int prewView;
 
     private static final int ESTATESLIST = 0;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity
     private static final int ADDESTATE4 = 5;
     private static final int ADDESTATE5 = 6;
 
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5;
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1;
 
     DrawerLayout drawer;
 
@@ -180,10 +181,14 @@ public class MainActivity extends AppCompatActivity
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
+
+        addEstate1 = inflater.inflate(R.layout.content_addrealestate, null);
+
         addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
         addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
         addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
         addEstate5 = inflater.inflate(R.layout.content_addrealestate_page5, null);
+
 
 
         viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
@@ -191,10 +196,12 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(contentRealestate, CONTENTESTATE);
         viewFlip.addView(addEstate, ADDESTATE);
         viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
-        viewFlipAddEstate.addView(addEstate2, 0);
-        viewFlipAddEstate.addView(addEstate3, 1);
-        viewFlipAddEstate.addView(addEstate4, 2);
-        viewFlipAddEstate.addView(addEstate5, 3);
+
+        viewFlipAddEstate.addView(addEstate1, 0);
+        viewFlipAddEstate.addView(addEstate2, 1);
+        viewFlipAddEstate.addView(addEstate3, 2);
+        viewFlipAddEstate.addView(addEstate4, 3);
+        viewFlipAddEstate.addView(addEstate5, 4);
 
 
         viewFlip.setDisplayedChild(ESTATESLIST);
@@ -1087,14 +1094,14 @@ private int whichAddestatePage = 0;
     }
 
     public void switchLayoutToAddEstate(int switchTo){
-        while(mCurrentLayoutState != switchTo){
-            if(mCurrentLayoutState > switchTo){
-                mCurrentLayoutState--;
+        while(mCurrentLayoutStateAddEstate != switchTo){
+            if(mCurrentLayoutStateAddEstate > switchTo){
+                mCurrentLayoutStateAddEstate--;
                 viewFlipAddEstate.setInAnimation(inFromLeftAnimation());
                 viewFlipAddEstate.setOutAnimation(outToRightAnimation());
                 viewFlipAddEstate.setDisplayedChild(switchTo);
             } else {
-                mCurrentLayoutState++;
+                mCurrentLayoutStateAddEstate++;
                 viewFlipAddEstate.setInAnimation(inFromRightAnimation());
                 viewFlipAddEstate.setOutAnimation(outToLeftAnimation());
                 viewFlipAddEstate.setDisplayedChild(switchTo);
