@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
 
-        addEstate1 = inflater.inflate(R.layout.content_addrealestate, null);
+        addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
 
         addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
         addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
