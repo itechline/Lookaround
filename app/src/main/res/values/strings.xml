@@ -54,12 +54,13 @@
     <string name="rooms_count_search">Szobák száma:</string>
     <string name="elevator_search">Lift:</string>
     <string name="balcony_search">Erkély:</string>
-    <string name="inner_height_search">Belmagasság:</string>
-    <string name="bath_wc_search">Fürdő és mosdó:</string>
-    <string name="air_condition_search">Légkondi:</string>
-    <string name="garden_realtion_search">Kertkapcsolat:</string>
+    <string name="realestate_size_search">Méret:</string>
+    <string name="view_type_search">Kilátás:</string>
+    <string name="has_furniture_search">Bútorozott:</string>
+    <string name="parking_type_search">Parkolás:</string>
     <string name="condition_search">Állapot:</string>
-    <string name="attic_search">Tetőtér:</string>
+    <string name="energy_certificate_search">Energiatanúsítvány:</string>
+    <string name="price_search">Ár:</string>
 
 
     <string name="title_activity_main">MainActivity</string>

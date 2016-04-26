@@ -32,23 +32,20 @@
             android:id="@+id/nav_balcony"
             android:title="@string/balcony_search" />
         <item
-            android:id="@+id/nav_innerheight"
-            android:title="@string/inner_height_search" />
-        <item
             android:id="@+id/nav_bath_wc"
-            android:title="@string/bath_wc_search"/>
+            android:title="@string/view_type_search"/>
         <item
             android:id="@+id/nav_aircondition"
-            android:title="@string/air_condition_search"/>
+            android:title="@string/has_furniture_search"/>
         <item
             android:id="@+id/nav_gardenrelation"
-            android:title="@string/garden_realtion_search"/>
+            android:title="@string/parking_type_search"/>
         <item
             android:id="@+id/nav_condition"
             android:title="@string/condition_search"/>
         <item
             android:id="@+id/nav_attic"
-            android:title="@string/attic_search"/>
+            android:title="@string/energy_certificate_search"/>
     </group>
 
 </menu>
