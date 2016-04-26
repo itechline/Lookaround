@@ -179,6 +179,71 @@ public class EstateUtil {
 
 
 
+
+
+
+    public static void getEstate(final SoapObjectResult getBackWhenItsDone, String idPost, String tokenTosend) {
+        try {
+            String url = "http://lookrnd.me/dev/api/get_estate";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("id", idPost);
+            postadatok.put("token", tokenTosend);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("getEstate", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+
+                            /*JSONObject jsonObj = new JSONObject(result);
+
+
+
+
+                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
+                            if ((boolean)isAbleObj) {
+                                String token = jsonObj.getString(TOKEN);
+                                SettingUtil.setToken(ctx, token);
+                            }
+
+                            getBackWhenItsDone.parseRerult(isAbleObj);*/
+
+                            JSONObject jsonObj = new JSONObject(result);
+
+
+
+                                int idJson = jsonObj.getInt(INGATLAN_ID);
+                                String adressJson = jsonObj.getString(INGATLAN_VAROS);
+                                String streetJson = jsonObj.getString(INGATLAN_UTCA);
+                                String descriptionJson = jsonObj.getString(INGATLAN_ROVIDLEIRAS);
+                                int priceJson = jsonObj.getInt(INGATLAN_AR);
+                                boolean isFav = jsonObj.getBoolean(ISFAVOURITE);
+
+
+
+                            getBackWhenItsDone.parseRerult(jsonObj);
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public static void setFavorite(final SoapObjectResult getBackWhenItsDone, String idSend, String tokenSend, String favorite) {
         try {
             String url = "http://lookrnd.me/dev/api/set_favorite";

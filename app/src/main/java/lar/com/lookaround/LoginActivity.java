@@ -199,31 +199,18 @@ public class LoginActivity extends AppCompatActivity {
 
                                         final String passw_fb = generateRandomPass();
                                         Log.d("PASSW: ", passw_fb.toString());
-
+                                        launchRingDialog(view);
                                         LoginUtil.sendRegistration(getBaseContext(), new SoapObjectResult() {
                                             @Override
                                             public void parseRerult(Object result) {
                                                 if ((boolean) result) {
                                                     Log.d("RESULT: ", result.toString());
-                                                    LoginUtil.login(getBaseContext(), new SoapObjectResult() {
-                                                        @Override
-                                                        public void parseRerult(Object result) {
-                                                            if ((boolean) result) {
-                                                                Log.d("RESULT: ", result.toString());
-                                                                ringProgressDialog.dismiss();
-                                                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                                                finish();
-                                                            } else {
-                                                                Log.d("RESULT: ", result.toString());
-                                                                ringProgressDialog.dismiss();
-                                                                showAlert(view, "Hiba Történt!");
-                                                            }
-
-                                                        }
-                                                    }, email_FB, passw_fb);
+                                                    ringProgressDialog.dismiss();
+                                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                 } else {
                                                     Log.d("RESULT: ", result.toString());
-                                                    //showAlert(view, "Hiba történt!");
+                                                    ringProgressDialog.dismiss();
+                                                    showAlert(view, "Hiba történt!");
                                                 }
 
                                             }
@@ -372,16 +359,19 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (isAbleToJoin) {
+                launchRingDialog(view);
                 LoginUtil.sendRegistration(this, new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
                             Log.d("RESULT: ", result.toString());
                             //launchRingDialog(view);
-                            sendLoginAfterReg(view, email, passw);
-                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            //sendLoginAfterReg(view, email, passw);
+                            ringProgressDialog.dismiss();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             Log.d("RESULT: ", result.toString());
+                            ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
                         }
 
@@ -419,16 +409,19 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (isAbleToJoin) {
+                launchRingDialog(view);
                 LoginUtil.sendRegistration(this, new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
                             Log.d("RESULT: ", result.toString());
                             //launchRingDialog(view);
-                            sendLoginAfterReg(view, emailCompany, passwCompany);
-                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            //sendLoginAfterReg(view, emailCompany, passwCompany);
+                            ringProgressDialog.dismiss();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             Log.d("RESULT: ", result.toString());
+                            ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
 
                         }

@@ -217,6 +217,8 @@ public class MainActivity extends AppCompatActivity
 
 
         spinnerCreator();
+
+
     }
 
     private int PICK_IMAGE_REQUEST = 1;
@@ -765,7 +767,14 @@ private int whichAddestatePage = 0;
     public void loadRealEstateContent(View view) {
         findViewById(R.id.scrollView2).scrollTo(0, 0);
 
-        ViewGroup viewg=(ViewGroup)view;
+        EstateUtil.getEstate(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+
+            }
+        }, "1", SettingUtil.getToken(this));
+
+        //ViewGroup viewg=(ViewGroup)view;
         //TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
         //Log.d("DEBUG: ", t.getText().toString());
         TextView felh_szoveg = (TextView)findViewById(R.id.item_realestate_description_text);
