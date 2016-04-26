@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
 
         addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
-
         addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
         addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
         addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
@@ -351,7 +350,7 @@ private int whichAddestatePage = 0;
     public void nextAddestatePage(View view) {
         if (whichAddestatePage < 4) {
             whichAddestatePage += 1;
-            //setAddestatePage(whichAddestatePage);
+            setAddestatePage(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
         }
     }
@@ -359,14 +358,46 @@ private int whichAddestatePage = 0;
     public void prewAddestatePage(View view) {
         if (whichAddestatePage > 0) {
             whichAddestatePage -= 1;
-            //setAddestatePage(whichAddestatePage);
+            setAddestatePage(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
         }
     }
 
     public void setAddestatePage(int page) {
 
+        ImageView layoneIndicator = (ImageView) findViewById(R.id.image_step1);
+        ImageView laytwoIndicator = (ImageView) findViewById(R.id.image_step2);
+        ImageView laythreendicator = (ImageView) findViewById(R.id.image_step3);
+        ImageView layfourIndicator = (ImageView) findViewById(R.id.image_step4);
+        ImageView layfiveIndicator = (ImageView) findViewById(R.id.image_step5);
 
+        Resources res = getResources();
+        Drawable kekpotty = res.getDrawable(R.drawable.kekpotty);
+        Drawable szurkepotty = res.getDrawable(R.drawable.szurkepotty);
+
+        layoneIndicator.setImageDrawable(szurkepotty);
+        laytwoIndicator.setImageDrawable(szurkepotty);
+        laythreendicator.setImageDrawable(szurkepotty);
+        layfourIndicator.setImageDrawable(szurkepotty);
+        layfiveIndicator.setImageDrawable(szurkepotty);
+
+        switch (page) {
+            case 0:
+                layoneIndicator.setImageDrawable(kekpotty);
+                break;
+            case 1:
+                laytwoIndicator.setImageDrawable(kekpotty);
+                break;
+            case 2:
+                laythreendicator.setImageDrawable(kekpotty);
+                break;
+            case 3:
+                layfourIndicator.setImageDrawable(kekpotty);
+                break;
+            case 4:
+                layfiveIndicator.setImageDrawable(kekpotty);
+                break;
+        }
 
 
 
