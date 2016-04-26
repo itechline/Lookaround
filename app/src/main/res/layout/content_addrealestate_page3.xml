@@ -155,6 +155,7 @@
                     android:id="@+id/add_campic_imageview"
                     android:layout_above="@+id/add_cam_pic_text"
                     android:layout_centerHorizontal="true"
+                    android:onClick="TakeImage"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:layout_margin="10sp"

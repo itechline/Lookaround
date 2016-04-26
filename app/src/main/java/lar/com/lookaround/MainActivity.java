@@ -9,21 +9,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,23 +29,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -61,11 +50,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -73,7 +58,6 @@ import java.util.List;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.EstateAdapter;
-import lar.com.lookaround.models.RealEstate;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
@@ -156,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();*/
                 prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(ADDESTATE);
-                setAddestatePage(whichAddestatePage);
+                setAddestatePageIndicator(whichAddestatePage);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
 
@@ -261,6 +245,11 @@ public class MainActivity extends AppCompatActivity
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
+    public void TakeImage(View view) {
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -350,7 +339,7 @@ private int whichAddestatePage = 0;
     public void nextAddestatePage(View view) {
         if (whichAddestatePage < 4) {
             whichAddestatePage += 1;
-            setAddestatePage(whichAddestatePage);
+            setAddestatePageIndicator(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
         }
     }
@@ -358,12 +347,12 @@ private int whichAddestatePage = 0;
     public void prewAddestatePage(View view) {
         if (whichAddestatePage > 0) {
             whichAddestatePage -= 1;
-            setAddestatePage(whichAddestatePage);
+            setAddestatePageIndicator(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
         }
     }
 
-    public void setAddestatePage(int page) {
+    public void setAddestatePageIndicator(int page) {
 
         ImageView layoneIndicator = (ImageView) findViewById(R.id.image_step1);
         ImageView laytwoIndicator = (ImageView) findViewById(R.id.image_step2);
@@ -398,60 +387,6 @@ private int whichAddestatePage = 0;
                 layfiveIndicator.setImageDrawable(kekpotty);
                 break;
         }
-
-
-
-
-        /*RelativeLayout layone = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page1);
-        RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page2);
-        RelativeLayout laythree = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page3);
-        RelativeLayout layfour = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page4);
-        RelativeLayout layfive = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page5);
-
-        ImageView layoneIndicator = (ImageView) findViewById(R.id.image_step1);
-        ImageView laytwoIndicator = (ImageView) findViewById(R.id.image_step2);
-        ImageView laythreendicator = (ImageView) findViewById(R.id.image_step3);
-        ImageView layfourIndicator = (ImageView) findViewById(R.id.image_step4);
-        ImageView layfiveIndicator = (ImageView) findViewById(R.id.image_step5);
-
-        Resources res = getResources();
-        Drawable kekpotty = res.getDrawable(R.drawable.kekpotty);
-        Drawable szurkepotty = res.getDrawable(R.drawable.szurkepotty);
-
-        layoneIndicator.setImageDrawable(szurkepotty);
-        laytwoIndicator.setImageDrawable(szurkepotty);
-        laythreendicator.setImageDrawable(szurkepotty);
-        layfourIndicator.setImageDrawable(szurkepotty);
-        layfiveIndicator.setImageDrawable(szurkepotty);
-
-        layone.setVisibility(View.INVISIBLE);
-        laytwo.setVisibility(View.INVISIBLE);
-        laythree.setVisibility(View.INVISIBLE);
-        layfour.setVisibility(View.INVISIBLE);
-        layfive.setVisibility(View.INVISIBLE);
-
-        switch (page) {
-            case 0:
-                layone.setVisibility(View.VISIBLE);
-                layoneIndicator.setImageDrawable(kekpotty);
-                break;
-            case 1:
-                laytwo.setVisibility(View.VISIBLE);
-                laytwoIndicator.setImageDrawable(kekpotty);
-                break;
-            case 2:
-                laythree.setVisibility(View.VISIBLE);
-                laythreendicator.setImageDrawable(kekpotty);
-                break;
-            case 3:
-                layfour.setVisibility(View.VISIBLE);
-                layfourIndicator.setImageDrawable(kekpotty);
-                break;
-            case 4:
-                layfive.setVisibility(View.VISIBLE);
-                layfiveIndicator.setImageDrawable(kekpotty);
-                break;
-        }*/
     }
 
 
@@ -858,6 +793,7 @@ private int whichAddestatePage = 0;
                         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
                         String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
                         price.setText(format + " Ft");
+
 
                         item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
                     } catch (JSONException e) {
