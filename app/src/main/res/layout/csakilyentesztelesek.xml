@@ -32,9 +32,10 @@
         android:layout_marginBottom="5sp"
         android:layout_marginLeft="10sp"/>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/realestate_price_spinner_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/spinner_border"
         android:layout_below="@+id/price_realestate_text"
@@ -43,12 +44,50 @@
         android:layout_marginRight="10sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp">
+        <TextView
+            android:id="@+id/price_spinner_min_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="min"
+            android:textSize="10pt"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:background="@drawable/spinner_border">
         <Spinner
-            android:id="@+id/realestate_price_spinner"
-            android:layout_width="match_parent"
+            android:id="@+id/realestate_price_spinner_min"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-    </RelativeLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/price_spinner_max_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="max"
+            android:textSize="10pt"
+            android:layout_margin="5sp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:background="@drawable/spinner_border">
+        <Spinner
+            android:id="@+id/realestate_price_spinner_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+        </RelativeLayout>
+    </LinearLayout>
 
         <TextView
             android:id="@+id/type_realestate_textview"

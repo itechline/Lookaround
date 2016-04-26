@@ -47,11 +47,13 @@
                     android:id="@+id/search_title_text"
                     android:layout_centerInParent="true"
                     android:layout_alignParentTop="true"
-                    android:layout_margin="10sp"
                     android:background="@drawable/spinner_border1"
                     android:textSize="10pt"
                     android:textStyle="bold"
-                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:layout_marginTop="30sp"
                     />
 
                 <TextView
@@ -67,23 +69,61 @@
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
 
-                <RelativeLayout
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:id="@+id/realestate_price_spinner_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_border"
                     android:layout_below="@+id/price_realestate_text"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:paddingTop="5sp"
                     android:paddingBottom="5sp">
-                    <Spinner
-                        android:id="@+id/realestate_price_spinner"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/price_spinner_min_text"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        />
-                </RelativeLayout>
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="min"
+                        android:textSize="10pt"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
+                        <Spinner
+                            android:id="@+id/realestate_price_spinner_min"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/price_spinner_max_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="max"
+                        android:textSize="10pt"
+                        android:layout_margin="5sp" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        android:background="@drawable/spinner_border">
+                        <Spinner
+                            android:id="@+id/realestate_price_spinner_max"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"></Spinner>
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/type_realestate_textview"
