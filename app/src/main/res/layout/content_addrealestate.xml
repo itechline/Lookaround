@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:background="#efefef">
 
+    <ViewFlipper
+        android:id="@+id/viewFlipperAddEstate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -311,6 +315,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+    </ViewFlipper>
 
     <RelativeLayout
         android:layout_width="match_parent"

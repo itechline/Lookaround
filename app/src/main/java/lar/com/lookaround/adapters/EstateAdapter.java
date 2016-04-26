@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -16,13 +17,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,13 +88,13 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
         }
 
-
         TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
         TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
         TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
         TextView price = (TextView) convertView.findViewById(R.id.Price);
         final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
         ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
+
 
 
         adress.setText(estate.getAdress());
@@ -131,6 +135,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
         return convertView;
     }
+
 
 
     public void setEstateFavourite(final EstateUtil estate,final CheckBox fav, final String idSend, final String tokenSend, final String favSend) {

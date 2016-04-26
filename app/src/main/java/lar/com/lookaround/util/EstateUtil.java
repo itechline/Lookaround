@@ -2,6 +2,7 @@ package lar.com.lookaround.util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import lar.com.lookaround.R;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -196,36 +198,11 @@ public class EstateUtil {
 
                     if (result != null) {
                         try {
-
-                            /*JSONObject jsonObj = new JSONObject(result);
-
-
+                            JSONObject jsonObject = new JSONObject(result);
+                            Object obj = jsonObject;
 
 
-                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
-                            if ((boolean)isAbleObj) {
-                                String token = jsonObj.getString(TOKEN);
-                                SettingUtil.setToken(ctx, token);
-                            }
-
-                            getBackWhenItsDone.parseRerult(isAbleObj);*/
-
-                            JSONObject jsonObj = new JSONObject(result);
-
-
-
-                                int idJson = jsonObj.getInt(INGATLAN_ID);
-                                String adressJson = jsonObj.getString(INGATLAN_VAROS);
-                                String streetJson = jsonObj.getString(INGATLAN_UTCA);
-                                String descriptionJson = jsonObj.getString(INGATLAN_ROVIDLEIRAS);
-                                int priceJson = jsonObj.getInt(INGATLAN_AR);
-                                boolean isFav = jsonObj.getBoolean(ISFAVOURITE);
-
-
-
-                            getBackWhenItsDone.parseRerult(jsonObj);
-
-
+                            getBackWhenItsDone.parseRerult(obj);
 
 
                         } catch (JSONException e) {

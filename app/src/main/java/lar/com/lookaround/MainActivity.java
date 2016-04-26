@@ -57,12 +57,20 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.models.RealEstate;
@@ -76,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ViewFlipper viewFlip;
+    ViewFlipper viewFlip, viewFlipAddEstate;
     LayoutInflater inflater;
     private int mCurrentLayoutState;
     private int prewView;
@@ -84,8 +92,12 @@ public class MainActivity extends AppCompatActivity
     private static final int ESTATESLIST = 0;
     private static final int CONTENTESTATE = 1;
     private static final int ADDESTATE = 2;
+    private static final int ADDESTATE2 = 3;
+    private static final int ADDESTATE3 = 4;
+    private static final int ADDESTATE4 = 5;
+    private static final int ADDESTATE5 = 6;
 
-    View estatesView, contentRealestate, addEstate;
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5;
 
     DrawerLayout drawer;
 
@@ -168,11 +180,22 @@ public class MainActivity extends AppCompatActivity
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
+        addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
+        addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
+        addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
+        addEstate5 = inflater.inflate(R.layout.content_addrealestate_page5, null);
+
 
         viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
         viewFlip.addView(estatesView, ESTATESLIST);
         viewFlip.addView(contentRealestate, CONTENTESTATE);
         viewFlip.addView(addEstate, ADDESTATE);
+        viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
+        viewFlipAddEstate.addView(addEstate2, 0);
+        viewFlipAddEstate.addView(addEstate3, 1);
+        viewFlipAddEstate.addView(addEstate4, 2);
+        viewFlipAddEstate.addView(addEstate5, 3);
+
 
         viewFlip.setDisplayedChild(ESTATESLIST);
 
@@ -182,7 +205,7 @@ public class MainActivity extends AppCompatActivity
 
         loadRealEstates("0", "0", SettingUtil.getToken(this), "0");
 
-        loadEstateImages();
+        //loadEstateImages();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -321,18 +344,26 @@ private int whichAddestatePage = 0;
     public void nextAddestatePage(View view) {
         if (whichAddestatePage < 4) {
             whichAddestatePage += 1;
-            setAddestatePage(whichAddestatePage);
+            //setAddestatePage(whichAddestatePage);
+            switchLayoutToAddEstate(whichAddestatePage);
         }
     }
 
     public void prewAddestatePage(View view) {
         if (whichAddestatePage > 0) {
             whichAddestatePage -= 1;
-            setAddestatePage(whichAddestatePage);
+            //setAddestatePage(whichAddestatePage);
+            switchLayoutToAddEstate(whichAddestatePage);
         }
     }
 
     public void setAddestatePage(int page) {
+
+
+
+
+
+
         /*RelativeLayout layone = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page1);
         RelativeLayout laytwo = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page2);
         RelativeLayout laythree = (RelativeLayout) findViewById(R.id.relativeLayout_withcontent_page3);
@@ -745,43 +776,65 @@ private int whichAddestatePage = 0;
     private class ItemList implements AdapterView.OnItemClickListener {
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ViewGroup viewg=(ViewGroup)view;
-            TextView textv=(TextView)viewg.findViewById(R.id.item_realestate_adress1);
-            //EditText abc = (EditText)findViewById(R.id.keresztNev);
-            //abc.getText().toString();
-            //viewFlip.setDisplayedChild(CONTENTESTATE);
+            EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
+            EstateUtil estateUtil = adapter.getItem(position);
+            //estateUtil.getId();
+
+            final TextView price = (TextView) findViewById(R.id.item_realestate_price);
+            final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
+            final TextView item_realestate_optional_address = (TextView) findViewById(R.id.item_realestate_optional_address);
+            //final TextView type_realestate_value = (TextView) findViewById(R.id.type_realestate_value);
+            //final TextView elevator_realestate_value = (TextView) findViewById(R.id.elevator_realestate_value);
+            //final TextView balcony_realestate_value = (TextView) findViewById(R.id.balcony_realestate_value);
+            //final TextView parking_realestate_value = (TextView) findViewById(R.id.parking_realestate_value);
+            //final TextView view_realestate_value = (TextView) findViewById(R.id.view_realestate_value);
+            //final TextView heating_realestate_value = (TextView) findViewById(R.id.heating_realestate_value);
+            //final TextView comfort_realestate_value = (TextView) findViewById(R.id.comfort_realestate_value);
+
+            final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
+
+
+
+            //ingatlan_varos parking_realestate_value
+            //ingatlan_utca
+            //ingatlan_rovidleiras
+            //ingatlan_picture_url
+            //kedvenc (bool)
+            //kepek (array)
+
+
+            EstateUtil.getEstate(new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    JSONObject obj = (JSONObject)result;
+                    //obj.getString("")
+                    try {
+                        item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
+
+
+                        Locale locale = new Locale("en", "UK");
+                        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+                        //symbols.setDecimalSeparator(';');
+                        symbols.setGroupingSeparator('.');
+                        String pattern = "###,###";
+                        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+                        String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
+                        price.setText(format + " Ft");
+
+                        item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, String.valueOf(estateUtil.getId()), SettingUtil.getToken(getBaseContext()));
 
 
             switchLayoutTo(CONTENTESTATE);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-            Log.d("DEBUG: ", textv.getText().toString());
-            loadRealEstateContent(view);
+            findViewById(R.id.scrollView2).scrollTo(0, 0);
             supportInvalidateOptionsMenu();
         }
-    }
-
-
-
-
-
-    public void loadRealEstateContent(View view) {
-        findViewById(R.id.scrollView2).scrollTo(0, 0);
-
-        EstateUtil.getEstate(new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-
-            }
-        }, "1", SettingUtil.getToken(this));
-
-        //ViewGroup viewg=(ViewGroup)view;
-        //TextView t=(TextView)viewg.findViewById(R.id.item_realestate_description);
-        //Log.d("DEBUG: ", t.getText().toString());
-        TextView felh_szoveg = (TextView)findViewById(R.id.item_realestate_description_text);
-
-        felh_szoveg.setText(Html.fromHtml("<br><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum sit amet urna vulputate sagittis. Nulla vulputate lacus ac velit congue tincidunt. Fusce viverra mi nec sodales convallis. Integer porta elit ipsum, eget consequat mi suscipit in. In varius velit et est suscipit commodo. Sed vitae malesuada nisl. Cras vestibulum consectetur tortor, quis rutrum urna iaculis gravida. Proin rhoncus lectus aliquet, luctus massa vel, fermentum ipsum. Proin vitae magna a justo viverra egestas in sed ex. Donec pretium elit arcu, et cursus ligula lacinia in. Sed fermentum facilisis magna, eget viverra nisi maximus sit amet." +
-                "<br><br>Integer quis massa non mi elementum posuere. Sed vestibulum enim nec bibendum sodales. Aenean pretium eleifend orci, ut laoreet diam sodales ac. Maecenas eu suscipit ante. Pellentesque dignissim tincidunt dolor at gravida. Cras sit amet elementum urna, et gravida leo. Nunc eleifend vel mauris non semper. Mauris in urna sed elit aliquet lacinia at et nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus risus leo, non consectetur nisi mollis non. Suspendisse fringilla ipsum ac tempor mollis."));
-
     }
 
     private int pageCount = 0;
@@ -797,7 +850,6 @@ private int whichAddestatePage = 0;
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
                 //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
-
                 // Create the adapter to convert the array to views
                 final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
                 // Attach the adapter to a ListView
@@ -1030,6 +1082,22 @@ private int whichAddestatePage = 0;
                 viewFlip.setInAnimation(inFromRightAnimation());
                 viewFlip.setOutAnimation(outToLeftAnimation());
                 viewFlip.setDisplayedChild(switchTo);
+            }
+        }
+    }
+
+    public void switchLayoutToAddEstate(int switchTo){
+        while(mCurrentLayoutState != switchTo){
+            if(mCurrentLayoutState > switchTo){
+                mCurrentLayoutState--;
+                viewFlipAddEstate.setInAnimation(inFromLeftAnimation());
+                viewFlipAddEstate.setOutAnimation(outToRightAnimation());
+                viewFlipAddEstate.setDisplayedChild(switchTo);
+            } else {
+                mCurrentLayoutState++;
+                viewFlipAddEstate.setInAnimation(inFromRightAnimation());
+                viewFlipAddEstate.setOutAnimation(outToLeftAnimation());
+                viewFlipAddEstate.setDisplayedChild(switchTo);
             }
         }
     }
