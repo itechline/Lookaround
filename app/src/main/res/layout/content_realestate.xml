@@ -74,16 +74,6 @@
                     android:layout_margin="10sp"
                     android:padding="2sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="irányár"
-                    android:id="@+id/item_realestate_pricetype"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/item_realestate_price"
-                    android:layout_toStartOf="@+id/item_realestate_price"
-                    android:textStyle="italic"/>
-
 
             </RelativeLayout>
 
@@ -136,6 +126,35 @@
                         android:layout_alignParentLeft="true"
                         android:id="@+id/realestate_dtail_table1"
                         android:layout_margin="5sp">
+
+
+                        <TableRow>
+                            <TextView
+                                android:id="@+id/roomcount_realestate_text"
+                                android:layout_column="1"
+                                android:text="@string/roomcount_realestate_item"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/roomcount_realestate_value"
+                                android:text="79"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:id="@+id/size_realestate_item_text"
+                                android:layout_column="1"
+                                android:text="@string/size_realestate_item"
+                                android:padding="3sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/size_realestate_item_value"
+                                android:text="140"
+                                android:gravity="right"
+                                android:padding="3sp"/>
+                        </TableRow>
 
                         <TableRow>
 
@@ -208,33 +227,6 @@
                                 android:padding="3sp" />
                         </TableRow>
 
-                        <TableRow>
-                            <TextView
-                                android:id="@+id/heating_realestate_text"
-                                android:layout_column="1"
-                                android:text="@string/heating_realestate"
-                                android:padding="3sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/heating_realestate_value"
-                                android:text="gáz (cirko)"
-                                android:gravity="right"
-                                android:padding="3sp"/>
-                        </TableRow>
-
-                        <TableRow>
-                            <TextView
-                                android:id="@+id/comfort_realestate_text"
-                                android:layout_column="1"
-                                android:text="@string/comfort_realestate"
-                                android:padding="3sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/comfort_realestate_value"
-                                android:text="luxus"
-                                android:gravity="right"
-                                android:padding="3sp"/>
-                        </TableRow>
 
 
                     </TableLayout>
@@ -278,27 +270,27 @@
 
                         <TableRow>
                             <TextView
-                                android:id="@+id/bathroom_wc_realestate_text"
+                                android:id="@+id/heating_realestate_text"
                                 android:layout_column="2"
-                                android:text="@string/bathroom_wc_realestate"
+                                android:text="@string/heating_realestate"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/bathroom_wc_realestate_value"
-                                android:text="külön és egyben is"
+                                android:id="@+id/heating_realestate_value"
+                                android:text="gáz (cirko)"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"/>
                         </TableRow>
 
                         <TableRow>
                             <TextView
-                                android:id="@+id/height_realestate_text"
+                                android:id="@+id/energy_certificate_realestate_item_text"
                                 android:layout_column="2"
-                                android:text="@string/height_realestate"
+                                android:text="@string/energy_certificate_realestate"
                                 android:padding="3dip"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/height_realestate_value"
+                                android:id="@+id/energy_certificate_realestate_item_value"
                                 android:text="3m vagy magasabb"
                                 android:gravity="right"
                                 android:padding="3sp"/>
@@ -306,13 +298,13 @@
 
                         <TableRow>
                             <TextView
-                                android:id="@+id/gardenrelation_realestate_text"
+                                android:id="@+id/has_furniture_realestate_item_text"
                                 android:layout_column="2"
-                                android:text="@string/gardenrelation_realestate"
+                                android:text="@string/has_furniture_realestate"
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/gardenrelation_realestate_value"
+                                android:id="@+id/hasfurniture_realestate_item_value"
                                 android:text="igen"
                                 android:gravity="right"
                                 android:padding="3sp" />

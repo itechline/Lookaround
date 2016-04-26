@@ -82,6 +82,10 @@
     <string name="gardenrelation_realestate">Kertkapcsolatos</string>
     <string name="keyword_hint">Ami biztos szerepeljen a hírdetésben</string>
     <string name="idontwant_hint">Ami biztos ne szerepeljen a hírdetésben</string>
+    <string name="roomcount_realestate_item">Szobák száma</string>
+    <string name="size_realestate_item">Méret</string>
+    <string name="has_furniture_realestate">Bútorozott</string>
+    <string name="energy_certificate_realestate">Energiatanúsítvány</string>
 
 
     <string-array name="realestate_type_spinner_array">
