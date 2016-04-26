@@ -346,7 +346,6 @@ private int whichAddestatePage = 0;
             whichAddestatePage += 1;
             //setAddestatePage(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
-            //LÓÓÓÓÓÓFASZ
         }
     }
 
