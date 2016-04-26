@@ -25,12 +25,11 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:id="@+id/Layout_Login"
-
         android:layout_below="@+id/imageView3"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
-        android:layout_alignBottom="@+id/Forgotten_Pass_Layout"
-        android:visibility="visible">
+        android:visibility="visible"
+        >
 
 
         <LinearLayout
@@ -38,43 +37,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/LL_login"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/passwLogin"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp">
+            android:layout_margin="10sp">
 
-            <ImageView
-                android:src="@drawable/face"
-                android:layout_width="30sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/fb_img"
-                android:layout_below="@+id/passwLogin"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="5sp" />
-
-            <TextView
+            <RelativeLayout
+                android:id="@+id/login_withfacebook_button_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_login"
-                android:id="@+id/fb_text"
-                android:layout_marginTop="10sp" />
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/face"
+                    android:layout_width="20sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fb_img"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="5sp" />
 
-            <ImageView
-                android:src="@drawable/g_plus"
-                android:layout_width="30sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView4"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="5sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_login"
+                    android:id="@+id/fb_text"
+                    android:layout_marginTop="10sp"
+                    android:layout_toRightOf="@+id/fb_img" />
 
-            <TextView
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_withgoogleplus_button_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_login"
-                android:id="@+id/textView2"
-                android:layout_marginTop="10sp" />
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/g_plus"
+                    android:layout_width="20sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView4"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_login"
+                    android:id="@+id/textView2"
+                    android:layout_marginTop="10sp"
+                    android:layout_toRightOf="@+id/imageView4" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -83,8 +93,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/linearLayout"
             android:layout_below="@+id/button3"
-            android:layout_alignRight="@+id/passwLogin"
-            android:layout_alignEnd="@+id/passwLogin"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10sp">
             <TextView
                 android:id="@+id/forgotten_P"
@@ -93,7 +102,7 @@
                 android:text="@string/forgotten_pass"
                 android:layout_weight="2"
                 android:textColor="#8c9397"
-                android:layout_marginBottom="20sp"
+                android:layout_marginBottom="50sp"
                 android:textStyle="italic"
                 android:paddingRight="2sp" />
             <TextView
@@ -104,34 +113,37 @@
                 android:layout_weight="2"
                 android:onClick="showForgottenPass"
                 android:textColor="#0066cc"
-                android:layout_marginBottom="20sp"
+                android:layout_marginBottom="50sp"
                 android:textStyle="italic"
                 />
         </LinearLayout>
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mailLogin"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:hint="@string/mail"
-            android:layout_above="@+id/passwLogin"
-            android:layout_alignLeft="@+id/passwLogin"
-            android:layout_alignStart="@+id/passwLogin"
-            android:drawableRight="@drawable/mail_icon"/>
+            android:drawableRight="@drawable/mail_icon"
+            android:layout_marginRight="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="50sp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwLogin"
             android:hint="@string/password"
-            android:layout_above="@+id/LL_login"
-            android:layout_centerHorizontal="true"
             android:drawableRight="@drawable/lakatosz"
-            />
+            android:layout_below="@+id/mailLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -142,19 +154,10 @@
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
             android:padding="10sp"
+            android:textStyle="bold"
             android:layout_below="@+id/LL_login"
             android:layout_centerHorizontal="true"
-            android:layout_margin="5sp"
-            android:textStyle="bold"/>
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button_fb"
-            android:onClick="fb_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_margin="10sp" />
 
 
     </RelativeLayout>
@@ -168,7 +171,7 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_above="@+id/login_linear_footer">
 
 
@@ -217,8 +220,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/login_linear_footer"
-        android:layout_above="@+id/reg_pic"
-        android:layout_centerHorizontal="true">
+        android:layout_below="@+id/Layout_Login"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20sp">
         <TextView
             android:id="@+id/you_Dnthave_existing"
             android:layout_width="wrap_content"
