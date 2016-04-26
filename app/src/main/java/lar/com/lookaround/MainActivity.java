@@ -620,7 +620,7 @@ private int whichAddestatePage = 0;
             }
         });
 
-        iheightSpinner = (Spinner)findViewById(R.id.realestate_innerheight_spinner);
+        iheightSpinner = (Spinner)findViewById(R.id.realestate_size_spinner);
         iheightSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_innerheight_array, android.R.layout.simple_spinner_item);
         iheightSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         iheightSpinner.setAdapter(iheightSpinnerAdapter);
@@ -636,7 +636,7 @@ private int whichAddestatePage = 0;
             }
         });
 
-        bathroomwcSpinner = (Spinner)findViewById(R.id.bathroom_wc_realestate_spinner);
+        bathroomwcSpinner = (Spinner)findViewById(R.id.view_type_realestate_spinner);
         bathroomwcSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.bathroom_wc_array, android.R.layout.simple_spinner_item);
         bathroomwcSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bathroomwcSpinner.setAdapter(bathroomwcSpinnerAdapter);
@@ -652,7 +652,7 @@ private int whichAddestatePage = 0;
             }
         });
 
-        aircondiSpinner = (Spinner)findViewById(R.id.aircondition_spinner);
+        aircondiSpinner = (Spinner)findViewById(R.id.hasfurniture_spinner);
         aircondiSPAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
         aircondiSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         aircondiSpinner.setAdapter(aircondiSPAdapter);
@@ -668,7 +668,7 @@ private int whichAddestatePage = 0;
             }
         });
 
-        gardenRSpinner = (Spinner)findViewById(R.id.gardenrelation_spinner);
+        gardenRSpinner = (Spinner)findViewById(R.id.parking_type_spinner);
         gardenRSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
         gardenRSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gardenRSpinner.setAdapter(gardenRSpinnerAdapter);

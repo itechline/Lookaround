@@ -6,67 +6,9 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/relativeLayout_progress_indicator_addadvert">
-
-        <ImageView
-            android:id="@+id/image_step3"
-            android:src="@drawable/szurkepotty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10sp"/>
-
-        <ImageView
-            android:id="@+id/image_step2"
-            android:src="@drawable/szurkepotty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/image_step3"
-            android:layout_toStartOf="@+id/image_step3"
-            android:layout_margin="10sp" />
-
-        <ImageView
-            android:id="@+id/image_step1"
-            android:src="@drawable/szurkepotty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/image_step2"
-            android:layout_toStartOf="@+id/image_step2"
-            android:layout_margin="10sp" />
-
-        <ImageView
-            android:id="@+id/image_step4"
-            android:src="@drawable/szurkepotty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/image_step3"
-            android:layout_toEndOf="@+id/image_step3"
-            android:layout_margin="10sp" />
-
-        <ImageView
-            android:id="@+id/image_step5"
-            android:src="@drawable/szurkepotty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/image_step4"
-            android:layout_toEndOf="@+id/image_step4"
-            android:layout_margin="10sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/relativeLayout_withcontent_page2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayout_progress_indicator_addadvert"
         android:layout_margin="5sp"
         android:background="#ffffff"
         android:visibility="visible">
