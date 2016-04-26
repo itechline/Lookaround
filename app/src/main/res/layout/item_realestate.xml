@@ -14,43 +14,15 @@
         android:background="@drawable/background_shadow">
 
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Budapest V. kerület"
-            android:id="@+id/item_realestate_adress1"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_toLeftOf="@+id/item_realestate_isfavourite"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arany János utca"
             android:id="@+id/item_realestate_adress2"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/item_realestate_adress1"
-            android:layout_alignLeft="@+id/item_realestate_adress1"
-            android:layout_alignStart="@+id/item_realestate_adress1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ide jön valami amit majd kitalálunk"
-            android:id="@+id/item_realestate_description"
-            android:layout_gravity="center_horizontal"
-
-            android:layout_below="@+id/item_realestate_adress2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/item_realestate_adress2"
-            android:layout_alignStart="@+id/item_realestate_adress2" />
+            android:layout_below="@+id/linearLayout2"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic" />
 
         <ImageView
             android:layout_width="150sp"
@@ -88,22 +60,6 @@
             android:textColor="#ffffff"
             android:padding="2sp" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_realestate_isfavourite"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:nestedScrollingEnabled="true"
-            android:button="@drawable/checkbox_fav_selector"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_marginRight="5sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            />
-
         <LinearLayout
             android:id="@+id/icons_linera_layout"
             android:orientation="horizontal"
@@ -116,7 +72,7 @@
             <ImageView
                 android:src="@drawable/list_size"
                 android:layout_width="wrap_content"
-                android:layout_height="25sp"
+                android:layout_height="22sp"
                 android:id="@+id/list_size_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -133,7 +89,7 @@
             <ImageView
                 android:src="@drawable/list_roomcount"
                 android:layout_width="wrap_content"
-                android:layout_height="25sp"
+                android:layout_height="22sp"
                 android:id="@+id/list_roomcount_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -150,7 +106,7 @@
             <ImageView
                 android:src="@drawable/list_furniture"
                 android:layout_width="wrap_content"
-                android:layout_height="25sp"
+                android:layout_height="22sp"
                 android:id="@+id/list_furniture_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -159,7 +115,7 @@
             <ImageView
                 android:src="@drawable/list_balcony"
                 android:layout_width="wrap_content"
-                android:layout_height="25sp"
+                android:layout_height="22sp"
                 android:id="@+id/list_balcony_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -168,12 +124,79 @@
             <ImageView
                 android:src="@drawable/list_parking"
                 android:layout_width="wrap_content"
-                android:layout_height="25sp"
+                android:layout_height="22sp"
                 android:id="@+id/list_parking_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:id="@+id/linearLayout2"
+            android:layout_marginRight="5sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Budapest V. kerület"
+                android:id="@+id/item_realestate_adress1"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:layout_toLeftOf="@+id/item_realestate_isfavourite"
+                android:layout_toRightOf="@+id/item_realestate_mainpic"
+                android:layout_toEndOf="@+id/item_realestate_mainpic"
+                android:textSize="18sp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_realestate_isfavourite"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:nestedScrollingEnabled="true"
+                android:button="@drawable/checkbox_fav_selector"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="5sp"
+                android:gravity="right" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_above="@+id/icons_linera_layout"
+            android:layout_below="@+id/item_realestate_adress2"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="5sp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="ide jön valami amit majd kitalálunk"
+                android:id="@+id/item_realestate_description"
+                android:layout_gravity="center_horizontal"
+
+                android:layout_below="@+id/item_realestate_adress2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/item_realestate_adress2"
+                android:layout_alignStart="@+id/item_realestate_adress2" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>
