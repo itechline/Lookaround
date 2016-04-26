@@ -221,7 +221,8 @@
         android:id="@+id/login_linear_footer"
         android:layout_below="@+id/Layout_Login"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20sp">
+        android:nestedScrollingEnabled="true"
+        android:layout_margin="10sp">
         <TextView
             android:id="@+id/you_Dnthave_existing"
             android:layout_width="wrap_content"
