@@ -207,7 +207,8 @@
                     android:onClick="daypicker1"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -218,7 +219,8 @@
                     android:onClick="daypicker2"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -229,7 +231,8 @@
                     android:id="@+id/daypicker_day3"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -240,7 +243,8 @@
                     android:onClick="daypicker4"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -251,7 +255,8 @@
                     android:onClick="daypicker5"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -262,7 +267,8 @@
                     android:id="@+id/daypicker_day6"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -273,7 +279,9 @@
                     android:id="@+id/daypicker_day7"
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_margin="1sp" />
+                    android:layout_marginLeft="1sp"
+                    android:layout_marginTop="1sp"
+                    android:layout_marginRight="1sp" />
 
                 </LinearLayout>
 

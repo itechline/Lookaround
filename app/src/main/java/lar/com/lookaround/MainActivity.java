@@ -91,8 +91,9 @@ public class MainActivity extends AppCompatActivity
 
     private static final int INVITE = 3;
     private static final int PROFILE = 4;
+    private static final int MESSAGES = 5;
 
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile;
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages;
 
     DrawerLayout drawer;
 
@@ -176,6 +177,8 @@ public class MainActivity extends AppCompatActivity
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         invite = inflater.inflate(R.layout.content_invite, null);
         profile = inflater.inflate(R.layout.content_profile, null);
+        messages = inflater.inflate(R.layout.content_messages, null);
+
 
 
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
@@ -194,6 +197,7 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(addEstate, ADDESTATE);
         viewFlip.addView(invite, INVITE);
         viewFlip.addView(profile, PROFILE);
+        viewFlip.addView(messages, MESSAGES);
 
         viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
 
@@ -994,10 +998,26 @@ private int whichAddestatePage = 0;
                 listView.setDivider(null);
                 listView.setDividerHeight(0);
                 listView.setOnItemClickListener(new ItemList());
+                final int mPosition=0;
+                final int mOffset=0;
+                final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
+
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        int position = listView.getFirstVisiblePosition();
+                        View v = listView.getChildAt(0);
+                        int offset = (v == null) ? 0 : v.getTop();
 
+                        if (mPosition < position || (mPosition == position && mOffset < offset)){
+                            // Scrolled up
+                            csakcsok.setVisibility(View.GONE);
+
+                        } else {
+                            // Scrolled down
+                            csakcsok.setVisibility(View.VISIBLE);
+
+                        }
                     }
 
                     @Override
@@ -1172,7 +1192,7 @@ private int whichAddestatePage = 0;
                 switchLayoutTo(PROFILE);
                 break;
             case R.id.nav_messages:
-
+                switchLayoutTo(MESSAGES);
                 break;
             case R.id.nav_billing:
 
