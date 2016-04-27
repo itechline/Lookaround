@@ -53,7 +53,7 @@
 
         <RelativeLayout
             android:id="@+id/sort_estates_spinner_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_border"
             android:layout_toLeftOf="@+id/show_only_CSOK_textView"
@@ -61,7 +61,7 @@
             android:layout_margin="2sp"
             android:layout_centerVertical="true">
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="40sp"
             android:id="@+id/sort_estates_spinner"
             android:layout_centerVertical="true"
