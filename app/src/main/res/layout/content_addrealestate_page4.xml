@@ -192,6 +192,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="H"
                     android:id="@+id/daypicker_day1"
+                    android:onClick="daypicker1"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
 
@@ -201,6 +202,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="K"
                     android:id="@+id/daypicker_day2"
+                    android:onClick="daypicker2"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
 
@@ -209,6 +211,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
+                    android:onClick="daypicker3"
                     android:id="@+id/daypicker_day3"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
@@ -219,6 +222,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="CS"
                     android:id="@+id/daypicker_day4"
+                    android:onClick="daypicker4"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
 
@@ -228,6 +232,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="P"
                     android:id="@+id/daypicker_day5"
+                    android:onClick="daypicker5"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
 
@@ -236,6 +241,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
+                    android:onClick="daypicker6"
                     android:id="@+id/daypicker_day6"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>
@@ -245,6 +251,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="V"
+                    android:onClick="daypicker7"
                     android:id="@+id/daypicker_day7"
                     android:layout_margin="15sp"
                     android:background="@drawable/daypicker_design"/>

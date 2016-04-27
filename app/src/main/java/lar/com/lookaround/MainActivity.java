@@ -12,6 +12,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity
         //viewPager.setAdapter(new CustomPagerAdapter(this));
 
 
-        loadRealEstates("0", "0", SettingUtil.getToken(this), "0");
+        //loadRealEstates("0", "0", SettingUtil.getToken(this), "0");
 
         //loadEstateImages();
 
@@ -292,13 +293,111 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(intent, TAKE_IMAGE_REQUEST);
         }
 
-
         /*Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
                 TAKE_IMAGE_REQUEST);
 
         startActivityForResult(intent, TAKE_IMAGE_REQUEST);*/
+    }
+
+    private static boolean isDay1 = false;
+    private static boolean isDay2 = false;
+    private static boolean isDay3 = false;
+    private static boolean isDay4 = false;
+    private static boolean isDay5 = false;
+    private static boolean isDay6 = false;
+    private static boolean isDay7 = false;
+
+    public void daypicker1(View view) {
+        TextView day1text = (TextView) findViewById(R.id.daypicker_day1);
+        if (isDay1) {
+            day1text.setTextColor(Color.parseColor("#000000"));
+            day1text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay1 = false;
+        } else {
+            day1text.setTextColor(Color.parseColor("#FFFFFF"));
+            day1text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay1 = true;
+        }
+    }
+
+    public void daypicker2(View view) {
+        TextView day2text = (TextView) findViewById(R.id.daypicker_day2);
+        if (isDay2) {
+            day2text.setTextColor(Color.parseColor("#000000"));
+            day2text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay2 = false;
+        } else {
+            day2text.setTextColor(Color.parseColor("#FFFFFF"));
+            day2text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay2 = true;
+        }
+    }
+
+    public void daypicker3(View view) {
+        TextView day3text = (TextView) findViewById(R.id.daypicker_day3);
+        if (isDay3) {
+            day3text.setTextColor(Color.parseColor("#000000"));
+            day3text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay3 = false;
+        } else {
+            day3text.setTextColor(Color.parseColor("#FFFFFF"));
+            day3text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay3 = true;
+        }
+    }
+
+    public void daypicker4(View view) {
+        TextView day4text = (TextView) findViewById(R.id.daypicker_day4);
+        if (isDay4) {
+            day4text.setTextColor(Color.parseColor("#000000"));
+            day4text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay4 = false;
+        } else {
+            day4text.setTextColor(Color.parseColor("#FFFFFF"));
+            day4text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay4 = true;
+        }
+    }
+
+    public void daypicker5(View view) {
+        TextView day5text = (TextView) findViewById(R.id.daypicker_day5);
+        if (isDay5) {
+            day5text.setTextColor(Color.parseColor("#000000"));
+            day5text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay5 = false;
+        } else {
+            day5text.setTextColor(Color.parseColor("#FFFFFF"));
+            day5text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay5 = true;
+        }
+    }
+
+    public void daypicker6(View view) {
+        TextView day6text = (TextView) findViewById(R.id.daypicker_day6);
+        if (isDay6) {
+            day6text.setTextColor(Color.parseColor("#000000"));
+            day6text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay6 = false;
+        } else {
+            day6text.setTextColor(Color.parseColor("#FFFFFF"));
+            day6text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay6 = true;
+        }
+    }
+
+    public void daypicker7(View view) {
+        TextView day7text = (TextView) findViewById(R.id.daypicker_day7);
+        if (isDay7) {
+            day7text.setTextColor(Color.parseColor("#000000"));
+            day7text.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            isDay7 = false;
+        } else {
+            day7text.setTextColor(Color.parseColor("#FFFFFF"));
+            day7text.setBackgroundColor(Color.parseColor("#0066CC"));
+            isDay7 = true;
+        }
     }
 
     @Override
@@ -458,6 +557,7 @@ private int whichAddestatePage = 0;
                 @Override
                 public void parseRerult(Object result) {
                     if ((boolean) result) {
+                        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                         ringProgressDialog.dismiss();
                         Log.d("RESULT: ", result.toString());
 
@@ -965,9 +1065,9 @@ private int whichAddestatePage = 0;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 fab.setVisibility(View.VISIBLE);
                 break;
-            case PROFILE:
-                switchLayoutTo(prewView);
-                break;
+            default:
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                switchLayoutTo(ESTATESLIST);
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -1040,11 +1140,16 @@ private int whichAddestatePage = 0;
                     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                     fab.setVisibility(View.VISIBLE);
                     break;
+                default:
+                    if (drawer.isDrawerOpen(GravityCompat.START)) {
+                        drawer.closeDrawer(GravityCompat.START);
+                    } else {
+                        drawer.openDrawer(GravityCompat.START);
+                    }
+                    break;
             }
-
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -1077,6 +1182,9 @@ private int whichAddestatePage = 0;
                 break;
             case R.id.nav_myfavs:
                 isShowingFavorites = true;
+                if(viewFlip.getDisplayedChild() != ESTATESLIST) {
+                    switchLayoutTo(ESTATESLIST);
+                }
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
                 break;
             case R.id.nav_admonitor:
@@ -1086,7 +1194,8 @@ private int whichAddestatePage = 0;
 
                 break;
             case R.id.nav_invitation:
-
+                prewView = viewFlip.getDisplayedChild();
+                switchLayoutTo(INVITE);
                 break;
             case R.id.nav_logout:
                 //finishActivity();
