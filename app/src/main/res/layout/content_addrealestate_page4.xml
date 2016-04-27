@@ -107,7 +107,7 @@
             android:layout_below="@+id/below_advertinfo_text_page4"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/layout_forbuttons_3"
-            android:layout_margin="10sp">
+            android:layout_margin="5sp">
 
             <LinearLayout
                 android:id="@+id/timepicker_start_button_layout"
@@ -187,76 +187,88 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="30sp"
-                    android:layout_height="20sp"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="H"
                     android:id="@+id/daypicker_day1"
                     android:onClick="daypicker1"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="10sp"
+                    android:layout_margin="2sp"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="K"
                     android:id="@+id/daypicker_day2"
                     android:onClick="daypicker2"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="2sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
                     android:onClick="daypicker3"
                     android:id="@+id/daypicker_day3"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="1sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="CS"
                     android:id="@+id/daypicker_day4"
                     android:onClick="daypicker4"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="2sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="P"
                     android:id="@+id/daypicker_day5"
                     android:onClick="daypicker5"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="2sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
                     android:onClick="daypicker6"
                     android:id="@+id/daypicker_day6"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="2sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="38sp"
+                    android:layout_height="30sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="V"
                     android:onClick="daypicker7"
                     android:id="@+id/daypicker_day7"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="2sp"
+                    android:gravity="center_vertical|center_horizontal"/>
 
 
 
