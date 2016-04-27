@@ -187,14 +187,16 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30sp"
+                    android:layout_height="20sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="H"
                     android:id="@+id/daypicker_day1"
                     android:onClick="daypicker1"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/daypicker_design"/>
+                    android:background="@drawable/daypicker_design"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:gravity="center_vertical|center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
