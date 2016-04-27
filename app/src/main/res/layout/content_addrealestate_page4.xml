@@ -181,10 +181,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/advert_seeing_days"
-                    android:layout_marginLeft="10sp"
+                    android:layout_marginLeft="5sp"
                     android:layout_marginTop="15sp"
                     android:layout_marginBottom="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_marginRight="5sp" />
 
                 <TextView
                     android:layout_width="38sp"
@@ -193,9 +194,8 @@
                     android:text="H"
                     android:id="@+id/daypicker_day1"
                     android:onClick="daypicker1"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <TextView
@@ -205,9 +205,8 @@
                     android:text="K"
                     android:id="@+id/daypicker_day2"
                     android:onClick="daypicker2"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -217,9 +216,8 @@
                     android:text="SZ"
                     android:onClick="daypicker3"
                     android:id="@+id/daypicker_day3"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -229,9 +227,8 @@
                     android:text="CS"
                     android:id="@+id/daypicker_day4"
                     android:onClick="daypicker4"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -241,9 +238,8 @@
                     android:text="P"
                     android:id="@+id/daypicker_day5"
                     android:onClick="daypicker5"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -253,9 +249,8 @@
                     android:text="SZ"
                     android:onClick="daypicker6"
                     android:id="@+id/daypicker_day6"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -265,9 +260,8 @@
                     android:text="V"
                     android:onClick="daypicker7"
                     android:id="@+id/daypicker_day7"
-                    android:background="@drawable/daypicker_design"
+                    android:background="@drawable/spinner_border"
                     android:layout_gravity="center"
-                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
 
