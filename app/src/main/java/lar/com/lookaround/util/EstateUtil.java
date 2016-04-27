@@ -37,7 +37,16 @@ public class EstateUtil {
     }
 
     private boolean isFavourite;
-    //private String urls;
+
+    public String getUrls() {
+        return urls;
+    }
+
+    public void setUrls(String urls) {
+        this.urls = urls;
+    }
+
+    private String urls;
 
     public int getPrice() {
         return price;
@@ -92,15 +101,16 @@ public class EstateUtil {
     private static final String INGATLAN_ROVIDLEIRAS = "ingatlan_rovidleiras";
     private static final String INGATLAN_AR = "ingatlan_ar";
     private static final String ISFAVOURITE = "kedvenc";
+    private static final String INGATLAN_PIC_URL = "ingatlan_picture_url";
 
-    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite) {
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String urls) {
         this.id = id;
         this.adress = adress;
         this.street = street;
         this.description = description;
         this.price = price;
         this.isFavourite = isFavourite;
-        //this.urls = urls;
+        this.urls = urls;
     }
 
 
@@ -148,9 +158,10 @@ public class EstateUtil {
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
                                 int priceJson = json_data.getInt(INGATLAN_AR);
                                 boolean isFav = json_data.getBoolean(ISFAVOURITE);
+                                String url = json_data.getString(INGATLAN_PIC_URL);
 
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, url));
                                 Log.d("LOFASZ", "Return: " + idJson);
 
                                 if (idJson > largestId) {

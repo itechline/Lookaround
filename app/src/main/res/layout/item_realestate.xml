@@ -30,10 +30,9 @@
             android:id="@+id/item_realestate_mainpic"
             android:visibility="visible"
             android:layout_marginRight="5sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="1sp" />
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -52,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="28.560.000 HUF"
+            android:textStyle="bold"
             android:id="@+id/Price"
             android:layout_alignBottom="@+id/item_realestate_mainpic"
             android:layout_alignStart="@+id/item_realestate_adress2"
