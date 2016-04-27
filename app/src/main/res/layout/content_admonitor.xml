@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/below_advertinfo"
+        android:id="@+id/ad_monitor_below_header_textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginBottom="30sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearLayout3">
+
+        <ImageView
+            android:src="@drawable/plus_blue"
+            android:layout_width="20sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_admonitor_imageView"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_margin="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_admonitor"
+            android:id="@+id/add_admonitor_textView"
+            />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/admonitor_listView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ad_monitor_below_header_textView"
+        android:layout_above="@+id/linearLayout3" />
+
+</RelativeLayout>

@@ -87,6 +87,7 @@
     <string name="has_furniture_realestate">Bútorozott</string>
     <string name="energy_certificate_realestate">Energiatanúsítvány</string>
     <string name="show_only_CSOK_estates">Csak CSOK ingatlanok mutatása</string>
+    <string name="add_admonitor">Hírdetésfigyelő készítése</string>
 
 
     <string-array name="realestate_type_spinner_array">
