@@ -129,9 +129,11 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         });
 
         // TODO: remove comment signs to load images
-        //final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
-        //imageList.add(task);
-        //task.execute(estate.getUrls());
+        //if (estate.getUrls() != null) {
+            final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
+            imageList.add(task);
+            task.execute(estate.getUrls());
+        //}
 
         return convertView;
     }
@@ -215,6 +217,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                 if (imageViewReference != null && result != null) {
                     final ImageView imageView = imageViewReference.get();
                     if (imageView != null) {
+                        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         imageView.setImageBitmap(result);
                     }
                 }
