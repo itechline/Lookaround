@@ -195,7 +195,7 @@
                     android:onClick="daypicker1"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:onClick="daypicker2"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -231,7 +231,7 @@
                     android:onClick="daypicker4"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -243,7 +243,7 @@
                     android:onClick="daypicker5"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -255,7 +255,7 @@
                     android:id="@+id/daypicker_day6"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
                 <TextView
@@ -267,7 +267,7 @@
                     android:id="@+id/daypicker_day7"
                     android:background="@drawable/daypicker_design"
                     android:layout_gravity="center"
-                    android:layout_margin="2sp"
+                    android:layout_margin="1sp"
                     android:gravity="center_vertical|center_horizontal"/>
 
 
