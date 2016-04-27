@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lar.com.lookaround.MainActivity">
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/estateListView"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="#f1f2f3"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sorting_estates_relativeLayout"
+        android:background="#f1f2f3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/show_only_CSOK_estates"
+            android:id="@+id/show_only_CSOK_textView"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/show_only_CSOK_checkBox"
+            android:layout_toStartOf="@+id/show_only_CSOK_checkBox"
+            android:layout_centerVertical="true"
+            android:textStyle="italic"/>
+
+        <RelativeLayout
+            android:id="@+id/sort_estates_spinner_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
+            android:layout_toLeftOf="@+id/show_only_CSOK_textView"
+            android:layout_toStartOf="@+id/show_only_CSOK_textView"
+            android:layout_margin="2sp"
+            android:layout_centerVertical="true">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:id="@+id/sort_estates_spinner"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/show_only_CSOK_checkBox"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

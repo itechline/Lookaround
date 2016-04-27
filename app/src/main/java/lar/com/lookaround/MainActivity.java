@@ -36,7 +36,9 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -82,7 +84,10 @@ public class MainActivity extends AppCompatActivity
     private static final int ADDESTATE4 = 5;
     private static final int ADDESTATE5 = 6;
 
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1;
+    private static final int INVITE = 3;
+    private static final int PROFILE = 4;
+
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile;
 
     DrawerLayout drawer;
 
@@ -164,6 +169,10 @@ public class MainActivity extends AppCompatActivity
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
+        invite = inflater.inflate(R.layout.content_invite, null);
+        profile = inflater.inflate(R.layout.content_profile, null);
+
+
         addEstate = inflater.inflate(R.layout.content_addrealestate, null);
 
         addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
@@ -178,6 +187,9 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(estatesView, ESTATESLIST);
         viewFlip.addView(contentRealestate, CONTENTESTATE);
         viewFlip.addView(addEstate, ADDESTATE);
+        viewFlip.addView(invite, INVITE);
+        viewFlip.addView(profile, PROFILE);
+
         viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
 
         viewFlipAddEstate.addView(addEstate1, 0);
@@ -235,7 +247,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private int PICK_IMAGE_REQUEST = 1;
-    private int TAKE_IMAGE_REQUEST = 2;
+    private int TAKE_IMAGE_REQUEST = 0;
 
     public void pickImage(View view) {
         Intent intent = new Intent();
@@ -269,7 +281,14 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        if (requestCode == TAKE_IMAGE_REQUEST) {
+        if (requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            //RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.upload_camera_rlayout);
+            //View  itemView = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_realestate,null, false);
+            //myLayout.addView(itemView);
+
+            //itemView.findViewById(R.id.item_realestate_mainpic);
+
+
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             ImageView imageView = (ImageView) findViewById(R.id.add_campic_imageview);
             imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
@@ -808,7 +827,7 @@ private int whichAddestatePage = 0;
                 }
             }, String.valueOf(estateUtil.getId()), SettingUtil.getToken(getBaseContext()));
 
-
+            prewView = viewFlip.getDisplayedChild();
             switchLayoutTo(CONTENTESTATE);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
             findViewById(R.id.scrollView2).scrollTo(0, 0);
@@ -886,12 +905,16 @@ private int whichAddestatePage = 0;
         }*/
         switch (viewFlip.getDisplayedChild()) {
             case ESTATESLIST:
+                if (isShowingFavorites) {
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                }
+
 
                 break;
             case CONTENTESTATE:
                 //findViewById(R.id.estateListView).invalidate();
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                switchLayoutTo(ESTATESLIST);
+                switchLayoutTo(prewView);
                 //loadRealEstates("0", "0");
                 break;
             case ADDESTATE:
@@ -903,6 +926,9 @@ private int whichAddestatePage = 0;
                 switchLayoutTo(prewView);
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 fab.setVisibility(View.VISIBLE);
+                break;
+            case PROFILE:
+                switchLayoutTo(prewView);
                 break;
         }
 
@@ -993,10 +1019,14 @@ private int whichAddestatePage = 0;
         switch (id) {
             case R.id.nav_mainpage:
                 isShowingFavorites = false;
+                if (viewFlip.getDisplayedChild() != ESTATESLIST) {
+                    switchLayoutTo(ESTATESLIST);
+                }
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 break;
             case R.id.nav_profile:
-
+                prewView = viewFlip.getDisplayedChild();
+                switchLayoutTo(PROFILE);
                 break;
             case R.id.nav_messages:
 
