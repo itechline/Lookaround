@@ -11,7 +11,8 @@
     <ViewFlipper
         android:id="@+id/viewFlipperContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sorting_estates_linearLayout">
 
         <android.support.v4.widget.SwipeRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,6 +32,43 @@
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </ViewFlipper>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sorting_estates_linearLayout"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/sort_spinner_relativelayout"
+            android:layout_width="120sp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/spinner_border"
+            android:layout_margin="5sp">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sorting_type_spinner"
+            android:layout_weight="1"
+            android:padding="5sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/show_only_CSOK_estates"
+            android:id="@+id/show_only_CSOK_textView"
+            android:textStyle="italic"
+                />
+
+        <CheckBox
+            android:id="@+id/only_CSOK_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 </RelativeLayout>
 
 
