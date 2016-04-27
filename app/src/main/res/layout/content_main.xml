@@ -12,7 +12,7 @@
         android:id="@+id/viewFlipperContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sorting_estates_linearLayout">
+        android:layout_below="@+id/sorting_estates_relativeLayout">
 
         <android.support.v4.widget.SwipeRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,26 +33,11 @@
 
     </ViewFlipper>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sorting_estates_linearLayout"
-        android:gravity="center_vertical">
-
-        <RelativeLayout
-            android:id="@+id/sort_spinner_relativelayout"
-            android:layout_width="120sp"
-            android:layout_height="fill_parent"
-            android:background="@drawable/spinner_border"
-            android:layout_margin="5sp">
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sorting_type_spinner"
-            android:layout_weight="1"
-            android:padding="5sp" />
-        </RelativeLayout>
+        android:id="@+id/sorting_estates_relativeLayout"
+        android:background="#f1f2f3">
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,15 +45,40 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/show_only_CSOK_estates"
             android:id="@+id/show_only_CSOK_textView"
-            android:textStyle="italic"
-                />
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/show_only_CSOK_checkBox"
+            android:layout_toStartOf="@+id/show_only_CSOK_checkBox"
+            android:layout_centerVertical="true"
+            android:textStyle="italic"/>
 
-        <CheckBox
-            android:id="@+id/only_CSOK_checkBox"
+        <RelativeLayout
+            android:id="@+id/sort_estates_spinner_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
+            android:layout_toLeftOf="@+id/show_only_CSOK_textView"
+            android:layout_toStartOf="@+id/show_only_CSOK_textView"
+            android:layout_margin="2sp"
+            android:layout_centerVertical="true">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:id="@+id/sort_estates_spinner"
+            android:layout_centerVertical="true"
             />
-    </LinearLayout>
+        </RelativeLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/show_only_CSOK_checkBox"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
 </RelativeLayout>
 
 
