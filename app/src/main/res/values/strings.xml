@@ -31,6 +31,7 @@
     <string name="button_next">KÖVETKEZŐ</string>
     <string name="button_back">VISSZA</string>
     <string name="button_save">MENTÉS</string>
+    <string name="button_cancel">MÉGSE</string>
 
 <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
