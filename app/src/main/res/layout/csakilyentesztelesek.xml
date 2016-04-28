@@ -4,20 +4,22 @@
         android:layout_height="match_parent"
         android:id="@+id/navbar_search_relative">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Keressen 770 millárd hírdetés között"
-            android:id="@+id/search_title_text"
-            android:layout_centerInParent="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="10sp"
-            android:background="@drawable/spinner_border1"
-            android:textSize="10pt"
-            android:textStyle="bold"
-            android:layout_marginTop="10sp"
-            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Keressen 770 millárd hírdetés között"
+        android:id="@+id/search_title_text"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/spinner_border1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginTop="30sp"
+        />
 
     <TextView
         android:id="@+id/price_realestate_text"
@@ -27,7 +29,7 @@
         android:text="@string/price_search"
         android:layout_below="@+id/search_title_text"
         android:layout_alignParentLeft="true"
-        android:textSize="10pt"
+        android:textSize="15sp"
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
         android:layout_marginLeft="10sp"/>
@@ -37,23 +39,135 @@
         android:id="@+id/realestate_price_spinner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/spinner_border"
         android:layout_below="@+id/price_realestate_text"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:paddingTop="5sp"
         android:paddingBottom="5sp">
+
+        <EditText
+            android:id="@+id/realestate_price_edittext_min"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_border"
+            android:hint="min"
+            android:padding="5sp" />
+
+        <EditText
+            android:id="@+id/realestate_price_edittext_max"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:background="@drawable/spinner_border"
+            android:hint="max"
+            android:padding="5sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/type_realestate_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/type_search"
+        android:layout_below="@+id/realestate_price_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/realestate_type_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_border"
+        android:layout_below="@+id/type_realestate_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp">
+        <Spinner
+            android:id="@+id/realestate_type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_localisation_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/localisation_search"
+        android:layout_below="@+id/realestate_type_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/realestate_localisation_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_localisation_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:background="@drawable/spinner_border">
+        <Spinner
+            android:id="@+id/realestate_localisation_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/text_floors_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/floors_search"
+        android:layout_below="@+id/realestate_localisation_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <LinearLayout
+        android:id="@+id/floors_realestate_linear_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_floors_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        >
+
         <TextView
-            android:id="@+id/price_spinner_min_text"
+            android:id="@+id/realestate_floors_min_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="min"
-            android:textSize="10pt"
+            android:textSize="15sp"
             android:layout_marginRight="5sp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"/>
+            android:layout_marginBottom="5sp"
+            />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,20 +175,23 @@
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
             android:background="@drawable/spinner_border">
-        <Spinner
-            android:id="@+id/realestate_price_edittext_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            <Spinner
+                android:id="@+id/realestate_floors_min_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </RelativeLayout>
+
         <TextView
-            android:id="@+id/price_spinner_max_text"
+            android:id="@+id/realestate_floors_max_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="max"
-            android:textSize="10pt"
-            android:layout_margin="5sp" />
+            android:textSize="15sp"
+            android:layout_margin="5sp"
+            />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,499 +199,359 @@
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
             android:background="@drawable/spinner_border">
-        <Spinner
-            android:id="@+id/realestate_price_edittext_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            <Spinner
+                android:id="@+id/realestate_floors_max_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </RelativeLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text_rooms_count_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/rooms_count_search"
+        android:layout_below="@+id/floors_realestate_linear_layout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_rooms_count_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/realestate_rooms_linearlayout"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+
         <TextView
-            android:id="@+id/type_realestate_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/type_search"
-            android:layout_below="@+id/realestate_price_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
+            android:text="min"
+            android:id="@+id/realestate_rooms_min_text"
+            android:layout_marginRight="5sp"
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
+            />
 
         <RelativeLayout
-            android:id="@+id/realestate_type_spinner_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/spinner_border"
-            android:layout_below="@+id/type_realestate_textview"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp">
-            <Spinner
-                android:id="@+id/realestate_type_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_localisation_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/localisation_search"
-            android:layout_below="@+id/realestate_type_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <RelativeLayout
-            android:id="@+id/realestate_localisation_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_localisation_search"
-            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
             android:background="@drawable/spinner_border">
             <Spinner
-                android:id="@+id/realestate_localisation_spinner"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/realestate_roomcount_min_spinner"
+                android:textSize="15sp"
                 />
         </RelativeLayout>
 
-
         <TextView
-            android:id="@+id/text_floors_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/floors_search"
-            android:layout_below="@+id/realestate_localisation_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
+            android:text="max"
+            android:id="@+id/realestate_rooms_max_text"
+            android:layout_margin="5sp"/>
 
-        <LinearLayout
-            android:id="@+id/floors_realestate_linear_layout"
-            android:orientation="horizontal"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:background="@drawable/spinner_border">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/realestate_roomcount_max_spinner"
+                android:textSize="15sp"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/elevator_search"
+        android:id="@+id/text_elevator_search"
+        android:layout_below="@+id/realestate_rooms_linearlayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/realestate_elevator_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_elevator_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/realestate_elevator_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_floors_search"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            >
+            />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/realestate_floors_min_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="min"
-                android:textSize="10pt"
-                android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:background="@drawable/spinner_border">
-                <Spinner
-                    android:id="@+id/realestate_floors_min_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </RelativeLayout>
+    <TextView
+        android:id="@+id/text_balcony_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/balcony_search"
+        android:layout_below="@+id/realestate_elevator_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
 
-            <TextView
-                android:id="@+id/realestate_floors_max_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="max"
-                android:textSize="10pt"
-                android:layout_margin="5sp"
-                />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:background="@drawable/spinner_border">
-                <Spinner
-                    android:id="@+id/realestate_floors_max_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_rooms_count_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/rooms_count_search"
-            android:layout_below="@+id/floors_realestate_linear_layout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
+    <RelativeLayout
+        android:id="@+id/realestate_balcony_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_balcony_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/realestate_balcony_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_rooms_count_search"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/realestate_rooms_linearlayout"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
+            />
+    </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="min"
-                android:id="@+id/realestate_rooms_min_text"
-                android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                />
+    <TextView
+        android:id="@+id/text_size_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/realestate_size_search"
+        android:layout_below="@+id/realestate_balcony_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:background="@drawable/spinner_border">
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/realestate_roomcount_min_spinner"
-                    android:textSize="10pt"
-                    />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="max"
-                android:id="@+id/realestate_rooms_max_text"
-                android:layout_margin="5sp"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:background="@drawable/spinner_border">
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/realestate_roomcount_max_spinner"
-                    android:textSize="10pt"
-                    />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/realestate_size_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_size_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/realestate_size_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/elevator_search"
-            android:id="@+id/text_elevator_search"
-            android:layout_below="@+id/realestate_rooms_linearlayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
+            />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/realestate_elevator_spinner_layout"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_view_type_realestate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/view_type_search"
+        android:layout_below="@+id/realestate_size_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/view_type_realestate_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_type_realestate"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/view_type_realestate_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_elevator_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/realestate_elevator_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
+            />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/text_balcony_search"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_has_furniture_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/has_furniture_search"
+        android:layout_below="@+id/view_type_realestate_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/has_furniture_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_has_furniture_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/hasfurniture_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/balcony_search"
-            android:layout_below="@+id/realestate_elevator_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
+            />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/realestate_balcony_spinner_layout"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_parking_type_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/parking_type_search"
+        android:layout_below="@+id/has_furniture_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/parking_type_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_parking_type_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/parking_type_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_balcony_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/realestate_balcony_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
+            />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/text_size_search"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_condition_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/condition_search"
+        android:layout_below="@+id/parking_type_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+
+    <RelativeLayout
+        android:id="@+id/condition_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_condition_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/condition_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/realestate_size_search"
-            android:layout_below="@+id/realestate_balcony_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
+            />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/realestate_size_spinner_layout"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_energy_certificate_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/energy_certificate_search"
+        android:layout_below="@+id/condition_spinner_layout"
+        android:layout_alignParentLeft="true"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginLeft="10sp"/>
+
+    <RelativeLayout
+        android:id="@+id/attic_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_energy_certificate_search"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:background="@drawable/spinner_border"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp">
+        <Spinner
+            android:id="@+id/attic_spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_size_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/realestate_size_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_view_type_realestate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/view_type_search"
-            android:layout_below="@+id/realestate_size_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <RelativeLayout
-            android:id="@+id/view_type_realestate_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_type_realestate"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/view_type_realestate_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_has_furniture_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/has_furniture_search"
-            android:layout_below="@+id/view_type_realestate_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <RelativeLayout
-            android:id="@+id/has_furniture_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_has_furniture_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/hasfurniture_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_parking_type_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/parking_type_search"
-            android:layout_below="@+id/has_furniture_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <RelativeLayout
-            android:id="@+id/parking_type_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_parking_type_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/parking_type_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_condition_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/condition_search"
-            android:layout_below="@+id/parking_type_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-
-        <RelativeLayout
-            android:id="@+id/condition_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_condition_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/condition_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_energy_certificate_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/energy_certificate_search"
-            android:layout_below="@+id/condition_spinner_layout"
-            android:layout_alignParentLeft="true"
-            android:textSize="10pt"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="10sp"/>
-
-        <RelativeLayout
-            android:id="@+id/attic_spinner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_energy_certificate_search"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:background="@drawable/spinner_border"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp">
-            <Spinner
-                android:id="@+id/attic_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
+            />
+    </RelativeLayout>
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_go"
-            android:id="@+id/search_button_go"
-            android:layout_below="@+id/attic_spinner_layout"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/colorbutton"
-            android:textColor="#ffffff"
-            android:layout_margin="15sp"
-            android:paddingTop="5sp"
-            android:paddingBottom="5sp"
-            android:paddingLeft="15sp"
-            android:paddingRight="15sp"
-            android:textStyle="bold"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_go"
+        android:id="@+id/search_button_go"
+        android:layout_below="@+id/attic_spinner_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/colorbutton"
+        android:textColor="#ffffff"
+        android:layout_margin="15sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:textStyle="bold"/>
 
     </RelativeLayout>
 
