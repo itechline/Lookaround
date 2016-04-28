@@ -40,6 +40,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -47,6 +48,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -115,6 +117,9 @@ public class MainActivity extends AppCompatActivity
         //hirdetés feladás spinnerek
     Spinner advertTypeSpinner;
     ArrayAdapter<CharSequence> advertTypeSPAdapter;
+
+        //időpont foglalás calendar-ja
+    CalendarView calendar;
 
 
     @Override
@@ -252,6 +257,14 @@ public class MainActivity extends AppCompatActivity
 
         spinnerCreator();
 
+        calendar = (CalendarView) findViewById(R.id.booking_calendarView);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+            @Override
+                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
+                Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+            }
+
+        });
 
     }
 
