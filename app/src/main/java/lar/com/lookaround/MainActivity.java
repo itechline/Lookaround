@@ -481,10 +481,17 @@ public class MainActivity extends AppCompatActivity
 
 
     public boolean isNetworkAvailable() {
-        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
-                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ) {
+        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
+
+
+        /*ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED) {
 
             return true;
 
@@ -495,7 +502,7 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
 
-        return true;
+        return true;*/
 
     }
 
@@ -556,17 +563,17 @@ private int whichAddestatePage = 0;
 
 
     public void tokenValidation() {
-            launchRingDialog();
-            LoginUtil.tokenValidator(this, new SoapObjectResult() {
+        //launchRingDialog();
+        LoginUtil.tokenValidator(this, new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
                     if ((boolean) result) {
                         loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
-                        ringProgressDialog.dismiss();
+                        //ringProgressDialog.dismiss();
                         Log.d("RESULT: ", result.toString());
 
                     } else {
-                        ringProgressDialog.dismiss();
+                        //ringProgressDialog.dismiss();
                         Log.d("RESULT: ", result.toString());
 
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -604,7 +611,7 @@ private int whichAddestatePage = 0;
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        /*if (isNetworkAvailable()) {
+        if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
                 tokenValidation();
             } else {
@@ -612,7 +619,7 @@ private int whichAddestatePage = 0;
             }
         } else {
             showAlert();
-        }*/
+        }
 
     }
 
