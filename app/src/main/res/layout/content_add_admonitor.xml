@@ -55,7 +55,7 @@
         android:layout_below="@+id/textView"
         android:layout_above="@+id/add_advert_monitor_buttons_linear">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/advert_monitor_name_layout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -71,23 +71,32 @@
                 android:id="@+id/admonitor_name_text"
                 android:layout_gravity="left|center_vertical"
                 android:gravity="center_vertical"
-                android:layout_margin="5sp" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5sp"
+                android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
                 android:id="@+id/admonitor_name_edittext"
                 android:layout_gravity="center_vertical|right"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/advert_monitor_price"
+        <RelativeLayout
+            android:id="@+id/advert_monitor_price_layout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/advert_monitor_name_layout"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -96,14 +105,235 @@
                 android:text="@string/price_search"
                 android:id="@+id/advert_monitor_price_text"
                 android:layout_gravity="left|center_vertical"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
                 android:id="@+id/advert_monitor_price_edittext"
                 android:layout_gravity="center_vertical|right"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_size_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_price_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/realestate_size_search"
+                android:id="@+id/advert_monitor_size_text"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="5sp"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_sizet_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_keyword_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_size_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/keyword_search"
+                android:id="@+id/advert_monitor_keyword_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_keyword_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_idontwant_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_keyword_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/idontwant_search"
+                android:id="@+id/advert_monitor_idontwant_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_idontwant_edittext"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_idontwant_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/type_search"
+                android:id="@+id/advert_monitor_type_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_type_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_localisation_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_type_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/localisation_search"
+                android:id="@+id/advert_monitor_localisation_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_localisation_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_balcony_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_localisation_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/balcony_search"
+                android:id="@+id/advert_monitor_balcony_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_balcony_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/advert_monitor_parking_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advert_monitor_balcony_layout"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/advert_monitor_parking_text"
+                android:layout_margin="5sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/parking_type_search"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:id="@+id/advert_monitor_parking_edittext"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp"
+                android:background="@drawable/spinner_border"/>
+        </RelativeLayout>
+
     </RelativeLayout>
 </RelativeLayout>
