@@ -33,7 +33,7 @@
     <string name="button_save">MENTÉS</string>
     <string name="button_cancel">MÉGSE</string>
 
-<!-- activity drawer stringek -->
+    <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
     <string name="profile">Személyes</string>
     <string name="messages">Üzenetek</string>
@@ -45,7 +45,7 @@
     <string name="invitation">Meghívás</string>
     <string name="logout">Kijelentkezés</string>
 
-<!-- search drawer stringek hogy felrakta gittre mostmár csak-->
+    <!-- search drawer stringek hogy felrakta gittre mostmár csak-->
 
     <string name="type_search">Kivitel:</string>
     <string name="localisation_search">Elhelyezkedés:</string>
@@ -168,7 +168,7 @@
         <item>Van</item>
         <item>Nincs</item>
     </string-array>
-    
+
     <string-array name="realestate_innerheight_array">
         <item>Mindegy</item>
         <item>3m-nél alacsonyabb</item>
@@ -263,11 +263,11 @@
     <string name="advert_monitor_name">Figyelő neve:</string>
 
 
-
     <string-array name="advert_tpye_array">
         <item>Eladó</item>
         <item>Kiadó</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
