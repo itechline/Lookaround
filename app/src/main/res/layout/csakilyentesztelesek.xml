@@ -62,7 +62,7 @@
             android:paddingBottom="5sp"
             android:background="@drawable/spinner_border">
         <Spinner
-            android:id="@+id/realestate_price_spinner_min"
+            android:id="@+id/realestate_price_edittext_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -83,7 +83,7 @@
             android:paddingBottom="5sp"
             android:background="@drawable/spinner_border">
         <Spinner
-            android:id="@+id/realestate_price_spinner_max"
+            android:id="@+id/realestate_price_edittext_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Spinner>
         </RelativeLayout>

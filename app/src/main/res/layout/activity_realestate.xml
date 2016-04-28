@@ -48,7 +48,7 @@
                     android:layout_centerInParent="true"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/spinner_border1"
-                    android:textSize="10pt"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
@@ -64,7 +64,7 @@
                     android:text="@string/price_search"
                     android:layout_below="@+id/search_title_text"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="min"
-                        android:textSize="10pt"
+                        android:textSize="15sp"
                         android:layout_marginRight="5sp"
                         android:layout_marginTop="5sp"
                         android:layout_marginBottom="5sp"/>
@@ -97,10 +97,11 @@
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
                         android:background="@drawable/spinner_border">
-                        <Spinner
-                            android:id="@+id/realestate_price_spinner_min"
+                        <EditText
+                            android:id="@+id/realestate_price_edittext_min"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             />
                     </RelativeLayout>
                     <TextView
@@ -109,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="max"
-                        android:textSize="10pt"
+                        android:textSize="15sp"
                         android:layout_margin="5sp" />
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -118,10 +119,11 @@
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
                         android:background="@drawable/spinner_border">
-                        <Spinner
-                            android:id="@+id/realestate_price_spinner_max"
+                        <EditText
+                            android:id="@+id/realestate_price_edittext_max"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"></Spinner>
+                            android:layout_height="wrap_content"
+                            />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -133,7 +135,7 @@
                     android:text="@string/type_search"
                     android:layout_below="@+id/realestate_price_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -164,7 +166,7 @@
                     android:text="@string/localisation_search"
                     android:layout_below="@+id/realestate_type_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -196,7 +198,7 @@
                     android:text="@string/floors_search"
                     android:layout_below="@+id/realestate_localisation_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -221,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="min"
-                        android:textSize="10pt"
+                        android:textSize="15sp"
                         android:layout_marginRight="5sp"
                         android:layout_marginTop="5sp"
                         android:layout_marginBottom="5sp"
@@ -246,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="max"
-                        android:textSize="10pt"
+                        android:textSize="15sp"
                         android:layout_margin="5sp"
                         />
 
@@ -274,7 +276,7 @@
                     android:layout_below="@+id/floors_realestate_linear_layout"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -314,7 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/realestate_roomcount_min_spinner"
-                            android:textSize="10pt"
+                            android:textSize="15sp"
                             />
                     </RelativeLayout>
 
@@ -337,7 +339,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/realestate_roomcount_max_spinner"
-                            android:textSize="10pt"
+                            android:textSize="15sp"
                             />
                     </RelativeLayout>
 
@@ -352,7 +354,7 @@
                     android:layout_below="@+id/realestate_rooms_linearlayout"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -383,7 +385,7 @@
                     android:text="@string/balcony_search"
                     android:layout_below="@+id/realestate_elevator_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -414,7 +416,7 @@
                     android:text="@string/realestate_size_search"
                     android:layout_below="@+id/realestate_balcony_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -445,7 +447,7 @@
                     android:text="@string/view_type_search"
                     android:layout_below="@+id/realestate_size_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -476,7 +478,7 @@
                     android:text="@string/has_furniture_search"
                     android:layout_below="@+id/view_type_realestate_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -507,7 +509,7 @@
                     android:text="@string/parking_type_search"
                     android:layout_below="@+id/has_furniture_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -538,7 +540,7 @@
                     android:text="@string/condition_search"
                     android:layout_below="@+id/parking_type_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
@@ -570,7 +572,7 @@
                     android:text="@string/energy_certificate_search"
                     android:layout_below="@+id/condition_spinner_layout"
                     android:layout_alignParentLeft="true"
-                    android:textSize="10pt"
+                    android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:layout_marginBottom="5sp"
                     android:layout_marginLeft="10sp"/>
