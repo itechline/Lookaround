@@ -17,7 +17,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="Logo_"
         android:id="@+id/imageView3"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="30sp"
         android:layout_marginBottom="10sp" />
 
     <RelativeLayout
@@ -96,7 +96,7 @@
             android:layout_below="@+id/button3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10sp"
-            android:layout_marginBottom="40sp">
+            android:layout_marginBottom="30sp">
             <TextView
                 android:id="@+id/forgotten_P"
                 android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20sp"
-            android:layout_marginTop="50sp" />
+            android:layout_marginTop="40sp" />
 
         <EditText
             android:layout_width="fill_parent"

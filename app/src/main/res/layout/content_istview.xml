@@ -58,6 +58,8 @@
                 android:layout_height="40sp"
                 android:id="@+id/sort_estates_spinner"
                 android:layout_centerVertical="true"
+                android:background="#ffffff"
+                android:layout_margin="2sp"
                 />
         </RelativeLayout>
 
