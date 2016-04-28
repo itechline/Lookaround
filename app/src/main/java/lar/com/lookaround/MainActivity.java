@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity
     private static final int INVITE = 3;
     private static final int PROFILE = 4;
     private static final int MESSAGES = 5;
+    private static final int BOOKING = 6;
 
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages;
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages, booking;
 
     DrawerLayout drawer;
 
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity
         invite = inflater.inflate(R.layout.content_invite, null);
         profile = inflater.inflate(R.layout.content_profile, null);
         messages = inflater.inflate(R.layout.content_messages, null);
+        booking = inflater.inflate(R.layout.content_booking, null);
 
 
 
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(invite, INVITE);
         viewFlip.addView(profile, PROFILE);
         viewFlip.addView(messages, MESSAGES);
+        viewFlip.addView(booking, BOOKING);
 
         viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
 
@@ -260,8 +263,8 @@ public class MainActivity extends AppCompatActivity
         calendar = (CalendarView) findViewById(R.id.booking_calendarView);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
-                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
-                Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+                public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
+                //Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
 
         });
@@ -1220,7 +1223,7 @@ private int whichAddestatePage = 0;
                 switchLayoutTo(MESSAGES);
                 break;
             case R.id.nav_billing:
-
+                switchLayoutTo(BOOKING);
                 break;
             case R.id.nav_myads:
 
