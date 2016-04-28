@@ -48,7 +48,7 @@
 
         <EditText
             android:id="@+id/realestate_price_edittext_min"
-            android:layout_width="wrap_content"
+            android:layout_width="150sp"
             android:layout_height="fill_parent"
             android:singleLine="true"
             android:layout_weight="1"
@@ -58,7 +58,7 @@
 
         <EditText
             android:id="@+id/realestate_price_edittext_max"
-            android:layout_width="wrap_content"
+            android:layout_width="150sp"
             android:layout_height="fill_parent"
             android:singleLine="true"
             android:layout_weight="1"
