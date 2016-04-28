@@ -78,7 +78,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/admonitor_name_edittext"
                 android:layout_gravity="center_vertical|right"
@@ -112,7 +112,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_price_edittext"
                 android:layout_gravity="center_vertical|right"
@@ -145,7 +145,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_sizet_edittext"
                 android:layout_centerVertical="true"
@@ -175,7 +175,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_keyword_edittext"
                 android:layout_centerVertical="true"
@@ -205,7 +205,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_idontwant_edittext"
                 android:layout_alignParentRight="true"
@@ -235,7 +235,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_type_edittext"
                 android:layout_centerVertical="true"
@@ -265,7 +265,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_localisation_edittext"
                 android:layout_centerVertical="true"
@@ -295,7 +295,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_balcony_edittext"
                 android:layout_centerVertical="true"
@@ -325,7 +325,7 @@
                 android:textSize="20sp"/>
 
             <EditText
-                android:layout_width="150sp"
+                android:layout_width="200sp"
                 android:layout_height="30sp"
                 android:id="@+id/advert_monitor_parking_edittext"
                 android:layout_centerVertical="true"
