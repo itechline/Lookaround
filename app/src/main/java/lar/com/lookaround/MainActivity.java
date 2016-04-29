@@ -63,6 +63,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -120,7 +122,9 @@ public class MainActivity extends AppCompatActivity
     ArrayAdapter<CharSequence> advertTypeSPAdapter;
 
         //időpont foglalás calendar-ja
-    CalendarView calendar;
+    CalendarView booking_calendar;
+
+
 
 
     @Override
@@ -260,8 +264,9 @@ public class MainActivity extends AppCompatActivity
 
         spinnerCreator();
 
-        calendar = (CalendarView) findViewById(R.id.booking_calendarView);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+
+        booking_calendar = (CalendarView) findViewById(R.id.booking_calendarView);
+        booking_calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
                 //Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
