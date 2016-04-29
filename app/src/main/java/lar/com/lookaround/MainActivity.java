@@ -1163,9 +1163,9 @@ private int whichAddestatePage = 0;
             return true;
         }
 
-        if (id == R.id.action_map) {
+        /*if (id == R.id.action_map) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
-        }
+        }*/
 
         if (id == android.R.id.home) {
             switch (viewFlip.getDisplayedChild()) {
