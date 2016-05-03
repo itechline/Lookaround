@@ -55,9 +55,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -67,6 +69,7 @@ import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.ScalingUtilities;
 import lar.com.lookaround.util.SettingUtil;
+import lar.com.lookaround.util.SpinnerUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -227,6 +230,34 @@ public class MainActivity extends AppCompatActivity
             }
 
         });*/
+
+        /*SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                Array asd = (Array) result;
+
+                typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
+                //ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, asd);
+                dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                typeSpinner.setAdapter(dataAdapter2);
+
+
+                typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });*/
+
+
 
     }
 
