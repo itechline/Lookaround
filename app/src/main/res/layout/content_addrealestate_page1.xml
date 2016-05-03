@@ -151,7 +151,7 @@
             android:layout_toEndOf="@+id/advert_type_textview">
 
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/add_advert_type_spinner"
                 android:layout_alignParentTop="true"
