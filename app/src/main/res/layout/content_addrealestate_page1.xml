@@ -149,7 +149,10 @@
             android:layout_marginBottom="5sp"
             android:layout_toRightOf="@+id/advert_type_textview"
             android:layout_toEndOf="@+id/advert_type_textview">
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp">
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -160,6 +163,8 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="true"
                 android:spinnerMode="dialog" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <TextView
