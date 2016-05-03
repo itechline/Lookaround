@@ -11,13 +11,15 @@
         android:layout_margin="5sp"
         android:background="#ffffff">
 
-        <CalendarView
-            android:id="@+id/booking_calendarView"
+        <GridView
+            android:id="@+id/booking_calendar"
+            android:numColumns="7"
+            android:numRows="7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            />
+            android:choiceMode="singleChoice"></GridView>
     </RelativeLayout>
 
     <RelativeLayout
