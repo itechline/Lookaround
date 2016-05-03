@@ -11,15 +11,63 @@
         android:layout_margin="5sp"
         android:background="#ffffff">
 
-        <GridView
+        <GridLayout
             android:id="@+id/booking_calendar"
-            android:numColumns="7"
-            android:numRows="7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
+            android:columnCount="7"
+            android:rowCount="7"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:choiceMode="singleChoice"
             android:layout_centerHorizontal="true"
-            android:choiceMode="singleChoice"></GridView>
+            android:columnOrderPreserved="false"
+            android:clickable="false"
+            android:rowOrderPreserved="false"
+            android:useDefaultMargins="false"
+            android:layout_below="@+id/relativeLayout2">
+
+        </GridLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout2"
+            android:background="@drawable/spinner_border1"
+            android:layout_margin="5sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/current_date_textView"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:src="@drawable/arrow_left"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:id="@+id/arrowleft_imageview"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="5sp" />
+
+            <ImageView
+                android:src="@drawable/arrow_right"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:id="@+id/arrowright_imageview"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="5sp" />
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
     <RelativeLayout
