@@ -158,7 +158,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="false"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5sp" />
         </RelativeLayout>
 
         <TextView
