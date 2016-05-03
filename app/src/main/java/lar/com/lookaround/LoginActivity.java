@@ -478,18 +478,18 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(isAbleToJoin) {
-            launchRingDialog(view);
+            //launchRingDialog(view);
             LoginUtil.login(this, new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
                     if ((boolean) result) {
                         Log.d("RESULT: ", result.toString());
-                        ringProgressDialog.dismiss();
+                        //ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
                         Log.d("RESULT: ", result.toString());
-                        ringProgressDialog.dismiss();
+                        //ringProgressDialog.dismiss();
                         showAlert(view, "Hibás felhasználónév vagy jelszó!");
                     }
 

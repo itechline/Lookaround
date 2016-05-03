@@ -340,11 +340,6 @@
                 </RelativeLayout>
             </HorizontalScrollView>
 
-            <com.daimajia.slider.library.SliderLayout
-                android:id="@+id/slider"
-                android:layout_width="match_parent"
-                android:layout_height="300sp" />
-
             <RelativeLayout
                 android:id="@+id/realestate_dtail_layout"
                 android:layout_width="match_parent"

@@ -18,6 +18,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
@@ -48,14 +49,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,8 +59,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.EstateAdapter;
@@ -88,10 +81,6 @@ public class MainActivity extends AppCompatActivity
     private static final int ESTATESLIST = 0;
     private static final int CONTENTESTATE = 1;
     private static final int ADDESTATE = 2;
-    private static final int ADDESTATE2 = 3;
-    private static final int ADDESTATE3 = 4;
-    private static final int ADDESTATE4 = 5;
-    private static final int ADDESTATE5 = 6;
 
     private static final int INVITE = 3;
     private static final int PROFILE = 4;
@@ -131,7 +120,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
+        Debug.getNativeHeapSize();
         //addContentView(R.layout.activity_search);
+
+        setViewFlipper();
+        setViewFlipperTwo();
 
         if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
@@ -141,7 +134,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             showAlert();
-       }
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -181,46 +174,7 @@ public class MainActivity extends AppCompatActivity
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-        // TODO: refactor to a method
-        inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        estatesView = inflater.inflate(R.layout.content_main, null);
-        contentRealestate = inflater.inflate(R.layout.content_realestate, null);
-        invite = inflater.inflate(R.layout.content_invite, null);
-        profile = inflater.inflate(R.layout.content_profile, null);
-        messages = inflater.inflate(R.layout.content_messages, null);
-        booking = inflater.inflate(R.layout.content_booking, null);
 
-
-
-        addEstate = inflater.inflate(R.layout.content_addrealestate, null);
-
-        addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
-        addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
-        addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
-        addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
-        addEstate5 = inflater.inflate(R.layout.content_addrealestate_page5, null);
-
-
-
-        viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-        viewFlip.addView(estatesView, ESTATESLIST);
-        viewFlip.addView(contentRealestate, CONTENTESTATE);
-        viewFlip.addView(addEstate, ADDESTATE);
-        viewFlip.addView(invite, INVITE);
-        viewFlip.addView(profile, PROFILE);
-        viewFlip.addView(messages, MESSAGES);
-        viewFlip.addView(booking, BOOKING);
-
-        viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
-
-        viewFlipAddEstate.addView(addEstate1, 0);
-        viewFlipAddEstate.addView(addEstate2, 1);
-        viewFlipAddEstate.addView(addEstate3, 2);
-        viewFlipAddEstate.addView(addEstate4, 3);
-        viewFlipAddEstate.addView(addEstate5, 4);
-
-
-        viewFlip.setDisplayedChild(ESTATESLIST);
 
         //ViewPager viewPager = (ViewPager) findViewById(R.id.addrealestateViewpager);
         //viewPager.setAdapter(new CustomPagerAdapter(this));
@@ -262,29 +216,78 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        spinnerCreator();
+        //spinnerCreator();
 
 
-        booking_calendar = (CalendarView) findViewById(R.id.booking_calendarView);
+        /*booking_calendar = (CalendarView) findViewById(R.id.booking_calendarView);
         booking_calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
                 //Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
 
-        });
+        });*/
 
     }
+
+
+    public void setViewFlipper() {
+        inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        estatesView = inflater.inflate(R.layout.content_main, null);
+        contentRealestate = inflater.inflate(R.layout.content_realestate, null);
+        invite = inflater.inflate(R.layout.content_invite, null);
+        profile = inflater.inflate(R.layout.content_profile, null);
+        messages = inflater.inflate(R.layout.content_messages, null);
+        booking = inflater.inflate(R.layout.content_booking, null);
+
+
+
+        addEstate = inflater.inflate(R.layout.content_addrealestate, null);
+
+        addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
+        addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
+        addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
+        addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
+        addEstate5 = inflater.inflate(R.layout.content_addrealestate_page5, null);
+
+
+
+        viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.addView(estatesView, ESTATESLIST);
+
+
+
+        viewFlip.setDisplayedChild(ESTATESLIST);
+    }
+
+    public void setViewFlipperTwo() {
+        viewFlip.addView(contentRealestate, CONTENTESTATE);
+        viewFlip.addView(addEstate, ADDESTATE);
+        viewFlip.addView(invite, INVITE);
+        viewFlip.addView(profile, PROFILE);
+        viewFlip.addView(messages, MESSAGES);
+        viewFlip.addView(booking, BOOKING);
+
+        viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
+
+        viewFlipAddEstate.addView(addEstate1, 0);
+        viewFlipAddEstate.addView(addEstate2, 1);
+        viewFlipAddEstate.addView(addEstate3, 2);
+        viewFlipAddEstate.addView(addEstate4, 3);
+        viewFlipAddEstate.addView(addEstate5, 4);
+    }
+
+
 
     private int PICK_IMAGE_REQUEST = 1;
     private int TAKE_IMAGE_REQUEST = 0;
 
     public void pickImage(View view) {
         Intent intent = new Intent();
-        // Show only images, no videos or anything else
+
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        // Always show the chooser (if there are multiple options available)
+
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
@@ -293,37 +296,20 @@ public class MainActivity extends AppCompatActivity
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA)) {
 
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
 
             } else {
-
-                // No explanation needed, we can request the permission.
-
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA},
                         TAKE_IMAGE_REQUEST);
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
             }
         } else {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
             startActivityForResult(intent, TAKE_IMAGE_REQUEST);
         }
-
-        /*Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA},
-                TAKE_IMAGE_REQUEST);
-
-        startActivityForResult(intent, TAKE_IMAGE_REQUEST);*/
     }
 
     private static boolean isDay1 = false;
@@ -902,7 +888,7 @@ private int whichAddestatePage = 0;
 
 
 
-    public void loadEstateImages() {
+    /*public void loadEstateImages() {
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
         //final List<String> urls = slideImageURLLists();
@@ -921,13 +907,13 @@ private int whichAddestatePage = 0;
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
                             Log.d("CLICKED ON: ", urls.get(finalI));
-                            /*if(sliderLayout.getScaleX() == 1) {
+                            if(sliderLayout.getScaleX() == 1) {
                                 sliderLayout.setScaleY(0.5f);
                                 sliderLayout.setScaleX(0.5f);
                             } else {
                                 sliderLayout.setScaleY(1);
                                 sliderLayout.setScaleX(1);
-                            }*/
+                            }
                         }
                     });
 
@@ -938,7 +924,7 @@ private int whichAddestatePage = 0;
             //sliderLayout.destroyDrawingCache();
         }
 
-    }
+    }*/
 
     private class ItemList implements AdapterView.OnItemClickListener {
 

@@ -23,7 +23,7 @@
     <string name="forgotten_pass">Elfelejtette jelszavát?</string>
     <string name="reminder_pass">Emlékeztető</string>
     <string name="registration_1">Regisztráljon</string>
-    <string name="you_Dnt_have">Még nincs fiókja?</string>
+    <string name="you_dont_have">Még nincs fiókja?</string>
     <string name="send">Küldés</string>
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
@@ -87,7 +87,7 @@
     <string name="size_realestate_item">Méret</string>
     <string name="has_furniture_realestate">Bútorozott</string>
     <string name="energy_certificate_realestate">Energiatanúsítvány</string>
-    <string name="show_only_CSOK_estates">Csak CSOK ingatlanok mutatása</string>
+    <string name="show_only_csok_estates">Csak CSOK ingatlanok mutatása</string>
     <string name="add_admonitor">Hírdetésfigyelő készítése</string>
 
 

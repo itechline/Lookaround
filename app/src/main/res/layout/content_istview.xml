@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/show_only_CSOK_estates"
+            android:text="@string/show_only_csok_estates"
             android:id="@+id/show_only_CSOK_textView"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/show_only_CSOK_checkBox"
