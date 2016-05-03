@@ -28,6 +28,23 @@ public class SpinnerUtil {
     private static final String ETAN_ID = "etan_id";
     private static final String ETAN_VAL = "etan_val";
 
+    private static final String FUTESTIPUS_ID = "futestipus_id";
+    private static final String FUTESTIPUS_VAL = "futestipus_val";
+
+    private static final String KILATAS_ID = "kilatas_id";
+    private static final String KILATAS_VAL = "kilatas_val";
+
+    private static final String PARKOLAS_ID = "parkolas_id";
+    private static final String PARKOLAS_VAL = "parkolas_val";
+
+    private static final String SZOBASZAM_ID = "szsz_id";
+    private static final String SZOBASZAM_VAL = "szsz_val";
+
+    private static final String INGATLAN_TIPUS_ID = "tipus_id";
+    private static final String INGATLAN_TIPUS_VAL = "tipus_val";
+
+    private static final String EMELET_ID = "emelet_id";
+    private static final String EMELET_VAL = "emelet_val";
 
 
     public int id;
@@ -167,4 +184,248 @@ public class SpinnerUtil {
             e.printStackTrace();
         }
     }
+
+
+    //http://lookrnd.me/dev/api/list_ingatlanfutes
+    public static void get_list_ingatlanfutes(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlanfutes";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(FUTESTIPUS_ID);
+                                String nameJson = json_data.getString(FUTESTIPUS_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    //http://lookrnd.me/dev/api/list_ingatlankilatas
+    public static void get_list_ingatlankilatas(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlankilatas";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(KILATAS_ID);
+                                String nameJson = json_data.getString(KILATAS_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    //http://lookrnd.me/dev/api/list_ingatlanparkolas
+    public static void get_list_ingatlanparkolas(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlanparkolas";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(PARKOLAS_ID);
+                                String nameJson = json_data.getString(PARKOLAS_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    //http://lookrnd.me/dev/api/list_ingatlanszoba
+    public static void get_list_ingatlanszoba(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlanszoba";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(SZOBASZAM_ID);
+                                String nameJson = json_data.getString(SZOBASZAM_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    //http://lookrnd.me/dev/api/list_ingatlantipus
+    public static void get_list_ingatlantipus(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlantipus";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(INGATLAN_TIPUS_ID);
+                                String nameJson = json_data.getString(INGATLAN_TIPUS_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    //http://lookrnd.me/dev/api/list_ingatlanemelet
+    public static void get_list_ingatlanemelet(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_ingatlanemelet";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(EMELET_ID);
+                                String nameJson = json_data.getString(EMELET_VAL);
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
