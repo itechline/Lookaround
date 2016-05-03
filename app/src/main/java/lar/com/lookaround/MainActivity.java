@@ -64,6 +64,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.EstateAdapter;
+import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
@@ -222,25 +223,16 @@ public class MainActivity extends AppCompatActivity
         //spinnerCreator();
 
 
-        /*booking_calendar = (CalendarView) findViewById(R.id.booking_calendarView);
-        booking_calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
-            @Override
-                public void onSelectedDayChange(CalendarView view, int year, int month, int dayofMonth){
-                //Toast.makeText(getApplicationContext(),dayofMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
-            }
-
-        });*/
-
-        /*SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
+        SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                Array asd = (Array) result;
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
-                //ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, asd);
-                dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                typeSpinner.setAdapter(dataAdapter2);
-
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                typeSpinner.setAdapter(adapter);
 
                 typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -255,7 +247,33 @@ public class MainActivity extends AppCompatActivity
                 });
 
             }
-        });*/
+        });
+
+        SpinnerUtil.get_list_ingatlanallapota(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                localSpinner = (Spinner) findViewById(R.id.realestate_localisation_spinner);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                localSpinner.setAdapter(adapter);
+
+                localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
 
 
 
