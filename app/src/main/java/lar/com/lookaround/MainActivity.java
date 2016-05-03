@@ -220,9 +220,105 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        //spinnerCreator();
+        loadSearchSpinners();
 
 
+        loadAddEstateSpinners();
+
+    }
+
+
+
+    Spinner ingatlanTipusSpinner, szobaszamSpinner, allapotSpinner;
+
+    public void loadAddEstateSpinners() {
+        //add_advert_type_spinner
+        SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                ingatlanTipusSpinner = (Spinner) findViewById(R.id.add_advert_type_spinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ingatlanTipusSpinner.setAdapter(adapter);
+
+                ingatlanTipusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
+
+
+        //addestate_rooms_spinner
+        SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                szobaszamSpinner = (Spinner) findViewById(R.id.addestate_rooms_spinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                szobaszamSpinner.setAdapter(adapter);
+
+                szobaszamSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
+
+
+
+        //addestate_condition_spinner
+        SpinnerUtil.get_list_ingatlanallapota(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                allapotSpinner = (Spinner) findViewById(R.id.addestate_condition_spinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                allapotSpinner.setAdapter(adapter);
+
+                allapotSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
+
+    }
+
+
+
+
+    public void loadSearchSpinners() {
         SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
@@ -274,9 +370,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
-
-
     }
 
 
