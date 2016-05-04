@@ -42,6 +42,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -63,6 +64,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
+import lar.com.lookaround.adapters.CalendarAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
@@ -177,15 +179,6 @@ public class MainActivity extends AppCompatActivity
         // TODO: do it in XML
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-
-
-        //ViewPager viewPager = (ViewPager) findViewById(R.id.addrealestateViewpager);
-        //viewPager.setAdapter(new CustomPagerAdapter(this));
-
-
-        //loadRealEstates("0", "0", SettingUtil.getToken(this), "0");
-
         //loadEstateImages();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -224,6 +217,53 @@ public class MainActivity extends AppCompatActivity
 
 
         loadAddEstateSpinners();
+
+        final ArrayList<String> lst = new ArrayList<String>();
+
+        Calendar hlper = Calendar.getInstance();
+        hlper.set(Calendar.DAY_OF_MONTH, 1);
+        int dow = hlper.get(Calendar.DAY_OF_WEEK);
+        if(dow == Calendar.MONDAY) {
+            dow = 0;
+        } else if(dow == Calendar.TUESDAY) {
+            dow = 1;
+        } else if(dow == Calendar.WEDNESDAY) {
+            dow = 2;
+        } else if(dow == Calendar.THURSDAY) {
+            dow = 3;
+        } else if(dow == Calendar.FRIDAY) {
+            dow = 4;
+        } else if(dow == Calendar.SATURDAY) {
+            dow = 5;
+        } else if(dow == Calendar.SUNDAY) {
+            dow = 6;
+        }
+        int day = 1;
+        int maxday = hlper.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        //for (int i = 0; i < 7; i++) {
+        //    lst.add(weekdays[i]);
+        //}
+
+        for (int i = 0; i < maxday + dow; i++) {
+            if(dow > i) {
+                lst.add("");
+            } else {
+                lst.add(String.valueOf(day));
+                day++;
+            }
+        }
+
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, 2016,5);
+
+        GridView gridview = (GridView) findViewById(R.id.booking_calendar);
+        gridview.setAdapter(calendarAdapter);
+
+    }
+
+
+    public void CalendarCaller() {
 
     }
 
@@ -880,22 +920,22 @@ private int whichAddestatePage = 0;
     public void tokenValidation() {
         //launchRingDialog();
         LoginUtil.tokenValidator(this, new SoapObjectResult() {
-                @Override
-                public void parseRerult(Object result) {
-                    if ((boolean) result) {
-                        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
-                        //ringProgressDialog.dismiss();
-                        Log.d("RESULT: ", result.toString());
+            @Override
+            public void parseRerult(Object result) {
+                if ((boolean) result) {
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                    //ringProgressDialog.dismiss();
+                    Log.d("RESULT: ", result.toString());
 
-                    } else {
-                        //ringProgressDialog.dismiss();
-                        Log.d("RESULT: ", result.toString());
+                } else {
+                    //ringProgressDialog.dismiss();
+                    Log.d("RESULT: ", result.toString());
 
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    }
-
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
-            }, SettingUtil.getToken(this));
+
+            }
+        }, SettingUtil.getToken(this));
     }
 
     ProgressDialog ringProgressDialog;

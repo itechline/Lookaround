@@ -9,12 +9,14 @@
         android:layout_height="350sp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5sp"
+        android:id="@+id/booking_calendar_layout"
         android:background="#ffffff">
 
-        <GridLayout
+        <GridView
             android:id="@+id/booking_calendar"
             android:columnCount="7"
             android:rowCount="7"
+            android:numColumns="7"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
@@ -25,7 +27,7 @@
             android:useDefaultMargins="false"
             android:layout_below="@+id/relativeLayout2">
 
-        </GridLayout>
+        </GridView>
 
         <RelativeLayout
             android:layout_width="match_parent"
