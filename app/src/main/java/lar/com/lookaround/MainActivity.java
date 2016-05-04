@@ -260,8 +260,9 @@ public class MainActivity extends AppCompatActivity
         int thisMonth = hlper.get(Calendar.MONTH);
         int thisYear = hlper.get(Calendar.YEAR);
 
-        //TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
-        //month_o_year.setText(thisMonth);
+        TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
+        month_o_year.setText(R.string.add_gallery_image_text);
+        //case-el kéne stringba belenyomom a hónapokat, és az aktuális dátum alapján kiválasztom melyiket írja ki
 
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);
