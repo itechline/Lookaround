@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String getMonth(int month) {
-        return new DateFormatSymbols().getMonths()[month];
+        return new DateFormatSymbols().getMonths()[month+2];
     }
 
 
