@@ -186,11 +186,12 @@
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:text="ide jön valami amit majd kitalálunk"
                 android:id="@+id/item_realestate_description"
                 android:layout_gravity="center_horizontal"
-
+                android:maxLines="4"
+                android:ellipsize="end"
                 android:layout_below="@+id/item_realestate_adress2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
