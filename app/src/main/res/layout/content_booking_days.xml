@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/booking_date_rlayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/booking_date_rlayout"
         android:layout_width="35sp"
         android:layout_height="35sp"
         android:layout_centerVertical="true"
