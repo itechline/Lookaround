@@ -40,7 +40,7 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         }
         String key = getItem(position);
         final TextView day = (TextView) convertView.findViewById(R.id.booking_date_textView);
-        final RelativeLayout daybg = (RelativeLayout) convertView.findViewById(R.id.booking_date_rlayout2);
+        final RelativeLayout daybg = (RelativeLayout) convertView.findViewById(R.id.booking_date_rlayout);
         day.setText(key);
         day.setTag(key);
         int d = 0;
