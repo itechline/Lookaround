@@ -63,7 +63,7 @@
         <LinearLayout
             android:id="@+id/icons_linera_layout"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="230sp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/Price"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
