@@ -235,7 +235,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/addestate_rooms_spinner"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5sp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -253,7 +258,12 @@
                 android:id="@+id/addestate_condition_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5sp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -271,7 +281,12 @@
                 android:id="@+id/addestate_floors_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5sp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -289,6 +304,11 @@
                 android:id="@+id/addestate_type_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
                 />
         </RelativeLayout>
 
@@ -307,6 +327,11 @@
                 android:id="@+id/addestate_balcony_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
                 />
         </RelativeLayout>
 
@@ -325,7 +350,12 @@
                 android:id="@+id/addestate_parking_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:transitionGroup="false" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -362,7 +392,12 @@
                 android:id="@+id/addestate_heatingtype_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:transitionGroup="false" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -380,7 +415,12 @@
                 android:id="@+id/addestate_elevator_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:transitionGroup="false" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -398,7 +438,12 @@
                 android:id="@+id/addestate_ecertificate_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:transitionGroup="false" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -416,7 +461,12 @@
                 android:id="@+id/adestate_view_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:transitionGroup="false" />
         </RelativeLayout>
 
     </RelativeLayout>
