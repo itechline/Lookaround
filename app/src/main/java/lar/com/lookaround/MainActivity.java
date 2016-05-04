@@ -62,6 +62,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.CalendarAdapter;
@@ -254,10 +255,16 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        //TextView today = (TextView) findViewById(R.id.current_date_textView);
-        //today.setText(Calendar.MONTH);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, 2016,5);
+        //Calendar thisMonth = Calendar.getInstance();
+        int thisMonth = hlper.get(Calendar.MONTH);
+        int thisYear = hlper.get(Calendar.YEAR);
+
+        //TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
+        //month_o_year.setText(thisMonth);
+
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);
 
         GridView gridview = (GridView) findViewById(R.id.booking_calendar);
         gridview.setAdapter(calendarAdapter);
