@@ -18,7 +18,6 @@
             android:text="28"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="false"
             android:gravity="center_horizontal"
             android:textSize="22sp"/>
 
