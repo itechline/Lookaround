@@ -254,6 +254,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        //TextView today = (TextView) findViewById(R.id.current_date_textView);
+        //today.setText(Calendar.MONTH);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, 2016,5);
 
@@ -262,10 +264,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-    public void CalendarCaller() {
-
-    }
 
 
 

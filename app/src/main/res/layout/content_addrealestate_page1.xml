@@ -160,7 +160,8 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="true"
                 android:spinnerMode="dialog"
-                android:padding="5sp" />
+                android:padding="5sp"
+                android:popupTheme="@android:style/ThemeOverlay.Material.Light" />
         </RelativeLayout>
 
         <TextView
