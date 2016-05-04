@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/booking_date_rlayout_kulso"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,8 @@
         android:layout_height="36sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:padding="1sp">
+        android:padding="1sp"
+        android:background="@drawable/b_d_border">
 
         <TextView
             android:id="@+id/booking_date_textView"
@@ -20,8 +22,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="22sp"
-            android:background="@drawable/b_d_border"
             />
 
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -41,8 +41,12 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         String key = getItem(position);
         final TextView day = (TextView) convertView.findViewById(R.id.booking_date_textView);
         final RelativeLayout daybg = (RelativeLayout) convertView.findViewById(R.id.booking_date_rlayout);
+        if(key.isEmpty()) {
+            daybg.setBackground(null);
+        }
         day.setText(key);
         day.setTag(key);
+
         int d = 0;
         try {
             d = Integer.valueOf(key);
@@ -57,7 +61,6 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         thisDay.set(Calendar.DAY_OF_MONTH, d);
 
         day.setBackground(null);
-        daybg.setBackground(null);
 
         thisDay.set(Calendar.YEAR, y);
         thisDay.set(Calendar.MONTH, m);
