@@ -5,11 +5,11 @@
 
     <RelativeLayout
         android:id="@+id/booking_date_rlayout"
-        android:layout_width="35sp"
-        android:layout_height="35sp"
+        android:layout_width="36sp"
+        android:layout_height="36sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        >
+        android:padding="1sp">
 
         <TextView
             android:id="@+id/booking_date_textView"
@@ -21,7 +21,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:textSize="22sp"
             android:background="@drawable/b_d_border"
-            android:layout_alignParentBottom="false" />
+            />
 
     </RelativeLayout>
 </RelativeLayout>
