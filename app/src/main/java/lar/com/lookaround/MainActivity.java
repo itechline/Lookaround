@@ -57,6 +57,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -261,7 +262,8 @@ public class MainActivity extends AppCompatActivity
         int thisYear = hlper.get(Calendar.YEAR);
 
         TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
-        month_o_year.setText(R.string.add_gallery_image_text);
+        month_o_year.setText(getMonth(Calendar.MONTH));
+        //month.setText(getMonth(today.month));
         //case-el kéne stringba belenyomom a hónapokat, és az aktuális dátum alapján kiválasztom melyiket írja ki
 
 
@@ -272,7 +274,9 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
+    public String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month];
+    }
 
 
     Spinner hirdetesSpinner, szobaszamSpinner, allapotSpinner, emeletekSpinner, ingatlanTipusSpinner, parkolasSpinner, futesSpinner;
