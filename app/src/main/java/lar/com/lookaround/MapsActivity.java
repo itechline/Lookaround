@@ -4,6 +4,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -84,15 +86,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mClusterManager = new ClusterManager<>(this, mMap);
 
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
-                    @Override
-                    public boolean onClusterClick(final Cluster<MyItem> cluster) {
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                        cluster.getPosition(), (float) Math.floor(mMap
-                                                .getCameraPosition().zoom + 1)), 300,
-                                null);
-                        return true;
-                    }
-                });
+            @Override
+            public boolean onClusterClick(final Cluster<MyItem> cluster) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                cluster.getPosition(), (float) Math.floor(mMap
+                                        .getCameraPosition().zoom + 1)), 300,
+                        null);
+                return true;
+            }
+        });
 
         mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener() {
             @Override
@@ -112,7 +114,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add cluster items (markers) to the cluster manager.
         addItems();
-        //getCoordinates();
+
+        try {
+            getLocate("Debrecen Simonffy 4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    public void getLocate(String adress) throws IOException {
+        Geocoder gc = new Geocoder(this);
+
+        List<Address> list = gc.getFromLocationName(adress, 1);
+        Address add = list.get(0);
+        String locality = add.getLocality();
+        Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
+
+        double lat = add.getLatitude();
+        double lng = add.getLongitude();
+
+
+        MyItem offsetItem = new MyItem(lat, lng);
+        mClusterManager.addItem(offsetItem);
+
     }
 
 
