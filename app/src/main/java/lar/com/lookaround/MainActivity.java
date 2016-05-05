@@ -310,6 +310,7 @@ public class MainActivity extends AppCompatActivity
                 CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
 
 
+
                 Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });

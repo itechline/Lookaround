@@ -44,6 +44,7 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         if(key.isEmpty()) {
             daybg.setBackground(null);
         }
+
         day.setText(key);
         day.setTag(key);
 
@@ -53,6 +54,8 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         } catch (Exception e) {
 
         }
+
+
 
         //Calendar thisDay = Calendar.getInstance();
 
