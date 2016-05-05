@@ -33,7 +33,7 @@
                 android:layout_below="@+id/image_realestate_dtail">
 
                 <ImageView
-                    android:src="@drawable/face"
+                    android:src="@drawable/user_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="40sp"
                     android:id="@+id/profile_avatar"
@@ -399,7 +399,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20sp"
                     android:id="@+id/image_offensive"
                     android:src="@drawable/hibas_serto"
                     android:scaleType="fitCenter"
