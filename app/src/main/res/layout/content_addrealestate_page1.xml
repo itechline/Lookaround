@@ -72,8 +72,8 @@
             android:layout_below="@+id/below_advertinfo_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,8 +84,8 @@
             android:layout_below="@+id/adverttitle_textview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -133,8 +133,8 @@
             android:layout_below="@+id/advert_description_edittext"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
         <RelativeLayout
             android:id="@+id/add_advert_type_spinner_layout"
             android:layout_width="wrap_content"
@@ -173,8 +173,8 @@
             android:layout_below="@+id/advert_type_textview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -204,8 +204,8 @@
             android:layout_below="@+id/add_advert_price_textview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -235,8 +235,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/add_advert_city_text"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -266,8 +266,8 @@
             android:layout_below="@+id/add_advert_street_textview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="9sp"
-            android:textSize="15sp"/>
+            android:layout_margin="5sp"
+            android:textSize="16sp"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -311,6 +311,40 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/add_advert_size"
+            android:textSize="16sp"
+            android:layout_below="@+id/add_advert_str_number_textview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5sp" />
+
+        <RelativeLayout
+            android:id="@+id/estate_size_relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
+            android:layout_below="@+id/add_advert_str_number_edittext"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/add_advert_str_number_edittext"
+            android:layout_alignStart="@+id/add_advert_str_number_edittext"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="5sp">
+
+            <EditText
+                android:id="@+id/estate_size_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="25sp"
+                android:drawableRight="@drawable/size_nm"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="5sp" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
