@@ -112,8 +112,8 @@
                 android:layout_centerVertical="true">
                 <ImageView
                     android:src="@drawable/feltoltes"
-                    android:layout_width="80sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70sp"
                     android:id="@+id/upload_image_imageview"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -150,8 +150,8 @@
 
                 <ImageView
                     android:src="@drawable/fenykepezo"
-                    android:layout_width="80sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70sp"
                     android:id="@+id/add_campic_imageview"
                     android:layout_above="@+id/add_cam_pic_text"
                     android:layout_centerHorizontal="true"
