@@ -26,7 +26,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
         mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
     }
 
-    /*@Override
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Get the data item for this position
@@ -46,7 +46,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
 
 
         return convertView;
-    }*/
+    }
 
     @Override
     public void setDropDownViewTheme(Resources.Theme theme) {
