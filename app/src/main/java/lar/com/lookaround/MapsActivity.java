@@ -115,13 +115,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add cluster items (markers) to the cluster manager.
         //addItems();
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 130; i++) {
             try {
                 getLocate("Debrecen Kassai " + String.valueOf(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        for (int i = 0; i < 100; i++) {
+            try {
+                getLocate("Debrecen Böszörményi " + String.valueOf(i));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
 
     }
@@ -132,8 +141,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         List<Address> list = gc.getFromLocationName(adress, 1);
         Address add = list.get(0);
-        String locality = add.getLocality();
-        Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
+        //String locality = add.getLocality();
+        //Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
 
         double lat = add.getLatitude();
         double lng = add.getLongitude();
