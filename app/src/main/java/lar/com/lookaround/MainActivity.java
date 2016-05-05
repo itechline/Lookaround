@@ -50,6 +50,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import org.json.JSONException;
@@ -220,10 +221,44 @@ public class MainActivity extends AppCompatActivity
 
         loadAddEstateSpinners();
 
+
+        setCalendar(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+
+    }
+
+    int whichYear = Calendar.YEAR;
+    int whichMonth = Calendar.MONTH;
+    int monthSetter = 0;
+
+
+    public void nextMonth(View view) {
+        whichMonth += 1;
+        monthSetter += 1;
+
+        setCalendar(whichYear, whichMonth, Calendar.DAY_OF_MONTH);
+
+        Log.d("YEAR: ", String.valueOf(whichYear));
+        Log.d("MONTH: ", String.valueOf(whichMonth));
+    }
+
+    public void prewMonth(View view) {
+        whichMonth -= 1;
+        monthSetter -= 1;
+
+        setCalendar(whichYear, whichMonth, Calendar.DAY_OF_MONTH);
+
+        Log.d("YEAR: ", String.valueOf(whichYear));
+        Log.d("MONTH: ", String.valueOf(whichMonth));
+    }
+
+
+    public void setCalendar(int year, int month, int day2) {
         final ArrayList<String> lst = new ArrayList<String>();
 
         Calendar hlper = Calendar.getInstance();
-        hlper.set(Calendar.DAY_OF_MONTH, 1);
+        hlper.set(Calendar.DAY_OF_MONTH, day2);
+        hlper.set(Calendar.MONTH, month);
+        hlper.set(Calendar.YEAR, year);
         int dow = hlper.get(Calendar.DAY_OF_WEEK);
         if(dow == Calendar.MONDAY) {
             dow = 0;
@@ -263,8 +298,6 @@ public class MainActivity extends AppCompatActivity
 
         TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
         month_o_year.setText(getMonth(Calendar.MONTH));
-        //month.setText(getMonth(today.month));
-        //case-el kéne stringba belenyomom a hónapokat, és az aktuális dátum alapján kiválasztom melyiket írja ki
 
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);
@@ -272,10 +305,20 @@ public class MainActivity extends AppCompatActivity
         GridView gridview = (GridView) findViewById(R.id.booking_calendar);
         gridview.setAdapter(calendarAdapter);
 
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
+
+
+                Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+
+
     public String getMonth(int month) {
-        return new DateFormatSymbols().getMonths()[month+2];
+        return new DateFormatSymbols().getMonths()[month+monthSetter];
     }
 
 

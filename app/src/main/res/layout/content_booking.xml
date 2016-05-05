@@ -56,6 +56,7 @@
                 android:layout_alignParentStart="true"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
+                android:onClick="prewMonth"
                 android:layout_margin="5sp" />
 
             <ImageView
@@ -67,6 +68,7 @@
                 android:layout_alignParentRight="true"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
+                android:onClick="nextMonth"
                 android:layout_margin="5sp" />
         </RelativeLayout>
 

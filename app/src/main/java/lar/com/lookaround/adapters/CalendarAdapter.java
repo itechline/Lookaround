@@ -54,19 +54,16 @@ public class CalendarAdapter extends ArrayAdapter<String> {
 
         }
 
-        Calendar thisDay = Calendar.getInstance();
-
-        thisDay.set(Calendar.YEAR, y);
-        thisDay.set(Calendar.MONTH, m);
-        thisDay.set(Calendar.DAY_OF_MONTH, d);
+        //Calendar thisDay = Calendar.getInstance();
 
         day.setBackground(null);
 
-        thisDay.set(Calendar.YEAR, y);
-        thisDay.set(Calendar.MONTH, m);
-        thisDay.set(Calendar.DAY_OF_MONTH, d);
+        today.set(Calendar.YEAR, y);
+        today.set(Calendar.MONTH, m);
+        today.set(Calendar.DAY_OF_MONTH, d);
 
-        return convertView;}
+        return convertView;
+    }
 
 
 

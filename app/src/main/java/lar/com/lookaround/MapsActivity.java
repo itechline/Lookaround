@@ -1,5 +1,7 @@
 package lar.com.lookaround;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -11,6 +13,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -81,8 +87,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(mClusterManager);
 
         // Add cluster items (markers) to the cluster manager.
-        addItems();
+        //addItems();
+        getCoordinates();
     }
+
+
+    private void getCoordinates() {
+        /*Geocoder geocoder = new Geocoder(this);
+        List<Address> addresses;
+        addresses = geocoder.getFromLocationName(<String address>, 1);
+        if(addresses.size() > 0) {
+            double latitude= addresses.get(0).getLatitude();
+            double longitude= addresses.get(0).getLongitude();
+        }*/
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocationName("Debrecen", 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Address address = addresses.get(0);
+        double longitude = address.getLongitude();
+        double latitude = address.getLatitude();
+        MyItem offsetItem = new MyItem(latitude, longitude);
+        mClusterManager.addItem(offsetItem);
+    }
+
+
 
     private void addItems() {
 
