@@ -94,10 +94,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 });
 
-        // Point the map's listeners at the listeners implemented by the cluster
-        // manager.
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener() {
+            @Override
+            public boolean onClusterItemClick(ClusterItem clusterItem) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                clusterItem.getPosition(), (float) Math.floor(mMap
+                                        .getCameraPosition().zoom + 1)), 300,
+                        null);
+                return true;
+            }
+        });
 
-        //mMap.setOnCameraChangeListener(getCameraChangeListener());
+
         mMap.setOnCameraChangeListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
 
