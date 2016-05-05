@@ -26,7 +26,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
         mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
     }
 
-    @Override
+    /*@Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Get the data item for this position
@@ -38,12 +38,15 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
         }
 
         TextView text1 = (TextView) convertView.findViewById(android.R.id.text1);
-        text1.setText(spinnerUtil.getName());
+        if (text1.getText().length() == 0) {
+            text1.setText(spinnerUtil.getName());
+            Log.d("SPINNER_GETVIEW", spinnerUtil.getName());
+        }
 
-        Log.d("SPINNER_GETVIEW", spinnerUtil.getName());
+
 
         return convertView;
-    }
+    }*/
 
     @Override
     public void setDropDownViewTheme(Resources.Theme theme) {
