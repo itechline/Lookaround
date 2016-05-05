@@ -119,8 +119,7 @@ public class MainActivity extends AppCompatActivity
     Spinner advertTypeSpinner;
     ArrayAdapter<CharSequence> advertTypeSPAdapter;
 
-        //időpont foglalás calendar-ja
-    CalendarView booking_calendar;
+
 
 
 
@@ -259,6 +258,7 @@ public class MainActivity extends AppCompatActivity
         hlper.set(Calendar.DAY_OF_MONTH, day2);
         hlper.set(Calendar.MONTH, month);
         hlper.set(Calendar.YEAR, year);
+
         int dow = hlper.get(Calendar.DAY_OF_WEEK);
         if(dow == Calendar.MONDAY) {
             dow = 0;
@@ -309,13 +309,10 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
 
-
-
                 Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
 
     public String getMonth(int month) {

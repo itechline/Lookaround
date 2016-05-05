@@ -21,10 +21,6 @@
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
             android:layout_centerHorizontal="true"
-            android:columnOrderPreserved="false"
-            android:clickable="false"
-            android:rowOrderPreserved="false"
-            android:useDefaultMargins="false"
             android:layout_below="@+id/relativeLayout2"
             >
 
