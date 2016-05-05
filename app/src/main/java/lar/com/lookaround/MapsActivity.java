@@ -10,7 +10,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
@@ -66,10 +66,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public LatLng getPosition() {
             return mPosition;
         }
+
+
     }
 
 
-    private ClusterManager<MyItem> mClusterManager;
+    private ClusterManager mClusterManager;
     private void setUpClusterer() {
         // Declare a variable for the cluster manager.
 
@@ -79,17 +81,64 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Initialize the manager with the context and the map.
         // (Activity extends context, so we can pass 'this' in the constructor.)
-        mClusterManager = new ClusterManager<MyItem>(this, mMap);
+        mClusterManager = new ClusterManager<>(this, mMap);
+
+        mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
+                    @Override
+                    public boolean onClusterClick(final Cluster<MyItem> cluster) {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                        cluster.getPosition(), (float) Math.floor(mMap
+                                                .getCameraPosition().zoom + 1)), 300,
+                                null);
+                        return true;
+                    }
+                });
 
         // Point the map's listeners at the listeners implemented by the cluster
         // manager.
+
+        //mMap.setOnCameraChangeListener(getCameraChangeListener());
         mMap.setOnCameraChangeListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
 
+
         // Add cluster items (markers) to the cluster manager.
-        //addItems();
-        getCoordinates();
+        addItems();
+        //getCoordinates();
     }
+
+
+
+
+
+
+
+
+
+
+
+    private void addItems() {
+
+        // Set some lat/lng coordinates to start with.
+        double lat = 51.5145160;
+        double lng = -0.1270060;
+
+        // Add ten cluster items in close proximity, for purposes of this example.
+        for (int i = 0; i < 10; i++) {
+            double offset = i / 60d;
+            lat = lat + offset;
+            lng = lng + offset;
+            MyItem offsetItem = new MyItem(lat, lng);
+            mClusterManager.addItem(offsetItem);
+        }
+    }
+
+
+
+
+
+
+
 
 
     private void getCoordinates() {
@@ -113,23 +162,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double latitude = address.getLatitude();
         MyItem offsetItem = new MyItem(latitude, longitude);
         mClusterManager.addItem(offsetItem);
-    }
-
-
-
-    private void addItems() {
-
-        // Set some lat/lng coordinates to start with.
-        double lat = 51.5145160;
-        double lng = -0.1270060;
-
-        // Add ten cluster items in close proximity, for purposes of this example.
-        for (int i = 0; i < 10; i++) {
-            double offset = i / 60d;
-            lat = lat + offset;
-            lng = lng + offset;
-            MyItem offsetItem = new MyItem(lat, lng);
-            mClusterManager.addItem(offsetItem);
-        }
     }
 }
