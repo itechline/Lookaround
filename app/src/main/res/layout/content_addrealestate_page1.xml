@@ -346,7 +346,9 @@
                     android:layout_height="25sp"
                     android:drawableRight="@drawable/size_nm"
                     android:layout_alignParentTop="true"
-                    android:layout_marginRight="5sp" />
+                    android:layout_marginRight="5sp"
+                    android:singleLine="true"
+                    android:numeric="decimal"/>
             </RelativeLayout>
         </RelativeLayout>
 
