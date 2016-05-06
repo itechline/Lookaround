@@ -20,6 +20,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
@@ -306,6 +307,8 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
 
+
+                //TODO: nem kell az összeset null-ra állítani, meg kell jegyeztetni az elsőt, és csak azt nullázni
                 for (int i=0; i < gridview.getChildCount();i++) {
                     gridview.getChildAt(i).setBackground(null);
                 }
@@ -326,13 +329,25 @@ public class MainActivity extends AppCompatActivity
     Spinner hirdetesSpinner, szobaszamSpinner, allapotSpinner, emeletekSpinner, ingatlanTipusSpinner, parkolasSpinner, futesSpinner;
     Spinner energiaSpinner, kilatasSpinner;
 
+    int hirdetesSpinner_int = 0;
+    int szobaszamSpinner_int = 0;
+    int allapotSpinner_int = 0;
+    int emeletekSpinner_int = 0;
+    int ingatlanTipusSpinner_int = 0;
+    int parkolasSpinner_int = 0;
+    int futesSpinner_int = 0;
+    int energiaSpinner_int = 0;
+    int kilatasSpinner_int = 0;
+
+
+
     public void loadAddEstateSpinners() {
         //add_advert_type_spinner
         SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 hirdetesSpinner = (Spinner) findViewById(R.id.add_advert_type_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -342,6 +357,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        hirdetesSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -359,7 +376,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 szobaszamSpinner = (Spinner) findViewById(R.id.addestate_rooms_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -369,6 +386,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        szobaszamSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -387,7 +406,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 allapotSpinner = (Spinner) findViewById(R.id.addestate_condition_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -397,6 +416,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        allapotSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -416,7 +437,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 emeletekSpinner = (Spinner) findViewById(R.id.addestate_floors_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -426,6 +447,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        emeletekSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -444,7 +467,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 ingatlanTipusSpinner = (Spinner) findViewById(R.id.addestate_type_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -454,6 +477,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        ingatlanTipusSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -473,7 +498,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 parkolasSpinner = (Spinner) findViewById(R.id.addestate_parking_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -483,6 +508,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        parkolasSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -500,7 +527,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 futesSpinner = (Spinner) findViewById(R.id.addestate_heatingtype_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -510,6 +537,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        futesSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -528,7 +557,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 energiaSpinner = (Spinner) findViewById(R.id.addestate_ecertificate_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -538,6 +567,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        energiaSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -555,7 +586,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
                 kilatasSpinner = (Spinner) findViewById(R.id.adestate_view_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -565,6 +596,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        kilatasSpinner_int= spinnerUtil.getId();
                     }
 
                     @Override
@@ -931,6 +964,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
     private boolean isValidString(String string) {
         if (string != null && string.length() != 0) {
             return true;
@@ -951,10 +985,19 @@ private int whichAddestatePage = 0;
                     TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
                     TextView city = (TextView) findViewById(R.id.add_advert_city_edittext);
 
+                    TextView street = (TextView) findViewById(R.id.add_advert_street_edittext);
+                    TextView num = (TextView) findViewById(R.id.add_advert_str_number_edittext);
+                    TextView size = (TextView) findViewById(R.id.estate_size_edittext);
+
+
                     estateTitle = title.getText().toString();
                     estateDescription = description.getText().toString();
                     estatePrice = price.getText().toString();
                     estateCity = city.getText().toString();
+
+                    estateStreet = street.getText().toString();
+                    estetaHouseNumber = num.getText().toString();
+                    estateSize = size.getText().toString();
 
                     if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
@@ -980,6 +1023,32 @@ private int whichAddestatePage = 0;
                         isFilledOut = false;
                     }
 
+                    if(!isValidString(estateStreet)) {
+                        street.setError("Hiba!");
+                        street.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if(!isValidString(estetaHouseNumber)) {
+                        num.setError("Hiba!");
+                        num.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if(!isValidString(estateSize)) {
+                        size.setError("Hiba!");
+                        size.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if (hirdetesSpinner_int == 0) {
+                        //hirdetesSpinner.setBackgroundColor(0xFFFF0000);
+                        //hirdetesSpinner.invalidate();
+                        isFilledOut = false;
+                    } else {
+                        //hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
+                        //hirdetesSpinner.invalidate();
+                    }
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
@@ -987,7 +1056,59 @@ private int whichAddestatePage = 0;
                     } else {
                         whichAddestatePage = 0;
                     }
+                    break;
 
+                case 2:
+                    /*
+                    int hirdetesSpinner_int = 0;
+                    int szobaszamSpinner_int = 0;
+                    int allapotSpinner_int = 0;
+                    int emeletekSpinner_int = 0;
+                    int ingatlanTipusSpinner_int = 0;
+                    int parkolasSpinner_int = 0;
+                    int futesSpinner_int = 0;
+                    int energiaSpinner_int = 0;
+                    int kilatasSpinner_int = 0;
+                     */
+
+                    if (szobaszamSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (allapotSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (emeletekSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (ingatlanTipusSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (parkolasSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (futesSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (energiaSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (kilatasSpinner_int == 0) {
+                        isFilledOut = false;
+                    }
+
+                    if (isFilledOut) {
+                        setAddestatePageIndicator(whichAddestatePage);
+                        switchLayoutToAddEstate(whichAddestatePage);
+                    } else {
+                        whichAddestatePage = 1;
+                    }
                     break;
             }
 
