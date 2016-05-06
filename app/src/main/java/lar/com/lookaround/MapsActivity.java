@@ -236,6 +236,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
         mClusterManager.addItem(offsetItem);
+        gotoLocation(lat, lng, 10);
         Log.d("CLUSTER: ", "ADDED");
 
     }
