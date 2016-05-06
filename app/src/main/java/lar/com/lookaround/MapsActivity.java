@@ -2,6 +2,7 @@ package lar.com.lookaround;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -9,7 +10,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -17,7 +20,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
@@ -66,12 +71,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setUpClusterer();
     }
 
+    private String mSnippet;
+    private String mTitle;
 
     public class MyItem implements ClusterItem {
         private final LatLng mPosition;
 
-        public MyItem(double lat, double lng) {
+        public MyItem(double lat, double lng, String t, String s) {
             mPosition = new LatLng(lat, lng);
+            mTitle = t;
+            mSnippet = s;
         }
 
         @Override
@@ -79,11 +88,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return mPosition;
         }
 
+        public String getTitle(){
+            return mTitle;
+        }
+
+        public String getSnippet(){
+            return mSnippet;
+        }
+
 
     }
 
 
-    private ClusterManager mClusterManager;
+    private ClusterManager<MyItem> mClusterManager;
 
     private void setUpClusterer() {
         // Declare a variable for the cluster manager.
@@ -101,16 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.setMyLocationEnabled(true);
 
-
-        // Position the map.
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
-
-        // Initialize the manager with the context and the map.
-        // (Activity extends context, so we can pass 'this' in the constructor.)
         mClusterManager = new ClusterManager<>(this, mMap);
         mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
-
-
 
 
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
@@ -124,20 +133,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener() {
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
-            public boolean onClusterItemClick(ClusterItem clusterItem) {
+            public boolean onClusterItemClick(MyItem clusterItem) {
+                clickedClusterItem = clusterItem;
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                 clusterItem.getPosition(), (float) Math.floor(mMap
                                         .getCameraPosition().zoom + 1)), 300,
                         null);
-                return true;
+                return false;
             }
         });
 
 
+
+        //mClusterManager.setOnClusterItemInfoWindowClickListener(this); //added
+
+
         mMap.setOnCameraChangeListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
+
+
+        mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
+        mMap.setOnInfoWindowClickListener(mClusterManager);
+
+
 
 
         // Add cluster items (markers) to the cluster manager.
@@ -146,10 +166,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (int i = 0; i < 13; i++) {
             try {
                 getLocate("Debrecen Kassai " + String.valueOf(i));
+                Log.d("ADD_CLUSTER ", "TRY");
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.d("CLUSTER_ERROR: ", e.toString());
             }
         }
+
+        mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
 
         /*for (int i = 0; i < 100; i++) {
             try {
@@ -158,8 +182,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 e.printStackTrace();
             }
         }*/
+
+
     }
 
+
+    private MyItem clickedClusterItem;
+    public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyCustomAdapterForItems() {
+            myContentsView = getLayoutInflater().inflate(R.layout.maps_info_window, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+
+            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.txtTitle));
+            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.txtSnippet));
+
+            tvTitle.setText(clickedClusterItem.getTitle());
+            tvSnippet.setText(clickedClusterItem.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+    }
 
     private void gotoLocation(double lat, double lng, float zoom) {
         LatLng ll = new LatLng(lat, lng);
@@ -181,8 +234,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double lng = add.getLongitude();
 
 
-        MyItem offsetItem = new MyItem(lat, lng);
+        MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
         mClusterManager.addItem(offsetItem);
+        Log.d("CLUSTER: ", "ADDED");
 
     }
 
@@ -191,7 +245,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-
+    /*@Override
+    protected void onBeforeClusterItemRendered(MarkerOptions markerOptions) {
+        // Draw a single person.
+        // Set the info window to show their name.
+        mImageView.setImageResource(person.profilePhoto);
+        Bitmap icon = mIconGenerator.makeIcon();
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon)).title(person.name);
+    }*/
 
 
 
@@ -207,7 +268,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double offset = i / 60d;
             lat = lat + offset;
             lng = lng + offset;
-            MyItem offsetItem = new MyItem(lat, lng);
+            MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
             mClusterManager.addItem(offsetItem);
         }
     }
@@ -239,7 +300,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Address address = addresses.get(0);
         double longitude = address.getLongitude();
         double latitude = address.getLatitude();
-        MyItem offsetItem = new MyItem(latitude, longitude);
+        MyItem offsetItem = new MyItem(latitude, longitude, "asd", "asd2");
         mClusterManager.addItem(offsetItem);
     }
 }
