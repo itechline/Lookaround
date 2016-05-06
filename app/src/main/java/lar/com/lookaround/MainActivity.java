@@ -939,20 +939,58 @@ private int whichAddestatePage = 0;
     public void nextAddestatePage(View view) {
         if (whichAddestatePage < 4) {
             whichAddestatePage += 1;
+            boolean isFilledOut = true;
             switch (whichAddestatePage) {
                 case 1:
                     TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                     TextView description = (TextView) findViewById(R.id.advert_description_edittext);
                     TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
                     TextView city = (TextView) findViewById(R.id.add_advert_city_edittext);
+
+                    estateTitle = title.getText().toString();
+                    estateDescription = description.getText().toString();
+                    estatePrice = price.getText().toString();
+                    estateCity = city.getText().toString();
+
+                    if(!isValidString(estateTitle)) {
+                        title.setError("Hiba!");
+                        title.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if(!isValidString(estateDescription)) {
+                        description.setError("Hiba!");
+                        description.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if(!isValidString(estatePrice)) {
+                        price.setError("Hiba!");
+                        price.invalidate();
+                        isFilledOut = false;
+                    }
+
+                    if(!isValidString(estateCity)) {
+                        city.setError("Hiba!");
+                        city.invalidate();
+                        isFilledOut = false;
+                    }
+
+
+                    if (isFilledOut) {
+                        setAddestatePageIndicator(whichAddestatePage);
+                        switchLayoutToAddEstate(whichAddestatePage);
+                    } else {
+                        whichAddestatePage = 0;
+                    }
+
                     break;
             }
 
 
 
 
-            setAddestatePageIndicator(whichAddestatePage);
-            switchLayoutToAddEstate(whichAddestatePage);
+
         }
     }
 
