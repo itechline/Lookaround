@@ -14,6 +14,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -309,7 +310,9 @@ public class MainActivity extends AppCompatActivity
                     gridview.getChildAt(i).setBackground(null);
                 }
                 gridview.getChildAt(position).setBackgroundResource(R.drawable.b_d_border);
-                Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
+                gridview.getChildAt(position).setHovered(true);
+
+                //Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });
     }

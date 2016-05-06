@@ -199,8 +199,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public View getInfoWindow(Marker marker) {
 
-            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.txtTitle));
-            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.txtSnippet));
+            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
+            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
 
             tvTitle.setText(clickedClusterItem.getTitle());
             tvSnippet.setText(clickedClusterItem.getSnippet());
