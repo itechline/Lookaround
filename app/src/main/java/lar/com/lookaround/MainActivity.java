@@ -215,8 +215,9 @@ public class MainActivity extends AppCompatActivity
 
         loadAddEstateSpinners();
 
+        Calendar now = Calendar.getInstance();
 
-        setCalendar(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+        setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
     }
 
@@ -233,7 +234,7 @@ public class MainActivity extends AppCompatActivity
         whichMonth += 1;
         monthSetter += 1;
 
-        setCalendar(whichYear, whichMonth, Calendar.DAY_OF_MONTH);
+        setCalendar(whichYear, whichMonth);
 
         Log.d("YEAR: ", String.valueOf(whichYear));
         Log.d("MONTH: ", String.valueOf(whichMonth));
@@ -243,18 +244,18 @@ public class MainActivity extends AppCompatActivity
         whichMonth -= 1;
         monthSetter -= 1;
 
-        setCalendar(whichYear, whichMonth, Calendar.DAY_OF_MONTH);
+        setCalendar(whichYear, whichMonth);
 
         Log.d("YEAR: ", String.valueOf(whichYear));
         Log.d("MONTH: ", String.valueOf(whichMonth));
     }
 
 
-    public void setCalendar(int year, int month, int day2) {
+    public void setCalendar(int year, int month) {
         final ArrayList<String> lst = new ArrayList<String>();
 
         Calendar hlper = Calendar.getInstance();
-        hlper.set(Calendar.DAY_OF_MONTH, day2);
+        hlper.set(Calendar.DAY_OF_MONTH, 1);
         hlper.set(Calendar.MONTH, month);
         hlper.set(Calendar.YEAR, year);
 
@@ -296,7 +297,7 @@ public class MainActivity extends AppCompatActivity
         int thisYear = hlper.get(Calendar.YEAR);
 
         TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
-        month_o_year.setText(getMonth(Calendar.MONTH));
+        month_o_year.setText(getMonth(month));
 
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);

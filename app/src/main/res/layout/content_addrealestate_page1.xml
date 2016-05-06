@@ -123,22 +123,20 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:id="@+id/adverttitle_edittext"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toEndOf="@+id/advert_type_textview"
                 android:hint="@string/advert_title_hint"
                 android:singleLine="true"
-                android:layout_below="@+id/below_advertinfo_text"
                 android:textSize="8pt"
                 android:padding="0dp"
-                android:layout_above="@+id/advert_description_edittext"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                android:layout_toRightOf="@+id/advert_type_textview" />
+                android:layout_toRightOf="@+id/advert_type_textview"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/advert_description_textveiw" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -154,7 +152,6 @@
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
                 android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
                 android:layout_toEndOf="@+id/advert_type_textview"
                 android:layout_toRightOf="@+id/advert_type_textview" />
 
@@ -173,30 +170,29 @@
             <RelativeLayout
                 android:id="@+id/add_advert_type_spinner_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/spinner_border"
-                android:layout_above="@+id/add_advert_price_textview"
-                android:layout_below="@+id/advert_description_edittext"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
                 android:layout_toRightOf="@+id/advert_type_textview"
-                android:layout_toEndOf="@+id/advert_type_textview">
+                android:layout_toEndOf="@+id/advert_type_textview"
+                android:layout_below="@+id/advert_description_edittext"
+                android:layout_above="@+id/add_advert_price_textview"
+                android:layout_marginTop="5sp">
 
                 <Spinner
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/add_advert_type_spinner"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
                     android:layout_alignParentEnd="true"
                     android:spinnerMode="dialog"
                     android:padding="5sp"
-                    android:popupTheme="@android:style/ThemeOverlay.Material.Light" />
+                    android:popupTheme="@android:style/ThemeOverlay.Material.Light"
+                    android:layout_alignParentTop="true" />
             </RelativeLayout>
 
             <TextView
@@ -213,22 +209,21 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:id="@+id/add_advert_price_edittext"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="@string/advert_price_hint1"
-                android:layout_above="@+id/add_advert_city_text"
                 android:textSize="8pt"
                 android:singleLine="true"
-                android:layout_below="@+id/add_advert_type_spinner_layout"
                 android:padding="0dp"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
                 android:layout_toRightOf="@+id/advert_type_textview"
-                android:layout_toEndOf="@+id/advert_type_textview" />
+                android:layout_toEndOf="@+id/advert_type_textview"
+                android:layout_below="@+id/add_advert_type_spinner_layout"
+                android:layout_above="@+id/add_advert_city_edittext"
+                android:layout_marginTop="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -244,9 +239,8 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:id="@+id/add_advert_city_edittext"
-                android:layout_below="@+id/add_advert_price_textview"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="@string/advert_city_hint"
@@ -254,12 +248,12 @@
                 android:textSize="8pt"
                 android:singleLine="true"
                 android:padding="0dp"
-                android:layout_above="@+id/add_advert_street_edittext"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                android:layout_toRightOf="@+id/advert_type_textview" />
+                android:layout_toRightOf="@+id/advert_type_textview"
+                android:layout_below="@+id/add_advert_price_textview"
+                android:layout_above="@+id/add_advert_street_edittext"
+                android:layout_marginTop="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -275,22 +269,21 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:id="@+id/add_advert_street_edittext"
-                android:layout_below="@+id/add_advert_city_text"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="@string/advert_street_hint"
                 android:textSize="8pt"
                 android:singleLine="true"
                 android:padding="0dp"
-                android:layout_above="@+id/add_advert_str_number_textview"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
                 android:layout_alignLeft="@+id/add_advert_price_edittext"
-                android:layout_alignStart="@+id/add_advert_price_edittext" />
+                android:layout_alignStart="@+id/add_advert_price_edittext"
+                android:layout_below="@+id/add_advert_city_text"
+                android:layout_above="@+id/add_advert_str_number_textview"
+                android:layout_marginTop="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -306,9 +299,8 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:id="@+id/add_advert_str_number_edittext"
-                android:layout_below="@+id/add_advert_street_edittext"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="@string/advert_str_number_hint"
@@ -317,10 +309,11 @@
                 android:padding="0dp"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
                 android:layout_alignLeft="@+id/add_advert_street_edittext"
                 android:layout_alignStart="@+id/add_advert_street_edittext"
-                android:layout_alignBottom="@+id/add_advert_str_number_textview" />
+                android:layout_below="@+id/add_advert_street_edittext"
+                android:layout_above="@+id/add_estate_size_textview"
+                android:layout_marginTop="5sp" />
 
             <TextView
                 android:id="@+id/add_estate_size_textview"
@@ -337,21 +330,23 @@
             <RelativeLayout
                 android:id="@+id/estate_size_relative_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:background="@drawable/spinner_border"
-                android:layout_below="@+id/add_advert_str_number_edittext"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/add_advert_str_number_edittext"
                 android:layout_alignStart="@+id/add_advert_str_number_edittext"
                 android:layout_marginRight="5sp"
+                android:layout_below="@+id/add_advert_str_number_edittext"
                 android:layout_marginTop="5sp">
 
                 <EditText
                     android:id="@+id/estate_size_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="25sp"
-                    android:drawableRight="@drawable/size_nm" />
+                    android:drawableRight="@drawable/size_nm"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="5sp" />
             </RelativeLayout>
         </RelativeLayout>
 
