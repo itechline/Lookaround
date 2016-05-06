@@ -33,7 +33,6 @@ public class CalendarAdapter extends ArrayAdapter<String> {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Calendar today = Calendar.getInstance();
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_booking_days, parent, false);
 
@@ -61,9 +60,7 @@ public class CalendarAdapter extends ArrayAdapter<String> {
 
         day.setBackground(null);
 
-        today.set(Calendar.YEAR, y);
-        today.set(Calendar.MONTH, m);
-        today.set(Calendar.DAY_OF_MONTH, d);
+
 
         return convertView;
     }

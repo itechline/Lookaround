@@ -224,9 +224,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-    int whichYear = Calendar.YEAR;
-    int whichMonth = Calendar.MONTH;
+    Calendar most = Calendar.getInstance();
+    int whichYear = most.get(Calendar.YEAR);
+    int whichMonth = most.get(Calendar.MONTH);
     int monthSetter = 0;
 
 
@@ -236,8 +236,6 @@ public class MainActivity extends AppCompatActivity
 
         setCalendar(whichYear, whichMonth);
 
-        Log.d("YEAR: ", String.valueOf(whichYear));
-        Log.d("MONTH: ", String.valueOf(whichMonth));
     }
 
     public void prewMonth(View view) {
@@ -246,8 +244,6 @@ public class MainActivity extends AppCompatActivity
 
         setCalendar(whichYear, whichMonth);
 
-        Log.d("YEAR: ", String.valueOf(whichYear));
-        Log.d("MONTH: ", String.valueOf(whichMonth));
     }
 
 
@@ -292,7 +288,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        //Calendar thisMonth = Calendar.getInstance();
+
         int thisMonth = hlper.get(Calendar.MONTH);
         int thisYear = hlper.get(Calendar.YEAR);
 
@@ -316,7 +312,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public String getMonth(int month) {
-        return new DateFormatSymbols().getMonths()[month+monthSetter];
+        return new DateFormatSymbols().getMonths()[month];
     }
 
 
