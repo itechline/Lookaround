@@ -298,13 +298,17 @@ public class MainActivity extends AppCompatActivity
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);
 
-        GridView gridview = (GridView) findViewById(R.id.booking_calendar);
+        final GridView gridview = (GridView) findViewById(R.id.booking_calendar);
         gridview.setAdapter(calendarAdapter);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
 
+                for (int i=0; i < gridview.getChildCount();i++) {
+                    gridview.getChildAt(i).setBackground(null);
+                }
+                gridview.getChildAt(position).setBackgroundResource(R.drawable.b_d_border);
                 Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });

@@ -165,8 +165,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (int i = 0; i < 13; i++) {
             try {
-                getLocate("Debrecen Kassai " + String.valueOf(i));
                 Log.d("ADD_CLUSTER ", "TRY");
+                getLocate("Debrecen Kassai " + String.valueOf(i));
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.d("CLUSTER_ERROR: ", e.toString());
