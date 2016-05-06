@@ -27,23 +27,13 @@
 
         <ImageView
             android:layout_width="150sp"
-            android:layout_height="150sp"
+            android:layout_height="fill_parent"
             android:id="@+id/item_realestate_mainpic_maps"
             android:visibility="visible"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/Price_maps" />
-
-        <ProgressBar
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/item_realestate_progressbar_maps"
-            android:visibility="visible"
-            android:layout_above="@+id/Price_maps"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/item_realestate_adress2_maps"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_above="@+id/Price_maps" />
 
         <TextView
             android:layout_width="wrap_content"
