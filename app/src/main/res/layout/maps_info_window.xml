@@ -7,8 +7,8 @@
     >
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/item_realestate_maps_window_layout"
         android:background="@drawable/background_shadow"
         android:gravity="center_vertical|center_horizontal"
@@ -27,7 +27,7 @@
 
         <ImageView
             android:layout_width="150sp"
-            android:layout_height="fill_parent"
+            android:layout_height="150sp"
             android:id="@+id/item_realestate_mainpic_maps"
             android:visibility="visible"
             android:layout_alignParentLeft="true"
@@ -35,8 +35,8 @@
             android:layout_above="@+id/Price_maps" />
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:id="@+id/item_realestate_progressbar_maps"
             android:visibility="visible"
             android:layout_above="@+id/Price_maps"
