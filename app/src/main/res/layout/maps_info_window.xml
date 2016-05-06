@@ -7,8 +7,8 @@
     >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="340sp"
+        android:layout_height="150sp"
         android:id="@+id/item_realestate_maps_window_layout"
         android:background="@drawable/background_shadow"
         android:gravity="center_vertical|center_horizontal"
@@ -124,7 +124,9 @@
             android:layout_alignParentEnd="true"
             android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
             android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:layout_margin="10sp">
+            android:layout_margin="10sp"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical|center_horizontal">
 
             <ImageView
                 android:src="@drawable/list_size"
@@ -169,23 +171,6 @@
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
 
-            <ImageView
-                android:src="@drawable/list_balcony"
-                android:layout_width="wrap_content"
-                android:layout_height="22sp"
-                android:id="@+id/list_balcony_imageview_maps"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <ImageView
-                android:src="@drawable/list_parking"
-                android:layout_width="wrap_content"
-                android:layout_height="22sp"
-                android:id="@+id/list_parking_imageview_maps"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
         </LinearLayout>
     </RelativeLayout>
 
