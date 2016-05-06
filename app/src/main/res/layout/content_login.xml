@@ -29,7 +29,7 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:visibility="visible"
-        >
+        android:layout_centerInParent="true">
 
 
         <LinearLayout

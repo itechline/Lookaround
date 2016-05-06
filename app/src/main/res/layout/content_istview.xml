@@ -51,7 +51,7 @@
             android:background="@drawable/spinner_border"
             android:layout_toLeftOf="@+id/show_only_CSOK_textView"
             android:layout_toStartOf="@+id/show_only_CSOK_textView"
-            android:layout_margin="2sp"
+            android:layout_margin="3sp"
             android:layout_centerVertical="true">
             <Spinner
                 android:layout_width="wrap_content"
