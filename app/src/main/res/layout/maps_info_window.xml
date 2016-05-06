@@ -14,40 +14,34 @@
         android:gravity="center_vertical|center_horizontal"
         android:layout_margin="15sp">
 
-
-
-
-
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Arany János utca"
-            android:id="@+id/item_realestate_adress2"
+            android:id="@+id/item_realestate_adress2_maps"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_below="@+id/linearLayout2_maps"
+            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
+            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
             android:layout_marginLeft="5sp" />
 
         <ImageView
             android:layout_width="150sp"
             android:layout_height="fill_parent"
-            android:id="@+id/item_realestate_mainpic"
+            android:id="@+id/item_realestate_mainpic_maps"
             android:visibility="visible"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/Price" />
+            android:layout_above="@+id/Price_maps" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/item_realestate_progressbar"
+            android:id="@+id/item_realestate_progressbar_maps"
             android:visibility="visible"
-            android:layout_above="@+id/Price"
+            android:layout_above="@+id/Price_maps"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/item_realestate_adress2"
+            android:layout_toLeftOf="@+id/item_realestate_adress2_maps"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -56,7 +50,7 @@
             android:layout_height="30sp"
             android:text="28.560.000 HUF"
             android:textStyle="bold"
-            android:id="@+id/Price"
+            android:id="@+id/Price_maps"
             android:background="#0066cc"
             android:textColor="#ffffff"
             android:padding="2sp"
@@ -64,8 +58,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/relativeLayout3"
-            android:layout_toStartOf="@+id/relativeLayout3" />
+            android:layout_toLeftOf="@+id/descript_relativeLayout_maps"
+            android:layout_toStartOf="@+id/descript_relativeLayout_maps" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -74,9 +68,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:id="@+id/linearLayout2"
+            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
+            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
+            android:id="@+id/linearLayout2_maps"
             android:layout_marginRight="5sp">
 
             <TextView
@@ -84,11 +78,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Budapest V. kerület"
-                android:id="@+id/item_realestate_adress1"
+                android:id="@+id/item_realestate_adress1_maps"
                 android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/item_realestate_isfavourite"
-                android:layout_toRightOf="@+id/item_realestate_mainpic"
-                android:layout_toEndOf="@+id/item_realestate_mainpic"
+                android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
+                android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:layout_margin="5sp" />
@@ -98,46 +91,46 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
+            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
             android:layout_marginRight="5sp"
-            android:id="@+id/relativeLayout3"
-            android:layout_below="@+id/icons_linera_layout">
+            android:id="@+id/descript_relativeLayout_maps"
+            android:layout_below="@+id/icons_linera_layout_maps">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="ide jön valami amit majd kitalálunk"
-                android:id="@+id/item_realestate_description"
+                android:id="@+id/item_realestate_description_maps"
                 android:layout_gravity="center_horizontal"
                 android:maxLines="4"
                 android:ellipsize="end"
-                android:layout_below="@+id/item_realestate_adress2"
+                android:layout_below="@+id/item_realestate_adress2_maps"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/item_realestate_adress2"
-                android:layout_alignStart="@+id/item_realestate_adress2"
+                android:layout_alignLeft="@+id/item_realestate_adress2_maps"
+                android:layout_alignStart="@+id/item_realestate_adress2_maps"
                 android:layout_margin="5sp" />
 
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/icons_linera_layout"
+            android:id="@+id/icons_linera_layout_maps"
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_realestate_adress2"
+            android:layout_below="@+id/item_realestate_adress2_maps"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
+            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
             android:layout_margin="10sp">
 
             <ImageView
                 android:src="@drawable/list_size"
                 android:layout_width="wrap_content"
                 android:layout_height="22sp"
-                android:id="@+id/list_size_imageview"
+                android:id="@+id/list_size_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
@@ -147,14 +140,14 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="100"
-                android:id="@+id/list_size_textView"
+                android:id="@+id/list_size_textView_maps"
                 android:layout_margin="5sp" />
 
             <ImageView
                 android:src="@drawable/list_roomcount"
                 android:layout_width="wrap_content"
                 android:layout_height="22sp"
-                android:id="@+id/list_roomcount_imageview"
+                android:id="@+id/list_roomcount_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
@@ -164,14 +157,14 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="3"
-                android:id="@+id/list_roomcount_textView"
+                android:id="@+id/list_roomcount_textView_maps"
                 android:layout_margin="5sp" />
 
             <ImageView
                 android:src="@drawable/list_furniture"
                 android:layout_width="wrap_content"
                 android:layout_height="22sp"
-                android:id="@+id/list_furniture_imageview"
+                android:id="@+id/list_furniture_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
@@ -180,7 +173,7 @@
                 android:src="@drawable/list_balcony"
                 android:layout_width="wrap_content"
                 android:layout_height="22sp"
-                android:id="@+id/list_balcony_imageview"
+                android:id="@+id/list_balcony_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
@@ -189,7 +182,7 @@
                 android:src="@drawable/list_parking"
                 android:layout_width="wrap_content"
                 android:layout_height="22sp"
-                android:id="@+id/list_parking_imageview"
+                android:id="@+id/list_parking_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="2sp" />
