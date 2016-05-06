@@ -22,7 +22,7 @@
             android:choiceMode="singleChoice"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/relativeLayout2"
-            >
+            android:gravity="fill_horizontal|fill_vertical">
 
         </GridView>
 
