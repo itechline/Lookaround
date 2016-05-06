@@ -41,10 +41,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -57,14 +55,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.CalendarAdapter;
@@ -224,6 +219,10 @@ public class MainActivity extends AppCompatActivity
         setCalendar(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
     }
+
+
+
+
 
     int whichYear = Calendar.YEAR;
     int whichMonth = Calendar.MONTH;
@@ -913,10 +912,45 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public String estateTitle;
+    public String estateDescription;
+    public int advertType;
+    public String estatePrice;
+    public String estateCity;
+    public String estateStreet;
+    public String estetaHouseNumber;
+    public String estateSize;
+
+
+
+
+
+
+
+    private boolean isValidString(String string) {
+        if (string != null && string.length() != 0) {
+            return true;
+        }
+        return false;
+    }
+
 private int whichAddestatePage = 0;
+
     public void nextAddestatePage(View view) {
         if (whichAddestatePage < 4) {
             whichAddestatePage += 1;
+            switch (whichAddestatePage) {
+                case 1:
+                    TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
+                    TextView description = (TextView) findViewById(R.id.advert_description_edittext);
+                    TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
+                    TextView city = (TextView) findViewById(R.id.add_advert_city_edittext);
+                    break;
+            }
+
+
+
+
             setAddestatePageIndicator(whichAddestatePage);
             switchLayoutToAddEstate(whichAddestatePage);
         }

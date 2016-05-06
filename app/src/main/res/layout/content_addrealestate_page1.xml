@@ -245,7 +245,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/add_advert_price_edittext"
+                android:id="@+id/add_advert_city_edittext"
                 android:layout_below="@+id/add_advert_price_textview"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
