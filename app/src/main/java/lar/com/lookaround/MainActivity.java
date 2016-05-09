@@ -45,6 +45,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -986,7 +987,7 @@ public class MainActivity extends AppCompatActivity
 private int whichAddestatePage = 0;
 
     public void nextAddestatePage(View view) {
-        if (whichAddestatePage < 4) {
+        if (whichAddestatePage < 5) {
             whichAddestatePage += 1;
             boolean isFilledOut = true;
             switch (whichAddestatePage) {
@@ -1183,6 +1184,14 @@ private int whichAddestatePage = 0;
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
+                                                 if (!(boolean) result) {
+                                                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                                                     switchLayoutTo(ESTATESLIST);
+                                                     Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
+                                                 } else {
+                                                     showAlertError("Sikertelen");
+
+                                                 }
 
                                              }
                                          }, estateSize, postalCode, estateCity, estateStreet, estateDescription, estatePrice,
@@ -1300,6 +1309,21 @@ private int whichAddestatePage = 0;
         }
 
     }
+
+    public void showAlertError(String message) {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("HIBA")
+                .create();
+        myAlert.show();
+    }
+
 
     public void showAlert() {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
