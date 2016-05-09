@@ -74,6 +74,13 @@
             />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/igazisztas_rlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/swipeContainer"
+        android:layout_centerHorizontal="true"></RelativeLayout>
+
 </RelativeLayout>
 
 
