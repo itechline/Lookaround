@@ -85,7 +85,10 @@ public class SpinnerUtil {
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
+                            Log.d("HIRDETES_JSONARRAY", jsonArray.toString());
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
@@ -94,6 +97,7 @@ public class SpinnerUtil {
 
                                 hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
                             }
+                            Log.d("HIRDETESTIPUSA_2: ", hiredtestipusa.toString());
                             getBackWhenItsDone.parseRerult(hiredtestipusa);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -123,6 +127,8 @@ public class SpinnerUtil {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
@@ -163,6 +169,8 @@ public class SpinnerUtil {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
 
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 int idJson = json_data.getInt(ETAN_ID);
@@ -201,6 +209,8 @@ public class SpinnerUtil {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
@@ -243,6 +253,8 @@ public class SpinnerUtil {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
 
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 int idJson = json_data.getInt(KILATAS_ID);
@@ -284,6 +296,8 @@ public class SpinnerUtil {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
 
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 int idJson = json_data.getInt(PARKOLAS_ID);
@@ -323,6 +337,8 @@ public class SpinnerUtil {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
@@ -365,6 +381,8 @@ public class SpinnerUtil {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
 
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 int idJson = json_data.getInt(INGATLAN_TIPUS_ID);
@@ -404,6 +422,8 @@ public class SpinnerUtil {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject json_data = jsonArray.getJSONObject(i);

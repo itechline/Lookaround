@@ -32,12 +32,14 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
         // Get the data item for this position
         final SpinnerUtil spinnerUtil = getItem(position);
 
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_spinner_simple, parent, false);
         }
 
         TextView text1 = (TextView) convertView.findViewById(android.R.id.text1);
+
         if (text1.getText().length() == 0) {
             text1.setText(spinnerUtil.getName());
             Log.d("SPINNER_GETVIEW", spinnerUtil.getName());
@@ -69,6 +71,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerUtil> implements ThemedS
             LayoutInflater inflater = mDropDownHelper.getDropDownViewInflater();
             convertView = inflater.inflate(R.layout.item_spinner_dropdown, parent, false);
         }
+
 
         TextView text1 = (TextView) convertView.findViewById(R.id.dropdown_text);
         text1.setText(spinnerUtil.getName());

@@ -1052,12 +1052,12 @@ private int whichAddestatePage = 0;
                     }
 
                     if (hirdetesSpinner_int == 0) {
-                        //hirdetesSpinner.setBackgroundColor(0xFFFF0000);
-                        //hirdetesSpinner.invalidate();
+                        hirdetesSpinner.setBackgroundColor(0xFFFF0000);
+                        hirdetesSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        //hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
-                        //hirdetesSpinner.invalidate();
+                        hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
+                        hirdetesSpinner.invalidate();
                     }
 
                     if (isFilledOut) {
@@ -1067,9 +1067,11 @@ private int whichAddestatePage = 0;
                         List<Address> list = null;
                         try {
                             list = gc.getFromLocationName(asd, 1);
-                            Address add = list.get(0);
-                            lat = add.getLatitude();
-                            lng = add.getLongitude();
+                            if (!list.isEmpty()) {
+                                Address add = list.get(0);
+                                lat = add.getLatitude();
+                                lng = add.getLongitude();
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -1083,35 +1085,75 @@ private int whichAddestatePage = 0;
 
                 case 2:
                     if (szobaszamSpinner_int == 0) {
+                        szobaszamSpinner.setBackgroundColor(0xFFFF0000);
+                        szobaszamSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        szobaszamSpinner.setBackgroundColor(0xFFFFFFFF);
+                        szobaszamSpinner.invalidate();
                     }
 
                     if (allapotSpinner_int == 0) {
+                        allapotSpinner.setBackgroundColor(0xFFFF0000);
+                        allapotSpinner.invalidate();
                         isFilledOut = false;
+                    } else  {
+                        allapotSpinner.setBackgroundColor(0xFFFFFFFF);
+                        allapotSpinner.invalidate();
                     }
 
                     if (emeletekSpinner_int == 0) {
+                        emeletekSpinner.setBackgroundColor(0xFFFF0000);
+                        emeletekSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        emeletekSpinner.setBackgroundColor(0xFFFFFFFF);
+                        emeletekSpinner.invalidate();
                     }
 
                     if (ingatlanTipusSpinner_int == 0) {
+                        ingatlanTipusSpinner.setBackgroundColor(0xFFFF0000);
+                        ingatlanTipusSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        ingatlanTipusSpinner.setBackgroundColor(0xFFFFFFFF);
+                        ingatlanTipusSpinner.invalidate();
                     }
 
                     if (parkolasSpinner_int == 0) {
+                        parkolasSpinner.setBackgroundColor(0xFFFF0000);
+                        parkolasSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        parkolasSpinner.setBackgroundColor(0xFFFFFFFF);
+                        parkolasSpinner.invalidate();
                     }
 
                     if (futesSpinner_int == 0) {
+                        futesSpinner.setBackgroundColor(0xFFFF0000);
+                        futesSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        futesSpinner.setBackgroundColor(0xFFFFFFFF);
+                        futesSpinner.invalidate();
                     }
 
                     if (energiaSpinner_int == 0) {
+                        energiaSpinner.setBackgroundColor(0xFFFF0000);
+                        energiaSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        energiaSpinner.setBackgroundColor(0xFFFFFFFF);
+                        energiaSpinner.invalidate();
                     }
 
                     if (kilatasSpinner_int == 0) {
+                        kilatasSpinner.setBackgroundColor(0xFFFF0000);
+                        kilatasSpinner.invalidate();
                         isFilledOut = false;
+                    } else {
+                        kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
+                        kilatasSpinner.invalidate();
                     }
 
                     if (isFilledOut) {
@@ -1133,11 +1175,11 @@ private int whichAddestatePage = 0;
                     //TODO: bútor spinner, erkély spinner, irszám kiszámítása
 
                     EstateUtil.addEstate(new SoapObjectResult() {
-                        @Override
-                        public void parseRerult(Object result) {
+                                             @Override
+                                             public void parseRerult(Object result) {
 
-                        }
-                    }, estateSize, "4300", estateCity, estateStreet, estateDescription, estatePrice,
+                                             }
+                                         }, estateSize, "4300", estateCity, estateStreet, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), "1", String.valueOf(kilatasSpinner_int), "1",
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), "1", String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat));
@@ -1554,7 +1596,6 @@ private int whichAddestatePage = 0;
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
             EstateUtil estateUtil = adapter.getItem(position);
-            //estateUtil.getId();
 
             final TextView price = (TextView) findViewById(R.id.item_realestate_price);
             final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
@@ -1569,8 +1610,6 @@ private int whichAddestatePage = 0;
 
             final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
-
-
             //ingatlan_varos parking_realestate_value
             //ingatlan_utca
             //ingatlan_rovidleiras
@@ -1578,15 +1617,15 @@ private int whichAddestatePage = 0;
             //kedvenc (bool)
             //kepek (array)
 
-
             EstateUtil.getEstate(new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
+                    Log.d("GET_ESTATE Result: ", result.toString());
                     JSONObject obj = (JSONObject)result;
                     //obj.getString("")
                     try {
-                        item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
 
+                        item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
 
                         Locale locale = new Locale("en", "UK");
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
