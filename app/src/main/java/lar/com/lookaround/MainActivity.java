@@ -1170,8 +1170,11 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 4:
+                    setAddestatePageIndicator(whichAddestatePage);
+                    switchLayoutToAddEstate(whichAddestatePage);
+                    break;
 
-
+                case 5:
                     //TODO: bútor spinner, erkély spinner, irszám kiszámítása
 
                     EstateUtil.addEstate(new SoapObjectResult() {
