@@ -14,6 +14,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -62,6 +64,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.CalendarAdapter;
@@ -958,6 +961,9 @@ public class MainActivity extends AppCompatActivity
     public String estetaHouseNumber;
     public String estateSize;
 
+    public double lat;
+    public double lng;
+
 
 
 
@@ -970,6 +976,10 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         return false;
+    }
+
+
+    public void addEstate(View view) {
     }
 
 private int whichAddestatePage = 0;
@@ -1051,6 +1061,19 @@ private int whichAddestatePage = 0;
                     }
 
                     if (isFilledOut) {
+                        Geocoder gc = new Geocoder(this);
+
+                        String asd = estateCity + " " + estateStreet;
+                        List<Address> list = null;
+                        try {
+                            list = gc.getFromLocationName(asd, 1);
+                            Address add = list.get(0);
+                            lat = add.getLatitude();
+                            lng = add.getLongitude();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                         setAddestatePageIndicator(whichAddestatePage);
                         switchLayoutToAddEstate(whichAddestatePage);
                     } else {
@@ -1059,18 +1082,6 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 2:
-                    /*
-                    int hirdetesSpinner_int = 0;
-                    int szobaszamSpinner_int = 0;
-                    int allapotSpinner_int = 0;
-                    int emeletekSpinner_int = 0;
-                    int ingatlanTipusSpinner_int = 0;
-                    int parkolasSpinner_int = 0;
-                    int futesSpinner_int = 0;
-                    int energiaSpinner_int = 0;
-                    int kilatasSpinner_int = 0;
-                     */
-
                     if (szobaszamSpinner_int == 0) {
                         isFilledOut = false;
                     }
@@ -1110,12 +1121,28 @@ private int whichAddestatePage = 0;
                         whichAddestatePage = 1;
                     }
                     break;
+
+                case 3:
+                    setAddestatePageIndicator(whichAddestatePage);
+                    switchLayoutToAddEstate(whichAddestatePage);
+                    break;
+
+                case 4:
+
+
+                    //TODO: bútor spinner, erkély spinner, irszám kiszámítása
+
+                    EstateUtil.addEstate(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+
+                        }
+                    }, estateSize, "4300", estateCity, estateStreet, estateDescription, estatePrice,
+                            String.valueOf(energiaSpinner_int), "1", String.valueOf(kilatasSpinner_int), "1",
+                            String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), "1", String.valueOf(ingatlanTipusSpinner_int),
+                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat));
+                    break;
             }
-
-
-
-
-
         }
     }
 

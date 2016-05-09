@@ -273,7 +273,10 @@ public class EstateUtil {
 
 
 
-    public static void addEstate(final SoapObjectResult getBackWhenItsDone, String meret, String irszam, String varos, String utca, String leiras, String ar, String energia) {
+    public static void addEstate(final SoapObjectResult getBackWhenItsDone, String meret, String irszam, String varos,
+                                 String utca, String leiras, String ar, String energia, String butor, String kilatas,
+                                 String lift, String futes, String parkolas, String erkely, String tipus, String emelet,
+                                 String allapot, String szobaszam, String lng, String lat) {
         try {
             String url = "http://lookrnd.me/dev/api/add_estate";
 
@@ -285,8 +288,7 @@ public class EstateUtil {
             postadatok.put("ingatlan_rovidleiras", leiras);
             postadatok.put("ingatlan_ar", ar);
             postadatok.put("ingatlan_energiatan_id", energia);
-
-            /*postadatok.put("ingatlan_butorozott", butor);
+            postadatok.put("ingatlan_butorozott", butor);
             postadatok.put("ingatlan_kilatas_id", kilatas);
             postadatok.put("ingatlan_lift", lift);
             postadatok.put("ingatlan_futestipus_id", futes);
@@ -296,61 +298,23 @@ public class EstateUtil {
             postadatok.put("ingatlan_emelet_id", emelet);
             postadatok.put("ingatlan_allapot_id", allapot);
             postadatok.put("ingatlan_szsz_id", szobaszam);
-
             postadatok.put("ingatlan_lng", lng);
-            postadatok.put("ingatlan_lat", lat);*/
+            postadatok.put("ingatlan_lat", lat);
 
 
 
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("listEstates", "Return: " + result);
+                    Log.d("ADDESTATE: ", "Return: " + result);
 
                     if (result != null) {
                         try {
+                            JSONObject jsonObject = new JSONObject(result);
 
-                            /*JSONObject jsonObj = new JSONObject(result);
+                            Object isSuccesfull = jsonObject.getBoolean("error");
 
-
-
-
-                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
-                            if ((boolean)isAbleObj) {
-                                String token = jsonObj.getString(TOKEN);
-                                SettingUtil.setToken(ctx, token);
-                            }
-
-                            getBackWhenItsDone.parseRerult(isAbleObj);*/
-
-                            JSONArray jsonArray = new JSONArray(result);
-                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
-                            //Log.d("listEstatesArray", "Return: " + jsonArray.toString());
-                            ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
-
-                            for(int i=0;i<jsonArray.length();i++){
-                                //estates.add(new EstateUtil(jsonArray.getInt(INGATLAN_ID)));
-                                JSONObject json_data = jsonArray.getJSONObject(i);
-                                int idJson = json_data.getInt(INGATLAN_ID);
-                                String adressJson = json_data.getString(INGATLAN_VAROS);
-                                String streetJson = json_data.getString(INGATLAN_UTCA);
-                                String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
-                                int priceJson = json_data.getInt(INGATLAN_AR);
-                                boolean isFav = json_data.getBoolean(ISFAVOURITE);
-                                String url = json_data.getString(INGATLAN_PIC_URL);
-
-
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, url));
-                                Log.d("LOFASZ", "Return: " + idJson);
-
-                                if (idJson > largestId) {
-                                    largestId = idJson;
-                                    Log.d("LOFASZ_largestId", "Return: " + largestId);
-                                }
-                            }
-
-
-                            getBackWhenItsDone.parseRerult(estates);
+                            getBackWhenItsDone.parseRerult(isSuccesfull);
 
 
 
