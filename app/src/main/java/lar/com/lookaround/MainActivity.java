@@ -960,6 +960,7 @@ public class MainActivity extends AppCompatActivity
     public String estateStreet;
     public String estetaHouseNumber;
     public String estateSize;
+    public String postalCode;
 
     public double lat;
     public double lng;
@@ -1067,8 +1068,10 @@ private int whichAddestatePage = 0;
                         List<Address> list = null;
                         try {
                             list = gc.getFromLocationName(asd, 1);
+
                             if (!list.isEmpty()) {
                                 Address add = list.get(0);
+                                postalCode = String.valueOf(list.get(0).getPostalCode());
                                 lat = add.getLatitude();
                                 lng = add.getLongitude();
                             }
@@ -1175,14 +1178,14 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 5:
-                    //TODO: bútor spinner, erkély spinner, irszám kiszámítása
+                    //TODO: bútor spinner, erkély spinner
 
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
 
                                              }
-                                         }, estateSize, "4300", estateCity, estateStreet, estateDescription, estatePrice,
+                                         }, estateSize, postalCode, estateCity, estateStreet, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), "1", String.valueOf(kilatasSpinner_int), "1",
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), "1", String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat));
