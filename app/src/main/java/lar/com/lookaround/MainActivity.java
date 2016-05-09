@@ -1,6 +1,8 @@
 package lar.com.lookaround;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -55,6 +57,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.hkm.slider.SliderLayout;
+import com.hkm.slider.SliderTypes.BaseSliderView;
+import com.hkm.slider.SliderTypes.DefaultSliderView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -182,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         // TODO: do it in XML
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        //loadEstateImages();
+
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -224,6 +230,8 @@ public class MainActivity extends AppCompatActivity
         Calendar now = Calendar.getInstance();
 
         setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
+
+        loadEstateImages();
 
     }
 
@@ -1065,10 +1073,10 @@ private int whichAddestatePage = 0;
                     if (isFilledOut) {
                         Geocoder gc = new Geocoder(this);
 
-                        String asd = estateCity + " " + estateStreet;
+                        String fullAdress = estateCity + " " + estateStreet;
                         List<Address> list = null;
                         try {
-                            list = gc.getFromLocationName(asd, 1);
+                            list = gc.getFromLocationName(fullAdress, 1);
 
                             if (!list.isEmpty()) {
                                 Address add = list.get(0);
@@ -1189,7 +1197,7 @@ private int whichAddestatePage = 0;
                                                      switchLayoutTo(ESTATESLIST);
                                                      Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
                                                  } else {
-                                                     showAlertError("Sikertelen");
+                                                     showAlertError("Sikertelen feltöltés");
 
                                                  }
 
@@ -1583,7 +1591,7 @@ private int whichAddestatePage = 0;
 
 
 
-    /*public void loadEstateImages() {
+    public void loadEstateImages() {
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
         //final List<String> urls = slideImageURLLists();
@@ -1619,7 +1627,7 @@ private int whichAddestatePage = 0;
             //sliderLayout.destroyDrawingCache();
         }
 
-    }*/
+    }
 
     private class ItemList implements AdapterView.OnItemClickListener {
 
@@ -1706,23 +1714,45 @@ private int whichAddestatePage = 0;
                 listView.setOnItemClickListener(new ItemList());
                 final int mPosition=0;
                 final int mOffset=0;
-                final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
+                //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
+                final View asdf = (View) findViewById(R.id.sorting_estates_relativeLayout);
 
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+
+
+
                         int position = listView.getFirstVisiblePosition();
                         View v = listView.getChildAt(0);
                         int offset = (v == null) ? 0 : v.getTop();
 
                         if (mPosition < position || (mPosition == position && mOffset < offset)){
                             // Scrolled up
-                            csakcsok.setVisibility(View.GONE);
+                            asdf.animate()
+                                    .translationY(0)
+                                    .alpha(0.0f)
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                            asdf.setVisibility(View.GONE);
+                                        }
+                                    });
 
                         } else {
                             // Scrolled down
-                            csakcsok.setVisibility(View.VISIBLE);
-
+                            asdf.animate()
+                                    .translationY(asdf.getHeight()-75)
+                                    .alpha(1.0f)
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                            asdf.setVisibility(View.VISIBLE);
+                                        }
+                                    });
                         }
                     }
 
