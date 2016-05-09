@@ -269,5 +269,7 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
 
+    <string name="send_message">Üzenet írása...</string>
+
 
 </resources>
