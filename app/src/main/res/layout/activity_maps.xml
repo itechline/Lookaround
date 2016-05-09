@@ -6,4 +6,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="lar.com.lookaround.MapsActivity"
-    tools:showIn="@layout/app_bar_maps"/>
+    tools:showIn="@layout/app_bar_maps"
+    />
