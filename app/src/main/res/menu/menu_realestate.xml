@@ -2,9 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_phone"
+        android:id="@+id/action_calendar"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        android:icon="@drawable/ic_action_phone_test"
+        android:icon="@drawable/ic_action_idopontfoglalas"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_message"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_action_uzenet"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_fav"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_action_heart_content"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_action_megosztas"
+        app:showAsAction="always"
+        android:actionProviderClass="android.widget.ShareActionProvider" />
 </menu>

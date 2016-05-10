@@ -67,7 +67,7 @@ public class MessageAdapter extends ArrayAdapter<MessageUtil> {
         //Log.e("KURVAFASZA", "1");
 
         // Get the data item for this position
-        final MessageUtil estate = getItem(position);
+        final MessageUtil message = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {

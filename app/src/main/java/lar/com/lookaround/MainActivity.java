@@ -54,6 +54,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -179,6 +180,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab_phone.setVisibility(View.INVISIBLE);
+        fab_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:06304979787"));
+                startActivity(intent);
+            }
+        });
+
         /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -235,7 +248,6 @@ public class MainActivity extends AppCompatActivity
         setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
         loadEstateImages();
-
     }
 
 
@@ -1362,247 +1374,6 @@ private int whichAddestatePage = 0;
         myAlert.show();
     }
 
-    public void spinnerCreator() {
-        typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
-        typespinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_type_spinner_array, android.R.layout.simple_spinner_item);
-        typespinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeSpinner.setAdapter(typespinnerAdapter);
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-        localSpinner = (Spinner)findViewById(R.id.realestate_localisation_spinner);
-        localSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_local_spinner_array, android.R.layout.simple_spinner_item);
-        localSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        localSpinner.setAdapter(localSpinnerAdapter);
-        localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        minfloorSpinner = (Spinner)findViewById(R.id.realestate_floors_min_spinner);
-        minfloorSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_floors_min_array, android.R.layout.simple_spinner_item);
-        minfloorSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        minfloorSpinner.setAdapter(minfloorSPAdapter);
-        minfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        maxfloorSpinner = (Spinner)findViewById(R.id.realestate_floors_max_spinner);
-        maxfloorSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_floors_max_array, android.R.layout.simple_spinner_item);
-        maxfloorSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        maxfloorSpinner.setAdapter(maxfloorSPAdapter);
-        maxfloorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        minroomsSpinner = (Spinner)findViewById(R.id.realestate_roomcount_min_spinner);
-        minroomsSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_rooms_min_array, android.R.layout.simple_spinner_item);
-        minroomsSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        minroomsSpinner.setAdapter(minroomsSPAdapter);
-        minroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        maxroomsSpinner = (Spinner)findViewById(R.id.realestate_roomcount_max_spinner);
-        maxroomsSPAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_rooms_max_array, android.R.layout.simple_spinner_item);
-        maxroomsSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        maxroomsSpinner.setAdapter(maxroomsSPAdapter);
-        maxroomsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        elevatorSpinner = (Spinner)findViewById(R.id.realestate_elevator_spinner);
-        elevatorSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_elevator_array, android.R.layout.simple_spinner_item);
-        elevatorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        elevatorSpinner.setAdapter(elevatorSpinnerAdapter);
-        elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        balconySpinner = (Spinner)findViewById(R.id.realestate_balcony_spinner);
-        balconySpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_balcony_array, android.R.layout.simple_spinner_item);
-        balconySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        balconySpinner.setAdapter(balconySpinnerAdapter);
-        balconySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        iheightSpinner = (Spinner)findViewById(R.id.realestate_size_spinner);
-        iheightSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.realestate_innerheight_array, android.R.layout.simple_spinner_item);
-        iheightSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        iheightSpinner.setAdapter(iheightSpinnerAdapter);
-        iheightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        bathroomwcSpinner = (Spinner)findViewById(R.id.view_type_realestate_spinner);
-        bathroomwcSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.bathroom_wc_array, android.R.layout.simple_spinner_item);
-        bathroomwcSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bathroomwcSpinner.setAdapter(bathroomwcSpinnerAdapter);
-        bathroomwcSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        aircondiSpinner = (Spinner)findViewById(R.id.hasfurniture_spinner);
-        aircondiSPAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
-        aircondiSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        aircondiSpinner.setAdapter(aircondiSPAdapter);
-        aircondiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        gardenRSpinner = (Spinner)findViewById(R.id.parking_type_spinner);
-        gardenRSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.mindegy_van_nincs_array, android.R.layout.simple_spinner_item);
-        gardenRSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gardenRSpinner.setAdapter(gardenRSpinnerAdapter);
-        gardenRSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        conditionSpinner = (Spinner)findViewById(R.id.condition_spinner);
-        conditionSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.condition_array, android.R.layout.simple_spinner_item);
-        conditionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        conditionSpinner.setAdapter(conditionSpinnerAdapter);
-        conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        atticSpinner = (Spinner)findViewById(R.id.attic_spinner);
-        atticSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.attic_array, android.R.layout.simple_spinner_item);
-        atticSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        atticSpinner.setAdapter(atticSpinnerAdapter);
-        atticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-        advertTypeSpinner = (Spinner)findViewById(R.id.add_advert_type_spinner);
-        advertTypeSPAdapter = ArrayAdapter.createFromResource(this, R.array.advert_tpye_array, android.R.layout.simple_spinner_item);
-        advertTypeSPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        advertTypeSpinner.setAdapter(advertTypeSPAdapter);
-        advertTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-    }
-
 
 
     public void loadEstateImages() {
@@ -1696,6 +1467,13 @@ private int whichAddestatePage = 0;
 
                 }
             }, String.valueOf(estateUtil.getId()), SettingUtil.getToken(getBaseContext()));
+
+
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setVisibility(View.INVISIBLE);
+
+            final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+            fab_phone.setVisibility(View.VISIBLE);
 
             prewView = viewFlip.getDisplayedChild();
             switchLayoutTo(CONTENTESTATE);
@@ -1811,11 +1589,18 @@ private int whichAddestatePage = 0;
         } else {
             super.onBackPressed();
         }*/
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+
         switch (viewFlip.getDisplayedChild()) {
+
             case ESTATESLIST:
                 if (isShowingFavorites) {
                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 }
+
+                fab.setVisibility(View.VISIBLE);
+
 
 
                 break;
@@ -1823,6 +1608,9 @@ private int whichAddestatePage = 0;
                 //findViewById(R.id.estateListView).invalidate();
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 switchLayoutTo(prewView);
+
+                fab.setVisibility(View.VISIBLE);
+                fab_phone.setVisibility(View.INVISIBLE);
                 //loadRealEstates("0", "0");
                 break;
             case ADDESTATE:
@@ -1832,12 +1620,13 @@ private int whichAddestatePage = 0;
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 }
                 switchLayoutTo(prewView);
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 fab.setVisibility(View.VISIBLE);
                 break;
             default:
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 switchLayoutTo(ESTATESLIST);
+                fab.setVisibility(View.VISIBLE);
+                fab_phone.setVisibility(View.INVISIBLE);
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -1868,6 +1657,7 @@ private int whichAddestatePage = 0;
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -1888,6 +1678,24 @@ private int whichAddestatePage = 0;
         if (id == R.id.action_map) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
         }
+
+        if (id == R.id.action_calendar) {
+            switchLayoutTo(BOOKING);
+        }
+
+        if (id == R.id.action_message) {
+            switchLayoutTo(MESSAGES);
+        }
+
+        if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
+        }
+
+
 
         if (id == android.R.id.home) {
             switch (viewFlip.getDisplayedChild()) {

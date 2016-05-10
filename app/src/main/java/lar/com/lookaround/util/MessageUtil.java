@@ -24,6 +24,8 @@ public class MessageUtil {
     private String profile_name;
     private String date;
 
+    private ArrayList messages;
+
     public String getProfile_url() {
         return profile_url;
     }
@@ -63,6 +65,13 @@ public class MessageUtil {
         this.date = date;
     }
 
+    public MessageUtil(String profile_url, ArrayList messages, String profile_name) {
+        this.profile_url = profile_url;
+        this.messages = messages;
+        this.profile_name = profile_name;
+
+    }
+
     public static void listMessages(final SoapObjectResult getBackWhenItsDone, String tokenTosend) {
         try {
             String url = "http://lookrnd.me/dev/api/list_messages";
@@ -89,7 +98,6 @@ public class MessageUtil {
                                 String date = json_data.getString("date");
 
                                 messages.add(new MessageUtil(url, msg, name, date));
-                                //Log.d("LOFASZ", "Return: " + idJson);
                             }
                             
                             getBackWhenItsDone.parseRerult(messages);
