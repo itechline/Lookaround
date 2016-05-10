@@ -54,7 +54,7 @@ public class MapsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        setTitle("My Map");
+        setTitle("Bonodom");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mapView = (MapView) findViewById(R.id.map);
@@ -102,7 +102,7 @@ public class MapsActivity extends AppCompatActivity {
         /*if(viewFlip.getDisplayedChild() == ESTATESLIST) {
             getMenuInflater().inflate(R.menu.main, menu);
         }*/
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.maps, menu);
         return true;
     }
 
