@@ -1698,6 +1698,8 @@ private int whichAddestatePage = 0;
 
 
         if (id == android.R.id.home) {
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
             switch (viewFlip.getDisplayedChild()) {
                 case ESTATESLIST:
                     if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -1720,15 +1722,18 @@ private int whichAddestatePage = 0;
                         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     }
                     switchLayoutTo(prewView);
-                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                     fab.setVisibility(View.VISIBLE);
                     break;
                 default:
-                    if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    /*if (drawer.isDrawerOpen(GravityCompat.START)) {
                         drawer.closeDrawer(GravityCompat.START);
                     } else {
                         drawer.openDrawer(GravityCompat.START);
-                    }
+                    }*/
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    switchLayoutTo(ESTATESLIST);
+                    fab.setVisibility(View.VISIBLE);
+                    fab_phone.setVisibility(View.INVISIBLE);
                     break;
             }
             return true;
