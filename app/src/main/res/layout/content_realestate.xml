@@ -3,12 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.hkm.slider.SliderLayout
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="250sp"
-        />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,23 +13,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/item_scv_relative_layout"
             >
-            <ImageView
-                android:src="@drawable/estate"
-                android:layout_width="match_parent"
-                android:layout_height="300sp"
-                android:id="@+id/image_realestate_dtail"
-                android:layout_centerInParent="true"
-                android:layout_alignParentTop="true"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/item_realestate_profile_layout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_realestate_dtail">
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/slider">
 
                 <ImageView
                     android:src="@drawable/user_avatar"
@@ -413,6 +398,12 @@
                     android:layout_toLeftOf="@+id/text_offensive" />
 
             </RelativeLayout>
+
+            <com.hkm.slider.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="250sp"
+                />
 
 
         </RelativeLayout>
