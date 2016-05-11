@@ -1,6 +1,7 @@
 package lar.com.lookaround.util;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -31,10 +32,14 @@ public class AddImageUtil {
         this.id = id;
         this.bitmap = bitmap;
     }
+    private static ArrayList<AddImageUtil> images = new ArrayList<AddImageUtil>();
 
-    ArrayList<AddImageUtil> images = new ArrayList<AddImageUtil>();
-
-    public void addImage(int id, Bitmap bitmap) {
+    public static void addImage(int id, Bitmap bitmap) {
+        Log.d("IMAGE_", "ADDIMAGEUTIL");
         images.add(new AddImageUtil(id, bitmap));
+    }
+
+    public static ArrayList<AddImageUtil> getAllImages() {
+        return images;
     }
 }

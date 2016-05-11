@@ -51,9 +51,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -78,10 +81,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import lar.com.lookaround.adapters.AddImageAdapter;
 import lar.com.lookaround.adapters.CalendarAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.AddImageUtil;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.ScalingUtilities;
@@ -873,6 +878,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    int imageID = 0;
+    int camImageID = 0;
+    int galleryImageID = 0;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -881,12 +889,22 @@ public class MainActivity extends AppCompatActivity
             Uri uri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                //ScalingUtilities.createScaledBitmap(bitmap, 500, 500, ScalingUtilities.ScalingLogic.FIT);
 
-                ImageView imageView = (ImageView) findViewById(R.id.upload_image_imageview);
-                //imageView.setImageBitmap(bitmap);
-                imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
-            } catch (IOException e) {
+
+                AddImageUtil.addImage(galleryImageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
+
+                LinearLayout asdf = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
+
+                ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
+                AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
+
+                View asdfg = (View) adapter.getView(imageID, null, null);
+
+                asdf.addView(asdfg, galleryImageID);
+                imageID += 1;
+                galleryImageID += 1;
+
+                } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -899,9 +917,19 @@ public class MainActivity extends AppCompatActivity
             //itemView.findViewById(R.id.item_realestate_mainpic);
 
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            ImageView imageView = (ImageView) findViewById(R.id.add_campic_imageview);
-            imageView.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
+            Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
+            AddImageUtil.addImage(camImageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.FIT));
+
+            LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
+
+            ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
+            AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
+
+            View camImage = (View) adapter.getView(imageID, null, null);
+
+            linearLayoutCam.addView(camImage, camImageID);
+            imageID += 1;
+            camImageID += 1;
         }
     }
 
@@ -1045,7 +1073,9 @@ private int whichAddestatePage = 0;
                     estetaHouseNumber = num.getText().toString();
                     estateSize = size.getText().toString();
 
-                    if(!isValidString(estateTitle)) {
+
+                    //TODO: ellenörzést visszarakni
+                    /*if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
                         title.invalidate();
                         isFilledOut = false;
@@ -1094,7 +1124,7 @@ private int whichAddestatePage = 0;
                     } else {
                         hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
                         hirdetesSpinner.invalidate();
-                    }
+                    }*/
 
                     if (isFilledOut) {
                         Geocoder gc = new Geocoder(this);
@@ -1122,7 +1152,8 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 2:
-                    if (szobaszamSpinner_int == 0) {
+                    //TODO: ellenörzést visszarakni
+                    /*if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackgroundColor(0xFFFF0000);
                         szobaszamSpinner.invalidate();
                         isFilledOut = false;
@@ -1192,7 +1223,7 @@ private int whichAddestatePage = 0;
                     } else {
                         kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
                         kilatasSpinner.invalidate();
-                    }
+                    }*/
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
