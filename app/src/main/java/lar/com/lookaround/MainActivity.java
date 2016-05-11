@@ -1745,6 +1745,8 @@ private int whichAddestatePage = 0;
                     //findViewById(R.id.estateListView).invalidate();
                     supportInvalidateOptionsMenu();
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    fab.setVisibility(View.VISIBLE);
+                    fab_phone.setVisibility(View.INVISIBLE);
                     switchLayoutTo(ESTATESLIST);
                     //loadRealEstates("0", "0");
                     break;
@@ -1756,6 +1758,7 @@ private int whichAddestatePage = 0;
                     }
                     switchLayoutTo(prewView);
                     fab.setVisibility(View.VISIBLE);
+                    fab_phone.setVisibility(View.INVISIBLE);
                     break;
                 default:
                     /*if (drawer.isDrawerOpen(GravityCompat.START)) {
