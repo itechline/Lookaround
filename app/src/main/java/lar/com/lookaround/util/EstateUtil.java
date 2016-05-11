@@ -130,20 +130,6 @@ public class EstateUtil {
 
                     if (result != null) {
                         try {
-
-                            /*JSONObject jsonObj = new JSONObject(result);
-
-
-
-
-                            Object isAbleObj = jsonObj.getBoolean(LOGIN);
-                            if ((boolean)isAbleObj) {
-                                String token = jsonObj.getString(TOKEN);
-                                SettingUtil.setToken(ctx, token);
-                            }
-
-                            getBackWhenItsDone.parseRerult(isAbleObj);*/
-
                             JSONArray jsonArray = new JSONArray(result);
                             Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
                             //Log.d("listEstatesArray", "Return: " + jsonArray.toString());
