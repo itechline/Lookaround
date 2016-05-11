@@ -642,6 +642,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    Spinner enegigenyo;
 
     public void loadSearchSpinners() {
         SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
@@ -682,6 +683,33 @@ public class MainActivity extends AppCompatActivity
                 localSpinner.setAdapter(adapter);
 
                 localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
+
+        //ecertificate_search_spinner
+        SpinnerUtil.get_list_ingatlanenergia(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                enegigenyo = (Spinner) findViewById(R.id.ecertificate_search_spinner);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                enegigenyo.setAdapter(adapter);
+
+                enegigenyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
