@@ -586,7 +586,7 @@
                     android:layout_marginLeft="10sp"/>
 
                 <RelativeLayout
-                    android:id="@+id/attic_spinner_layout"
+                    android:id="@+id/ecertificate_spinner_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_energy_certificate_search"
@@ -597,7 +597,7 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp">
                     <Spinner
-                        android:id="@+id/attic_spinner"
+                        android:id="@+id/ecertificate_search_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -610,7 +610,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button_go"
                     android:id="@+id/search_button_go"
-                    android:layout_below="@+id/attic_spinner_layout"
+                    android:layout_below="@+id/ecertificate_spinner_layout"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/colorbutton"
                     android:textColor="#ffffff"
