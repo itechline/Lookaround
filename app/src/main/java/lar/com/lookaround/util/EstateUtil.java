@@ -320,4 +320,9 @@ public class EstateUtil {
         }
     }
 
+    public static void uploadImage() {
+
+
+    }
+
 }
