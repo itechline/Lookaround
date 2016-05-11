@@ -19,15 +19,5 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter" />
 
-        <ImageView
-            android:src="@drawable/admonitor_pirosiksz"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:id="@+id/item_delete_realestate_pic"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/item_add_realestate_pic_imageview"
-            android:layout_toEndOf="@+id/item_add_realestate_pic_imageview"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
     </RelativeLayout>
 </RelativeLayout>
