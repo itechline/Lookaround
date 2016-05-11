@@ -893,14 +893,15 @@ public class MainActivity extends AppCompatActivity
 
                 AddImageUtil.addImage(galleryImageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
 
-                LinearLayout asdf = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
+                LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
                 AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
-                View asdfg = (View) adapter.getView(imageID, null, null);
+                View galleryImage = (View) adapter.getView(imageID, null, null);
 
-                asdf.addView(asdfg, galleryImageID);
+                linearLayoutGallery.addView(galleryImage, galleryImageID);
+                linearLayoutGallery.setDividerPadding(0);
                 imageID += 1;
                 galleryImageID += 1;
 
@@ -928,6 +929,7 @@ public class MainActivity extends AppCompatActivity
             View camImage = (View) adapter.getView(imageID, null, null);
 
             linearLayoutCam.addView(camImage, camImageID);
+            linearLayoutCam.setDividerPadding(0);
             imageID += 1;
             camImageID += 1;
         }
