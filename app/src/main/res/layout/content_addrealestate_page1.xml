@@ -225,7 +225,8 @@
                 android:layout_below="@+id/add_advert_type_spinner_layout"
                 android:layout_above="@+id/add_advert_city_edittext"
                 android:layout_marginTop="5sp"
-                android:padding="3sp" />
+                android:padding="3sp"
+                android:numeric="decimal"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -346,7 +347,8 @@
                     android:layout_toEndOf="@+id/advert_type_textview"
                     android:layout_marginTop="5sp"
                     android:layout_marginRight="5sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    />
         </RelativeLayout>
 
     </RelativeLayout>
