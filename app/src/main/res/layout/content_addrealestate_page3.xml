@@ -114,8 +114,11 @@
                 <HorizontalScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/uploaded_images_layout">
-                <ImageView
+                    android:id="@+id/uploaded_images_layout"
+                    android:foregroundGravity="center_horizontal">
+
+
+                    <ImageView
                     android:src="@drawable/feltoltes"
                     android:layout_width="wrap_content"
                     android:layout_height="70sp"
@@ -157,20 +160,27 @@
                 <HorizontalScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/camera_images_layout">
+                    android:id="@+id/camera_images_layout"
+                    android:layout_gravity="center"
+                    android:fillViewport="false"
+                    android:foregroundGravity="center_horizontal">
 
-                <ImageView
+
+
+                    <ImageView
                     android:src="@drawable/fenykepezo"
                     android:layout_width="wrap_content"
                     android:layout_height="70sp"
                     android:id="@+id/add_campic_imageview"
                     android:layout_above="@+id/add_cam_pic_text"
-                    android:layout_centerHorizontal="true"
                     android:onClick="TakeImage"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:layout_margin="10sp"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_centerHorizontal="true" />
+
+
 
                 </HorizontalScrollView>
 
