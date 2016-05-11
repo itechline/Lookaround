@@ -110,6 +110,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerVertical="true">
+
+                <HorizontalScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/uploaded_images_layout">
                 <ImageView
                     android:src="@drawable/feltoltes"
                     android:layout_width="wrap_content"
@@ -122,6 +127,7 @@
                     android:layout_margin="10sp"
                     android:onClick="pickImage"
                     android:layout_gravity="center_horizontal" />
+                </HorizontalScrollView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,6 +154,11 @@
                     android:textAlignment="center"
                     android:layout_above="@+id/add_campic_imageview" />
 
+                <HorizontalScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/camera_images_layout">
+
                 <ImageView
                     android:src="@drawable/fenykepezo"
                     android:layout_width="wrap_content"
@@ -160,6 +171,8 @@
                     android:adjustViewBounds="true"
                     android:layout_margin="10sp"
                     android:layout_gravity="center_horizontal" />
+
+                </HorizontalScrollView>
 
                 <TextView
                     android:layout_width="wrap_content"
