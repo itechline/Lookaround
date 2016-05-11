@@ -57,12 +57,41 @@
                     />
 
                 <TextView
+                    android:id="@+id/keyword_realestate_search_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/keyword_search"
+                    android:layout_below="@+id/search_title_text"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="15sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginLeft="10sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/keyword_realestate_search_edittext"
+                    android:hint="@string/keyword_hint"
+                    android:layout_below="@+id/keyword_realestate_search_text"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:background="@drawable/spinner_border"
+                    android:padding="5sp"
+                    />
+
+                <TextView
                     android:id="@+id/price_realestate_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/price_search"
-                    android:layout_below="@+id/search_title_text"
+                    android:layout_below="@+id/keyword_realestate_search_edittext"
                     android:layout_alignParentLeft="true"
                     android:textSize="15sp"
                     android:layout_marginTop="5sp"
@@ -89,7 +118,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
                         android:hint="min"
-                        android:padding="5sp" />
+                        android:padding="5sp"
+                        android:textSize="12sp"/>
 
                     <EditText
                         android:id="@+id/realestate_price_edittext_max"
@@ -99,7 +129,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
                         android:hint="max"
-                        android:padding="5sp" />
+                        android:padding="5sp"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <TextView
