@@ -10,7 +10,6 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
-            android:src="@drawable/fenykepezo"
             android:layout_width="wrap_content"
             android:layout_height="70sp"
             android:id="@+id/item_add_realestate_pic_imageview"
