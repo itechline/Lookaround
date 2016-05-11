@@ -919,6 +919,9 @@ public class MainActivity extends AppCompatActivity
 
 
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
+
+
+
             AddImageUtil.addImage(camImageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
             LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
