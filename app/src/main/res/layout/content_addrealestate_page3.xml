@@ -126,12 +126,15 @@
                     >
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/uploaded_images_linearlayout"
                         android:orientation="horizontal"
                         android:measureWithLargestChild="false"
-                        android:gravity="center_horizontal">
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        >
 
 
                         <ImageView
@@ -143,8 +146,6 @@
                         android:layout_centerHorizontal="true"
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
-                            android:layout_marginTop="10sp"
-                            android:layout_marginBottom="10sp"
                         android:onClick="pickImage"
                         android:layout_gravity="center" />
                     </LinearLayout>
@@ -184,12 +185,15 @@
                     android:foregroundGravity="center_vertical|center_horizontal">
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/camera_images_linearlayout"
                         android:orientation="horizontal"
                         android:measureWithLargestChild="false"
-                        android:gravity="center_vertical|center_horizontal">
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        >
 
 
 
@@ -202,8 +206,6 @@
                         android:onClick="TakeImage"
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
-                            android:layout_marginTop="10sp"
-                            android:layout_marginBottom="10sp"
                         android:layout_gravity="center"
                         android:layout_centerHorizontal="true" />
 
