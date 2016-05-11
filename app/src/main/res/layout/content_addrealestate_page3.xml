@@ -109,27 +109,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal">
 
                 <HorizontalScrollView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/uploaded_images_layout"
-                    android:foregroundGravity="center_horizontal">
-
-
-                    <ImageView
-                    android:src="@drawable/feltoltes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70sp"
-                    android:id="@+id/upload_image_imageview"
-                    android:layout_alignParentTop="true"
+                    android:foregroundGravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_centerInParent="true"
                     android:layout_centerHorizontal="true"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:layout_margin="10sp"
-                    android:onClick="pickImage"
-                    android:layout_gravity="center_horizontal" />
+                    android:fillViewport="true"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/uploaded_images_linearlayout"
+                        android:orientation="horizontal"
+                        android:measureWithLargestChild="false"
+                        android:gravity="center_horizontal">
+
+
+                        <ImageView
+                        android:src="@drawable/feltoltes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70sp"
+                        android:id="@+id/upload_image_imageview"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10sp"
+                        android:onClick="pickImage"
+                        android:layout_gravity="center" />
+                    </LinearLayout>
                 </HorizontalScrollView>
 
                 <TextView
@@ -162,23 +178,33 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/camera_images_layout"
                     android:layout_gravity="center"
-                    android:fillViewport="false"
-                    android:foregroundGravity="center_horizontal">
+                    android:fillViewport="true"
+                    android:foregroundGravity="center_vertical|center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/camera_images_linearlayout"
+                        android:orientation="horizontal"
+                        android:measureWithLargestChild="false"
+                        android:gravity="center_vertical|center_horizontal">
 
 
 
-                    <ImageView
-                    android:src="@drawable/fenykepezo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70sp"
-                    android:id="@+id/add_campic_imageview"
-                    android:layout_above="@+id/add_cam_pic_text"
-                    android:onClick="TakeImage"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:layout_margin="10sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_centerHorizontal="true" />
+                        <ImageView
+                        android:src="@drawable/fenykepezo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70sp"
+                        android:id="@+id/add_campic_imageview"
+                        android:layout_above="@+id/add_cam_pic_text"
+                        android:onClick="TakeImage"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10sp"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true" />
+
+                    </LinearLayout>
 
 
 
