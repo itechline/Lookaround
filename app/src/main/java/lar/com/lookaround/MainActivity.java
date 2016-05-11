@@ -645,7 +645,7 @@ public class MainActivity extends AppCompatActivity
     Spinner enegigenyo;
 
     public void loadSearchSpinners() {
-        SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
+        SpinnerUtil.get_list_ingatlantipus(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
@@ -677,12 +677,12 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                localSpinner = (Spinner) findViewById(R.id.realestate_localisation_spinner);
+                typeSpinner = (Spinner) findViewById(R.id.condition_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                localSpinner.setAdapter(adapter);
+                typeSpinner.setAdapter(adapter);
 
-                localSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
@@ -710,6 +710,33 @@ public class MainActivity extends AppCompatActivity
                 enegigenyo.setAdapter(adapter);
 
                 enegigenyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    }
+                });
+
+            }
+        });
+
+        //parkolas_search_cpinner
+        SpinnerUtil.get_list_ingatlanparkolas(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                parkolasSpinner = (Spinner) findViewById(R.id.parking_type_spinner);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                parkolasSpinner.setAdapter(adapter);
+
+                parkolasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
