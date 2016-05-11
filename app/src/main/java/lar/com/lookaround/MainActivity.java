@@ -891,7 +891,7 @@ public class MainActivity extends AppCompatActivity
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
 
-                AddImageUtil.addImage(galleryImageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.FIT));
+                AddImageUtil.addImage(galleryImageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
                 LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
@@ -919,7 +919,7 @@ public class MainActivity extends AppCompatActivity
 
 
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
-            AddImageUtil.addImage(camImageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.FIT));
+            AddImageUtil.addImage(camImageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
             LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
 
