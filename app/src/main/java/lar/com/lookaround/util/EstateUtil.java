@@ -1,6 +1,7 @@
 package lar.com.lookaround.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import lar.com.lookaround.R;
+import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -27,6 +29,29 @@ public class EstateUtil {
     private String street;
     private String description;
     private int price;
+    private boolean error;
+    private String hash;
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+
+    public static void setLargestId(int largestId) {
+        EstateUtil.largestId = largestId;
+    }
 
     public boolean isFavourite() {
         return isFavourite;
@@ -111,6 +136,11 @@ public class EstateUtil {
         this.price = price;
         this.isFavourite = isFavourite;
         this.urls = urls;
+    }
+
+    public EstateUtil(boolean error, String hash) {
+        this.error = error;
+        this.hash = hash;
     }
 
 
@@ -294,14 +324,22 @@ public class EstateUtil {
                 public void parseRerult(String result) {
                     Log.d("ADDESTATE: ", "Return: " + result);
 
+                    ArrayList<EstateUtil> toSend = new ArrayList<EstateUtil>();
+
                     if (result != null) {
                         try {
                             JSONObject jsonObject = new JSONObject(result);
 
-                            Object isSuccesfull = jsonObject.getBoolean("error");
-                            Object id = jsonObject.getInt("id");
 
-                            getBackWhenItsDone.parseRerult(isSuccesfull);
+                            //eddig csak errorJson volt átadva getBackWhenItsDone-ban
+
+                            boolean errorJson = jsonObject.getBoolean("error");
+                            String hashJson = jsonObject.getString("hash");
+
+
+                            toSend.add(new EstateUtil(errorJson, hashJson));
+
+                            getBackWhenItsDone.parseRerult(toSend);
 
 
 
@@ -320,9 +358,45 @@ public class EstateUtil {
         }
     }
 
-    public static void uploadImage() {
+
+    public static void uploadImage(final SoapObjectResult getBackWhenItsDone, Bitmap bitmap) {
+        try {
+            String url = "http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=anh3x2fz5np1";
+
+            //HashMap<String, String> postadatok = new HashMap<String, String>();
+            //postadatok.put("ingatlan_meret", meret);
 
 
+
+            ImageUploadService ss = new ImageUploadService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("ADDESTATE: ", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+
+                            Object isSuccesfull = jsonObject.getBoolean("error");
+                            //Object id = jsonObject.getInt("id");
+
+                            getBackWhenItsDone.parseRerult(isSuccesfull);
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, bitmap);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

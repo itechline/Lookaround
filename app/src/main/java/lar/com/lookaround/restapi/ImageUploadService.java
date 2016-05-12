@@ -39,6 +39,8 @@ public class ImageUploadService extends AsyncTask<URL, Integer, String> {
         this.bitmap = bitmap;
     }
 
+
+
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
@@ -63,7 +65,7 @@ public class ImageUploadService extends AsyncTask<URL, Integer, String> {
         HttpURLConnection urlConnection = null;
 
         try {
-            URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?name=kepneve.jpg&ing_hash=123");
+            URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=anh3x2fz5np1");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setUseCaches(false);
             urlConnection.setDoOutput(true);

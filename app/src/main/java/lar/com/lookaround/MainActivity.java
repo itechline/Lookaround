@@ -976,6 +976,13 @@ public class MainActivity extends AppCompatActivity
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
 
 
+            /*EstateUtil.uploadImage(new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+
+                    Log.d("UPLOAD: ", result.toString());
+                }
+            }, bitmapCam);*/
 
             AddImageUtil.addImage(camImageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
@@ -1135,7 +1142,7 @@ private int whichAddestatePage = 0;
 
 
                     //TODO: ellenörzést visszarakni
-                    /*if(!isValidString(estateTitle)) {
+                    if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
                         title.invalidate();
                         isFilledOut = false;
@@ -1184,7 +1191,7 @@ private int whichAddestatePage = 0;
                     } else {
                         hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
                         hirdetesSpinner.invalidate();
-                    }*/
+                    }
 
                     if (isFilledOut) {
                         Geocoder gc = new Geocoder(this);
@@ -1213,7 +1220,7 @@ private int whichAddestatePage = 0;
 
                 case 2:
                     //TODO: ellenörzést visszarakni
-                    /*if (szobaszamSpinner_int == 0) {
+                    if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackgroundColor(0xFFFF0000);
                         szobaszamSpinner.invalidate();
                         isFilledOut = false;
@@ -1283,7 +1290,7 @@ private int whichAddestatePage = 0;
                     } else {
                         kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
                         kilatasSpinner.invalidate();
-                    }*/
+                    }
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
@@ -1309,10 +1316,14 @@ private int whichAddestatePage = 0;
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
-                                                 if (!(boolean) result) {
+                                                 final ArrayList<EstateUtil> resArray = (ArrayList) result;
+
+
+                                                 if (resArray.get(0).isError()) {
                                                      loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                                                      switchLayoutTo(ESTATESLIST);
                                                      Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
+                                                     Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
                                                  } else {
                                                      showAlertError("Sikertelen feltöltés");
 
