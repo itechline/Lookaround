@@ -34,6 +34,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -43,6 +44,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -55,6 +57,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
@@ -980,7 +983,16 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
                 final AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
-                View galleryImage = (View) adapter.getView(imageID, null, null);
+                final View galleryImage = (View) adapter.getView(imageID, null, null);
+
+                final AddImageUtil addImageUtil = adapter.getItem(imageID);
+
+                galleryImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("GALLERY_ID: ", String.valueOf(addImageUtil.getId()));
+                    }
+                });
 
 
                 linearLayoutGallery.addView(galleryImage, galleryImageID);
@@ -1014,18 +1026,73 @@ public class MainActivity extends AppCompatActivity
 
             AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
-            LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
+            final LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
 
             ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
             AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
+            final AddImageUtil addImageUtil = adapter.getItem(imageID);
+
             View camImage = (View) adapter.getView(imageID, null, null);
+            camImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("CAM_ID: ", String.valueOf(addImageUtil.getId()));
+                    callPopup(addImageUtil.getId(), linearLayoutCam);
+                }
+            });
 
             linearLayoutCam.addView(camImage, camImageID);
             linearLayoutCam.setDividerPadding(0);
             imageID += 1;
             camImageID += 1;
         }
+    }
+
+    private void callPopup(int id, LinearLayout layout) {
+
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.item_realestate, null);
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+
+        layout.removeViewAt(id);
+
+        //Name = (EditText) popupView.findViewById(R.id.edtimageName);
+
+        /*((Button) popupView.findViewById(R.id.saveBtn))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        Toast.makeText(getContext(),
+                                //Name.getText().toString(), Toast.LENGTH_LONG).show();
+
+                                popupWindow.dismiss();
+
+                    }
+
+                });
+
+        ((Button) popupView.findViewById(R.id.cancelbtutton))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View arg0) {
+
+                        popupWindow.dismiss();
+                    }
+                });*/
     }
 
     static final int DIALOG_ID = 0;
