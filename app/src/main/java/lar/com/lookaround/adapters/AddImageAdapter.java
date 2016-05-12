@@ -1,17 +1,25 @@
 package lar.com.lookaround.adapters;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.os.Build;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -55,11 +63,54 @@ public class AddImageAdapter extends ArrayAdapter<AddImageUtil> {
             @Override
             public void onClick(View v) {
                 Log.d("GALLERY_ID", String.valueOf(imageUtil.getId()));
+                callPopup();
             }
         });
 
 
-
         return convertView;
+    }
+
+
+    private void callPopup() {
+
+        LayoutInflater layoutInflater = (LayoutInflater) getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.item_realestate, null);
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+        //Name = (EditText) popupView.findViewById(R.id.edtimageName);
+
+        /*((Button) popupView.findViewById(R.id.saveBtn))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        Toast.makeText(getContext(),
+                                //Name.getText().toString(), Toast.LENGTH_LONG).show();
+
+                                popupWindow.dismiss();
+
+                    }
+
+                });
+
+        ((Button) popupView.findViewById(R.id.cancelbtutton))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View arg0) {
+
+                        popupWindow.dismiss();
+                    }
+                });*/
     }
 }
