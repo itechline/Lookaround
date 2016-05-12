@@ -27,6 +27,7 @@
             android:textColor="#ffffff"
             android:padding="10sp"
             android:background="@drawable/colorbutton"
+            android:textSize="12sp"
             />
 
         <Button
@@ -41,7 +42,8 @@
             android:drawablePadding="5sp"
             android:textColor="#ffffff"
             android:padding="10sp"
-            android:background="@drawable/colorbutton_delete"/>
+            android:background="@drawable/colorbutton_delete"
+            android:textSize="12sp"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -56,6 +58,7 @@
             android:layout_marginBottom="10sp"
             android:layout_marginLeft="5sp"
             android:layout_marginTop="5sp"
-            android:layout_marginRight="5sp" />
+            android:layout_marginRight="5sp"
+            android:textSize="12sp"/>
     </RelativeLayout>
 </RelativeLayout>
