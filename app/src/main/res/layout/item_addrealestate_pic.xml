@@ -8,7 +8,7 @@
         android:layout_height="70sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="5sp">
+        android:layout_marginRight="10sp">
 
         <ImageView
             android:src="@drawable/fenykepezo"
@@ -19,17 +19,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_margin="5sp" />
 
-        <ImageView
-            android:src="@drawable/admonitor_pirosiksz"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:id="@+id/item_delete_realestate_pic"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/item_add_realestate_pic_imageview"
-            android:layout_toEndOf="@+id/item_add_realestate_pic_imageview"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
     </RelativeLayout>
 </RelativeLayout>
