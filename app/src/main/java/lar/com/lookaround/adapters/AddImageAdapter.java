@@ -51,6 +51,13 @@ public class AddImageAdapter extends ArrayAdapter<AddImageUtil> {
         Log.d("IMAGE_LOFASZ", "GETVIEW");
         image.setImageBitmap(imageUtil.getBitmap());
 
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("GALLERY_ID", String.valueOf(imageUtil.getId()));
+            }
+        });
+
 
 
         return convertView;

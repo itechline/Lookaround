@@ -978,9 +978,10 @@ public class MainActivity extends AppCompatActivity
                 LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
-                AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
+                final AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
                 View galleryImage = (View) adapter.getView(imageID, null, null);
+
 
                 linearLayoutGallery.addView(galleryImage, galleryImageID);
                 linearLayoutGallery.setDividerPadding(0);
@@ -1169,7 +1170,7 @@ private int whichAddestatePage = 0;
 
 
                     //TODO: ellenörzést visszarakni
-                    if(!isValidString(estateTitle)) {
+                    /*if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
                         title.invalidate();
                         isFilledOut = false;
@@ -1218,7 +1219,7 @@ private int whichAddestatePage = 0;
                     } else {
                         hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
                         hirdetesSpinner.invalidate();
-                    }
+                    }*/
 
                     if (isFilledOut) {
                         Geocoder gc = new Geocoder(this);
@@ -1247,7 +1248,7 @@ private int whichAddestatePage = 0;
 
                 case 2:
                     //TODO: ellenörzést visszarakni
-                    if (szobaszamSpinner_int == 0) {
+                    /*if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackgroundColor(0xFFFF0000);
                         szobaszamSpinner.invalidate();
                         isFilledOut = false;
@@ -1317,7 +1318,7 @@ private int whichAddestatePage = 0;
                     } else {
                         kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
                         kilatasSpinner.invalidate();
-                    }
+                    }*/
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
