@@ -9,8 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/background_shadow_popup">
 
