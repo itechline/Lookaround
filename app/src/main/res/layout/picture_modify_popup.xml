@@ -16,30 +16,32 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:text="@string/button_picswap"
             android:id="@+id/swap_pic_button"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="5sp"
-            android:drawableLeft="@drawable/admonitor_ceruza"
+            android:drawableLeft="@drawable/feher_ceruza"
             android:drawablePadding="5sp"
-            android:textColor="#0066cc"
+            android:textColor="#ffffff"
             android:padding="10sp"
+            android:background="@drawable/colorbutton"
             />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:text="@string/button_picdelete"
             android:id="@+id/delete_pic_button"
             android:layout_below="@+id/swap_pic_button"
             android:layout_centerHorizontal="true"
             android:layout_margin="5sp"
-            android:drawableLeft="@drawable/admonitor_pirosiksz"
+            android:drawableLeft="@drawable/feher_iksz"
             android:drawablePadding="5sp"
-            android:textColor="#ff0000"
-            android:padding="10sp" />
+            android:textColor="#ffffff"
+            android:padding="10sp"
+            android:background="@drawable/colorbutton_delete"/>
 
         <Button
             android:layout_width="wrap_content"
