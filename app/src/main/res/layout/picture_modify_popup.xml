@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/spinner_border">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_picswap"
+            android:id="@+id/swap_pic_button"
+            android:layout_margin="10sp"
+            android:background="@drawable/spinner_border1"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_picdelete"
+            android:id="@+id/delete_pic_button"
+            android:layout_margin="10sp"
+            android:background="@drawable/spinner_border1"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_cancel"
+            android:id="@+id/cancel_pic_button"
+            android:layout_margin="10sp"
+            android:background="@drawable/spinner_border1"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+</RelativeLayout>

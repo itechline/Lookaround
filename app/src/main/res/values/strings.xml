@@ -32,6 +32,8 @@
     <string name="button_back">VISSZA</string>
     <string name="button_save">MENTÉS</string>
     <string name="button_cancel">MÉGSE</string>
+    <string name="button_picswap">Kép lecserélése</string>
+    <string name="button_picdelete">Kép törlése</string>
 
     <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
