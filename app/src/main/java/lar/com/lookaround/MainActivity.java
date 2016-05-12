@@ -3,6 +3,7 @@ package lar.com.lookaround;
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Message;
@@ -51,6 +53,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -86,10 +89,12 @@ import java.util.Locale;
 
 import lar.com.lookaround.adapters.AddImageAdapter;
 import lar.com.lookaround.adapters.CalendarAdapter;
+import lar.com.lookaround.adapters.CalendarBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.AddImageUtil;
+import lar.com.lookaround.util.CalendarBookingUtil;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.ScalingUtilities;
@@ -349,6 +354,22 @@ public class MainActivity extends AppCompatActivity
                 }
                 gridview.getChildAt(position).setBackgroundResource(R.drawable.b_d_border);
                 gridview.getChildAt(position).setHovered(true);
+
+                for (int i = 0; i < 24; i++) {
+                    for (int j = 0; j < 31; j+=30) {
+                        CalendarBookingUtil.addAppointment(i,j);
+                    }
+                }
+
+
+
+                final ArrayList<CalendarBookingUtil> appointments = (ArrayList) CalendarBookingUtil.getAppointments();
+                final CalendarBookingAdapter cba = new CalendarBookingAdapter(MainActivity.this, appointments);
+                final ListView listView = (ListView) findViewById(R.id.listView_booking);
+                listView.setAdapter(cba);
+
+                //final ArrayList<CalendarBookingUtil> appointmentsNew = (ArrayList) CalendarBookingUtil.getAppointments();
+                //cba.addAll(appointmentsNew);
 
                 //Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
@@ -975,10 +996,9 @@ public class MainActivity extends AppCompatActivity
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
-
                 AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
-                LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
+                final LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
                 final AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
@@ -991,8 +1011,10 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Log.d("GALLERY_ID: ", String.valueOf(addImageUtil.getId()));
+                        callPopup(addImageUtil.getId(), linearLayoutGallery);
                     }
                 });
+
 
 
                 linearLayoutGallery.addView(galleryImage, galleryImageID);
@@ -1006,23 +1028,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            //RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.upload_camera_rlayout);
-            //View  itemView = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_realestate,null, false);
-            //myLayout.addView(itemView);
-
-            //itemView.findViewById(R.id.item_realestate_mainpic);
-
 
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
-
-
-            /*EstateUtil.uploadImage(new SoapObjectResult() {
-                @Override
-                public void parseRerult(Object result) {
-
-                    Log.d("UPLOAD: ", result.toString());
-                }
-            }, bitmapCam);*/
 
             AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
 
@@ -1042,19 +1049,30 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            linearLayoutCam.addView(camImage, camImageID);
-            linearLayoutCam.setDividerPadding(0);
+            if (!isCameraSwapping) {
+                linearLayoutCam.addView(camImage, camImageID);
+
+                camImageID += 1;
+            } else {
+                linearLayoutCam.removeViewAt(cameraSwappingID);
+                linearLayoutCam.addView(camImage, cameraSwappingID);
+            }
             imageID += 1;
-            camImageID += 1;
+            linearLayoutCam.setDividerPadding(0);
+
         }
     }
 
-    private void callPopup(int id, LinearLayout layout) {
+    boolean isCameraSwapping = false;
+    int cameraSwappingID;
+
+    private void callPopup(final int id, final LinearLayout layout) {
+        isCameraSwapping = false;
 
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View popupView = layoutInflater.inflate(R.layout.item_realestate, null);
+        View popupView = layoutInflater.inflate(R.layout.picture_modify_popup, null);
 
         final PopupWindow popupWindow;
         popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
@@ -1066,33 +1084,55 @@ public class MainActivity extends AppCompatActivity
 
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
+        ((Button) popupView.findViewById(R.id.swap_pic_button))
+                .setOnClickListener(new View.OnClickListener() {
 
-        layout.removeViewAt(id);
 
-        //Name = (EditText) popupView.findViewById(R.id.edtimageName);
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        isCameraSwapping = true;
+                        cameraSwappingID = id;
+                        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                                Manifest.permission.CAMERA)
+                                != PackageManager.PERMISSION_GRANTED) {
 
-        /*((Button) popupView.findViewById(R.id.saveBtn))
+                            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                                    Manifest.permission.CAMERA)) {
+
+
+                            } else {
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.CAMERA},
+                                        TAKE_IMAGE_REQUEST);
+
+                            }
+                        } else {
+                            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                            startActivityForResult(intent, TAKE_IMAGE_REQUEST);
+                        }
+                        popupWindow.dismiss();
+                    }
+                });
+
+        ((Button) popupView.findViewById(R.id.cancel_pic_button))
                 .setOnClickListener(new View.OnClickListener() {
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
-                        Toast.makeText(getContext(),
-                                //Name.getText().toString(), Toast.LENGTH_LONG).show();
-
-                                popupWindow.dismiss();
-
-                    }
-
-                });
-
-        ((Button) popupView.findViewById(R.id.cancelbtutton))
-                .setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View arg0) {
-
                         popupWindow.dismiss();
                     }
-                });*/
+                });
+
+        ((Button) popupView.findViewById(R.id.delete_pic_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        layout.removeViewAt(id);
+                        popupWindow.dismiss();
+
+                    }
+                });
     }
 
     static final int DIALOG_ID = 0;
@@ -1412,7 +1452,6 @@ private int whichAddestatePage = 0;
                                              @Override
                                              public void parseRerult(Object result) {
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
-
 
                                                  if (resArray.get(0).isError()) {
                                                      loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");

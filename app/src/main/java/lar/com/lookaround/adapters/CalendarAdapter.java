@@ -35,7 +35,6 @@ public class CalendarAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_booking_days, parent, false);
-
         }
         String key = getItem(position);
         final TextView day = (TextView) convertView.findViewById(R.id.booking_date_textView);
