@@ -56,61 +56,17 @@ public class AddImageAdapter extends ArrayAdapter<AddImageUtil> {
 
         }
         ImageView image = (ImageView) convertView.findViewById(R.id.item_add_realestate_pic_imageview);
-        Log.d("IMAGE_LOFASZ", "GETVIEW");
         image.setImageBitmap(imageUtil.getBitmap());
 
-        image.setOnClickListener(new View.OnClickListener() {
+        /*image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("GALLERY_ID", String.valueOf(imageUtil.getId()));
                 callPopup();
             }
-        });
+        });*/
 
 
         return convertView;
-    }
-
-
-    private void callPopup() {
-
-        LayoutInflater layoutInflater = (LayoutInflater) getContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View popupView = layoutInflater.inflate(R.layout.item_realestate, null);
-
-        final PopupWindow popupWindow;
-        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
-                true);
-
-
-        popupWindow.setTouchable(true);
-        popupWindow.setFocusable(true);
-
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        //Name = (EditText) popupView.findViewById(R.id.edtimageName);
-
-        /*((Button) popupView.findViewById(R.id.saveBtn))
-                .setOnClickListener(new View.OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-                    public void onClick(View arg0) {
-                        Toast.makeText(getContext(),
-                                //Name.getText().toString(), Toast.LENGTH_LONG).show();
-
-                                popupWindow.dismiss();
-
-                    }
-
-                });
-
-        ((Button) popupView.findViewById(R.id.cancelbtutton))
-                .setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View arg0) {
-
-                        popupWindow.dismiss();
-                    }
-                });*/
     }
 }
