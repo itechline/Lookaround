@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:alpha="0.6"
+    android:background="#000000">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,71 +12,30 @@
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
         android:gravity="center_vertical|center_horizontal"
-        android:background="@drawable/spinner_border">
+        android:background="#ffffff">
 
-        <TextView
-            android:layout_alignParentTop="true"
-            android:layout_width="fill_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_picswap"
             android:id="@+id/swap_pic_button"
-            android:background="@drawable/spinner_border1"
-            android:gravity="center_horizontal"
-            android:textColor="#0066cc"
-            android:layout_marginLeft="10sp"
-            android:layout_marginTop="20sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginBottom="10sp" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="fill_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_picdelete"
             android:id="@+id/delete_pic_button"
-            android:layout_margin="10sp"
-            android:background="@drawable/spinner_border1"
-            android:gravity="center_horizontal"
-            android:textColor="#ff0000"
             android:layout_below="@+id/swap_pic_button"
-            />
+            android:layout_centerHorizontal="true" />
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_cancel"
             android:id="@+id/cancel_pic_button"
-            android:background="@drawable/colorbutton"
-            android:gravity="center_horizontal"
-            android:padding="2sp"
-            android:textColor="#ffffff"
             android:layout_below="@+id/delete_pic_button"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10sp" />
-
-        <ImageView
-            android:src="@drawable/admonitor_ceruza"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:id="@+id/swap_pic_imageview"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:layout_alignBottom="@+id/swap_pic_button"
-            android:layout_toLeftOf="@+id/cancel_pic_button"
-            android:layout_toStartOf="@+id/cancel_pic_button"
-            android:layout_marginRight="25sp"
-            android:layout_marginEnd="25sp" />
-
-        <ImageView
-            android:src="@drawable/admonitor_pirosiksz"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:id="@+id/delete_pic_imageview"
-            android:layout_alignBottom="@+id/delete_pic_button"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:layout_alignRight="@+id/swap_pic_imageview"
-            android:layout_alignEnd="@+id/swap_pic_imageview"
-            android:layout_alignLeft="@+id/swap_pic_imageview"
-            android:layout_alignStart="@+id/swap_pic_imageview" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </RelativeLayout>
