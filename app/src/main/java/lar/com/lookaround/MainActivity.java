@@ -1779,10 +1779,6 @@ private int whichAddestatePage = 0;
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-
-
-
                         int position = listView.getFirstVisiblePosition();
                         View v = listView.getChildAt(0);
                         int offset = (v == null) ? 0 : v.getTop();
@@ -1799,7 +1795,6 @@ private int whichAddestatePage = 0;
                                             csok.setVisibility(View.GONE);
                                         }
                                     });
-
                         } else {
                             // Scrolled down
                             csok.animate()
@@ -1820,11 +1815,7 @@ private int whichAddestatePage = 0;
                         adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
                         if (firstVisibleItem + visibleItemCount == totalItemCount) {
                             if (!isRefreshing) {
-                                //Log.e("REFRESHING", "PAGE 1");
-
-                                //isRefreshing = true;
                                 pageCount += 1;
-
                                 String pageStr = String.valueOf(pageCount);
                                 String lrgst = String.valueOf(EstateUtil.largestId);
                                 EstateUtil.listEstates(new SoapObjectResult() {
