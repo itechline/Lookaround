@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/item_realestate_layout">
 
 
@@ -34,27 +34,14 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="1sp" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_realestate_progressbar"
-            android:layout_alignBottom="@+id/item_realestate_mainpic"
-            android:layout_alignRight="@+id/item_realestate_mainpic"
-            android:layout_alignEnd="@+id/item_realestate_mainpic"
-            android:layout_alignTop="@+id/item_realestate_mainpic"
-            android:layout_alignLeft="@+id/item_realestate_mainpic"
-            android:layout_alignStart="@+id/item_realestate_mainpic"
-            android:layout_margin="40sp"
-            android:visibility="visible" />
-
         <LinearLayout
             android:id="@+id/icons_linera_layout"
             android:orientation="horizontal"
             android:layout_width="230sp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout4"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:layout_alignBottom="@+id/item_realestate_mainpic">
+            android:layout_toEndOf="@+id/item_realestate_mainpic">
 
             <ImageView
                 android:src="@drawable/list_size"
@@ -163,13 +150,13 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50sp"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
             android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:layout_above="@+id/icons_linera_layout"
             android:layout_below="@+id/item_realestate_adress2"
             android:layout_marginTop="5sp"
-            android:layout_marginRight="5sp">
+            android:layout_marginRight="5sp"
+            android:id="@+id/relativeLayout4">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -177,7 +164,7 @@
                 android:text="ide jön valami amit majd kitalálunk"
                 android:id="@+id/item_realestate_description"
                 android:layout_gravity="center_horizontal"
-                android:maxLines="4"
+                android:maxLines="2"
                 android:ellipsize="end"
                 android:layout_below="@+id/item_realestate_adress2"
                 android:layout_alignParentRight="true"
@@ -185,6 +172,44 @@
                 android:layout_alignLeft="@+id/item_realestate_adress2"
                 android:layout_alignStart="@+id/item_realestate_adress2" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/myads_button_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icons_linera_layout"
+            android:layout_toRightOf="@+id/item_realestate_mainpic"
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:text="@string/button_modify"
+                android:id="@+id/myads_modify_button"
+                android:layout_gravity="bottom"
+                android:background="@drawable/colorbutton"
+                android:layout_weight="1"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:text="@string/button_delete"
+                android:id="@+id/myads_delete_button"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@drawable/buttondelete_border"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:textColor="#ff0000" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

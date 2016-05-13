@@ -34,6 +34,8 @@
     <string name="button_cancel">MÉGSE</string>
     <string name="button_picswap">Kép lecserélése</string>
     <string name="button_picdelete">Kép törlése</string>
+    <string name="button_delete">törlés</string>
+    <string name="button_modify">módosít</string>
 
     <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
