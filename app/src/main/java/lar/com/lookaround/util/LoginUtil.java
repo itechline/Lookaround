@@ -33,14 +33,11 @@ public class LoginUtil {
             String url = "http://lookrnd.me/dev/api/do_login";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
-            //postadatok.put("email", "nagy.roland@nye.hu");
-            //postadatok.put("pass", "narol");
             postadatok.put("email", mail);
             postadatok.put("pass", passw);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("LOGIN", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -86,7 +83,6 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("LOGOUT", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -129,7 +125,6 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("TOKENVALIDATOR", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -138,7 +133,6 @@ public class LoginUtil {
 
                             Object isTokenValid = jsonObj.getBoolean(TOKEN_ACTIVE);
                             getBackWhenItsDone.parseRerult(isTokenValid);
-                            //Log.d("TESTADATOK_TOKEN", "Return: " + isTokenValid);
                             if (!(boolean)isTokenValid) {
                                 SettingUtil.setToken(ctx, "");
                             }
@@ -178,7 +172,6 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("REGISTRATION", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -187,11 +180,6 @@ public class LoginUtil {
 
                             Object isStatus = jsonObj.getBoolean(STATUS);
                             getBackWhenItsDone.parseRerult(isStatus);
-
-
-                            //Log.d("TESTADATOK_TOKEN", "Return: " + isTokenValid);
-
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();

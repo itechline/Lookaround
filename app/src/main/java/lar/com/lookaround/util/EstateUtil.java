@@ -157,13 +157,10 @@ public class EstateUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("listEstates", "Return: " + result);
 
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
-                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
-                            //Log.d("listEstatesArray", "Return: " + jsonArray.toString());
                             ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
 
                             for(int i=0;i<jsonArray.length();i++){
@@ -179,11 +176,9 @@ public class EstateUtil {
 
 
                                 estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, url));
-                                Log.d("LOFASZ", "Return: " + idJson);
 
                                 if (idJson > largestId) {
                                     largestId = idJson;
-                                    Log.d("LOFASZ_largestId", "Return: " + largestId);
                                 }
                             }
 
@@ -222,7 +217,6 @@ public class EstateUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("getEstate", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -260,7 +254,6 @@ public class EstateUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("listEstates", "Return: " + result);
 
                     if (result != null) {
                         try {
@@ -320,7 +313,6 @@ public class EstateUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("ADDESTATE", "Return: " + result);
 
                     if (result != null) {
                         try {
