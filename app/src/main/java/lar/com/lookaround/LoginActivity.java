@@ -199,6 +199,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 if ((boolean) result) {
                                                     ringProgressDialog.dismiss();
                                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                    finish();
                                                 } else {
                                                     ringProgressDialog.dismiss();
                                                     showAlert(view, "Hiba történt!");
@@ -355,6 +356,7 @@ public class LoginActivity extends AppCompatActivity {
                             //sendLoginAfterReg(view, email, passw);
                             ringProgressDialog.dismiss();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         } else {
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
@@ -402,6 +404,7 @@ public class LoginActivity extends AppCompatActivity {
                             //launchRingDialog(view);
                             ringProgressDialog.dismiss();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         } else {
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
