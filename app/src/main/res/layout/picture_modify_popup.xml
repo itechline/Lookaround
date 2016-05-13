@@ -15,34 +15,34 @@
         android:background="@drawable/background_shadow_popup">
 
         <Button
-            android:layout_width="180sp"
+            android:layout_width="125sp"
             android:layout_height="35sp"
             android:text="@string/button_picswap"
             android:id="@+id/swap_pic_button"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="5sp"
-            android:drawableLeft="@drawable/feher_ceruza"
             android:drawablePadding="5sp"
-            android:textColor="#ffffff"
+            android:textColor="#0066cc"
             android:padding="10sp"
-            android:background="@drawable/colorbutton"
+            android:background="@drawable/colorbutton_delete1"
             android:textSize="12sp"
-            />
+            android:layout_marginLeft="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="10sp" />
 
         <Button
-            android:layout_width="180sp"
+            android:layout_width="125sp"
             android:layout_height="35sp"
             android:text="@string/button_picdelete"
             android:id="@+id/delete_pic_button"
             android:layout_below="@+id/swap_pic_button"
             android:layout_centerHorizontal="true"
             android:layout_margin="5sp"
-            android:drawableLeft="@drawable/feher_iksz"
             android:drawablePadding="5sp"
-            android:textColor="#ffffff"
+            android:textColor="#ff0000"
             android:padding="10sp"
-            android:background="@drawable/colorbutton_delete"
+            android:background="@drawable/colorbutton_delete1"
             android:textSize="12sp"/>
 
         <Button
@@ -60,5 +60,29 @@
             android:layout_marginTop="5sp"
             android:layout_marginRight="5sp"
             android:textSize="12sp"/>
+
+        <ImageView
+            android:src="@drawable/admonitor_pirosiksz"
+            android:layout_width="16sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete_pic_pirosiksz"
+            android:layout_toLeftOf="@+id/delete_pic_button"
+            android:layout_toStartOf="@+id/delete_pic_button"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignTop="@+id/delete_pic_button"
+            android:layout_alignBottom="@+id/delete_pic_button" />
+
+        <ImageView
+            android:src="@drawable/admonitor_ceruza"
+            android:layout_width="16sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/swap_pic_ceruza"
+            android:layout_alignTop="@+id/swap_pic_button"
+            android:layout_toLeftOf="@+id/swap_pic_button"
+            android:layout_toStartOf="@+id/swap_pic_button"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignBottom="@+id/swap_pic_button" />
     </RelativeLayout>
 </RelativeLayout>
