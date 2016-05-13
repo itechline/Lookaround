@@ -1821,6 +1821,7 @@ private int whichAddestatePage = 0;
                 if (isShowingFavorites) {
                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 }
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
                 break;
@@ -1928,35 +1929,12 @@ private int whichAddestatePage = 0;
                         drawer.openDrawer(GravityCompat.START);
                     }
                     break;
-                case CONTENTESTATE:
-                    //findViewById(R.id.estateListView).invalidate();
-                    supportInvalidateOptionsMenu();
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                    fab.setVisibility(View.VISIBLE);
-                    fab_phone.setVisibility(View.INVISIBLE);
-                    switchLayoutTo(ESTATESLIST);
-                    //loadRealEstates("0", "0");
-                    break;
-                case ADDESTATE:
-                    if (prewView == CONTENTESTATE) {
-                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                    } else {
-                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                    }
-                    switchLayoutTo(prewView);
-                    fab.setVisibility(View.VISIBLE);
-                    fab_phone.setVisibility(View.INVISIBLE);
-                    break;
                 default:
-                    /*if (drawer.isDrawerOpen(GravityCompat.START)) {
-                        drawer.closeDrawer(GravityCompat.START);
-                    } else {
-                        drawer.openDrawer(GravityCompat.START);
-                    }*/
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     switchLayoutTo(ESTATESLIST);
                     fab.setVisibility(View.VISIBLE);
                     fab_phone.setVisibility(View.INVISIBLE);
+                    supportInvalidateOptionsMenu();
                     break;
             }
             return true;
