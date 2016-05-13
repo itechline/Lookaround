@@ -1852,8 +1852,6 @@ private int whichAddestatePage = 0;
         FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
 
         if (prewViews.size() > 0) {
-            Log.d("PREW VIEWS SIZE ", String.valueOf(prewViews.size()));
-            Log.d("PREW VIEWS GET", String.valueOf(prewViews.get(prewViews.size() - 1)));
             isBackPressed = true;
             switchLayoutTo(prewViews.get(prewViews.size() - 1));
             prewViews.remove(prewViews.size()-1);
