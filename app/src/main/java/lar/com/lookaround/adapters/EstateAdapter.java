@@ -63,9 +63,6 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        //Log.e("KURVAFASZA", "1");
-
         // Get the data item for this position
         final EstateUtil estate = getItem(position);
 
@@ -205,7 +202,6 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                 imageList = new ArrayList<>();
             }
             imageList.remove(this);
-            //Log.e("LOSHIT", "darabszám: "+imageList.size());
 
             if (result != null) {
                 //bmImage.setImageBitmap(result);

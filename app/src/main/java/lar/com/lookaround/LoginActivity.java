@@ -121,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        Log.d("FACEBOOKLOFASZ: ", data.toString());
     }
 
     protected String generateRandomPass() {
@@ -147,11 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-                        Log.d("FACEBOOK: ", loginResult.getAccessToken().toString());
-
-                        //loginResult.getAccessToken().getUserId()
-                        //loginResult.getAccessToken().toString();
-                        Log.d("LOFASZFACEBOOK: ", Arrays.asList(loginResult.getAccessToken()).toString());
 
                         GraphRequest request = GraphRequest.newMeRequest(
                                 loginResult.getAccessToken(),
@@ -198,17 +192,14 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                         final String passw_fb = generateRandomPass();
-                                        Log.d("PASSW: ", passw_fb.toString());
                                         launchRingDialog(view);
                                         LoginUtil.sendRegistration(getBaseContext(), new SoapObjectResult() {
                                             @Override
                                             public void parseRerult(Object result) {
                                                 if ((boolean) result) {
-                                                    Log.d("RESULT: ", result.toString());
                                                     ringProgressDialog.dismiss();
                                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                 } else {
-                                                    Log.d("RESULT: ", result.toString());
                                                     ringProgressDialog.dismiss();
                                                     showAlert(view, "Hiba történt!");
                                                 }
@@ -221,7 +212,6 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                         Bundle parameters = new Bundle();
                         parameters.putString("fields", "id, first_name, last_name, email, location");
-                        Log.d("LoginActivityFASZBUK: ", parameters.toString());
                         request.setParameters(parameters);
                         request.executeAsync();
                     }
@@ -306,9 +296,6 @@ public class LoginActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText abc = (EditText)findViewById(R.id.keresztNev);
-                        abc.getText().toString();
-                        Log.d("DEBUG: ", abc.getText().toString());
                         dialog.dismiss();
                     }
                 })
@@ -364,13 +351,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
-                            Log.d("RESULT: ", result.toString());
                             //launchRingDialog(view);
                             //sendLoginAfterReg(view, email, passw);
                             ringProgressDialog.dismiss();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
-                            Log.d("RESULT: ", result.toString());
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
                         }
@@ -414,13 +399,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
-                            Log.d("RESULT: ", result.toString());
                             //launchRingDialog(view);
-                            //sendLoginAfterReg(view, emailCompany, passwCompany);
                             ringProgressDialog.dismiss();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
-                            Log.d("RESULT: ", result.toString());
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
 
@@ -431,28 +413,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
-    }
-
-
-
-    public void sendLoginAfterReg(final View view, String mail, String pass) {
-        launchRingDialog(view);
-        LoginUtil.login(this, new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-                if ((boolean) result) {
-                    Log.d("RESULT: ", result.toString());
-                    ringProgressDialog.dismiss();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                } else {
-                    Log.d("RESULT: ", result.toString());
-                    ringProgressDialog.dismiss();
-                    showAlert(view, "Hiba Történt!");
-                }
-
-            }
-        }, mail, pass);
     }
 
 
@@ -483,12 +443,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void parseRerult(Object result) {
                     if ((boolean) result) {
-                        Log.d("RESULT: ", result.toString());
                         //ringProgressDialog.dismiss();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
-                        Log.d("RESULT: ", result.toString());
                         //ringProgressDialog.dismiss();
                         showAlert(view, "Hibás felhasználónév vagy jelszó!");
                     }

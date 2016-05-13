@@ -261,6 +261,8 @@ public class MainActivity extends AppCompatActivity
         setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
         loadEstateImages();
+
+        prewViews.add(0);
     }
 
 
@@ -1249,8 +1251,8 @@ private int whichAddestatePage = 0;
                     estateSize = size.getText().toString();
 
 
-                    //TODO: ellenörzést visszarakni
-                    /*if(!isValidString(estateTitle)) {
+                    //TODO: hátttérszín változtatás tökéletesítése
+                    if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
                         title.invalidate();
                         isFilledOut = false;
@@ -1299,7 +1301,7 @@ private int whichAddestatePage = 0;
                     } else {
                         hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
                         hirdetesSpinner.invalidate();
-                    }*/
+                    }
 
                     if (isFilledOut) {
                         Geocoder gc = new Geocoder(this);
@@ -1327,8 +1329,8 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 2:
-                    //TODO: ellenörzést visszarakni
-                    /*if (szobaszamSpinner_int == 0) {
+                    //TODO: hátttérszín változtatás tökéletesítése
+                    if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackgroundColor(0xFFFF0000);
                         szobaszamSpinner.invalidate();
                         isFilledOut = false;
@@ -1398,7 +1400,7 @@ private int whichAddestatePage = 0;
                     } else {
                         kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
                         kilatasSpinner.invalidate();
-                    }*/
+                    }
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
@@ -1798,42 +1800,51 @@ private int whichAddestatePage = 0;
         } else {
             super.onBackPressed();
         }*/
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
 
-        switch (viewFlip.getDisplayedChild()) {
+        if (prewViews.size() > 0) {
+            Log.d("PREW VIEWS SIZE ", String.valueOf(prewViews.size()));
+            Log.d("PREW VIEWS GET", String.valueOf(prewViews.get(prewViews.size() - 1)));
+            isBackPressed = true;
+            switchLayoutTo(prewViews.get(prewViews.size() - 1));
+            prewViews.remove(prewViews.size()-1);
+        } else {
+            prewViews.add(0);
+        }
 
+
+        //TODO: visszalépésnl tökéletesíteni a megjelenő ikonokat (mindig a megfelelőek jelenejenek meg)
+        switch (viewFlip.getDisplayedChild()) {
             case ESTATESLIST:
                 if (isShowingFavorites) {
                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 }
-
-                fab.setVisibility(View.VISIBLE);
-
-
-
-                break;
-            case CONTENTESTATE:
-                //findViewById(R.id.estateListView).invalidate();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                switchLayoutTo(prewView);
-
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
-                //loadRealEstates("0", "0");
+                break;
+            case CONTENTESTATE:
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                fab.setVisibility(View.INVISIBLE);
+                fab_phone.setVisibility(View.VISIBLE);
                 break;
             case ADDESTATE:
-                if (prewView == CONTENTESTATE) {
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                } else {
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                }
-                switchLayoutTo(prewView);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
+                break;
+            case PROFILE:
+
+                break;
+            case MESSAGES:
+
+                break;
+            case BOOKING:
+
                 break;
             default:
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
-                switchLayoutTo(ESTATESLIST);
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
         }
@@ -2025,8 +2036,15 @@ private int whichAddestatePage = 0;
 
 
 
+    ArrayList<Integer> prewViews = new ArrayList<Integer>();
+    boolean isBackPressed = false;
 
     public void switchLayoutTo(int switchTo){
+        if (viewFlip.getDisplayedChild() == switchTo) {
+            if (prewViews.size() > 1) {
+                switchTo = prewViews.get(prewViews.size() - 2);
+            }
+        }
         while(mCurrentLayoutState != switchTo){
             if(mCurrentLayoutState > switchTo){
                 mCurrentLayoutState--;
@@ -2039,6 +2057,17 @@ private int whichAddestatePage = 0;
                 viewFlip.setOutAnimation(outToLeftAnimation());
                 viewFlip.setDisplayedChild(switchTo);
             }
+        }
+
+
+
+        if (!isBackPressed) {
+            prewViews.add(viewFlip.getDisplayedChild());
+            for (int i = 0; i < prewViews.size(); i++) {
+                Log.d("VIEWS: ", prewViews.get(i).toString());
+            }
+        } else {
+            isBackPressed = false;
         }
     }
 
