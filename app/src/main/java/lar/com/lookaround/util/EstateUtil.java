@@ -24,7 +24,7 @@ import lar.com.lookaround.restapi.SoapService;
  * Created by Attila_Dan on 16. 04. 19..
  */
 public class EstateUtil {
-    int id;
+    private int id;
     private String adress;
     private String street;
     private String description;
@@ -138,9 +138,10 @@ public class EstateUtil {
         this.urls = urls;
     }
 
-   public EstateUtil(boolean error, String hash) {
+   public EstateUtil(boolean error, String hash, int id) {
         this.error = error;
         this.hash = hash;
+        this.id = id;
     }
 
 
@@ -329,10 +330,10 @@ public class EstateUtil {
                             JSONObject jsonObject = new JSONObject(result);
 
                             boolean err = jsonObject.getBoolean("error");
-                            //int id = jsonObject.getInt("id");
+                            int id = jsonObject.getInt("id");
                             String hash = jsonObject.getString("hash");
 
-                            datas.add(new EstateUtil(err, hash));
+                            datas.add(new EstateUtil(err, hash, id));
 
 
                             getBackWhenItsDone.parseRerult(datas);

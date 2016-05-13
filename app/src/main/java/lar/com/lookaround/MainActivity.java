@@ -31,6 +31,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -109,7 +110,6 @@ public class MainActivity extends AppCompatActivity
     LayoutInflater inflater;
     private int mCurrentLayoutState;
     private int mCurrentLayoutStateAddEstate;
-    private int prewView;
 
     private static final int ESTATESLIST = 0;
     private static final int CONTENTESTATE = 1;
@@ -153,10 +153,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
         Debug.getNativeHeapSize();
-        //addContentView(R.layout.activity_search);
 
         setViewFlipper();
-        setViewFlipperTwo();
 
         if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
@@ -169,8 +167,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
@@ -184,7 +180,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(ADDESTATE);
                 setAddestatePageIndicator(whichAddestatePage);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
@@ -567,7 +562,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        parkolasSpinner_int= spinnerUtil.getId();
+                        parkolasSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -596,7 +591,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        futesSpinner_int= spinnerUtil.getId();
+                        futesSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -626,7 +621,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        energiaSpinner_int= spinnerUtil.getId();
+                        energiaSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -829,13 +824,6 @@ public class MainActivity extends AppCompatActivity
 
         viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
         viewFlip.addView(estatesView, ESTATESLIST);
-
-
-
-        viewFlip.setDisplayedChild(ESTATESLIST);
-    }
-
-    public void setViewFlipperTwo() {
         viewFlip.addView(contentRealestate, CONTENTESTATE);
         viewFlip.addView(addEstate, ADDESTATE);
         viewFlip.addView(invite, INVITE);
@@ -850,6 +838,10 @@ public class MainActivity extends AppCompatActivity
         viewFlipAddEstate.addView(addEstate3, 2);
         viewFlipAddEstate.addView(addEstate4, 3);
         viewFlipAddEstate.addView(addEstate5, 4);
+
+
+
+        viewFlip.setDisplayedChild(ESTATESLIST);
     }
 
 
@@ -1225,7 +1217,7 @@ private int whichAddestatePage = 0;
 
 
 
-    public void nextAddestatePage(View view) {
+    public void nextAddestatePage(final View view) {
         if (whichAddestatePage < 5) {
             whichAddestatePage += 1;
             boolean isFilledOut = true;
@@ -1428,10 +1420,13 @@ private int whichAddestatePage = 0;
                                              public void parseRerult(Object result) {
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
 
-                                                 if (!resArray.get(0).isError()) {
-                                                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
-                                                     switchLayoutTo(ESTATESLIST);
-                                                     Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
+                                                 if (!resArray.get(resArray.size()-1).isError()) {
+                                                     //TODO: képfeltöltés...
+                                                     //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
+                                                     whenUploadFinished(resArray.get(resArray.size()-1).getId());
+
+                                                     Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)
+                                                             .setAction("Action", null).show();
                                                      Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
                                                  } else {
                                                      showAlertError("Sikertelen feltöltés");
@@ -1446,6 +1441,68 @@ private int whichAddestatePage = 0;
                     break;
             }
         }
+    }
+
+    public void whenUploadFinished(int id) {
+        final TextView price = (TextView) findViewById(R.id.item_realestate_price);
+        final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
+        final TextView item_realestate_optional_address = (TextView) findViewById(R.id.item_realestate_optional_address);
+        //final TextView type_realestate_value = (TextView) findViewById(R.id.type_realestate_value);
+        //final TextView elevator_realestate_value = (TextView) findViewById(R.id.elevator_realestate_value);
+        //final TextView balcony_realestate_value = (TextView) findViewById(R.id.balcony_realestate_value);
+        //final TextView parking_realestate_value = (TextView) findViewById(R.id.parking_realestate_value);
+        //final TextView view_realestate_value = (TextView) findViewById(R.id.view_realestate_value);
+        //final TextView heating_realestate_value = (TextView) findViewById(R.id.heating_realestate_value);
+        //final TextView comfort_realestate_value = (TextView) findViewById(R.id.comfort_realestate_value);
+
+        final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
+
+        //ingatlan_varos parking_realestate_value
+        //ingatlan_utca
+        //ingatlan_rovidleiras
+        //ingatlan_picture_url
+        //kedvenc (bool)
+        //kepek (array)
+
+        EstateUtil.getEstate(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                Log.d("GET_ESTATE Result: ", result.toString());
+                JSONObject obj = (JSONObject) result;
+                //obj.getString("")
+                try {
+
+                    item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
+
+                    Locale locale = new Locale("en", "UK");
+                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+                    //symbols.setDecimalSeparator(';');
+                    symbols.setGroupingSeparator('.');
+                    String pattern = "###,###";
+                    DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+                    String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
+                    price.setText(format + " Ft");
+
+
+                    item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, String.valueOf(id), SettingUtil.getToken(getBaseContext()));
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
+
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab_phone.setVisibility(View.VISIBLE);
+
+        switchLayoutTo(CONTENTESTATE);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        findViewById(R.id.scrollView2).scrollTo(0, 0);
+        supportInvalidateOptionsMenu();
     }
 
     public void prewAddestatePage(View view) {
@@ -1655,7 +1712,7 @@ private int whichAddestatePage = 0;
                 @Override
                 public void parseRerult(Object result) {
                     Log.d("GET_ESTATE Result: ", result.toString());
-                    JSONObject obj = (JSONObject)result;
+                    JSONObject obj = (JSONObject) result;
                     //obj.getString("")
                     try {
 
@@ -1686,7 +1743,6 @@ private int whichAddestatePage = 0;
             final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
             fab_phone.setVisibility(View.VISIBLE);
 
-            prewView = viewFlip.getDisplayedChild();
             switchLayoutTo(CONTENTESTATE);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
             findViewById(R.id.scrollView2).scrollTo(0, 0);
@@ -1957,7 +2013,6 @@ private int whichAddestatePage = 0;
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                 break;
             case R.id.nav_profile:
-                prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(PROFILE);
                 break;
             case R.id.nav_messages:
@@ -1983,7 +2038,6 @@ private int whichAddestatePage = 0;
 
                 break;
             case R.id.nav_invitation:
-                prewView = viewFlip.getDisplayedChild();
                 switchLayoutTo(INVITE);
                 break;
             case R.id.nav_logout:
