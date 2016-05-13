@@ -1,15 +1,19 @@
 package lar.com.lookaround;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -60,10 +64,33 @@ public class MapsActivity extends AppCompatActivity {
 
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
+
+        if (ContextCompat.checkSelfPermission(MapsActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+
+            } else {
+                ActivityCompat.requestPermissions(
+                        MapsActivity.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                        0);
+            }
+        }
+
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 Log.d("MAPS: onMapReady ", "called");
+
+                /*ActivityCompat.requestPermissions(
+                        MapsActivity.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                        0);*/
+
                 mMap = googleMap;
                 setUpMap();
                 setUpClusterer();
@@ -75,6 +102,29 @@ public class MapsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    startActivity(new Intent(MapsActivity.this, MapsActivity.class));
+                    finish();
+                    Log.d("ONCREATE ", "MAPS");
+
+                } else {
+
+                    startActivity(new Intent(MapsActivity.this, MapsActivity.class));
+                    finish();
+                    Log.d("ONCREATE ", "MAPS NO");
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

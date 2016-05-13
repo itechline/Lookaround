@@ -2034,7 +2034,10 @@ private int whichAddestatePage = 0;
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
+                            Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null)
 
+                                    .show();
                         } else {
                             SettingUtil.setToken(MainActivity.this, "");
                             startActivity(new Intent(MainActivity.this, LoginActivity.class));
