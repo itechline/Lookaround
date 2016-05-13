@@ -412,7 +412,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                     }
-                }, companyName, "", emailCompany, passwCompany, "ingatlanos");
+                }, companyName, " ", emailCompany, passwCompany, "ingatlanos");
             }
 
         }
