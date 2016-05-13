@@ -10,6 +10,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.provider.CalendarContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -60,7 +61,20 @@ public class MapsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maps);
         setTitle("Bonodom");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Log.d("MAPS: onCreate ", "called");
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_maps);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                //switchLayoutTo(ADDESTATE);
+                //setAddestatePageIndicator(whichAddestatePage);
+                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                fab.setVisibility(View.INVISIBLE);
+
+            }
+        });
 
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
