@@ -92,9 +92,8 @@ public class MapsActivity extends AppCompatActivity {
                         0);*/
 
                 mMap = googleMap;
-                setUpMap();
                 setUpClusterer();
-
+addItems();
 
 
                 //setUpMap(googleMap);
@@ -329,7 +328,7 @@ public class MapsActivity extends AppCompatActivity {
 
         MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
         mClusterManager.addItem(offsetItem);
-        gotoLocation(lat, lng, 10);
+        //gotoLocation(lat, lng, 10);
         Log.d("CLUSTER: ", "ADDED");
 
     }
@@ -342,8 +341,8 @@ public class MapsActivity extends AppCompatActivity {
         double lng = -0.1270060;
 
         // Add ten cluster items in close proximity, for purposes of this example.
-        for (int i = 0; i < 10; i++) {
-            double offset = i / 60d;
+        for (int i = 0; i < 10000; i++) {
+            double offset = i / 2000000d;
             lat = lat + offset;
             lng = lng + offset;
             MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
