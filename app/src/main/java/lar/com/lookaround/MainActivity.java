@@ -1774,7 +1774,7 @@ private int whichAddestatePage = 0;
                 final int mPosition=0;
                 final int mOffset=0;
                 //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
-                final View asdf = (View) findViewById(R.id.sorting_estates_relativeLayout);
+                final View csok = (View) findViewById(R.id.sorting_estates_relativeLayout);
 
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
@@ -1789,27 +1789,27 @@ private int whichAddestatePage = 0;
 
                         if (mPosition < position || (mPosition == position && mOffset < offset)){
                             // Scrolled up
-                            asdf.animate()
+                            csok.animate()
                                     .translationY(0)
                                     .alpha(0.0f)
                                     .setListener(new AnimatorListenerAdapter() {
                                         @Override
                                         public void onAnimationEnd(Animator animation) {
                                             super.onAnimationEnd(animation);
-                                            asdf.setVisibility(View.GONE);
+                                            csok.setVisibility(View.GONE);
                                         }
                                     });
 
                         } else {
                             // Scrolled down
-                            asdf.animate()
-                                    .translationY(asdf.getHeight()-75)
+                            csok.animate()
+                                    .translationY(csok.getHeight()-75)
                                     .alpha(1.0f)
                                     .setListener(new AnimatorListenerAdapter() {
                                         @Override
                                         public void onAnimationEnd(Animator animation) {
                                             super.onAnimationEnd(animation);
-                                            asdf.setVisibility(View.VISIBLE);
+                                            csok.setVisibility(View.VISIBLE);
                                         }
                                     });
                         }
@@ -1963,6 +1963,7 @@ private int whichAddestatePage = 0;
         if (id == R.id.action_message) {
             switchLayoutTo(MESSAGES);
         }
+
 
         if (id == R.id.action_share) {
             Intent sendIntent = new Intent();
