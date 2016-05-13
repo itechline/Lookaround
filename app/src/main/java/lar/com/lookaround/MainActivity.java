@@ -1423,8 +1423,8 @@ private int whichAddestatePage = 0;
                                                  if (!resArray.get(resArray.size()-1).isError()) {
                                                      //TODO: képfeltöltés...
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
+                                                     isBackPressed = true;
                                                      whenUploadFinished(resArray.get(resArray.size()-1).getId());
-
                                                      Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)
                                                              .setAction("Action", null).show();
                                                      Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
