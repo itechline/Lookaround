@@ -1003,9 +1003,9 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
                 final AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
-                final View galleryImage = (View) adapter.getView(imageID, null, null);
+                View galleryImage = (View) adapter.getView(imageID, null, null);
 
-                final AddImageUtil addImageUtil = adapter.getItem(imageID);
+                final AddImageUtil addImageUtil = adapter.getItem(galleryImageID);
 
                 galleryImage.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1017,7 +1017,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-                linearLayoutGallery.addView(galleryImage, galleryImageID);
+                linearLayoutGallery.addView(galleryImage, addImageUtil.getId());
                 linearLayoutGallery.setDividerPadding(0);
                 imageID += 1;
                 galleryImageID += 1;
@@ -1049,25 +1049,16 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            if (!isCameraSwapping) {
-                linearLayoutCam.addView(camImage, camImageID);
+            linearLayoutCam.addView(camImage, addImageUtil.getId());
 
-                camImageID += 1;
-            } else {
-                linearLayoutCam.removeViewAt(cameraSwappingID);
-                linearLayoutCam.addView(camImage, cameraSwappingID);
-            }
+            camImageID += 1;
             imageID += 1;
             linearLayoutCam.setDividerPadding(0);
 
         }
     }
 
-    boolean isCameraSwapping = false;
-    int cameraSwappingID;
-
     private void callPopup(final int id, final LinearLayout layout) {
-        isCameraSwapping = false;
 
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -1090,26 +1081,7 @@ public class MainActivity extends AppCompatActivity
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
-                        isCameraSwapping = true;
-                        cameraSwappingID = id;
-                        if (ContextCompat.checkSelfPermission(MainActivity.this,
-                                Manifest.permission.CAMERA)
-                                != PackageManager.PERMISSION_GRANTED) {
 
-                            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
-                                    Manifest.permission.CAMERA)) {
-
-
-                            } else {
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission.CAMERA},
-                                        TAKE_IMAGE_REQUEST);
-
-                            }
-                        } else {
-                            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                            startActivityForResult(intent, TAKE_IMAGE_REQUEST);
-                        }
                         popupWindow.dismiss();
                     }
                 });
@@ -1128,7 +1100,8 @@ public class MainActivity extends AppCompatActivity
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
-                        layout.removeViewAt(id);
+                        //layout.removeViewAt(id);
+                        layout.getChildAt(id).setVisibility(View.GONE);
                         popupWindow.dismiss();
 
                     }
@@ -1453,7 +1426,7 @@ private int whichAddestatePage = 0;
                                              public void parseRerult(Object result) {
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
 
-                                                 if (resArray.get(0).isError()) {
+                                                 if (!resArray.get(0).isError()) {
                                                      loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
                                                      switchLayoutTo(ESTATESLIST);
                                                      Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();

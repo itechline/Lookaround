@@ -56,14 +56,19 @@ public class MapsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maps);
         setTitle("Bonodom");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Log.d("MAPS: onCreate ", "called");
 
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                Log.d("MAPS: onMapReady ", "called");
                 mMap = googleMap;
+                setUpMap();
                 setUpClusterer();
+
+
 
                 //setUpMap(googleMap);
 
@@ -106,9 +111,9 @@ public class MapsActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setUpMap(GoogleMap map) {
-        mMap = map;
+    private void setUpMap() {
 
+        Log.d("MAPS: SetupMap ", "called");
         coords.add(ONE);
         coords.add(TWO);
         coords.add(THREE);
@@ -152,6 +157,7 @@ public class MapsActivity extends AppCompatActivity {
     private ClusterManager<MyItem> mClusterManager;
 
     private void setUpClusterer() {
+        Log.d("MAPS setUpClusterer ", "called");
         // Declare a variable for the cluster manager.
 
 
