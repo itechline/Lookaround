@@ -138,7 +138,7 @@ public class EstateUtil {
         this.urls = urls;
     }
 
-    public EstateUtil(boolean error, String hash) {
+   public EstateUtil(boolean error, String hash) {
         this.error = error;
         this.hash = hash;
     }
@@ -316,33 +316,26 @@ public class EstateUtil {
             postadatok.put("ingatlan_szsz_id", szobaszam);
             postadatok.put("ingatlan_lng", lng);
             postadatok.put("ingatlan_lat", lat);
-
-
-
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("ADDESTATE: ", "Return: " + result);
-
-                    ArrayList<EstateUtil> toSend = new ArrayList<EstateUtil>();
+                    Log.d("ADDESTATE", "Return: " + result);
 
                     if (result != null) {
                         try {
+
+                            ArrayList<EstateUtil> datas = new ArrayList<EstateUtil>();
+
                             JSONObject jsonObject = new JSONObject(result);
 
+                            boolean err = jsonObject.getBoolean("error");
+                            //int id = jsonObject.getInt("id");
+                            String hash = jsonObject.getString("hash");
 
-                            //eddig csak errorJson volt átadva getBackWhenItsDone-ban
-
-                            boolean errorJson = jsonObject.getBoolean("error");
-                            String hashJson = jsonObject.getString("hash");
-
-
-                            toSend.add(new EstateUtil(errorJson, hashJson));
-
-                            getBackWhenItsDone.parseRerult(toSend);
+                            datas.add(new EstateUtil(err, hash));
 
 
-
+                            getBackWhenItsDone.parseRerult(datas);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -359,7 +352,7 @@ public class EstateUtil {
     }
 
 
-    public static void uploadImage(final SoapObjectResult getBackWhenItsDone, Bitmap bitmap) {
+    /*public static void uploadImage(final SoapObjectResult getBackWhenItsDone, Bitmap bitmap) {
         try {
             String url = "http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=anh3x2fz5np1";
 
@@ -397,6 +390,6 @@ public class EstateUtil {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }
