@@ -98,19 +98,10 @@ public class MapsActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                Log.d("MAPS: onMapReady ", "called");
-
-                /*ActivityCompat.requestPermissions(
-                        MapsActivity.this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                        0);*/
-
                 mMap = googleMap;
                 setUpClusterer();
-addItems();
+                addItems();
 
-
-                //setUpMap(googleMap);
 
             }
         });
@@ -120,18 +111,13 @@ addItems();
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                     startActivity(new Intent(MapsActivity.this, MapsActivity.class));
                     finish();
-                    Log.d("ONCREATE ", "MAPS");
-
                 } else {
-
                     startActivity(new Intent(MapsActivity.this, MapsActivity.class));
                     finish();
-                    Log.d("ONCREATE ", "MAPS NO");
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
