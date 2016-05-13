@@ -1962,8 +1962,6 @@ private int whichAddestatePage = 0;
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
         }
 
-
-
         if (id == android.R.id.home) {
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
@@ -2012,7 +2010,7 @@ private int whichAddestatePage = 0;
                 switchLayoutTo(BOOKING);
                 break;
             case R.id.nav_myads:
-
+                //TODO: estateUtil.listEstatest meghívni (loadRealEstates) és átalakítani h csak a sajátunk jelenjen meg
                 break;
             case R.id.nav_myfavs:
                 isShowingFavorites = true;
@@ -2022,10 +2020,10 @@ private int whichAddestatePage = 0;
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
                 break;
             case R.id.nav_admonitor:
-
+                //TODO: létrehozni hozzá az API-t
                 break;
             case R.id.nav_agency:
-
+                //TODO: kitalálni h mi és h is lesz
                 break;
             case R.id.nav_invitation:
                 switchLayoutTo(INVITE);
