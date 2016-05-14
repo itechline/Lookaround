@@ -1953,12 +1953,19 @@ private int whichAddestatePage = 0;
         }
 
         if (id == R.id.action_fav) {
-            MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+            final MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+            favItem.setCheckable(true);
+            Log.d("FAV ", "MAIN");
 
-            if (favItem.getItemData().getIcon().equals(getResources().getDrawable(R.drawable.ic_action_heart_content))) {
+            if (!favItem.getItemData().isChecked()) {
+                Log.d("FAV ", "IF");
                 EstateUtil.setFavorite(new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
+                        Log.d("FAV RESULT", result.toString());
+                        if (!(boolean)result) {
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                        }
                     /*if((boolean)result){
                         if (fav.isChecked()) {
                             fav.setChecked(false);
