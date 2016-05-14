@@ -1682,6 +1682,7 @@ private int whichAddestatePage = 0;
 
     }
 
+    EstateUtil estateUtil_fav;
     int estateID;
     private class ItemList implements AdapterView.OnItemClickListener {
 
@@ -1689,6 +1690,7 @@ private int whichAddestatePage = 0;
             EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
             EstateUtil estateUtil = adapter.getItem(position);
             estateID = estateUtil.getId();
+            estateUtil_fav = estateUtil;
 
             final TextView price = (TextView) findViewById(R.id.item_realestate_price);
             final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
@@ -1799,7 +1801,7 @@ private int whichAddestatePage = 0;
 
                         if (mPosition < position || (mPosition == position && mOffset < offset)){
                             // Scrolled up
-                            csok.animate()
+                            /*csok.animate()
                                     .translationY(0)
                                     .alpha(0.0f)
                                     .setListener(new AnimatorListenerAdapter() {
@@ -1808,10 +1810,10 @@ private int whichAddestatePage = 0;
                                             super.onAnimationEnd(animation);
                                             csok.setVisibility(View.GONE);
                                         }
-                                    });
+                                    });*/
                         } else {
                             // Scrolled down
-                            csok.animate()
+                            /*csok.animate()
                                     .translationY(csok.getHeight()-75)
                                     .alpha(1.0f)
                                     .setListener(new AnimatorListenerAdapter() {
@@ -1820,7 +1822,7 @@ private int whichAddestatePage = 0;
                                             super.onAnimationEnd(animation);
                                             csok.setVisibility(View.VISIBLE);
                                         }
-                                    });
+                                    });*/
                         }
                     }
 
@@ -1978,6 +1980,7 @@ private int whichAddestatePage = 0;
                         if (!(boolean)result) {
                             favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
                             isFavEstate = true;
+                            estateUtil_fav.setIsFavourite(true);
                         }
                     }
                 },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
@@ -1989,6 +1992,7 @@ private int whichAddestatePage = 0;
                         if (!(boolean)result) {
                             favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
                             isFavEstate = false;
+                            estateUtil_fav.setIsFavourite(false);
                         }
                     }
                 },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "0");
