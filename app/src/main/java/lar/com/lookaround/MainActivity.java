@@ -1470,7 +1470,6 @@ private int whichAddestatePage = 0;
             public void parseRerult(Object result) {
                 Log.d("GET_ESTATE Result: ", result.toString());
                 JSONObject obj = (JSONObject) result;
-                //obj.getString("")
                 try {
 
                     item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
@@ -1730,6 +1729,18 @@ private int whichAddestatePage = 0;
                         String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
                         price.setText(format + " Ft");
 
+                        isFavEstate = obj.getBoolean("kedvenc");
+
+                        favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+
+                        if (isFavEstate) {
+                            Log.d("ISFAV ", "TRUE");
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                        } else {
+                            Log.d("ISFAV ", "FALSE");
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                        }
+
 
                         item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
                     } catch (JSONException e) {
@@ -1926,6 +1937,8 @@ private int whichAddestatePage = 0;
         return true;
     }
 
+    MenuView.ItemView favItem;
+    boolean isFavEstate = false;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -1953,11 +1966,10 @@ private int whichAddestatePage = 0;
         }
 
         if (id == R.id.action_fav) {
-            final MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
-            favItem.setCheckable(true);
+            favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
             Log.d("FAV ", "MAIN");
 
-            if (!favItem.getItemData().isChecked()) {
+            if (!isFavEstate) {
                 Log.d("FAV ", "IF");
                 EstateUtil.setFavorite(new SoapObjectResult() {
                     @Override
@@ -1965,22 +1977,21 @@ private int whichAddestatePage = 0;
                         Log.d("FAV RESULT", result.toString());
                         if (!(boolean)result) {
                             favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                            isFavEstate = true;
                         }
-                    /*if((boolean)result){
-                        if (fav.isChecked()) {
-                            fav.setChecked(false);
-                        } else {
-                            fav.setChecked(true);
-                        }
-                    } else {
-                        if (fav.isChecked()){
-                            estate.setIsFavourite(true);
-                        } else {
-                            estate.setIsFavourite(false);
-                        }
-                    }*/
                     }
                 },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
+            } else {
+                EstateUtil.setFavorite(new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                        Log.d("FAV RESULT", result.toString());
+                        if (!(boolean)result) {
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                            isFavEstate = false;
+                        }
+                    }
+                },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "0");
             }
 
 
