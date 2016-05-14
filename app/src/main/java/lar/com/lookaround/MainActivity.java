@@ -35,6 +35,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.view.menu.MenuView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
@@ -1682,11 +1683,13 @@ private int whichAddestatePage = 0;
 
     }
 
+    int estateID;
     private class ItemList implements AdapterView.OnItemClickListener {
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
             EstateUtil estateUtil = adapter.getItem(position);
+            estateID = estateUtil.getId();
 
             final TextView price = (TextView) findViewById(R.id.item_realestate_price);
             final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
@@ -1947,6 +1950,33 @@ private int whichAddestatePage = 0;
 
         if (id == R.id.action_calendar) {
             switchLayoutTo(BOOKING);
+        }
+
+        if (id == R.id.action_fav) {
+            MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+
+            if (favItem.getItemData().getIcon().equals(getResources().getDrawable(R.drawable.ic_action_heart_content))) {
+                EstateUtil.setFavorite(new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                    /*if((boolean)result){
+                        if (fav.isChecked()) {
+                            fav.setChecked(false);
+                        } else {
+                            fav.setChecked(true);
+                        }
+                    } else {
+                        if (fav.isChecked()){
+                            estate.setIsFavourite(true);
+                        } else {
+                            estate.setIsFavourite(false);
+                        }
+                    }*/
+                    }
+                },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
+            }
+
+
         }
 
         if (id == R.id.action_message) {
