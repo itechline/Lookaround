@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/button_login"
+            android:text="@string/booking_text"
             android:id="@+id/booking_button_login"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
