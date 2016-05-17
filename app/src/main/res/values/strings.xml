@@ -277,6 +277,10 @@
 
     <string name="first_settings_page1">Kérjük adja meg a tartózkodási helyét, hogy ide tudjak írni valami loremipsumot nektek</string>
     <string name="first_setting_p1_hint">Város megadása</string>
+    <string name="first_settings_page2">Kérjük adja meg a telefonszámát, hogy könnyebben el tudják érni a hírdetésével kapcsolatban</string>
+    <string name="first_setting_p2_hint">Telefonszám megadása</string>
+
+
 
 
 </resources>

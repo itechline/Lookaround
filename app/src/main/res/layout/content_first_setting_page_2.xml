@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/first_settings_page1"
+            android:text="@string/first_settings_page2"
             android:id="@+id/first_setting_pg2_text"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
@@ -25,10 +25,11 @@
             android:layout_below="@+id/first_setting_pg2_text"
             android:layout_margin="20sp"
             android:background="@drawable/spinner_border"
-            android:hint="@string/first_setting_p1_hint"
+            android:hint="@string/first_setting_p2_hint"
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:inputType="phone" />
 
         <Button
             android:layout_width="wrap_content"
