@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_back"
                 android:id="@+id/textView5"
+                android:onClick="prewPageFirstSetting"
                 android:textColor="#0066cc"
                 android:layout_margin="5sp" />
 
@@ -71,6 +72,7 @@
                 android:id="@+id/textView6"
                 android:background="@drawable/colorbutton"
                 android:textColor="#ffffff"
+                android:onClick="nextPageFirstSetting"
                 android:gravity="center_vertical|center_horizontal"
                 android:padding="2sp"
                 android:layout_margin="5sp" />

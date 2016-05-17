@@ -45,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_back"
+                android:onClick="prewPageFirstSetting"
                 android:id="@+id/first_setting_back_button"
                 android:textColor="#0066cc"
                 android:layout_margin="5sp"/>
@@ -56,6 +57,7 @@
                 android:id="@+id/first_setting_next_button"
                 android:background="@drawable/colorbutton"
                 android:textColor="#ffffff"
+                android:onClick="nextPageFirstSetting"
                 android:gravity="center_vertical|center_horizontal"
                 android:padding="2sp"
                 android:layout_margin="5sp"
