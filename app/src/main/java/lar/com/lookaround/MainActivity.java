@@ -1944,96 +1944,82 @@ private int whichAddestatePage = 0;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch(item.getItemId()) {
+            case R.id.action_search:
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else {
+                    drawer.openDrawer(GravityCompat.END);
+                }
+                break;
+            case R.id.action_map:
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                break;
+            case R.id.action_calendar:
+                switchLayoutTo(BOOKING);
+                break;
+            case R.id.action_fav:
+                favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+                Log.d("FAV ", "MAIN");
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            if (drawer.isDrawerOpen(GravityCompat.END)) {
-                drawer.closeDrawer(GravityCompat.END);
-            } else {
-                drawer.openDrawer(GravityCompat.END);
-            }
-            return true;
-        }
-
-        if (id == R.id.action_map) {
-            startActivity(new Intent(MainActivity.this, MapsActivity.class));
-        }
-
-        if (id == R.id.action_calendar) {
-            switchLayoutTo(BOOKING);
-        }
-
-        if (id == R.id.action_fav) {
-            favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
-            Log.d("FAV ", "MAIN");
-
-            if (!isFavEstate) {
-                Log.d("FAV ", "IF");
-                EstateUtil.setFavorite(new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        Log.d("FAV RESULT", result.toString());
-                        if (!(boolean)result) {
-                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
-                            isFavEstate = true;
-                            estateUtil_fav.setIsFavourite(true);
+                if (!isFavEstate) {
+                    Log.d("FAV ", "IF");
+                    EstateUtil.setFavorite(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            Log.d("FAV RESULT", result.toString());
+                            if (!(boolean)result) {
+                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                                isFavEstate = true;
+                                estateUtil_fav.setIsFavourite(true);
+                            }
                         }
-                    }
-                },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
-            } else {
-                EstateUtil.setFavorite(new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        Log.d("FAV RESULT", result.toString());
-                        if (!(boolean)result) {
-                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
-                            isFavEstate = false;
-                            estateUtil_fav.setIsFavourite(false);
+                    },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
+                } else {
+                    EstateUtil.setFavorite(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            Log.d("FAV RESULT", result.toString());
+                            if (!(boolean) result) {
+                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                                isFavEstate = false;
+                                estateUtil_fav.setIsFavourite(false);
+                            }
                         }
-                    }
-                },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "0");
-            }
+                    }, String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "0");
+                }
+                break;
+            case R.id.action_message:
+                switchLayoutTo(MESSAGES);
+                break;
+            case R.id.action_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
+                break;
+            case android.R.id.home:
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+                switch (viewFlip.getDisplayedChild()) {
+                    case ESTATESLIST:
+                        if (drawer.isDrawerOpen(GravityCompat.START)) {
+                            drawer.closeDrawer(GravityCompat.START);
+                        } else {
+                            drawer.openDrawer(GravityCompat.START);
+                        }
+                        break;
+                    default:
+                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                        switchLayoutTo(ESTATESLIST);
+                        fab.setVisibility(View.VISIBLE);
+                        fab_phone.setVisibility(View.INVISIBLE);
+                        supportInvalidateOptionsMenu();
+                        break;
+                }
+                break;
 
-
-        }
-
-        if (id == R.id.action_message) {
-            switchLayoutTo(MESSAGES);
-        }
-
-
-        if (id == R.id.action_share) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-            sendIntent.setType("text/plain");
-            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
-        }
-
-        if (id == android.R.id.home) {
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-            switch (viewFlip.getDisplayedChild()) {
-                case ESTATESLIST:
-                    if (drawer.isDrawerOpen(GravityCompat.START)) {
-                        drawer.closeDrawer(GravityCompat.START);
-                    } else {
-                        drawer.openDrawer(GravityCompat.START);
-                    }
-                    break;
-                default:
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                    switchLayoutTo(ESTATESLIST);
-                    fab.setVisibility(View.VISIBLE);
-                    fab_phone.setVisibility(View.INVISIBLE);
-                    supportInvalidateOptionsMenu();
-                    break;
-            }
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
