@@ -53,7 +53,7 @@ public class EstateUtil {
         this.parkolas = parkolas;
     }
 
-    public int isButor() {
+    public int getButor() {
         return butor;
     }
 
@@ -61,7 +61,7 @@ public class EstateUtil {
         this.butor = butor;
     }
 
-    public int isErkely() {
+    public int getErkely() {
         return erkely;
     }
 

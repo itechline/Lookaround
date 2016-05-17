@@ -1689,13 +1689,15 @@ private int whichAddestatePage = 0;
             final TextView price = (TextView) findViewById(R.id.item_realestate_price);
             final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
             final TextView item_realestate_optional_address = (TextView) findViewById(R.id.item_realestate_optional_address);
-            //final TextView type_realestate_value = (TextView) findViewById(R.id.type_realestate_value);
-            //final TextView elevator_realestate_value = (TextView) findViewById(R.id.elevator_realestate_value);
-            //final TextView balcony_realestate_value = (TextView) findViewById(R.id.balcony_realestate_value);
-            //final TextView parking_realestate_value = (TextView) findViewById(R.id.parking_realestate_value);
-            //final TextView view_realestate_value = (TextView) findViewById(R.id.view_realestate_value);
-            //final TextView heating_realestate_value = (TextView) findViewById(R.id.heating_realestate_value);
-            //final TextView comfort_realestate_value = (TextView) findViewById(R.id.comfort_realestate_value);
+            final TextView roomcount = (TextView) findViewById(R.id.roomcount_realestate_value);
+            final TextView size = (TextView) findViewById(R.id.size_realestate_item_value);
+            final TextView type= (TextView) findViewById(R.id.type_realestate_value);
+            final TextView elevator = (TextView) findViewById(R.id.elevator_realestate_value);
+            final TextView balcony = (TextView) findViewById(R.id.balcony_realestate_value);
+            final TextView parking = (TextView) findViewById(R.id.parking_realestate_value);
+
+            final TextView kilatas = (TextView) findViewById(R.id.view_realestate_value);
+
 
             final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
@@ -1715,6 +1717,15 @@ private int whichAddestatePage = 0;
                     try {
 
                         item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
+                        roomcount.setText(obj.getString("ingatlan_szsz"));
+                        size.setText(obj.getString("ingatlan_meret"));
+                        type.setText(obj.getString("ingatlan_tipus"));
+                        elevator.setText(obj.getString("ingatlan_lift"));
+                        balcony.setText(obj.getString("ingatlan_erkely"));
+                        parking.setText(obj.getString("ingatlan_parkolas"));
+                        kilatas.setText(obj.getString("ingatlan_kilatas"));
+                        //TODO: kilátástól folytatni a lekérdezést
+
 
                         Locale locale = new Locale("en", "UK");
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
@@ -1762,6 +1773,7 @@ private int whichAddestatePage = 0;
 
     private int pageCount = 0;
     private boolean isRefreshing = false;
+
 
     public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav) {
         pageCount = 0;
