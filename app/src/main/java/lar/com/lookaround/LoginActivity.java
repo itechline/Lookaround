@@ -128,8 +128,38 @@ public class LoginActivity extends AppCompatActivity {
     public void nextPageFirstSetting(View view) {
         if (whichPage < 3) {
             whichPage += 1;
-            switchLayoutToFirstSettings(whichPage);
-            pageIndicatorSetter(whichPage);
+
+            switch (whichPage) {
+                case 1:
+                    EditText varos = (EditText) findViewById(R.id.first_setting_city_edittext);
+                    String varosString = varos.getText().toString();
+
+                    if(!isValidName(varosString)) {
+                        varos.setError("Hiba!");
+                        varos.invalidate();
+                    } else {
+                        switchLayoutToFirstSettings(whichPage);
+                        pageIndicatorSetter(whichPage);
+                    }
+                    break;
+                case 2:
+                    EditText phone = (EditText) findViewById(R.id.first_setting_phone_edittext);
+                    String phoneString = phone.getText().toString();
+
+                    if(!isValidName(phoneString)) {
+                        phone.setError("Hiba!");
+                        phone.invalidate();
+                    } else {
+                        switchLayoutToFirstSettings(whichPage);
+                        pageIndicatorSetter(whichPage);
+                    }
+                    break;
+                case 3:
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                    break;
+            }
+
         }
 
     }
@@ -167,7 +197,6 @@ public class LoginActivity extends AppCompatActivity {
                 laythreendicator.setImageDrawable(kekpotty);
                 break;
         }
-
     }
 
     @Override
