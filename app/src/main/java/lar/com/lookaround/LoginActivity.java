@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!isValidName(varosString)) {
                         varos.setError("Hiba!");
                         varos.invalidate();
+                        whichPage = 0;
                     } else {
                         switchLayoutToFirstSettings(whichPage);
                         pageIndicatorSetter(whichPage);
@@ -149,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!isValidName(phoneString)) {
                         phone.setError("Hiba!");
                         phone.invalidate();
+                        whichPage = 1;
                     } else {
                         switchLayoutToFirstSettings(whichPage);
                         pageIndicatorSetter(whichPage);

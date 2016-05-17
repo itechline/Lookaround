@@ -178,6 +178,9 @@ public class LoginUtil {
 
                             JSONObject jsonObj = new JSONObject(result);
 
+                            String token = jsonObj.getString(TOKEN);
+                            SettingUtil.setToken(ctx, token);
+
                             Object isStatus = jsonObj.getBoolean(STATUS);
                             getBackWhenItsDone.parseRerult(isStatus);
 
