@@ -57,11 +57,12 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    ViewFlipper viewFlip;
+    ViewFlipper viewFlip, viewFlipFirstSettings;
     private int mCurrentLayoutState;
 
     private static final int REGISTRATION = 1;
     private static final int LOGIN = 0;
+    private static final int FIRSTSETTINGS = 2;
 
     private EditText emailEditText;
     private EditText passEditText;
@@ -96,25 +97,35 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-
-
-
-
-
-
-
-
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        View login, regist;
+        View login, regist, firstsettings, firstsettings_page_one, firstsettings_page_two, firstsettings_page_three;
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         login = inflater.inflate(R.layout.content_login, null);
         regist = inflater.inflate(R.layout.content_registration, null);
+        firstsettings = inflater.inflate(R.layout.content_first_settings, null);
+        firstsettings_page_one = inflater.inflate(R.layout.content_first_setting_page_1, null);
+        firstsettings_page_two = inflater.inflate(R.layout.content_first_setting_page_2, null);
+        firstsettings_page_three = inflater.inflate(R.layout.content_first_setting_page_3, null);
+
 
         viewFlip = (ViewFlipper) findViewById(R.id.mainViewFlipper);
         viewFlip.addView(login, LOGIN);
         viewFlip.addView(regist, REGISTRATION);
+        viewFlip.addView(firstsettings, FIRSTSETTINGS);
+
+        viewFlipFirstSettings = (ViewFlipper) findViewById(R.id.viewFlipperFirstSettings);
+        viewFlipFirstSettings.addView(firstsettings_page_one, 0);
+        viewFlipFirstSettings.addView(firstsettings_page_two, 1);
+        viewFlipFirstSettings.addView(firstsettings_page_three, 2);
+    }
+
+    public void nextPageFirstSetting(View view) {
+
+    }
+
+    public void prewPageFirstSetting(View view) {
+
     }
 
     @Override
@@ -355,8 +366,9 @@ public class LoginActivity extends AppCompatActivity {
                             //launchRingDialog(view);
                             //sendLoginAfterReg(view, email, passw);
                             ringProgressDialog.dismiss();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
+                            switchLayoutTo(FIRSTSETTINGS);
+                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            //finish();
                         } else {
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");
@@ -403,8 +415,9 @@ public class LoginActivity extends AppCompatActivity {
                         if ((boolean) result) {
                             //launchRingDialog(view);
                             ringProgressDialog.dismiss();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
+                            switchLayoutTo(FIRSTSETTINGS);
+                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            //finish();
                         } else {
                             ringProgressDialog.dismiss();
                             showAlert(view, "Hibás Adatok!");

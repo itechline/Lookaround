@@ -3,6 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
+
     <ImageView
         android:layout_width="150sp"
         android:layout_height="wrap_content"
@@ -12,6 +13,15 @@
         android:adjustViewBounds="true"
         android:id="@+id/first_settings_page_logo"
         android:layout_margin="20sp" />
+
+    <ViewFlipper
+        android:id="@+id/viewFlipperFirstSettings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/first_settings_pic">
+
+
+    </ViewFlipper>
 
     <ImageView
         android:layout_width="match_parent"
