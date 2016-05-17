@@ -1807,8 +1807,6 @@ private int whichAddestatePage = 0;
             public void parseRerult(Object result) {
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
-                //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
-                // Create the adapter to convert the array to views
                 final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
                 // Attach the adapter to a ListView
                 final ListView listView = (ListView) findViewById(R.id.estateListView);
