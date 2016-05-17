@@ -307,6 +307,7 @@
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
+                                android:id="@+id/heating_value"
                                 android:text="gáz (cirko)"
                                 android:gravity="right"
                                 android:padding="3sp"/>
