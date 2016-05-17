@@ -32,8 +32,7 @@
         <item
             android:id="@+id/nav_admonitor"
             android:icon="@drawable/ic_action_binocular"
-            android:title="@string/admonitor"
-            android:enabled="false"/>
+            android:title="@string/admonitor" />
 
         <item
             android:id="@+id/nav_agency"
