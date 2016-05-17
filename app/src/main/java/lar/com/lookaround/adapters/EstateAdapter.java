@@ -88,6 +88,16 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
         ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
 
+        TextView size = (TextView) convertView.findViewById(R.id.list_size_textView);
+        TextView rooms = (TextView) convertView.findViewById(R.id.list_roomcount_textView);
+        ImageView furniture = (ImageView) convertView.findViewById(R.id.list_furniture_imageview);
+        ImageView balcony = (ImageView) convertView.findViewById(R.id.list_balcony_imageview);
+        ImageView parking = (ImageView) convertView.findViewById(R.id.list_parking_imageview);
+
+        size.setText(estate.getMeret());
+        rooms.setText(String.valueOf(estate.getSzobaszam()));
+
+
 
 
         adress.setText(estate.getAdress());
