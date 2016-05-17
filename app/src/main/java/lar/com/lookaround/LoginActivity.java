@@ -58,7 +58,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     ViewFlipper viewFlip, viewFlipFirstSettings;
-    private int mCurrentLayoutState;
+    private int mCurrentLayoutState, mCurrentLayoutStateFirstSettings;
 
     private static final int REGISTRATION = 1;
     private static final int LOGIN = 0;
@@ -120,11 +120,25 @@ public class LoginActivity extends AppCompatActivity {
         viewFlipFirstSettings.addView(firstsettings_page_three, 2);
     }
 
+    int whichPage = 0;
+
     public void nextPageFirstSetting(View view) {
+        if (whichPage < 3) {
+            whichPage += 1;
+            switchLayoutToFirstSettings(whichPage);
+        }
 
     }
 
     public void prewPageFirstSetting(View view) {
+        if (whichPage > 0) {
+            whichPage -= 1;
+            switchLayoutToFirstSettings(whichPage);
+        }
+
+    }
+
+    public void pageSetter() {
 
     }
 
@@ -240,20 +254,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -603,6 +603,22 @@ public class LoginActivity extends AppCompatActivity {
                 viewFlip.setInAnimation(inFromRightAnimation());
                 viewFlip.setOutAnimation(outToLeftAnimation());
                 viewFlip.setDisplayedChild(switchTo);
+            }
+        };
+    }
+
+    public void switchLayoutToFirstSettings(int switchTo){
+        while(mCurrentLayoutStateFirstSettings != switchTo){
+            if(mCurrentLayoutStateFirstSettings > switchTo){
+                mCurrentLayoutStateFirstSettings--;
+                viewFlipFirstSettings.setInAnimation(inFromLeftAnimation());
+                viewFlipFirstSettings.setOutAnimation(outToRightAnimation());
+                viewFlipFirstSettings.setDisplayedChild(switchTo);
+            } else {
+                mCurrentLayoutStateFirstSettings++;
+                viewFlipFirstSettings.setInAnimation(inFromRightAnimation());
+                viewFlipFirstSettings.setOutAnimation(outToLeftAnimation());
+                viewFlipFirstSettings.setDisplayedChild(switchTo);
             }
         };
     }
