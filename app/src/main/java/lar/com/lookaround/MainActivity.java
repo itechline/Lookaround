@@ -259,6 +259,7 @@ public class MainActivity extends AppCompatActivity
         loadEstateImages();
 
         prewViews.add(0);
+
     }
 
 

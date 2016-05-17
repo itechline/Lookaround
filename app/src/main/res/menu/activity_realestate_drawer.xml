@@ -17,7 +17,8 @@
         <item
             android:id="@+id/nav_billing"
             android:icon="@drawable/ic_action_card"
-            android:title="@string/billing" />
+            android:title="@string/billing"
+            android:enabled="false"/>
         <item
             android:id="@+id/nav_myads"
             android:icon="@drawable/ic_action_house"
@@ -31,12 +32,14 @@
         <item
             android:id="@+id/nav_admonitor"
             android:icon="@drawable/ic_action_binocular"
-            android:title="@string/admonitor" />
+            android:title="@string/admonitor"
+            android:enabled="false"/>
 
         <item
             android:id="@+id/nav_agency"
             android:icon="@drawable/ic_action_agencies"
-            android:title="@string/agency" />
+            android:title="@string/agency"
+            android:enabled="false"/>
         <item
             android:id="@+id/nav_invitation"
             android:icon="@drawable/ic_action_users"

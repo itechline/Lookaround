@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     break;
                 case 3:
-                    //TODO: profilképet feltölteni ha van
+                    //TODO: adatokat feltölteni és profilképet is ha van
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                     break;
