@@ -133,16 +133,7 @@ public class MainActivity extends AppCompatActivity
     private boolean isShowingFavorites = false;
 
 
-    //keresés szűkítése spinnerek
-    Spinner typeSpinner, localSpinner, minfloorSpinner, maxfloorSpinner, minroomsSpinner, maxroomsSpinner;
-    Spinner elevatorSpinner, balconySpinner, iheightSpinner, bathroomwcSpinner, aircondiSpinner;
-    Spinner panoramaSpinner, conditionSpinner, atticSpinner;
-    ArrayAdapter<CharSequence> typespinnerAdapter, localSpinnerAdapter, minfloorSPAdapter, maxfloorSPAdapter, minroomsSPAdapter, maxroomsSPAdapter;
-    ArrayAdapter<CharSequence> elevatorSpinnerAdapter, balconySpinnerAdapter, iheightSpinnerAdapter, bathroomwcSpinnerAdapter, aircondiSPAdapter;
-    ArrayAdapter<CharSequence> gardenRSpinnerAdapter, conditionSpinnerAdapter, atticSpinnerAdapter;
-        //hirdetés feladás spinnerek
-    Spinner advertTypeSpinner;
-    ArrayAdapter<CharSequence> advertTypeSPAdapter;
+
 
 
 
@@ -259,6 +250,7 @@ public class MainActivity extends AppCompatActivity
         loadEstateImages();
 
         prewViews.add(0);
+
     }
 
 
@@ -381,7 +373,9 @@ public class MainActivity extends AppCompatActivity
 
 
     Spinner hirdetesSpinner, szobaszamSpinner, allapotSpinner, emeletekSpinner, ingatlanTipusSpinner, parkolasSpinner, futesSpinner;
-    Spinner energiaSpinner, kilatasSpinner;
+    Spinner energiaSpinner, kilatasSpinner, typeSpinner, panoramaSpinner;
+
+    ArrayAdapter<CharSequence> typespinnerAdapter;
 
     int hirdetesSpinner_int = 0;
     int szobaszamSpinner_int = 0;

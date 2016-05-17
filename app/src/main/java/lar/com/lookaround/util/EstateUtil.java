@@ -31,6 +31,52 @@ public class EstateUtil {
     private int price;
     private boolean error;
     private String hash;
+    private String meret;
+    private int parkolas;
+    private int butor;
+    private int erkely;
+    private int szobaszam;
+
+    public String getMeret() {
+        return meret;
+    }
+
+    public void setMeret(String meret) {
+        this.meret = meret;
+    }
+
+    public int getParkolas() {
+        return parkolas;
+    }
+
+    public void setParkolas(int parkolas) {
+        this.parkolas = parkolas;
+    }
+
+    public int isButor() {
+        return butor;
+    }
+
+    public void setButor(int butor) {
+        this.butor = butor;
+    }
+
+    public int isErkely() {
+        return erkely;
+    }
+
+    public void setErkely(int erkely) {
+        this.erkely = erkely;
+    }
+
+    public int getSzobaszam() {
+        return szobaszam;
+    }
+
+    public void setSzobaszam(int szobaszam) {
+        this.szobaszam = szobaszam;
+    }
+
 
     public boolean isError() {
         return error;
@@ -127,14 +173,27 @@ public class EstateUtil {
     private static final String INGATLAN_AR = "ingatlan_ar";
     private static final String ISFAVOURITE = "kedvenc";
     private static final String INGATLAN_PIC_URL = "ingatlan_picture_url";
+    private static final String INGATLAN_MERET = "ingatlan_meret";
+    private static final String INGATLAN_BUTOROZOTT = "ingatlan_butorozott";
+    private static final String INGATLAN_PARKOLAS = "ingatlan_parkolas_id";
+    private static final String INGATLAN_ERKELY = "ingatlan_erkely";
+    private static final String INGATLAN_SZOBASZAM = "ingatlan_szsz_id";
+    private static final String INGATLAN_LAT = "ingatlan_lat";
+    private static final String INGATLAN_LNG = "ingatlan_lng";
 
-    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String urls) {
+
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, String urls) {
         this.id = id;
         this.adress = adress;
         this.street = street;
         this.description = description;
         this.price = price;
         this.isFavourite = isFavourite;
+        this.meret = meret;
+        this.parkolas = parkolas;
+        this.szobaszam = szobaszam;
+        this.butor = butor;
+        this.erkely = erkely;
         this.urls = urls;
     }
 
@@ -159,12 +218,23 @@ public class EstateUtil {
                 public void parseRerult(String result) {
 
                     if (result != null) {
+                        Log.d("LIST_ESTATES: Result: ", result.toString());
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
 
                             for(int i=0;i<jsonArray.length();i++){
-                                //estates.add(new EstateUtil(jsonArray.getInt(INGATLAN_ID)));
+
+                                /*
+                                private int meret;
+                                private int parkolas;
+                                private int szobaszam;
+                                private boolean butor;
+                                private boolean erkely;
+                                private double lat;
+                                private double lng;
+                                */
+
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 int idJson = json_data.getInt(INGATLAN_ID);
                                 String adressJson = json_data.getString(INGATLAN_VAROS);
@@ -174,8 +244,13 @@ public class EstateUtil {
                                 boolean isFav = json_data.getBoolean(ISFAVOURITE);
                                 String url = json_data.getString(INGATLAN_PIC_URL);
 
+                                String meretJson = json_data.getString(INGATLAN_MERET);
+                                int parkolasJson = json_data.getInt(INGATLAN_PARKOLAS);
+                                int szszJson = json_data.getInt(INGATLAN_SZOBASZAM);
+                                int butorJson = json_data.getInt(INGATLAN_BUTOROZOTT);
+                                int erkelyJson = json_data.getInt(INGATLAN_ERKELY);
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, url));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, url));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;

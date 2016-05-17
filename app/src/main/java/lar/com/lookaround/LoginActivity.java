@@ -1,17 +1,23 @@
 package lar.com.lookaround;
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +37,7 @@ import android.view.LayoutInflater;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -38,10 +45,13 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lar.com.lookaround.adapters.AddImageAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
+import lar.com.lookaround.util.AddImageUtil;
 import lar.com.lookaround.util.LoginUtil;
+import lar.com.lookaround.util.ScalingUtilities;
 import lar.com.lookaround.util.SettingUtil;
 
 import com.facebook.CallbackManager;
@@ -137,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(!isValidName(varosString)) {
                         varos.setError("Hiba!");
                         varos.invalidate();
+                        whichPage = 0;
                     } else {
                         switchLayoutToFirstSettings(whichPage);
                         pageIndicatorSetter(whichPage);
@@ -149,12 +160,14 @@ public class LoginActivity extends AppCompatActivity {
                     if(!isValidName(phoneString)) {
                         phone.setError("Hiba!");
                         phone.invalidate();
+                        whichPage = 1;
                     } else {
                         switchLayoutToFirstSettings(whichPage);
                         pageIndicatorSetter(whichPage);
                     }
                     break;
                 case 3:
+                    //TODO: adatokat feltölteni és profilképet is ha van
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                     break;
@@ -199,10 +212,71 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+    private int PICK_IMAGE_REQUEST = 2;
+    private int TAKE_IMAGE_REQUEST = 1;
+
+    public void pickImageFS(View view) {
+        Intent intent = new Intent();
+
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    public void TakeImageFS(View view) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA},
+                        TAKE_IMAGE_REQUEST);
+
+            }
+        } else {
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            startActivityForResult(intent, TAKE_IMAGE_REQUEST);
+        }
+    }
+
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+
+                ImageView image = (ImageView) findViewById(R.id.profile_photo_gallery);
+                image.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.CROP));
+
+                ImageView cam = (ImageView) findViewById(R.id.profile_photo_cam);
+                cam.setImageDrawable(getResources().getDrawable(R.drawable.fenykepezo));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK) {
+
+            Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
+
+            ImageView cam = (ImageView) findViewById(R.id.profile_photo_cam);
+            cam.setImageBitmap(ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
+
+            ImageView image = (ImageView) findViewById(R.id.profile_photo_gallery);
+            image.setImageDrawable(getResources().getDrawable(R.drawable.feltoltes));
+
+        } else {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     protected String generateRandomPass() {
