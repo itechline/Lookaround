@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +22,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
@@ -126,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
         if (whichPage < 3) {
             whichPage += 1;
             switchLayoutToFirstSettings(whichPage);
+            pageIndicatorSetter(whichPage);
         }
 
     }
@@ -134,11 +138,35 @@ public class LoginActivity extends AppCompatActivity {
         if (whichPage > 0) {
             whichPage -= 1;
             switchLayoutToFirstSettings(whichPage);
+            pageIndicatorSetter(whichPage);
         }
 
     }
 
-    public void pageSetter() {
+    public void pageIndicatorSetter(int page) {
+        ImageView layoneIndicator = (ImageView) findViewById(R.id.progress_1);
+        ImageView laytwoIndicator = (ImageView) findViewById(R.id.progress_2);
+        ImageView laythreendicator = (ImageView) findViewById(R.id.progress_3);
+
+        Resources res = getResources();
+        Drawable kekpotty = res.getDrawable(R.drawable.kekpotty);
+        Drawable szurkepotty = res.getDrawable(R.drawable.szurkepotty);
+
+        layoneIndicator.setImageDrawable(szurkepotty);
+        laytwoIndicator.setImageDrawable(szurkepotty);
+        laythreendicator.setImageDrawable(szurkepotty);
+
+        switch (page) {
+            case 0:
+                layoneIndicator.setImageDrawable(kekpotty);
+                break;
+            case 1:
+                laytwoIndicator.setImageDrawable(kekpotty);
+                break;
+            case 2:
+                laythreendicator.setImageDrawable(kekpotty);
+                break;
+        }
 
     }
 

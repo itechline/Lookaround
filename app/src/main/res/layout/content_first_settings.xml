@@ -59,6 +59,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/progress_2"
             android:layout_margin="5sp"/>
+        <ImageView
+            android:src="@drawable/szurkepotty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_3"
+            android:layout_margin="5sp"/>
     </LinearLayout>
 
 </RelativeLayout>

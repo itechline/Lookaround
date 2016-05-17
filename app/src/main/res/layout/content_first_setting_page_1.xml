@@ -38,6 +38,7 @@
             android:layout_below="@+id/first_setting_phone_edittext"
             android:layout_centerHorizontal="true"
             android:background="@drawable/colorbutton"
+            android:onClick="nextPageFirstSetting"
             android:textColor="#ffffff"
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"

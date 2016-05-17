@@ -53,6 +53,7 @@
             android:text="@string/button_next"
             android:id="@+id/first_setting_next_button"
             android:background="@drawable/colorbutton"
+            android:onClick="nextPageFirstSetting"
             android:textColor="#ffffff"
             android:layout_below="@+id/first_setting_profile_pic_layout"
             android:layout_centerInParent="true"
