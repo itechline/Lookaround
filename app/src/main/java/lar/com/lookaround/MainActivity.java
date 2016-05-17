@@ -1772,7 +1772,6 @@ private int whichAddestatePage = 0;
                             favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
                         }
 
-
                         item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
                     } catch (JSONException e) {
                         e.printStackTrace();
