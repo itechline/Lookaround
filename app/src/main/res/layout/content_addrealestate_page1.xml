@@ -51,18 +51,6 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/below_advertinfo"
-            android:id="@+id/below_advertinfo_text"
-            android:layout_below="@+id/adding_advertinfo_relativelayout"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:layout_margin="5sp"
-            android:textSize="10sp"/>
-
         <LinearLayout
             android:id="@+id/layout_forbuttons_firstpage"
             android:orientation="vertical"
@@ -93,10 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:layout_below="@+id/below_advertinfo_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/layout_forbuttons_firstpage">
+            android:layout_above="@+id/layout_forbuttons_firstpage"
+            android:layout_below="@+id/adding_advertinfo_relativelayout">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -348,7 +336,45 @@
                     android:layout_marginTop="5sp"
                     android:layout_marginRight="5sp"
                     android:textSize="14sp"
-                    />
+                    android:layout_above="@+id/add_estate_furniture_textview" />
+
+            <TextView
+                android:id="@+id/add_estate_furniture_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_advert_furniture"
+                android:textSize="16sp"
+                android:layout_below="@+id/add_estate_size_textview"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5sp" />
+
+            <RelativeLayout
+                android:id="@+id/add_furniture_spinner_rlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:background="@drawable/spinner_border"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/advert_type_textview"
+                android:layout_toEndOf="@+id/advert_type_textview"
+                android:layout_marginRight="5sp"
+                android:layout_alignTop="@+id/add_estate_furniture_textview">
+
+                <Spinner
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_advert_furniture_spinner"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentEnd="true"
+                    android:spinnerMode="dialog"
+                    android:padding="5sp"
+                    android:popupTheme="@android:style/ThemeOverlay.Material.Light"
+                    android:layout_alignParentTop="true" />
+            </RelativeLayout>
         </RelativeLayout>
 
     </RelativeLayout>
