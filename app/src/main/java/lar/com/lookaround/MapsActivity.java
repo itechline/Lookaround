@@ -157,14 +157,13 @@ public class MapsActivity extends AppCompatActivity {
         return true;
     }
 
-    private int id;
-
     public class MyItem implements ClusterItem {
         private final LatLng mPosition;
+        private final int id;
 
-        public MyItem(double lat, double lng, int i) {
+        public MyItem(double lat, double lng, int id) {
             mPosition = new LatLng(lat, lng);
-            id = i;
+            this.id = id;
         }
 
         @Override
@@ -184,7 +183,7 @@ public class MapsActivity extends AppCompatActivity {
             public void parseRerult(Object result) {
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
                 for (int i = 0; i < arrayOfUsers.size(); i++) {
-                    Log.d("MAPS_LAT", String.valueOf(arrayOfUsers.get(i).getLat()));
+                    Log.d("MAPS_ID", String.valueOf(arrayOfUsers.get(i).getId()));
                     MyItem offsetItem = new MyItem(
                             arrayOfUsers.get(i).getLat(),
                             arrayOfUsers.get(i).getLng(),
