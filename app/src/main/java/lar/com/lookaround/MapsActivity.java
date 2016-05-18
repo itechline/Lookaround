@@ -275,10 +275,11 @@ public class MapsActivity extends AppCompatActivity {
                 final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
                 final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
 
-                /*EstateUtil.getEstate(new SoapObjectResult() {
+                EstateUtil.getEstate(new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
                         JSONObject obj = (JSONObject) result;
+                        Log.d("MAPS_RESULT ", result.toString());
 
                         try {
                             tvCity.setText(obj.getString("ingatlan_varos"));
@@ -290,8 +291,7 @@ public class MapsActivity extends AppCompatActivity {
                         }
 
                     }
-                }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));*/
-            tvCity.setText(String.valueOf(clickedClusterItem.getID()));
+                }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
 
             return myContentsView;
         }
