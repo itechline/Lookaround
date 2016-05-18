@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/keyword_realestate_search_edittext"
-                    android:hint="@string/keyword_hint"
+                    android:hint="@string/search_hint"
                     android:layout_below="@+id/keyword_realestate_search_text"
                     android:layout_alignParentLeft="true"
                     android:textSize="12sp"

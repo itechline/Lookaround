@@ -53,7 +53,8 @@
 
     <string name="type_search">Kivitel:</string>
     <string name="localisation_search">Elhelyezkedés:</string>
-    <string name="keyword_search">Kulcsszó:</string>
+    <string name="keyword_search">Keresés:</string>
+    <string name="search_hint">pl.: Debrecen Simonffy utca</string>
     <string name="idontwant_search">Ne szerepeljen:</string>
     <string name="floors_search">Szintek:</string>
     <string name="rooms_count_search">Szobák száma:</string>
