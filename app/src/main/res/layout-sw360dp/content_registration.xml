@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="150sp"
         android:layout_height="wrap_content"
-        android:src="@drawable/main_logo"
+        android:src="@drawable/bonodom_logo"
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
