@@ -260,7 +260,13 @@ public class MapsActivity extends AppCompatActivity {
 
 
         mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
-        mMap.setOnInfoWindowClickListener(mClusterManager);
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
 
 
