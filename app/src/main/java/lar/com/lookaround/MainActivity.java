@@ -1176,7 +1176,7 @@ public class MainActivity extends AppCompatActivity
     public String estateStreet;
     public String estetaHouseNumber;
     public String estateSize;
-    public String postalCode;
+    public String postalCode = "0";
 
     public double lat;
     public double lng;
@@ -1300,7 +1300,6 @@ private int whichAddestatePage = 0;
 
                             if (!list.isEmpty()) {
                                 Address add = list.get(0);
-                                postalCode = String.valueOf(list.get(0).getPostalCode());
                                 lat = add.getLatitude();
                                 lng = add.getLongitude();
                             }
@@ -1429,10 +1428,10 @@ private int whichAddestatePage = 0;
                                                  }
 
                                              }
-                                         }, estateSize, postalCode, estateCity, estateStreet, estateDescription, estatePrice,
+                                         }, estateSize, estateCity, estateStreet, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), "1", String.valueOf(kilatasSpinner_int), "1",
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), "1", String.valueOf(ingatlanTipusSpinner_int),
-                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat));
+                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int));
                     break;
             }
         }
