@@ -50,6 +50,7 @@
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
             android:padding="2sp"
+            android:onClick="adTypeChange"
             android:layout_alignTop="@+id/list_estate_types_textView"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

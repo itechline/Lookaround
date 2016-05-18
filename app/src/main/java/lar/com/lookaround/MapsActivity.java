@@ -56,14 +56,6 @@ public class MapsActivity extends AppCompatActivity {
     private MapView mapView;
     private Marker marker;
 
-    private static final LatLng ONE = new LatLng(32.882216, -117.222028);
-    private static final LatLng TWO = new LatLng(32.872000, -117.232004);
-    private static final LatLng THREE = new LatLng(32.880252, -117.233034);
-    private static final LatLng FOUR = new LatLng(32.885200, -117.226003);
-
-    private ArrayList<LatLng> coords = new ArrayList<LatLng>();
-    private static final int POINTS = 4;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,30 +153,10 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        /*if(viewFlip.getDisplayedChild() == ESTATESLIST) {
-            getMenuInflater().inflate(R.menu.main, menu);
-        }*/
         getMenuInflater().inflate(R.menu.maps, menu);
         return true;
     }
 
-    private void setUpMap() {
-
-        Log.d("MAPS: SetupMap ", "called");
-        coords.add(ONE);
-        coords.add(TWO);
-        coords.add(THREE);
-        coords.add(FOUR);
-        for (int i = 0; i < POINTS; i++) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(coords.get(i))
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-        }
-    }
-
-    private String mSnippet;
-    private String mTitle;
     private int id;
 
     public class MyItem implements ClusterItem {
@@ -298,12 +270,12 @@ public class MapsActivity extends AppCompatActivity {
 
         @Override
         public View getInfoWindow(Marker marker) {
-        final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
+                final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
                 final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
                 final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
                 final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
 
-                EstateUtil.getEstate(new SoapObjectResult() {
+                /*EstateUtil.getEstate(new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
                         JSONObject obj = (JSONObject) result;
@@ -318,7 +290,8 @@ public class MapsActivity extends AppCompatActivity {
                         }
 
                     }
-                }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
+                }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));*/
+            tvCity.setText(String.valueOf(clickedClusterItem.getID()));
 
             return myContentsView;
         }
@@ -350,7 +323,6 @@ public class MapsActivity extends AppCompatActivity {
         MyItem offsetItem = new MyItem(lat, lng, 1);
         mClusterManager.addItem(offsetItem);
         //gotoLocation(lat, lng, 10);
-        Log.d("CLUSTER: ", "ADDED");
 
     }
 

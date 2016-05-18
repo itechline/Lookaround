@@ -1236,6 +1236,23 @@ public class MainActivity extends AppCompatActivity
                 }
             };
 
+    int adType = 0;
+    public void adTypeChange(View view) {
+        TextView typeText = (TextView) findViewById(R.id.estate_type_textview);
+        adType += 1;
+        switch (adType) {
+            case 0:
+                typeText.setText("Mindegy");
+                break;
+            case 1:
+                typeText.setText("Eladó");
+                break;
+            case 2:
+                typeText.setText("Kiadó");
+                adType = -1;
+                break;
+        }
+    }
 
     public boolean isNetworkAvailable() {
 
