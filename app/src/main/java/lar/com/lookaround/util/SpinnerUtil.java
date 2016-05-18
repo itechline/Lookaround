@@ -447,5 +447,30 @@ public class SpinnerUtil {
         }
     }
 
+    public static ArrayList<SpinnerUtil> get_list_butorozott() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+        hiredtestipusa.add(new SpinnerUtil(1, "Nem"));
+        hiredtestipusa.add(new SpinnerUtil(2, "Igen"));
+        hiredtestipusa.add(new SpinnerUtil(3, "Alku tárgya"));
+        return hiredtestipusa;
+    }
+
+    public static ArrayList<SpinnerUtil> get_list_erkely() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+        hiredtestipusa.add(new SpinnerUtil(1, "Van"));
+        hiredtestipusa.add(new SpinnerUtil(2, "Nincs"));
+        return hiredtestipusa;
+    }
+
+    public static ArrayList<SpinnerUtil> get_list_lift() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+        hiredtestipusa.add(new SpinnerUtil(1, "Van"));
+        hiredtestipusa.add(new SpinnerUtil(2, "Nincs"));
+        return hiredtestipusa;
+    }
+
 
 }

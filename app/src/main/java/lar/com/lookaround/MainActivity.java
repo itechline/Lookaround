@@ -386,6 +386,9 @@ public class MainActivity extends AppCompatActivity
     int futesSpinner_int = 0;
     int energiaSpinner_int = 0;
     int kilatasSpinner_int = 0;
+    int butorozottSpinner_int = 0;
+    int balconySpinner_int = 0;
+    int elevatorSpinner_int = 0;
 
 
 
@@ -406,7 +409,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        hirdetesSpinner_int= spinnerUtil.getId();
+                        hirdetesSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -435,7 +438,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        szobaszamSpinner_int= spinnerUtil.getId();
+                        szobaszamSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -465,7 +468,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        allapotSpinner_int= spinnerUtil.getId();
+                        allapotSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -496,7 +499,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        emeletekSpinner_int= spinnerUtil.getId();
+                        emeletekSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -526,7 +529,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        ingatlanTipusSpinner_int= spinnerUtil.getId();
+                        ingatlanTipusSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -645,7 +648,7 @@ public class MainActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        kilatasSpinner_int= spinnerUtil.getId();
+                        kilatasSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
@@ -656,9 +659,76 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        //add_advert_furniture_spinner
+        ArrayList<SpinnerUtil> arrayListButor = (ArrayList) SpinnerUtil.get_list_butorozott();
+        final SpinnerAdapter adapterButor = new SpinnerAdapter(MainActivity.this, arrayListButor);
+        butorozottSpinner = (Spinner) findViewById(R.id.add_advert_furniture_spinner);
+        adapterButor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        butorozottSpinner.setAdapter(adapterButor);
+
+        butorozottSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterButor.getItem(position);
+                butorozottSpinner_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+
+
+        //addestate_balcony_spinner
+        ArrayList<SpinnerUtil> arrayListBalcony = (ArrayList) SpinnerUtil.get_list_erkely();
+        final SpinnerAdapter adapterBalcony = new SpinnerAdapter(MainActivity.this, arrayListBalcony);
+        balconySpinner = (Spinner) findViewById(R.id.addestate_balcony_spinner);
+        adapterBalcony.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        balconySpinner.setAdapter(adapterBalcony);
+
+        balconySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterBalcony.getItem(position);
+                balconySpinner_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+
+
+        //addestate_elevator_spinner
+        ArrayList<SpinnerUtil> arrayListElevator = (ArrayList) SpinnerUtil.get_list_lift();
+        final SpinnerAdapter adapterElevator = new SpinnerAdapter(MainActivity.this, arrayListElevator);
+        elevatorSpinner = (Spinner) findViewById(R.id.addestate_elevator_spinner);
+        adapterElevator.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        elevatorSpinner.setAdapter(adapterElevator);
+
+        elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterElevator.getItem(position);
+                elevatorSpinner_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+
+
     }
 
-    Spinner enegigenyo;
+    Spinner enegigenyo, butorozottSpinner, balconySpinner, elevatorSpinner;
 
     public void loadSearchSpinners() {
         SpinnerUtil.get_list_ingatlantipus(new SoapObjectResult() {
@@ -1418,7 +1488,7 @@ private int whichAddestatePage = 0;
                                                      //TODO: képfeltöltés...
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
                                                      isBackPressed = true;
-                                                     whenUploadFinished(resArray.get(resArray.size()-1).getId());
+                                                     getEstateContent(resArray.get(resArray.size()-1).getId());
                                                      Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)
                                                              .setAction("Action", null).show();
                                                      Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
@@ -1429,15 +1499,15 @@ private int whichAddestatePage = 0;
 
                                              }
                                          }, estateSize, estateCity, estateStreet, estateDescription, estatePrice,
-                            String.valueOf(energiaSpinner_int), "1", String.valueOf(kilatasSpinner_int), "1",
-                            String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), "1", String.valueOf(ingatlanTipusSpinner_int),
+                            String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
+                            String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int));
                     break;
             }
         }
     }
 
-    public void whenUploadFinished(int id) {
+    public void getEstateContent(int id) {
 
         final TextView price = (TextView) findViewById(R.id.item_realestate_price);
         final TextView title = (TextView) findViewById(R.id.item_realestate_needed_address);
@@ -1472,16 +1542,16 @@ private int whichAddestatePage = 0;
                     size.setText(obj.getString("ingatlan_meret"));
                     type.setText(obj.getString("ingatlan_tipus"));
 
-                    if (obj.getInt("ingatlan_lift") == 0) {
-                        elevator.setText("Nincs");
-                    } else {
+                    if (obj.getInt("ingatlan_lift") == 1) {
                         elevator.setText("Van");
+                    } else {
+                        elevator.setText("Nincs");
                     }
 
-                    if (obj.getInt("ingatlan_erkely") == 0) {
-                        balcony.setText("Nincs");
-                    } else {
+                    if (obj.getInt("ingatlan_erkely") == 1) {
                         balcony.setText("Van");
+                    } else {
+                        balcony.setText("Nincs");
                     }
 
                     parking.setText(obj.getString("ingatlan_parkolas"));
@@ -1491,10 +1561,12 @@ private int whichAddestatePage = 0;
                     heating.setText(obj.getString("ingatlan_futestipus"));
                     ecertificate.setText(obj.getString("ingatlan_energiatan"));
 
-                    if (obj.getInt("ingatlan_butorozott") == 0) {
+                    if (obj.getInt("ingatlan_butorozott") == 1) {
                         hasfurniture.setText("Nem");
-                    } else {
+                    } else if (obj.getInt("ingatlan_butorozott") == 2) {
                         hasfurniture.setText("Igen");
+                    } else if (obj.getInt("ingatlan_butorozott") == 3) {
+                        hasfurniture.setText("Alku tárgya");
                     }
 
                     Locale locale = new Locale("en", "UK");
@@ -1725,112 +1797,7 @@ private int whichAddestatePage = 0;
             EstateUtil estateUtil = adapter.getItem(position);
             estateID = estateUtil.getId();
             estateUtil_fav = estateUtil;
-
-            final TextView price = (TextView) findViewById(R.id.item_realestate_price);
-            final TextView title = (TextView) findViewById(R.id.item_realestate_needed_address);
-            final TextView adress = (TextView) findViewById(R.id.item_realestate_optional_address);
-            final TextView roomcount = (TextView) findViewById(R.id.roomcount_realestate_value);
-            final TextView size = (TextView) findViewById(R.id.size_realestate_item_value);
-            final TextView type= (TextView) findViewById(R.id.type_realestate_value);
-            final TextView elevator = (TextView) findViewById(R.id.elevator_realestate_value);
-            final TextView balcony = (TextView) findViewById(R.id.balcony_realestate_value);
-            final TextView parking = (TextView) findViewById(R.id.parking_realestate_value);
-
-            final TextView kilatas = (TextView) findViewById(R.id.view_realestate_value);
-            final TextView condition = (TextView) findViewById(R.id.condition_realestate_value);
-            final TextView floors = (TextView) findViewById(R.id.floors_realestate_value);
-            final TextView heating = (TextView) findViewById(R.id.heating_realestate_value);
-            final TextView ecertificate = (TextView) findViewById(R.id.energy_certificate_realestate_item_value);
-            final TextView hasfurniture = (TextView) findViewById(R.id.hasfurniture_realestate_item_value);
-
-
-            final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
-
-            //ingatlan_varos parking_realestate_value
-            //ingatlan_utca
-            //ingatlan_rovidleiras
-            //ingatlan_picture_url
-            //kedvenc (bool)
-            //kepek (array)
-
-            EstateUtil.getEstate(new SoapObjectResult() {
-                @Override
-                public void parseRerult(Object result) {
-                    Log.d("GET_ESTATE Result: ", result.toString());
-                    JSONObject obj = (JSONObject) result;
-                    //obj.getString("")
-                    try {
-                        title.setText(obj.getString("ingatlan_title"));
-                        adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
-                        roomcount.setText(obj.getString("ingatlan_szsz"));
-                        size.setText(obj.getString("ingatlan_meret"));
-                        type.setText(obj.getString("ingatlan_tipus"));
-
-                        if (obj.getInt("ingatlan_lift") == 0) {
-                            elevator.setText("Nincs");
-                        } else {
-                            elevator.setText("Van");
-                        }
-
-                        if (obj.getInt("ingatlan_erkely") == 0) {
-                            balcony.setText("Nincs");
-                        } else {
-                            balcony.setText("Van");
-                        }
-
-                        parking.setText(obj.getString("ingatlan_parkolas"));
-                        kilatas.setText(obj.getString("ingatlan_kilatas"));
-                        condition.setText(obj.getString("ingatlan_allapot"));
-                        floors.setText(obj.getString("ingatlan_emelet"));
-                        heating.setText(obj.getString("ingatlan_futestipus"));
-                        ecertificate.setText(obj.getString("ingatlan_energiatan"));
-
-                        if (obj.getInt("ingatlan_butorozott") == 0) {
-                            hasfurniture.setText("Nem");
-                        } else {
-                            hasfurniture.setText("Igen");
-                        }
-
-                        Locale locale = new Locale("en", "UK");
-                        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-                        //symbols.setDecimalSeparator(';');
-                        symbols.setGroupingSeparator('.');
-                        String pattern = "###,###";
-                        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-                        String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
-                        price.setText(format + " Ft");
-
-                        isFavEstate = obj.getBoolean("kedvenc");
-
-                        favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
-
-                        if (isFavEstate) {
-                            Log.d("ISFAV ", "TRUE");
-                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
-                        } else {
-                            Log.d("ISFAV ", "FALSE");
-                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
-                        }
-
-                        item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }, String.valueOf(estateUtil.getId()), SettingUtil.getToken(getBaseContext()));
-
-
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            fab.setVisibility(View.INVISIBLE);
-
-            final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-            fab_phone.setVisibility(View.VISIBLE);
-
-            switchLayoutTo(CONTENTESTATE);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-            findViewById(R.id.scrollView2).scrollTo(0, 0);
-            supportInvalidateOptionsMenu();
+            getEstateContent(estateID);
         }
     }
 

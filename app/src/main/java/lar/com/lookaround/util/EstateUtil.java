@@ -36,6 +36,15 @@ public class EstateUtil {
     private int butor;
     private int erkely;
     private int szobaszam;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getMeret() {
         return meret;
@@ -180,9 +189,10 @@ public class EstateUtil {
     private static final String INGATLAN_SZOBASZAM = "ingatlan_szsz_id";
     private static final String INGATLAN_LAT = "ingatlan_lat";
     private static final String INGATLAN_LNG = "ingatlan_lng";
+    private static final String INGATLAN_TYPE = "ing_e_type_id";
 
 
-    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, String urls) {
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls) {
         this.id = id;
         this.adress = adress;
         this.street = street;
@@ -195,6 +205,7 @@ public class EstateUtil {
         this.butor = butor;
         this.erkely = erkely;
         this.urls = urls;
+        this.type = type;
     }
 
    public EstateUtil(boolean error, String hash, int id) {
@@ -249,8 +260,9 @@ public class EstateUtil {
                                 int szszJson = json_data.getInt(INGATLAN_SZOBASZAM);
                                 int butorJson = json_data.getInt(INGATLAN_BUTOROZOTT);
                                 int erkelyJson = json_data.getInt(INGATLAN_ERKELY);
+                                int typeJson = json_data.getInt(INGATLAN_TYPE);
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, url));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, url));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;
