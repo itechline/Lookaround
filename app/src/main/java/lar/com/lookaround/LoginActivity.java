@@ -354,8 +354,8 @@ public class LoginActivity extends AppCompatActivity {
                                             public void parseRerult(Object result) {
                                                 if ((boolean) result) {
                                                     ringProgressDialog.dismiss();
-                                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                                    finish();
+                                                    //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                    //finish();
                                                 } else {
                                                     ringProgressDialog.dismiss();
                                                     showAlert(view, "Hiba történt!");

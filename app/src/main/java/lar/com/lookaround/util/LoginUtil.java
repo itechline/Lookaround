@@ -173,6 +173,7 @@ public class LoginUtil {
                 @Override
                 public void parseRerult(String result) {
 
+                    Log.d("REGISTRATION: ", result.toString());
                     if (result != null) {
                         try {
 
