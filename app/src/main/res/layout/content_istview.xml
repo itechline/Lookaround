@@ -32,17 +32,24 @@
         android:id="@+id/sorting_estates_relativeLayout"
         android:background="#f1f2f3">
 
+        <RelativeLayout
+            android:id="@+id/show_only_CSOK_textView"
+            android:layout_width="70sp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/estate_type_seekbar"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/estate_type_seekbar"
+            android:layout_centerVertical="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/show_only_csok_estates"
-            android:id="@+id/show_only_CSOK_textView"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/show_only_CSOK_checkBox"
-            android:layout_toStartOf="@+id/show_only_CSOK_checkBox"
-            android:layout_centerVertical="true"
-            android:textStyle="italic"/>
+            android:text="Mindegy"
+            android:id="@+id/estate_type_textview"
+
+            android:textStyle="italic"
+            android:layout_centerInParent="true" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/sort_estates_spinner_layout"
@@ -65,14 +72,15 @@
                 />
         </RelativeLayout>
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <SeekBar
+            android:layout_width="100sp"
             android:layout_height="wrap_content"
-            android:id="@+id/show_only_CSOK_checkBox"
+            android:id="@+id/estate_type_seekbar"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:max="3"
             />
     </RelativeLayout>
 
