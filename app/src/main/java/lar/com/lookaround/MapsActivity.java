@@ -269,6 +269,7 @@ public class MapsActivity extends AppCompatActivity {
 
         @Override
         public View getInfoWindow(Marker marker) {
+            //TODO: megcsinálni h jókat kérjen le ez a fos ha rákattintok
                 final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
                 final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
                 final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
