@@ -33,35 +33,50 @@
         android:background="#f1f2f3">
 
         <RelativeLayout
-            android:id="@+id/show_only_CSOK_textView"
-            android:layout_width="70sp"
+            android:id="@+id/estate_types_changing_layout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/estate_type_seekbar"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/estate_type_seekbar"
-            android:layout_centerVertical="true">
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/sort_estates_spinner_layout"
+            android:layout_toEndOf="@+id/sort_estates_spinner_layout"
+            android:layout_centerInParent="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Mindegy"
             android:id="@+id/estate_type_textview"
-
             android:textStyle="italic"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:layout_margin="5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Típus:"
+                android:id="@+id/list_estate_types_textView"
+                android:layout_toLeftOf="@+id/estate_type_textview"
+                android:layout_toStartOf="@+id/estate_type_textview"
+                android:layout_alignParentLeft="false"
+                android:layout_centerInParent="true"
+                android:layout_margin="5sp"
+                android:textSize="16sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/sort_estates_spinner_layout"
-            android:layout_width="match_parent"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_border"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/show_only_CSOK_textView"
-            android:layout_toStartOf="@+id/show_only_CSOK_textView"
-            android:layout_margin="3sp">
+            android:layout_marginLeft="3sp"
+            android:layout_marginTop="3sp"
+            android:layout_marginBottom="3sp"
+            >
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="40sp"
@@ -72,16 +87,6 @@
                 />
         </RelativeLayout>
 
-        <SeekBar
-            android:layout_width="100sp"
-            android:layout_height="wrap_content"
-            android:id="@+id/estate_type_seekbar"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:max="3"
-            android:layout_marginRight="20sp" />
     </RelativeLayout>
 
 </RelativeLayout>
