@@ -39,6 +39,7 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -319,22 +320,27 @@ public class MapsActivity extends AppCompatActivity {
 
         @Override
         public View getInfoWindow(Marker marker) {
-            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
-            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
+            final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
+            final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
+            final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
+            final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
 
             EstateUtil.getEstate(new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
                     JSONObject obj = (JSONObject) result;
-                    //obj.getString()
+
+                    try {
+                        tvCity.setText(obj.getString("ingatlan_varos"));
+                        tvStreet.setText(obj.getString("ingatlan_utca"));
+                        tvSize.setText(obj.getString("ingatlan_meret"));
+                        tvRooms.setText(obj.getString("ingatlan_szsz"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
-
-
-
-            //tvTitle.setText(clickedClusterItem.getTitle());
-            //tvSnippet.setText(clickedClusterItem.getSnippet());
 
             return myContentsView;
         }
