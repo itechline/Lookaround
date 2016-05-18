@@ -61,7 +61,6 @@ public class MapsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        setTitle("Bonodom");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_maps);
