@@ -472,5 +472,13 @@ public class SpinnerUtil {
         return hiredtestipusa;
     }
 
+    public static ArrayList<SpinnerUtil> get_list_szures() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Dátum szerint"));
+        hiredtestipusa.add(new SpinnerUtil(1, "Ár szerint csökkenő"));
+        hiredtestipusa.add(new SpinnerUtil(2, "Ár szerint növekvő"));
+        return hiredtestipusa;
+    }
+
 
 }
