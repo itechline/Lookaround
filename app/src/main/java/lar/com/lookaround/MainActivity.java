@@ -1687,8 +1687,8 @@ private int whichAddestatePage = 0;
             estateUtil_fav = estateUtil;
 
             final TextView price = (TextView) findViewById(R.id.item_realestate_price);
-            final TextView item_realestate_needed_address = (TextView) findViewById(R.id.item_realestate_needed_address);
-            final TextView item_realestate_optional_address = (TextView) findViewById(R.id.item_realestate_optional_address);
+            final TextView title = (TextView) findViewById(R.id.item_realestate_needed_address);
+            final TextView adress = (TextView) findViewById(R.id.item_realestate_optional_address);
             final TextView roomcount = (TextView) findViewById(R.id.roomcount_realestate_value);
             final TextView size = (TextView) findViewById(R.id.size_realestate_item_value);
             final TextView type= (TextView) findViewById(R.id.type_realestate_value);
@@ -1697,6 +1697,11 @@ private int whichAddestatePage = 0;
             final TextView parking = (TextView) findViewById(R.id.parking_realestate_value);
 
             final TextView kilatas = (TextView) findViewById(R.id.view_realestate_value);
+            final TextView condition = (TextView) findViewById(R.id.condition_realestate_value);
+            final TextView floors = (TextView) findViewById(R.id.floors_realestate_value);
+            final TextView heating = (TextView) findViewById(R.id.heating_realestate_value);
+            final TextView ecertificate = (TextView) findViewById(R.id.energy_certificate_realestate_item_value);
+            final TextView hasfurniture = (TextView) findViewById(R.id.hasfurniture_realestate_item_value);
 
 
             final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
@@ -1715,17 +1720,36 @@ private int whichAddestatePage = 0;
                     JSONObject obj = (JSONObject) result;
                     //obj.getString("")
                     try {
-
-                        item_realestate_needed_address.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
+                        title.setText(obj.getString("ingatlan_title"));
+                        adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
                         roomcount.setText(obj.getString("ingatlan_szsz"));
                         size.setText(obj.getString("ingatlan_meret"));
                         type.setText(obj.getString("ingatlan_tipus"));
-                        elevator.setText(obj.getString("ingatlan_lift"));
-                        balcony.setText(obj.getString("ingatlan_erkely"));
+
+                        if (obj.getInt("ingatlan_lift") == 0) {
+                            elevator.setText("Nincs");
+                        } else {
+                            elevator.setText("Van");
+                        }
+
+                        if (obj.getInt("ingatlan_erkely") == 0) {
+                            balcony.setText("Nincs");
+                        } else {
+                            balcony.setText("Van");
+                        }
+
                         parking.setText(obj.getString("ingatlan_parkolas"));
                         kilatas.setText(obj.getString("ingatlan_kilatas"));
-                        //TODO: kilátástól folytatni a lekérdezést
+                        condition.setText(obj.getString("ingatlan_allapot"));
+                        floors.setText(obj.getString("ingatlan_emelet"));
+                        heating.setText(obj.getString("ingatlan_futestipus"));
+                        ecertificate.setText(obj.getString("ingatlan_energiatan"));
 
+                        if (obj.getInt("ingatlan_butorozott") == 0) {
+                            hasfurniture.setText("Nem");
+                        } else {
+                            hasfurniture.setText("Igen");
+                        }
 
                         Locale locale = new Locale("en", "UK");
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
@@ -1747,7 +1771,6 @@ private int whichAddestatePage = 0;
                             Log.d("ISFAV ", "FALSE");
                             favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
                         }
-
 
                         item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
                     } catch (JSONException e) {
@@ -1784,8 +1807,6 @@ private int whichAddestatePage = 0;
             public void parseRerult(Object result) {
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
 
-                //ArrayList<EstateUtil> arrayOfUsers = new ArrayList<EstateUtil>();
-                // Create the adapter to convert the array to views
                 final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
                 // Attach the adapter to a ListView
                 final ListView listView = (ListView) findViewById(R.id.estateListView);
