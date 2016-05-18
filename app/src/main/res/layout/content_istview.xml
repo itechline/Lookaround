@@ -63,7 +63,7 @@
             android:layout_toStartOf="@+id/show_only_CSOK_textView"
             android:layout_margin="3sp">
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="40sp"
                 android:id="@+id/sort_estates_spinner"
                 android:layout_centerVertical="true"
@@ -81,7 +81,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:max="3"
-            />
+            android:layout_marginRight="20sp" />
     </RelativeLayout>
 
 </RelativeLayout>
