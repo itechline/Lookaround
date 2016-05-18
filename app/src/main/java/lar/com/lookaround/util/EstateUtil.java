@@ -37,6 +37,24 @@ public class EstateUtil {
     private int erkely;
     private int szobaszam;
     private int type;
+    private double lat;
+    private double lng;
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 
     public int getType() {
         return type;
@@ -212,6 +230,12 @@ public class EstateUtil {
         this.error = error;
         this.hash = hash;
         this.id = id;
+    }
+
+    public EstateUtil(int id, double lat, double lng) {
+        this.id = id;
+        this.lat = lat;
+        this.lng = lng;
     }
 
 
@@ -418,6 +442,54 @@ public class EstateUtil {
 
 
                             getBackWhenItsDone.parseRerult(datas);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void list_map_estates(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "http://lookrnd.me/dev/api/list_maps_estates";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    Log.d("RESULT_MAP_ESTATE ", result.toString());
+                    if (result != null) {
+                        try {
+
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt(INGATLAN_ID);
+                                double latJson = json_data.getDouble(INGATLAN_LAT);
+                                double lngJson = json_data.getDouble(INGATLAN_LNG);
+
+                                estates.add(new EstateUtil(idJson, latJson, lngJson));
+
+                                if (idJson > largestId) {
+                                    largestId = idJson;
+                                }
+                            }
+
+
+                            getBackWhenItsDone.parseRerult(estates);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

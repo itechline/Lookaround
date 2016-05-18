@@ -39,10 +39,16 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.EstateUtil;
+import lar.com.lookaround.util.SettingUtil;
 
 public class MapsActivity extends AppCompatActivity {
     private GoogleMap mMap;
@@ -101,7 +107,8 @@ public class MapsActivity extends AppCompatActivity {
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
                 setUpClusterer();
-                addItems();
+                getItems();
+                //addItems();
 
 
             }
@@ -177,14 +184,14 @@ public class MapsActivity extends AppCompatActivity {
 
     private String mSnippet;
     private String mTitle;
+    private int id;
 
     public class MyItem implements ClusterItem {
         private final LatLng mPosition;
 
-        public MyItem(double lat, double lng, String t, String s) {
+        public MyItem(double lat, double lng, int i) {
             mPosition = new LatLng(lat, lng);
-            mTitle = t;
-            mSnippet = s;
+            id = i;
         }
 
         @Override
@@ -192,15 +199,28 @@ public class MapsActivity extends AppCompatActivity {
             return mPosition;
         }
 
-        public String getTitle(){
-            return mTitle;
+        public int getID(){
+            return id;
         }
-
-        public String getSnippet(){
-            return mSnippet;
-        }
+    }
 
 
+    private void getItems() {
+        EstateUtil.list_map_estates(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
+                for (int i = 0; i < arrayOfUsers.size(); i++) {
+                    Log.d("MAPS_LAT", String.valueOf(arrayOfUsers.get(i).getLat()));
+                    MyItem offsetItem = new MyItem(
+                            arrayOfUsers.get(i).getLat(),
+                            arrayOfUsers.get(i).getLng(),
+                            arrayOfUsers.get(i).getId());
+
+                    mClusterManager.addItem(offsetItem);
+                }
+            }
+        });
     }
 
 
@@ -274,7 +294,7 @@ public class MapsActivity extends AppCompatActivity {
         // Add cluster items (markers) to the cluster manager.
         //addItems();
 
-        for (int i = 0; i < 13; i++) {
+        /*for (int i = 0; i < 13; i++) {
             try {
                 Log.d("ADD_CLUSTER ", "TRY");
                 getLocate("Debrecen Kassai " + String.valueOf(i));
@@ -282,7 +302,7 @@ public class MapsActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Log.d("CLUSTER_ERROR: ", e.toString());
             }
-        }
+        }*/
 
         mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
     }
@@ -299,12 +319,22 @@ public class MapsActivity extends AppCompatActivity {
 
         @Override
         public View getInfoWindow(Marker marker) {
-
             TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
             TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
 
-            tvTitle.setText(clickedClusterItem.getTitle());
-            tvSnippet.setText(clickedClusterItem.getSnippet());
+            EstateUtil.getEstate(new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    JSONObject obj = (JSONObject) result;
+                    //obj.getString()
+
+                }
+            }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
+
+
+
+            //tvTitle.setText(clickedClusterItem.getTitle());
+            //tvSnippet.setText(clickedClusterItem.getSnippet());
 
             return myContentsView;
         }
@@ -333,7 +363,7 @@ public class MapsActivity extends AppCompatActivity {
         double lng = add.getLongitude();
 
 
-        MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
+        MyItem offsetItem = new MyItem(lat, lng, 1);
         mClusterManager.addItem(offsetItem);
         //gotoLocation(lat, lng, 10);
         Log.d("CLUSTER: ", "ADDED");
@@ -352,7 +382,7 @@ public class MapsActivity extends AppCompatActivity {
             double offset = i / 2000000d;
             lat = lat + offset;
             lng = lng + offset;
-            MyItem offsetItem = new MyItem(lat, lng, "LOFASZ", "LOFASZ2");
+            MyItem offsetItem = new MyItem(lat, lng, 1);
             mClusterManager.addItem(offsetItem);
         }
     }

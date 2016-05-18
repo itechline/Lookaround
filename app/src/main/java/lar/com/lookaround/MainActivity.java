@@ -728,9 +728,35 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    Spinner enegigenyo, butorozottSpinner, balconySpinner, elevatorSpinner;
+    Spinner enegigenyo, butorozottSpinner, balconySpinner, elevatorSpinner, sortingSpinner;
+    int sortingSpinner_int = 0;
+
 
     public void loadSearchSpinners() {
+
+        ArrayList<SpinnerUtil> arrayListSorting = (ArrayList) SpinnerUtil.get_list_szures();
+        final SpinnerAdapter adapterSorting = new SpinnerAdapter(MainActivity.this, arrayListSorting);
+        sortingSpinner = (Spinner) findViewById(R.id.sort_estates_spinner);
+        adapterSorting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortingSpinner.setAdapter(adapterSorting);
+
+        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
+                sortingSpinner_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+
+
+
+
         SpinnerUtil.get_list_ingatlantipus(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
