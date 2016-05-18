@@ -47,7 +47,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Mindegy"
             android:id="@+id/estate_type_textview"
-            android:textStyle="italic"
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
             android:padding="2sp"
@@ -56,7 +55,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="20sp"
             android:layout_centerInParent="true"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textStyle="italic"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +69,8 @@
                 android:layout_alignParentLeft="false"
                 android:layout_centerInParent="true"
                 android:layout_margin="5sp"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textStyle="italic"/>
         </RelativeLayout>
 
         <RelativeLayout
