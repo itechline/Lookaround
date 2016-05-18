@@ -263,10 +263,42 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public boolean onClusterItemClick(MyItem clusterItem) {
                 clickedClusterItem = clusterItem;
+                mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
                 Log.d("CLICKED_ITEM_ID ", String.valueOf(clusterItem.getID()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                clusterItem.getPosition(), (float) Math.floor(mMap
+                                        .getCameraPosition().zoom + 1)), 300,
+                        null);
+                return false;
+            }
+        });
 
-                mMap.setInfoWindowAdapter(new MyCustomAdapterForItems());
-                final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
+        mMap.setOnCameraChangeListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+    }
+
+
+    private MyItem clickedClusterItem;
+    public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
+
+
+        private View myContentsView;
+
+        MyCustomAdapterForItems() {
+            myContentsView = getLayoutInflater().inflate(R.layout.maps_info_window, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+        final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
                 final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
                 final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
                 final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
@@ -287,84 +319,6 @@ public class MapsActivity extends AppCompatActivity {
 
                     }
                 }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                clusterItem.getPosition(), (float) Math.floor(mMap
-                                        .getCameraPosition().zoom + 1)), 300,
-                        null);
-                return false;
-            }
-        });
-
-
-
-        //mClusterManager.setOnClusterItemInfoWindowClickListener(this); //added
-
-
-        mMap.setOnCameraChangeListener(mClusterManager);
-        mMap.setOnMarkerClickListener(mClusterManager);
-
-
-        //mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                startActivity(new Intent(MapsActivity.this, MainActivity.class));
-                finish();
-            }
-        });
-
-        /*mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-            private final View myContentsView = getLayoutInflater().inflate(R.layout.maps_info_window, null);
-
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return myContentsView;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                return null;
-            }
-        });*/
-
-
-        //mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
-    }
-
-    private View myContentsView;
-    private MyItem clickedClusterItem;
-    public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
-
-
-
-        MyCustomAdapterForItems() {
-            myContentsView = getLayoutInflater().inflate(R.layout.maps_info_window, null);
-        }
-
-        @Override
-        public View getInfoWindow(Marker marker) {
-        /*final TextView tvCity = ((TextView) findViewById(R.id.item_realestate_adress1_maps));
-                final TextView tvStreet = ((TextView) findViewById(R.id.item_realestate_adress2_maps));
-                final TextView tvSize = ((TextView) findViewById(R.id.list_size_textView_maps));
-                final TextView tvRooms = ((TextView) findViewById(R.id.list_roomcount_textView_maps));
-
-                EstateUtil.getEstate(new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        JSONObject obj = (JSONObject) result;
-
-                        try {
-                            tvCity.setText(obj.getString("ingatlan_varos"));
-                            tvStreet.setText(obj.getString("ingatlan_utca"));
-                            tvSize.setText(obj.getString("ingatlan_meret"));
-                            tvRooms.setText(obj.getString("ingatlan_szsz"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));*/
 
             return myContentsView;
         }
