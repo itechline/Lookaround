@@ -142,7 +142,8 @@
                 android:layout_marginTop="5sp"
                 android:layout_toEndOf="@+id/advert_type_textview"
                 android:layout_toRightOf="@+id/advert_type_textview"
-                android:padding="3sp" />
+                android:padding="3sp"
+                android:gravity="top" />
 
             <TextView
                 android:layout_width="wrap_content"
