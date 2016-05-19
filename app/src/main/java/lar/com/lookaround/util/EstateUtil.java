@@ -239,7 +239,7 @@ public class EstateUtil {
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype) {
         try {
             String url = "http://lookrnd.me/dev/api/list_estates";
 
@@ -248,6 +248,7 @@ public class EstateUtil {
             postadatok.put("page", pagePost);
             postadatok.put("token", tokenTosend);
             postadatok.put("favorites", favorites);
+            postadatok.put("etype", etype);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {

@@ -225,9 +225,9 @@ public class MainActivity extends AppCompatActivity
 
                 //String lrgst = String.valueOf(EstateUtil.largestId);
                 if (!isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
                 } else {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType));
                 }
             }
         });
@@ -1241,15 +1241,18 @@ public class MainActivity extends AppCompatActivity
         TextView typeText = (TextView) findViewById(R.id.estate_type_textview);
         adType += 1;
         switch (adType) {
-            case 0:
-                typeText.setText("Mindegy");
-                break;
             case 1:
                 typeText.setText("Eladó");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "1");
                 break;
             case 2:
                 typeText.setText("Kiadó");
-                adType = -1;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "2");
+                break;
+            default:
+                typeText.setText("Mindegy");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "0");
+                adType = 0;
                 break;
         }
     }
@@ -1706,7 +1709,7 @@ private int whichAddestatePage = 0;
             @Override
             public void parseRerult(Object result) {
                 if ((boolean) result) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
                     //ringProgressDialog.dismiss();
                     Log.d("RESULT: ", result.toString());
 
@@ -1848,7 +1851,7 @@ private int whichAddestatePage = 0;
     private boolean isRefreshing = false;
 
 
-    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav) {
+    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString) {
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
@@ -1918,14 +1921,14 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = true;
                                     }
-                                }, lrgst, pageStr, tokenToSend, fav);
+                                }, lrgst, pageStr, tokenToSend, fav, etypeString);
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend, fav);
+        }, idPost, pagePost, tokenToSend, fav, etypeString);
 
 
         supportInvalidateOptionsMenu();
@@ -1957,7 +1960,7 @@ private int whichAddestatePage = 0;
         switch (viewFlip.getDisplayedChild()) {
             case ESTATESLIST:
                 if (isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
                 }
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
@@ -1983,7 +1986,7 @@ private int whichAddestatePage = 0;
 
                 break;
             default:
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
         }
@@ -2113,7 +2116,7 @@ private int whichAddestatePage = 0;
                 if (viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
                 break;
             case R.id.nav_profile:
                 switchLayoutTo(PROFILE);
@@ -2132,7 +2135,7 @@ private int whichAddestatePage = 0;
                 if(viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType));
                 break;
             case R.id.nav_admonitor:
                 //TODO: létrehozni hozzá az API-t
