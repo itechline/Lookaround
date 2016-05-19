@@ -43,6 +43,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -65,19 +67,6 @@ public class MapsActivity extends AppCompatActivity {
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_maps);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                //switchLayoutTo(ADDESTATE);
-                //setAddestatePageIndicator(whichAddestatePage);
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                fab.setVisibility(View.INVISIBLE);
-
-            }
-        });
 
 
         if (ContextCompat.checkSelfPermission(MapsActivity.this,
@@ -190,7 +179,7 @@ public class MapsActivity extends AppCompatActivity {
 
                     mClusterManager.addItem(offsetItem);
                 }
-                gotoLocation(arrayOfUsers.get(4).getLat(),arrayOfUsers.get(4).getLng(), 30);
+                gotoLocation(arrayOfUsers.get(4).getLat(),arrayOfUsers.get(4).getLng(), 10);
                 //mapView.invalidate();
             }
         });
@@ -215,6 +204,7 @@ public class MapsActivity extends AppCompatActivity {
             return;
         }
         mMap.setMyLocationEnabled(true);
+        mMap.setBuildingsEnabled(true);
 
         mClusterManager = new ClusterManager<>(this, mMap);
 
@@ -273,15 +263,23 @@ public class MapsActivity extends AppCompatActivity {
 
         @Override
         public View getInfoWindow(final Marker marker) {
-            //TODO: megcsinálni h jókat kérjen le ez a fos ha rákattintok
-
             if (lastItemId != clickedClusterItem.getID()) {
                 lastItemId = clickedClusterItem.getID();
 
-                final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
-                final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
-                final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
-                final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
+                final TextView tvCity = (TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps);
+                final TextView tvStreet = (TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps);
+                final TextView tvSize = (TextView) myContentsView.findViewById(R.id.list_size_textView_maps);
+                final TextView tvRooms = (TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps);
+                final TextView tvPrice = (TextView) myContentsView.findViewById(R.id.price_maps);
+                final TextView tvDesc = (TextView) myContentsView.findViewById(R.id.item_realestate_description_maps);
+
+                tvCity.setText("");
+                tvStreet.setText("");
+                tvSize.setText("");
+                tvRooms.setText("");
+                tvPrice.setText("");
+                tvDesc.setText("");
+
                 EstateUtil.getEstate(new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
@@ -295,6 +293,25 @@ public class MapsActivity extends AppCompatActivity {
                             tvStreet.setText(obj.getString("ingatlan_utca"));
                             tvSize.setText(obj.getString("ingatlan_meret"));
                             tvRooms.setText(obj.getString("ingatlan_szsz"));
+
+                            Locale locale = new Locale("en", "UK");
+
+                            DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+                            //symbols.setDecimalSeparator(';');
+                            symbols.setGroupingSeparator('.');
+
+                            String pattern = "###,###";
+                            DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+                            String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
+
+                            if (obj.getString("ing_e_type").equals("Eladó")) {
+                                tvPrice.setText(format + " Ft");
+                            } else {
+                                tvPrice.setText(format + " Ft/hó");
+                            }
+
+                            tvDesc.setText(obj.getString("ingatlan_rovidleiras"));
+
                             myContentsView.invalidate();
                             Log.d("MAPS_TRY ", "finished");
                             marker.showInfoWindow();

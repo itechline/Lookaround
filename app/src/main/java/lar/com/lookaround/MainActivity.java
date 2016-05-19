@@ -1270,6 +1270,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void seeOnMap(View view) {
+
+    }
+
     public boolean isNetworkAvailable() {
 
         ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -1309,10 +1313,6 @@ public class MainActivity extends AppCompatActivity
 
     public double lat;
     public double lng;
-
-
-
-
 
 
 
