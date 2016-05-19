@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/below_advertinfo"
+        android:text="@string/admonitor_main_top_hint_text"
         android:id="@+id/ad_monitor_below_header_textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
