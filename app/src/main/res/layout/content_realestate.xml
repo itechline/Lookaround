@@ -354,9 +354,15 @@
                 android:layout_margin="5sp">
 
                 <TextView
+                    android:id="@+id/iwantoseeonmaps_button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ekszorszizámusztéj, omni szpiritusz szánkté"/>
+                    android:layout_height="35sp"
+                    android:text="@string/i_want_to_see_it_on_maps"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/colorbutton"
+                    android:textColor="#ffffff"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:drawableRight="@drawable/gps_white"/>
             </RelativeLayout>
 
             <RelativeLayout
