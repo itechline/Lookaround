@@ -12,7 +12,8 @@ public class SettingUtil {
 
     private static final String TOKEN_KEY = "LARTOKEN";
 
-    private static final String LATLNG = "LATLNG";
+    private static final String LAT = "LAT";
+    private static final String LNG = "LNG";
 
     public static final String getToken(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
@@ -27,16 +28,29 @@ public class SettingUtil {
         editor.commit();
     }
 
-    public static final String getCoordinates(Context ctx) {
+    public static final String getLatForMap(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
-        Log.d("GET_TOKEN:", sharedPref.getString(LATLNG, ""));
-        return sharedPref.getString(LATLNG, "");
+        Log.d("GET_TOKEN:", sharedPref.getString(LAT, ""));
+        return sharedPref.getString(LAT, "");
     }
 
-    public static final void setCoordinates(Context ctx, String token) {
+    public static final void setLatForMap(Context ctx, String token) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(LATLNG, token);
+        editor.putString(LAT, token);
+        editor.commit();
+    }
+
+    public static final String getLngForMap(Context ctx) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
+        Log.d("GET_TOKEN:", sharedPref.getString(LNG, ""));
+        return sharedPref.getString(LNG, "");
+    }
+
+    public static final void setLngForMap(Context ctx, String token) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(LNG, token);
         editor.commit();
     }
 

@@ -1271,7 +1271,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void seeOnMap(View view) {
+        if (latMap != null || !latMap.equals("0.0")) {
+            SettingUtil.setLatForMap(getBaseContext(), latMap);
+        }
 
+        if (lngMap != null || !lngMap.equals("0.0")) {
+            SettingUtil.setLngForMap(getBaseContext(), lngMap);
+        }
     }
 
     public boolean isNetworkAvailable() {
@@ -1597,6 +1603,9 @@ private int whichAddestatePage = 0;
         }
     }
 
+    String latMap;
+    String lngMap;
+
     public void getEstateContent(int id) {
 
         final TextView price = (TextView) findViewById(R.id.item_realestate_price);
@@ -1657,6 +1666,16 @@ private int whichAddestatePage = 0;
                         hasfurniture.setText("Igen");
                     } else if (obj.getInt("ingatlan_butorozott") == 3) {
                         hasfurniture.setText("Alku tárgya");
+                    }
+
+                    if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
+                        //SettingUtil.setLatForMap(getBaseContext(), obj.getString("ingatlan_lat"));
+                        latMap = obj.getString("ingatlan_lat");
+                    }
+
+                    if (obj.getString("ingatlan_lng") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
+                        //SettingUtil.setLngForMap(getBaseContext(), obj.getString("ingatlan_lng"));
+                        lngMap = obj.getString("ingatlan_lng");
                     }
 
                     Locale locale = new Locale("en", "UK");

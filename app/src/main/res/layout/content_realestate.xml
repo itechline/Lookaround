@@ -359,6 +359,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35sp"
                     android:text="@string/i_want_to_see_it_on_maps"
+                    android:onClick="seeOnMap"
                     android:layout_margin="5sp"
                     android:background="@drawable/colorbutton"
                     android:textColor="#ffffff"
