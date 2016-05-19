@@ -147,25 +147,18 @@
             android:layout_below="@+id/relative_individual"
             android:layout_centerHorizontal="true">
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/registration"
                 android:id="@+id/registButton"
                 android:onClick="sendRegistration"
-                android:layout_centerHorizontal="true"
-
                 android:background="@drawable/colorbutton"
-
-
-
                 android:textColor="#ffffff"
-                android:layout_marginLeft="70sp"
-                android:layout_marginRight="70sp"
                 android:layout_above="@+id/fszf_text"
-
-                android:layout_centerVertical="true"/>
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:padding="3sp"/>
         </RelativeLayout>
 
         <TextView
