@@ -225,9 +225,9 @@ public class MainActivity extends AppCompatActivity
 
                 //String lrgst = String.valueOf(EstateUtil.largestId);
                 if (!isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 } else {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType));
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 }
             }
         });
@@ -746,6 +746,13 @@ public class MainActivity extends AppCompatActivity
                 ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
                 sortingSpinner_int = spinnerUtil.getId();
+                String showFav;
+                if (isShowingFavorites) {
+                    showFav = "1";
+                } else {
+                    showFav = "0";
+                }
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, String.valueOf(adType), String.valueOf(sortingSpinner_int));
             }
 
             @Override
@@ -1249,15 +1256,15 @@ public class MainActivity extends AppCompatActivity
         switch (adType) {
             case 1:
                 typeText.setText("Eladó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1", String.valueOf(sortingSpinner_int));
                 break;
             case 2:
                 typeText.setText("Kiadó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2", String.valueOf(sortingSpinner_int));
                 break;
             default:
                 typeText.setText("Mindegy");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0", String.valueOf(sortingSpinner_int));
                 adType = 0;
                 break;
         }
@@ -1536,11 +1543,40 @@ private int whichAddestatePage = 0;
                                              public void parseRerult(Object result) {
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
 
-                                                 if (!resArray.get(resArray.size()-1).isError()) {
+                                                 if (!resArray.get(resArray.size() - 1).isError()) {
                                                      //TODO: képfeltöltés...
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
                                                      isBackPressed = true;
-                                                     getEstateContent(resArray.get(resArray.size()-1).getId());
+                                                     hirdetesSpinner_int = 0;
+                                                     szobaszamSpinner_int = 0;
+                                                     allapotSpinner_int = 0;
+                                                     emeletekSpinner_int = 0;
+                                                     ingatlanTipusSpinner_int = 0;
+                                                     parkolasSpinner_int = 0;
+                                                     futesSpinner_int = 0;
+                                                     energiaSpinner_int = 0;
+                                                     kilatasSpinner_int = 0;
+                                                     butorozottSpinner_int = 0;
+                                                     balconySpinner_int = 0;
+                                                     elevatorSpinner_int = 0;
+                                                     TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
+                                                     TextView description = (TextView) findViewById(R.id.advert_description_edittext);
+                                                     TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
+                                                     TextView city = (TextView) findViewById(R.id.add_advert_city_edittext);
+
+                                                     TextView street = (TextView) findViewById(R.id.add_advert_street_edittext);
+                                                     TextView num = (TextView) findViewById(R.id.add_advert_str_number_edittext);
+                                                     TextView size = (TextView) findViewById(R.id.estate_size_edittext);
+                                                     title.setText("");
+                                                     description.setText("");
+                                                     price.setText("");
+                                                     city.setText("");
+                                                     street.setText("");
+                                                     num.setText("");
+                                                     size.setText("");
+
+                                                     switchLayoutToAddEstate(0);
+                                                     getEstateContent(resArray.get(resArray.size() - 1).getId());
                                                      Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)
                                                              .setAction("Action", null).show();
                                                      Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
@@ -1715,7 +1751,7 @@ private int whichAddestatePage = 0;
             @Override
             public void parseRerult(Object result) {
                 if ((boolean) result) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                     //ringProgressDialog.dismiss();
                     Log.d("RESULT: ", result.toString());
 
@@ -1857,7 +1893,7 @@ private int whichAddestatePage = 0;
     private boolean isRefreshing = false;
 
 
-    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString) {
+    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering) {
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
@@ -1927,14 +1963,14 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = true;
                                     }
-                                }, lrgst, pageStr, tokenToSend, fav, etypeString);
+                                }, lrgst, pageStr, tokenToSend, fav, etypeString, ordering);
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend, fav, etypeString);
+        }, idPost, pagePost, tokenToSend, fav, etypeString, ordering);
 
 
         supportInvalidateOptionsMenu();
@@ -1966,7 +2002,7 @@ private int whichAddestatePage = 0;
         switch (viewFlip.getDisplayedChild()) {
             case ESTATESLIST:
                 if (isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 }
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
@@ -1992,7 +2028,7 @@ private int whichAddestatePage = 0;
 
                 break;
             default:
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
         }
@@ -2122,7 +2158,7 @@ private int whichAddestatePage = 0;
                 if (viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType));
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 break;
             case R.id.nav_profile:
                 switchLayoutTo(PROFILE);
@@ -2141,7 +2177,7 @@ private int whichAddestatePage = 0;
                 if(viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType));
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int));
                 break;
             case R.id.nav_admonitor:
                 //TODO: létrehozni hozzá az API-t
