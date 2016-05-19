@@ -1239,19 +1239,25 @@ public class MainActivity extends AppCompatActivity
     int adType = 0;
     public void adTypeChange(View view) {
         TextView typeText = (TextView) findViewById(R.id.estate_type_textview);
+        String showFav;
+        if (isShowingFavorites) {
+            showFav = "1";
+        } else {
+            showFav = "0";
+        }
         adType += 1;
         switch (adType) {
             case 1:
                 typeText.setText("Eladó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "1");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1");
                 break;
             case 2:
                 typeText.setText("Kiadó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "2");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2");
                 break;
             default:
                 typeText.setText("Mindegy");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", "0");
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0");
                 adType = 0;
                 break;
         }
