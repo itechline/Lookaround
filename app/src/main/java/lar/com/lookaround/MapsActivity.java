@@ -258,21 +258,29 @@ public class MapsActivity extends AppCompatActivity {
 
     }
 
-    public View myContentsView;
+
     private MyItem clickedClusterItem;
     public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
-        MyCustomAdapterForItems() {
+
+        private View myContentsView;
+        private int lastItemId;
+
+        MyCustomAdapterForItems( ) {
             myContentsView = getLayoutInflater().inflate(R.layout.maps_info_window, null);
+            lastItemId = -1;
         }
 
         @Override
-        public View getInfoWindow(Marker marker) {
+        public View getInfoWindow(final Marker marker) {
             //TODO: megcsinálni h jókat kérjen le ez a fos ha rákattintok
 
-            final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
-            final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
-            final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
-            final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
+            if (lastItemId != clickedClusterItem.getID()) {
+                lastItemId = clickedClusterItem.getID();
+
+                final TextView tvCity = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps));
+                final TextView tvStreet = ((TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps));
+                final TextView tvSize = ((TextView) myContentsView.findViewById(R.id.list_size_textView_maps));
+                final TextView tvRooms = ((TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps));
                 EstateUtil.getEstate(new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
@@ -286,7 +294,9 @@ public class MapsActivity extends AppCompatActivity {
                             tvStreet.setText(obj.getString("ingatlan_utca"));
                             tvSize.setText(obj.getString("ingatlan_meret"));
                             tvRooms.setText(obj.getString("ingatlan_szsz"));
+                            myContentsView.invalidate();
                             Log.d("MAPS_TRY ", "finished");
+                            marker.showInfoWindow();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -294,6 +304,7 @@ public class MapsActivity extends AppCompatActivity {
                     }
 
                 }, String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(getBaseContext()));
+            }
 
             return myContentsView;
         }
