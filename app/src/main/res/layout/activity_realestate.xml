@@ -117,7 +117,7 @@
                         android:singleLine="true"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
-                        android:hint="min"
+                        android:hint="minimum"
                         android:padding="5sp"
                         android:textSize="12sp"
                         android:numeric="decimal"/>
@@ -129,7 +129,7 @@
                         android:singleLine="true"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
-                        android:hint="max"
+                        android:hint="maximum"
                         android:padding="5sp"
                         android:textSize="12sp"
                         android:numeric="decimal"/>

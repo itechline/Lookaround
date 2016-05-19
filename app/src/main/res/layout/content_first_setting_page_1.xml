@@ -42,7 +42,7 @@
             android:textColor="#ffffff"
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"
-            android:padding="2sp" />
+            android:padding="3sp" />
 
 
     </RelativeLayout>

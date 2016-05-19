@@ -71,7 +71,7 @@
                 android:background="@drawable/colorbutton"
                 android:textColor="#ffffff"
                 android:textSize="15sp"
-                android:padding="5sp"
+                android:padding="3sp"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10sp" />
         </LinearLayout>
