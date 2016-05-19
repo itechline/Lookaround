@@ -216,8 +216,9 @@ public class MapsActivity extends AppCompatActivity {
         mMap.setMyLocationEnabled(true);
 
         mClusterManager = new ClusterManager<>(this, mMap);
-        mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
 
+        mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
+        mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
 
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
             @Override
@@ -234,7 +235,7 @@ public class MapsActivity extends AppCompatActivity {
             @Override
             public boolean onClusterItemClick(MyItem clusterItem) {
                 clickedClusterItem = clusterItem;
-                mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
+
                 Log.d("CLICKED_ITEM_ID ", String.valueOf(clusterItem.getID()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                 clusterItem.getPosition(), (float) Math.floor(mMap
@@ -254,6 +255,7 @@ public class MapsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     public View myContentsView;
