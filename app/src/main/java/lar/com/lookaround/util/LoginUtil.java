@@ -178,11 +178,12 @@ public class LoginUtil {
                         try {
 
                             JSONObject jsonObj = new JSONObject(result);
+                            Object isStatus = jsonObj.getBoolean(STATUS);
 
                             String token = jsonObj.getString(TOKEN);
+
                             SettingUtil.setToken(ctx, token);
 
-                            Object isStatus = jsonObj.getBoolean(STATUS);
                             getBackWhenItsDone.parseRerult(isStatus);
 
                         } catch (JSONException e) {

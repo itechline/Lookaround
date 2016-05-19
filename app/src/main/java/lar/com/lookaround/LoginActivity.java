@@ -493,6 +493,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginUtil.sendRegistration(this, new SoapObjectResult() {
                     @Override
                     public void parseRerult(Object result) {
+                        Log.d("REGISTRATION: ", result.toString());
                         if ((boolean) result) {
                             //launchRingDialog(view);
                             //sendLoginAfterReg(view, email, passw);
