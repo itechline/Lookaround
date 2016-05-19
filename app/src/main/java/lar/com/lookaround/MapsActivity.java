@@ -62,6 +62,9 @@ public class MapsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maps);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mapView = (MapView) findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_maps);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +79,6 @@ public class MapsActivity extends AppCompatActivity {
             }
         });
 
-        mapView = (MapView) findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
 
         if (ContextCompat.checkSelfPermission(MapsActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -93,19 +94,18 @@ public class MapsActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
                         0);
             }
+        } else {
+            mapView.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    mMap = googleMap;
+                    setUpClusterer();
+                    getItems();
+                    mapView.invalidate();
+                    //addItems();
+                }
+            });
         }
-
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                mMap = googleMap;
-                setUpClusterer();
-                getItems();
-                //addItems();
-
-
-            }
-        });
     }
 
     @Override

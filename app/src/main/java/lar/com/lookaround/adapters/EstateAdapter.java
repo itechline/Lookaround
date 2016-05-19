@@ -109,7 +109,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
         }
 
-        if (estate.getParkolas() == 1 ) {
+        if (estate.getParkolas() == 4 ) {
             parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
         } else {
             parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));
