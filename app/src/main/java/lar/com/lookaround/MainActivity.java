@@ -1575,6 +1575,8 @@ private int whichAddestatePage = 0;
                                                      num.setText("");
                                                      size.setText("");
 
+                                                     loadAddEstateSpinners();
+
                                                      switchLayoutToAddEstate(0);
                                                      getEstateContent(resArray.get(resArray.size() - 1).getId());
                                                      Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)

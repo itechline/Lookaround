@@ -101,7 +101,6 @@ public class MapsActivity extends AppCompatActivity {
                     mMap = googleMap;
                     setUpClusterer();
                     getItems();
-                    mapView.invalidate();
                     //addItems();
                 }
             });
@@ -191,6 +190,8 @@ public class MapsActivity extends AppCompatActivity {
 
                     mClusterManager.addItem(offsetItem);
                 }
+                gotoLocation(arrayOfUsers.get(4).getLat(),arrayOfUsers.get(4).getLng(), 30);
+                //mapView.invalidate();
             }
         });
     }
