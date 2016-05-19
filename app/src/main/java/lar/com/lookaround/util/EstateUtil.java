@@ -331,6 +331,7 @@ public class EstateUtil {
                 @Override
                 public void parseRerult(String result) {
 
+                    Log.d("GET_ESTATE ", result.toString());
                     if (result != null) {
                         try {
                             JSONObject jsonObject = new JSONObject(result);

@@ -97,7 +97,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
         size.setText(estate.getMeret());
         rooms.setText(String.valueOf(estate.getSzobaszam()));
 
-        if (estate.getButor() == 0) {
+        if (estate.getButor() == 1) {
             furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nofurniture));
         } else {
             furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
@@ -109,7 +109,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
         }
 
-        if (estate.getParkolas() == 0 ) {
+        if (estate.getParkolas() == 1 ) {
             parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
         } else {
             parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));

@@ -1658,9 +1658,11 @@ private int whichAddestatePage = 0;
                     }
 
                     Locale locale = new Locale("en", "UK");
+
                     DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
                     //symbols.setDecimalSeparator(';');
                     symbols.setGroupingSeparator('.');
+
                     String pattern = "###,###";
                     DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
                     String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
