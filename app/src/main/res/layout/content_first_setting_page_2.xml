@@ -59,7 +59,7 @@
                 android:textColor="#ffffff"
                 android:onClick="nextPageFirstSetting"
                 android:gravity="center_vertical|center_horizontal"
-                android:padding="2sp"
+                android:padding="3sp"
                 android:layout_margin="5sp"
             />
 

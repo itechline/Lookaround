@@ -94,7 +94,7 @@
                 android:layout_margin="10sp"
                 android:background="@drawable/colorbutton"
                 android:textColor="#ffffff"
-                android:padding="5sp"/>
+                android:padding="3sp"/>
         </LinearLayout>
 
         <RelativeLayout
