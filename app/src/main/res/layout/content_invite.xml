@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/below_advertinfo"
+        android:text="@string/invite_page_top_hint_text"
         android:id="@+id/invite_smalltext"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -194,7 +194,7 @@
             android:background="@drawable/colorbutton"
             android:textSize="16sp"
             android:layout_margin="5sp"
-            android:padding="2sp"/>
+            android:padding="3sp"/>
     </LinearLayout>
 
 
