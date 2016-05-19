@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/below_advertinfo"
-        android:id="@+id/textView"
+        android:id="@+id/textView_addmonitor_description"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textView_addmonitor_description"
         android:layout_above="@+id/add_advert_monitor_buttons_linear">
 
         <RelativeLayout
