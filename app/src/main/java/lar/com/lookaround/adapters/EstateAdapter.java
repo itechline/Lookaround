@@ -103,7 +103,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
         }
 
-        if (estate.getErkely() == 1) {
+        if (estate.getErkely() == 0) {
             balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nobalcony));
         } else {
             balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
