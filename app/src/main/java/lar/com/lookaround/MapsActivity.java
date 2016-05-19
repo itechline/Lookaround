@@ -179,6 +179,9 @@ public class MapsActivity extends AppCompatActivity {
 
                     mClusterManager.addItem(offsetItem);
                 }
+                if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null) {
+                    gotoLocation(Double.parseDouble(SettingUtil.getLatForMap(getBaseContext())),Double.parseDouble(SettingUtil.getLngForMap(getBaseContext())), 20);
+                }
                 gotoLocation(arrayOfUsers.get(4).getLat(),arrayOfUsers.get(4).getLng(), 10);
                 //mapView.invalidate();
             }
