@@ -17,7 +17,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arany János utca"
             android:id="@+id/item_realestate_adress2_maps"
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/linearLayout2_maps"
@@ -38,9 +37,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30sp"
-            android:text="28.560.000 HUF"
             android:textStyle="bold"
-            android:id="@+id/Price_maps"
+            android:id="@+id/price_maps"
             android:background="#0066cc"
             android:textColor="#ffffff"
             android:padding="2sp"
@@ -67,7 +65,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Budapest V. kerület"
                 android:id="@+id/item_realestate_adress1_maps"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
@@ -90,7 +87,6 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="ide jön valami amit majd kitalálunk"
                 android:id="@+id/item_realestate_description_maps"
                 android:layout_gravity="center_horizontal"
                 android:maxLines="4"
@@ -131,7 +127,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="100"
                 android:id="@+id/list_size_textView_maps"
                 android:layout_margin="5sp" />
 
@@ -148,7 +143,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="3"
                 android:id="@+id/list_roomcount_textView_maps"
                 android:layout_margin="5sp" />
 
