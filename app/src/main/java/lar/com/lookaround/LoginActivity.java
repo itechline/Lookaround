@@ -503,6 +503,7 @@ public class LoginActivity extends AppCompatActivity {
                             //finish();
                         } else {
                             ringProgressDialog.dismiss();
+                            Log.d("REGISTRATION: HIBAS ", "ADATOK");
                             showAlert(view, "Hibás Adatok!");
                         }
 
@@ -545,6 +546,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void parseRerult(Object result) {
                         if ((boolean) result) {
+                            Log.d("REGISTRATION_COMPANY: ", result.toString());
                             //launchRingDialog(view);
                             ringProgressDialog.dismiss();
                             switchLayoutTo(FIRSTSETTINGS);
