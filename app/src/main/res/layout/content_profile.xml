@@ -67,7 +67,7 @@
         android:layout_gravity="center" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textPersonName"
         android:ems="10"
@@ -103,7 +103,7 @@
         android:layout_gravity="center" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textPersonName"
         android:ems="10"
@@ -137,7 +137,7 @@
         android:layout_gravity="center" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="phone"
         android:ems="10"
@@ -174,7 +174,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textEmailAddress"
         android:ems="10"
@@ -230,7 +230,7 @@
         android:layout_gravity="center" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textPassword"
         android:id="@+id/change_passw_editText"
@@ -266,7 +266,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textPassword"
         android:ems="10"
@@ -299,7 +299,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:layout_width="220sp"
+        android:layout_width="200sp"
         android:layout_height="fill_parent"
         android:inputType="textPassword"
         android:ems="10"
