@@ -20,10 +20,40 @@ public class BlankPageActivity extends AppCompatActivity {
 
         TextView felh_szoveg = (TextView)findViewById(R.id.felh_szoveg);
 
-        felh_szoveg.setText(Html.fromHtml("<h2>Általános Felhasználási Feltételek</h2>" +
-                "<br><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum sit amet urna vulputate sagittis. Nulla vulputate lacus ac velit congue tincidunt. Fusce viverra mi nec sodales convallis. Integer porta elit ipsum, eget consequat mi suscipit in. In varius velit et est suscipit commodo. Sed vitae malesuada nisl. Cras vestibulum consectetur tortor, quis rutrum urna iaculis gravida. Proin rhoncus lectus aliquet, luctus massa vel, fermentum ipsum. Proin vitae magna a justo viverra egestas in sed ex. Donec pretium elit arcu, et cursus ligula lacinia in. Sed fermentum facilisis magna, eget viverra nisi maximus sit amet." +
-                "<br><br>Integer quis massa non mi elementum posuere. Sed vestibulum enim nec bibendum sodales. Aenean pretium eleifend orci, ut laoreet diam sodales ac. Maecenas eu suscipit ante. Pellentesque dignissim tincidunt dolor at gravida. Cras sit amet elementum urna, et gravida leo. Nunc eleifend vel mauris non semper. Mauris in urna sed elit aliquet lacinia at et nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus risus leo, non consectetur nisi mollis non. Suspendisse fringilla ipsum ac tempor mollis." +
-                "<br><br>Nulla vitae interdum velit, non lobortis leo. Proin faucibus faucibus lectus, eu elementum metus congue id. Nulla sit amet egestas augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas purus ut odio commodo efficitur. Ut lobortis sapien eget dui rhoncus, a dictum orci convallis. In bibendum felis faucibus turpis mollis, a imperdiet justo ullamcorper. Maecenas sit amet dui nisi. Proin quis justo quis elit convallis congue eget et elit. Nullam risus diam, sagittis aliquet lacus vitae, faucibus molestie enim. Sed accumsan sapien et nunc porttitor commodo. Aliquam in nibh at mi placerat cursus. Proin eget volutpat nulla. Suspendisse ut porta lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae"));
+        felh_szoveg.setText(Html.fromHtml("<h2>A Bonodom alkalmazás Szolgáltatás Általános Szerződési Feltételei</h2>" +
+                "<br><br><br>A következőkben ismertetett Általános Szerződési Feltételek (a továbbiakban: „ÁSZF”) az ITECHLINE Kft. (5055, Jászladány Táncsics M 54/a.; a továbbiakban: „Szolgáltató”) által üzemeltetett, BONODOM applikációban elérhető ingatlan hirdetési szolgáltatás igénybevételéhez kapcsolódóan a Felhasználók és a Szolgáltató (lásd. lentebb) jogait és kötelezettségeit tartalmazza." +
+                "<br><br><h3>1. Általános meghatározások</h3>\n" +
+                "ÁSZF vagy a Szolgáltatás ÁSZF-je: a jelen dokumentum\n" +
+                "Felhasználó: az alkalmazásban elérhető szolgáltatást igénybe vevő személy, aki az alkalmazásba regisztrált és oda feltölti az értékesíteni kívánt ingatlan adatait.\n" +
+                "Alkalmazás: a Google Play áruházban elérhető alkalmazás\n" +
+                "Szoftver: a Szolgáltatást üzemeltető szoftver.\n" +
+                "Szolgáltató: az ITECHLINE Kft. (5055, Jászladány Táncsics M 54/a)\n" +
+                "Szolgáltatás: a Szolgáltató által az alkalmazáson keresztül a Felhasználó részére nyújtott, és a jelen \n" +
+                "ÁSZF-ben ismertetett szolgáltatás." +
+                "<br><br><h3>2.  A Szolgáltató által nyújtott Szolgáltatás leírása</h3>\n" +
+                "<h4>2.1</h4> A Szolgáltatás keretében a Szolgáltató lehetőséget biztosít a Felhasználó számára, hogy\n" +
+                "a,  az alkalmazás felületére a Felhasználó által értékesíteni kívánt ingatlan adatait, fényképeit\n" +
+                "feltöltse,\n" +
+                "b,  az alkalmazásban megadja azokat a paramétereket, amelyeknek megfelelő ingatlant keres;\n" +
+                "továbbá\n" +
+                "c,  a Felhasználó igénye alapján a Felhasználó részére hirdetésfigyelő szolgáltatást nyújt. A\n" +
+                "hirdetésfigyelési szolgáltatás keretében a Szolgáltató a Felhasználó által megadott e-mail\n" +
+                "címre megküldi az alkalmazásba feltöltött mindazon ingatlanok linkjét, amelyek a Felhasználó\n" +
+                "által az alkalmazásban megadott keresési feltételeknek megfelel.\n" +
+                "<h4>2.2</h4> Felhasználó az alkalmazásba történő regisztrációjával a Szolgáltatás ÁSZF-jét kifejezetten elfogadja.\n" +
+                "<br><br><h3>3. A Szolgáltató által nyújtott Szolgáltatás igénybevétele</h3>\n" +
+                "<h4>3.1</h4> Felhasználó a Szolgáltatásba saját e-mail címével, Facebook ill. Google accountjával tud regisztrálni. Felhasználó tudomásul veszi, hogy regisztrációja elküldésével mind a Szolgáltatás ÁSZF-jét és Adatkezelési Szabályzatát elfogadja.\n" +
+                "<h4>3.2</h4> Felhasználó ingyenesen legfeljebb 1 ingatlanra vonatkozó hirdetést tölthet fel egyszerre az alkalmazásba, és teheti elérhetővé az alkalmazás használói számára. Amennyiben kiderül, hogy egy Felhasználó – akár több felhasználó névvel vagy e-mail címmel – az itt megadottnál több ingatlan adatait is feltöltötte az alkalmazásba, ill. ott elérhetővé tette, úgy a Szolgáltatónak joga van Felhasználó valamennyi hirdetését törölni.\n" +
+                "<h4>3.3</h4> Felhasználó az alkalmazásba feltöltheti az általa keresett ingatlan adatait. Ehhez kapcsolódóan a\n" +
+                "Felhasználó az alkalmazásban hirdetésfigyelő szolgáltatás nyújtását rendelheti meg. \n" +
+                "<h4>3.4</h4> A Felhasználó bármikor módosíthatja az általa az alkalmazásban illetve a regisztráció során megadott adatokat, a „Hirdetésem”, a személyes adatokat a „Személyes” menüpontban.\n" +
+                "<h4>3.5</h4> Nem tölthetők fel hirdetéssel kapcsolatban az alkalmazásba olyan képek, amelyek:\n" +
+                "a, nem a Felhasználó tulajdonát képezik, és felhasználásukra a jogosult felhatalmazást nem adott,\n" +
+                "b, nem a meghirdetett ingatlant és annak közvetlen környezetét ábrázolják \n" +
+                "c, nem megfelelő felbontásúak, minőségűek, torzítottak,\n" +
+                "d, több fotó montázsából jött létre,\n" +
+                "e, bármilyen a képre rászerkesztett feliratot, szöveget, linket, elérhetőségi adatot, figyelemfelkeltő grafikát, egyéb megjelölést tartalmaznak. \n" +
+                "<h4>3.6</h4> A Felhasználó által feltöltött adatok, azoknak a Felhasználó által az alkalmazásban történt törléséig, de legfeljebb azok feltöltésétől számított 24 hónapig történik a tárolás.\n"));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
