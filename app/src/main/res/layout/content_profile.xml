@@ -50,9 +50,10 @@
         android:id="@+id/content_profile_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/profile_buttons_layout"
-        android:layout_below="@+id/profile_top_textview">
+        android:layout_below="@+id/profile_top_textview"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical|center_horizontal">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40sp"
