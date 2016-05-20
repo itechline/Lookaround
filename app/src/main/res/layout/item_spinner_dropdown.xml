@@ -10,5 +10,4 @@
     android:paddingLeft="5sp"
     android:textIsSelectable="false"
     android:paddingRight="5sp"
-    android:password="false"
-    android:phoneNumber="false" />
+    />
