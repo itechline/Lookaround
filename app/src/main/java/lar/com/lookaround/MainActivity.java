@@ -74,6 +74,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.hkm.slider.SliderLayout;
+import com.hkm.slider.SliderTypes.AdvancedTextSliderView;
 import com.hkm.slider.SliderTypes.BaseSliderView;
 import com.hkm.slider.SliderTypes.DefaultSliderView;
 import com.hkm.slider.Tricks.ViewPagerEx;
@@ -2063,13 +2064,14 @@ private int whichAddestatePage = 0;
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-                            /*if (sliderLayout.getScaleX() == 1) {
-                                sliderLayout.setScaleY(0.5f);
-                                sliderLayout.setScaleX(0.5f);
+                            if (sliderLayout.getScaleY() == 1) {
+                                sliderLayout.setScaleY(3);
+                                sliderLayout.setScaleX(3);
+                                //sliderLayout.getCurrentSlider().setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                             } else {
                                 sliderLayout.setScaleY(1);
                                 sliderLayout.setScaleX(1);
-                            }*/
+                            }
                         }
                     });
 
