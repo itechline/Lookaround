@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -23,89 +25,75 @@ import java.util.Map;
 /**
  * Created by Attila_Dan on 16. 05. 11..
  */
-public class ImageUploadService extends AsyncTask<URL, Integer, String> {
+public class ImageUploadService extends AsyncTask<String, Integer, String> {
 
     SoapResult result;
-    Bitmap bitmap;
 
-    String attachmentName = "bitmap";
-    String attachmentFileName = "bitmap.bmp";
     String crlf = "\r\n";
     String twoHyphens = "--";
     String boundary =  "*****";
+    File toUpload;
 
-    public ImageUploadService(SoapResult result, Bitmap bitmap) {
+    public ImageUploadService(SoapResult result, File toUpload) {
         this.result = result;
-        this.bitmap = bitmap;
-    }
-
-
-
-    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        for(Map.Entry<String, String> entry : params.entrySet()){
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-
-        return result.toString();
+        this.toUpload = toUpload;
     }
 
     @Override
-    protected String doInBackground(URL... params) {
+    protected String doInBackground(String... params) {
         //HttpURLConnection urlConnection = null;
 
         HttpURLConnection urlConnection = null;
 
         try {
-            URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=anh3x2fz5np1");
+            URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=" + params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setUseCaches(false);
+            urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
 
             urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Connection", "Keep-Alive");
-            urlConnection.setRequestProperty("Cache-Control", "no-cache");
-            urlConnection.setRequestProperty(
-                    "Content-Type", "multipart/form-data;boundary=" + this.boundary);
 
-            /*urlConnection = (HttpURLConnection) params[0].openConnection();
-            StringBuilder result = new StringBuilder();
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);*/
+            urlConnection.setRequestProperty("Connection", "Keep-Alive");
+            urlConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+
 
             DataOutputStream request = new DataOutputStream(
                     urlConnection.getOutputStream());
 
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"" +
-                    this.attachmentName + "\";filename=\"" +
-                    this.attachmentFileName + "\"" + this.crlf);
+                    "file" + "\";filename=\"" +
+                    this.toUpload.getName() + "\"" + this.crlf);
             request.writeBytes(this.crlf);
 
-            byte[] pixels = new byte[bitmap.getWidth() * bitmap.getHeight()];
-            for (int i = 0; i < bitmap.getWidth(); ++i) {
-                for (int j = 0; j < bitmap.getHeight(); ++j) {
-                    //we're interested only in the MSB of the first byte,
-                    //since the other 3 bytes are identical for B&W images
-                    pixels[i + j] = (byte) ((bitmap.getPixel(i, j) & 0x80) >> 7);
-                }
-            }
 
-            request.write(pixels);
+            FileInputStream fis = new FileInputStream(toUpload);
+
+            int bytesRead, bytesAvailable, bufferSize;
+            byte[] buffer;
+            int maxBufferSize = 1*1024*1024;
+
+            bytesAvailable = fis.available();
+            bufferSize = Math.min(bytesAvailable, maxBufferSize);
+            buffer = new byte[bufferSize];
+
+            // Read file
+            bytesRead = fis.read(buffer, 0, bufferSize);
+
+            while (bytesRead > 0)
+            {
+                request.write(buffer, 0, bufferSize);
+                bytesAvailable = fis.available();
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                bytesRead = fis.read(buffer, 0, bufferSize);
+            }
 
             request.writeBytes(this.crlf);
             request.writeBytes(this.twoHyphens + this.boundary +
                     this.twoHyphens + this.crlf);
 
+            fis.close();
             request.flush();
             request.close();
 
