@@ -53,7 +53,39 @@ public class BlankPageActivity extends AppCompatActivity {
                 "c, nem megfelelő felbontásúak, minőségűek, torzítottak,\n" +
                 "d, több fotó montázsából jött létre,\n" +
                 "e, bármilyen a képre rászerkesztett feliratot, szöveget, linket, elérhetőségi adatot, figyelemfelkeltő grafikát, egyéb megjelölést tartalmaznak. \n" +
-                "<h4>3.6</h4> A Felhasználó által feltöltött adatok, azoknak a Felhasználó által az alkalmazásban történt törléséig, de legfeljebb azok feltöltésétől számított 24 hónapig történik a tárolás.\n"));
+                "<h4>3.6</h4> A Felhasználó által feltöltött adatok, azoknak a Felhasználó által az alkalmazásban történt törléséig, de legfeljebb azok feltöltésétől számított 24 hónapig történik a tárolás.\n" +
+                "<h3>4. Felelősségi szabályok</h3>\n" +
+                "<h4>4.1</h4> A Felhasználó hirdetéseinek ill. a Felhasználó által az alkalmazásba feltöltött adatok valóságtartalmáért és helytállóságáért kizárólag a Felhasználó felelős. A Szolgáltató nem felel harmadik személyeknek a Felhasználóval szemben érvényesíteni kívánt igényéért, ide értve a Felhasználó által feltöltött adatoktól való eltérést, illetve a feltöltött adatok valóságtartalmát is. A Felhasználó felelősségi és helytállási kötelezettségének a körébe esik, ha az alkalmazásban közzétett adatok és/vagy paraméterekhez képest később változások következnek be. Ilyen esetekben a felelősség kizárólag Felhasználót terheli. A beérkező esetleges reklamációkért (ideértve bármely bírságot, kártérítést és költséget) a felelősséget teljes egészében Felhasználó vállalja.\n" +
+                "<h4>4.2</h4> Az adatszolgáltatás, a hibajavítás illetőleg az adatokban bekövetkező változásokkal\n" +
+                "kapcsolatosan módosítások Felhasználó általi késedelmes teljesítése esetén az alkalmazásban\n" +
+                "megjelenő hiányos vagy hibás adatok közzétételéért Szolgáltatót semmilyen felelősséget nem\n" +
+                "vállal.\n" +
+                "<h4>4.3</h4> A Szolgáltatót nem terheli semmilyen felelősség azért, hogy a jelen ÁSZF szerinti Szolgáltatása\n" +
+                "révén létrejön-e tényleges szerződés Felhasználó és harmadik személyek között.\n" +
+                "<h4>4.4</h4> A Szolgáltató nem felel a Felhasználó által harmadik személynek okozott károkért.\n" +
+                "<h4>4.5</h4> A Felhasználó által az alkalmazásba feltöltött képek, videók, adatok (a továbbiakban: adatok)\n" +
+                "Felhasználó tulajdonát képezik. Szolgáltató jogosult a Felhasználó által az alkalmazásba feltöltött adatokat marketing kommunikációi során felhasználni.\n" +
+                "<h4>4.6</h4> Az alkalmazásba feltöltött adatok helyadat meghatározására a Szolgáltató külső partnert vesz igénybe. A Szolgáltató nem vállal felelősséget az így kapott adatok hibás vagy nem helytálló voltáért.\n" +
+                "<h4>4.7</h4> Szolgáltató az alkalmazásra valamint a Szoftverre vonatkozó szerzői jogok jogosultja, és nincs\n" +
+                "semmilyen harmadik személynek olyan joga, amely a Szolgáltatót vagy a Felhasználót ezek\n" +
+                "megfelelő használatában korlátozhatná, vagy a használatot akadályozhatná.\n" +
+                "<h4>4.8</h4> Felhasználó köteles tartózkodni minden olyan magatartástól, amely akár közvetlenül, akár\n" +
+                "közvetve alkalmas arra, hogy az alkalmazásra illetve a Szoftverre, mint szerzői műre vonatkozó\n" +
+                "szerzői jogokat sértsen. Szolgáltató a jelen pontban foglaltak megsértése esetén a Felhasználóval szemben kártérítési igénnyel léphet fel.\n" +
+                "<h4>4.9</h4> A Felhasználó számára tilos bármilyen olyan rendszer vagy megoldás használata, amely az alkalmazásban nyújtott Szolgáltatások korlátozását vagy leállását célozza, azt lehetővé teszi, vagy\n" +
+                "azt eredményezheti, vagy amely egyébként veszélyezteti az alkalmazás rendeltetésszerű működtetését. Szolgáltató a jelen pontban foglaltak megsértése esetén a Felhasználóval szemben kártérítési igénnyel léphet fel.\n" +
+                "<h3>5. Vegyes rendelkezések</h3>\n" +
+                "<h4>5.1</h4> A Szolgáltató nem felelős semmilyen kárért, amely az alkalmazásra való csatlakozás illetve a\n" +
+                "Szolgáltatás használata miatt a Felhasználónál esetlegesen bekövetkezett. A Felhasználót\n" +
+                "terheli a számítógépe, illetve az azon található adatok védelmének kötelezettsége.\n" +
+                "<h4>5.2</h4> A Szolgáltató bármikor jogosult a jelen ÁSZF feltételeit egyoldalúan módosítani. Az esetleges\n" +
+                "módosítás az alkalmazásban való megjelenéssel egyidejűleg lép hatályba.\n" +
+                "<h4>5.3</h4> Minden kommunikáció nyelve magyar.\n" +
+                "<h4>5.4</h4> A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jog, különösen a Polgári\n" +
+                "Törvénykönyvről szóló 2013. évi V. törvény rendelkezései irányadóak.\n" +
+                "<h4>5.5</h4> Az esetleges vitás kérdések rendezésénél a felek a hatályos jogszabályok előírásait tekintik irányadónak. Ha felek a vitát egyeztetéssel nem tudják rendezni, úgy jogvita esetére Felek a hatályos jogszabályok alapján hatáskörrel és illetékességgel rendelkező rendes bíróság eljárásának vetik alá magukat.\n" +
+                "\n" +
+                "<br><br>Jászladány, 2016.05.20"));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
