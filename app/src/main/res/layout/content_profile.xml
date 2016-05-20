@@ -47,6 +47,13 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/content_profile_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/profile_buttons_layout"
+        android:layout_below="@+id/profile_top_textview">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:layout_alignParentLeft="true"
@@ -310,5 +317,6 @@
         android:layout_gravity="center"
         android:layout_margin="5sp"
         android:layout_weight="1" />
+    </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
