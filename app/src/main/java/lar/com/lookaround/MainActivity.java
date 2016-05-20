@@ -1273,11 +1273,15 @@ public class MainActivity extends AppCompatActivity
     public void seeOnMap(View view) {
         if (latMap != null || !latMap.equals("0.0")) {
             SettingUtil.setLatForMap(getBaseContext(), latMap);
+            Log.d("SETLAT", "FINISHED");
+            Log.d("GETLAT", SettingUtil.getLatForMap(getBaseContext()));
         }
 
         if (lngMap != null || !lngMap.equals("0.0")) {
             SettingUtil.setLngForMap(getBaseContext(), lngMap);
         }
+
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
     }
 
     public boolean isNetworkAvailable() {
@@ -1671,6 +1675,7 @@ private int whichAddestatePage = 0;
                     if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
                         //SettingUtil.setLatForMap(getBaseContext(), obj.getString("ingatlan_lat"));
                         latMap = obj.getString("ingatlan_lat");
+                        Log.d("SETLAT", "BEGINNED");
                     }
 
                     if (obj.getString("ingatlan_lng") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
@@ -2098,6 +2103,8 @@ private int whichAddestatePage = 0;
                 }
                 break;
             case R.id.action_map:
+                SettingUtil.setLatForMap(getBaseContext(), null);
+                SettingUtil.setLngForMap(getBaseContext(), null);
                 startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.action_calendar:
