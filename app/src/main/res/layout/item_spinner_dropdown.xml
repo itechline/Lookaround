@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:gravity="left|center_vertical"
-    android:textColor="@android:color/black"
+    android:textColor="@android:color/darker_gray"
     android:textSize="20sp"
     android:paddingLeft="5sp"
     android:textIsSelectable="false"
     android:paddingRight="5sp"
-    android:password="false"
-    android:phoneNumber="false" />
+    />

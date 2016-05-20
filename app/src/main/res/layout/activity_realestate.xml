@@ -71,7 +71,7 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:id="@+id/keyword_realestate_search_edittext"
                     android:hint="@string/search_hint"
                     android:layout_below="@+id/keyword_realestate_search_text"
@@ -102,7 +102,7 @@
                     android:orientation="horizontal"
                     android:id="@+id/realestate_price_spinner_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/price_realestate_text"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10sp"
