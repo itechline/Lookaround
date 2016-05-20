@@ -1,8 +1,6 @@
 package lar.com.lookaround;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -21,34 +19,32 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -57,27 +53,19 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.hkm.slider.SliderLayout;
-import com.hkm.slider.SliderTypes.AdvancedTextSliderView;
 import com.hkm.slider.SliderTypes.BaseSliderView;
 import com.hkm.slider.SliderTypes.DefaultSliderView;
-import com.hkm.slider.Tricks.ViewPagerEx;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,7 +74,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -1635,11 +1622,25 @@ private int whichAddestatePage = 0;
 
                                                      hash = resArray.get(resArray.size()-1).getHash();
 
+
+
+
+
+
                                                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                                          if (!Settings.System.canWrite(MainActivity.this)) {
                                                              requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                                                      Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
                                                          } else {
+                                                             final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                                                             progressBar.setMessage("Feltöltés...");
+                                                             progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                                             progressBar.setIndeterminate(true);
+                                                             progressBar.setProgress(0);
+                                                             progressBar.setMax(uris.size());
+                                                             progressBar.show();
+
+                                                             final int[] progress = {0};
                                                              for (int i = 0; i < uris.size(); i++) {
                                                                  Log.d("UPLOAD_URI", uris.get(0).toString());
                                                                  File imageFile = new File(getRealPathFromURI(uris.get(i)));
@@ -1649,6 +1650,8 @@ private int whichAddestatePage = 0;
                                                                      @Override
                                                                      public void parseRerult(String result) {
                                                                          Log.e("error", "succes" + result);
+                                                                         progress[0] += 1;
+                                                                         progressBar.setProgress(progress[0]);
                                                                      }
                                                                  }, imageFile);
                                                                  try {
@@ -1661,6 +1664,15 @@ private int whichAddestatePage = 0;
                                                              }
                                                          }
                                                      } else {
+                                                         final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                                                         progressBar.setMessage("Feltöltés...");
+                                                         progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                                         progressBar.setIndeterminate(true);
+                                                         progressBar.setProgress(0);
+                                                         progressBar.setMax(uris.size());
+                                                         progressBar.show();
+
+                                                         final int[] progress = {0};
                                                          for (int i = 0; i < uris.size(); i++) {
                                                              Log.d("UPLOAD_URI", uris.get(0).toString());
                                                              File imageFile = new File(getRealPathFromURI(uris.get(i)));
@@ -1670,6 +1682,8 @@ private int whichAddestatePage = 0;
                                                                  @Override
                                                                  public void parseRerult(String result) {
                                                                      Log.e("error", "succes" + result);
+                                                                     progress[0] += 1;
+                                                                     progressBar.setProgress(progress[0]);
                                                                  }
                                                              }, imageFile);
                                                              try {
@@ -1700,6 +1714,7 @@ private int whichAddestatePage = 0;
                                                      butorozottSpinner_int = 0;
                                                      balconySpinner_int = 0;
                                                      elevatorSpinner_int = 0;
+                                                     whichAddestatePage = 0;
                                                      TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                                                      TextView description = (TextView) findViewById(R.id.advert_description_edittext);
                                                      TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
@@ -1745,6 +1760,15 @@ private int whichAddestatePage = 0;
         switch (requestCode) {
             case 2909: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                    progressBar.setMessage("Feltöltés...");
+                    progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    progressBar.setIndeterminate(true);
+                    progressBar.setProgress(0);
+                    progressBar.setMax(uris.size());
+                    progressBar.show();
+
+                    final int[] progress = {0};
                     Log.e("Permission", "Granted");
                     for (int i = 0; i < uris.size(); i++) {
                         Log.d("UPLOAD_URI", uris.get(0).toString());
@@ -1755,6 +1779,8 @@ private int whichAddestatePage = 0;
                             @Override
                             public void parseRerult(String result) {
                                 Log.e("error", "succes" + result);
+                                progress[0] += 1;
+                                progressBar.setProgress(progress[0]);
                             }
                         }, imageFile);
                         try {

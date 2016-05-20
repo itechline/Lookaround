@@ -1,60 +1,51 @@
 package lar.com.lookaround;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
-import android.provider.CalendarContract;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
-import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.SettingUtil;
 
@@ -277,6 +268,7 @@ public class MapsActivity extends AppCompatActivity {
 
     }
 
+    Marker whichMarker;
 
     private MyItem clickedClusterItem;
     public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
@@ -293,6 +285,7 @@ public class MapsActivity extends AppCompatActivity {
         public View getInfoWindow(final Marker marker) {
             if (lastItemId != clickedClusterItem.getID()) {
                 lastItemId = clickedClusterItem.getID();
+                whichMarker = marker;
 
                 final TextView tvCity = (TextView) myContentsView.findViewById(R.id.item_realestate_adress1_maps);
                 final TextView tvStreet = (TextView) myContentsView.findViewById(R.id.item_realestate_adress2_maps);
@@ -300,6 +293,7 @@ public class MapsActivity extends AppCompatActivity {
                 final TextView tvRooms = (TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps);
                 final TextView tvPrice = (TextView) myContentsView.findViewById(R.id.price_maps);
                 final TextView tvDesc = (TextView) myContentsView.findViewById(R.id.item_realestate_description_maps);
+                final ImageView imageView = (ImageView) myContentsView.findViewById(R.id.item_realestate_mainpic_maps);
 
                 tvCity.setText("");
                 tvStreet.setText("");
@@ -315,7 +309,16 @@ public class MapsActivity extends AppCompatActivity {
                         Log.d("MAPS_RESULT ", result.toString());
 
                         try {
-                            Log.d("MAPS_TRY ", "called");
+                            String imageURL = "";
+                            JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
+                            for (int j=0; j < kepekArray.length(); j++) {
+                                JSONObject jsonKep = kepekArray.getJSONObject(j);
+                                imageURL = jsonKep.getString("kepek_url");
+                            }
+
+                            final DownloadImageTask task = new DownloadImageTask(imageView, myContentsView);
+                            imageList.add(task);
+                            task.execute(imageURL);
 
                             tvCity.setText(obj.getString("ingatlan_varos"));
                             tvStreet.setText(obj.getString("ingatlan_utca"));
@@ -417,6 +420,67 @@ public class MapsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private static ArrayList<DownloadImageTask> imageList= new ArrayList<>();
+
+
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        //ImageView bmImage;
+        View convertView;
+        private final WeakReference<ImageView> imageViewReference;
+
+
+
+        public DownloadImageTask(ImageView bmImage, View convertView) {
+            //this.bmImage = bmImage;
+            imageViewReference = new WeakReference<ImageView>(bmImage);
+            this.convertView = convertView;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+
+            if (isCancelled())
+                result = null;
+
+            if(Thread.interrupted()) {
+                result = null;
+            }
+
+            if (imageList == null) {
+                imageList = new ArrayList<>();
+            }
+            imageList.remove(this);
+
+            if (result != null) {
+                //bmImage.setImageBitmap(result);
+                //bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                if (imageViewReference != null && result != null) {
+                    final ImageView imageView = imageViewReference.get();
+                    if (imageView != null) {
+                        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        imageView.setImageBitmap(result);
+                        whichMarker.showInfoWindow();
+                    }
+                }
+            }
+        }
     }
 
 }
