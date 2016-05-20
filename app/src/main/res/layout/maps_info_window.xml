@@ -89,14 +89,17 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/item_realestate_description_maps"
                 android:layout_gravity="center_horizontal"
-                android:maxLines="4"
+                android:maxLines="3"
                 android:ellipsize="end"
                 android:layout_below="@+id/item_realestate_adress2_maps"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/item_realestate_adress2_maps"
                 android:layout_alignStart="@+id/item_realestate_adress2_maps"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:textSize="15sp"
+                android:text="@string/below_advertinfo"
+                android:gravity="center_vertical" />
 
         </RelativeLayout>
 
@@ -110,14 +113,14 @@
             android:layout_alignParentEnd="true"
             android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
             android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:layout_margin="10sp"
             android:layout_centerInParent="true"
-            android:gravity="center_vertical|center_horizontal">
+            android:gravity="left|center_vertical"
+            android:layout_margin="5sp">
 
             <ImageView
                 android:src="@drawable/list_size"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="18sp"
                 android:id="@+id/list_size_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -133,7 +136,7 @@
             <ImageView
                 android:src="@drawable/list_roomcount"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="18sp"
                 android:id="@+id/list_roomcount_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -149,7 +152,7 @@
             <ImageView
                 android:src="@drawable/list_furniture"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="18sp"
                 android:id="@+id/list_furniture_imageview_maps"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
