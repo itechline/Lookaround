@@ -76,8 +76,7 @@ public class MapsActivity extends AppCompatActivity {
                     Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
 
-                if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
 
                 } else {
@@ -192,7 +191,7 @@ public class MapsActivity extends AppCompatActivity {
                     mClusterManager.addItem(offsetItem);
                 }
                 if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
-                    gotoLocation(Double.parseDouble(SettingUtil.getLatForMap(getBaseContext())),Double.parseDouble(SettingUtil.getLngForMap(getBaseContext())), 20);
+                    gotoLocation(Double.parseDouble(SettingUtil.getLatForMap(getBaseContext())),Double.parseDouble(SettingUtil.getLngForMap(getBaseContext())), 14);
                 } else {
                     gotoLocation(arrayOfUsers.get(4).getLat(), arrayOfUsers.get(4).getLng(), 10);
                 }
@@ -298,6 +297,7 @@ public class MapsActivity extends AppCompatActivity {
                 tvRooms.setText("");
                 tvPrice.setText("");
                 tvDesc.setText("");
+                imageView.setImageBitmap(null);
 
                 EstateUtil.getEstate(new SoapObjectResult() {
                     @Override

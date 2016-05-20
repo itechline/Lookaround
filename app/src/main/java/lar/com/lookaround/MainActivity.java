@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -1698,10 +1699,6 @@ private int whichAddestatePage = 0;
                                                          }
                                                      }
 
-
-
-                                                     resArray.get(resArray.size() - 1).getHash();
-                                                     //TODO: képfeltöltés...
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
                                                      isBackPressed = true;
                                                      hirdetesSpinner_int = 0;
