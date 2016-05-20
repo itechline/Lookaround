@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -80,7 +81,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -94,7 +97,9 @@ import lar.com.lookaround.adapters.CalendarAdapter;
 import lar.com.lookaround.adapters.CalendarBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
+import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.util.AddImageUtil;
 import lar.com.lookaround.util.CalendarBookingUtil;
 import lar.com.lookaround.util.EstateUtil;
@@ -133,12 +138,11 @@ public class MainActivity extends AppCompatActivity
     private boolean isShowingFavorites = false;
 
 
+    final int TAKE_PHOTO_CODE = 9999;
 
 
 
-
-
-
+    File cacheFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +169,30 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        /**
+         *  Képfeltöltés
+         *
+         */
+
+        // Here, the counter will be incremented each time, and the
+        // picture taken by camera will be stored as 1.jpg,2.jpg
+        // and likewise.
+
+        File outputDir = getCacheDir(); // context being the Activity pointer
+        try {
+
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /**
+         * Vége
+         */
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -1076,12 +1104,46 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
+
     int imageID = 0;
     int camImageID = 0;
     int galleryImageID = 0;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+
+            Uri selectedImageURI = data.getData();
+            File imageFile = new File(getRealPathFromURI(selectedImageURI));
+
+            ImageUploadService service = new ImageUploadService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.e("error", "succes" + result);
+                }
+            }, imageFile);
+            try {
+                // ingatlan hash-t átadni.
+                service.execute("FIKAMIKA");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
