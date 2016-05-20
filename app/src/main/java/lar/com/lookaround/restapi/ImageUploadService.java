@@ -47,6 +47,7 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
 
         try {
             URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=" + params[0]);
+            Log.d("UPLOAD_URL", url.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);

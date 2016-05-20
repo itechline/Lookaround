@@ -400,10 +400,12 @@ public class EstateUtil {
     public static void addEstate(final SoapObjectResult getBackWhenItsDone, String meret, String varos,
                                  String utca, String leiras, String ar, String energia, String butor, String kilatas,
                                  String lift, String futes, String parkolas, String erkely, String tipus, String emelet,
-                                 String allapot, String szobaszam, String lng, String lat, String title, String type) {
+                                 String allapot, String szobaszam, String lng, String lat, String title, String type, String token) {
         try {
             String url = "http://lookrnd.me/dev/api/add_estate";
 
+
+            //TODO: tokent is át kell adni
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_meret", meret);
             postadatok.put("ingatlan_varos", varos);
@@ -425,6 +427,7 @@ public class EstateUtil {
             postadatok.put("ingatlan_lat", lat);
             postadatok.put("ingatlan_title", title);
             postadatok.put("ing_e_type_id", type);
+            postadatok.put("token", token);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {

@@ -9,7 +9,9 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.provider.CalendarContract;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -42,6 +44,7 @@ import com.google.maps.android.clustering.ClusterManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -49,7 +52,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.SettingUtil;
 
@@ -68,20 +73,39 @@ public class MapsActivity extends AppCompatActivity {
         mapView.onCreate(savedInstanceState);
 
 
-
-        if (ContextCompat.checkSelfPermission(MapsActivity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        String myVersion = android.os.Build.VERSION.RELEASE;
+        Log.d("VERSION", myVersion);
 
 
+
+
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(MapsActivity.this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+
+                } else {
+                    ActivityCompat.requestPermissions(
+                            MapsActivity.this,
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                            0);
+                }
             } else {
-                ActivityCompat.requestPermissions(
-                        MapsActivity.this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                        0);
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        mMap = googleMap;
+                        setUpClusterer();
+                        getItems();
+                        //addItems();
+                    }
+                });
             }
         } else {
             mapView.getMapAsync(new OnMapReadyCallback() {
@@ -179,7 +203,7 @@ public class MapsActivity extends AppCompatActivity {
 
                     mClusterManager.addItem(offsetItem);
                 }
-                if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null) {
+                if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
                     gotoLocation(Double.parseDouble(SettingUtil.getLatForMap(getBaseContext())),Double.parseDouble(SettingUtil.getLngForMap(getBaseContext())), 20);
                 } else {
                     gotoLocation(arrayOfUsers.get(4).getLat(), arrayOfUsers.get(4).getLng(), 10);

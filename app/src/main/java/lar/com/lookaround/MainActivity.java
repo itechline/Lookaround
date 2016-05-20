@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         // picture taken by camera will be stored as 1.jpg,2.jpg
         // and likewise.
 
-        File outputDir = getCacheDir(); // context being the Activity pointer
+        /*File outputDir = getCacheDir(); // context being the Activity pointer
         try {
 
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
         /**
          * Vége
@@ -278,6 +278,8 @@ public class MainActivity extends AppCompatActivity
         loadEstateImages();
 
         prewViews.add(0);
+
+        Log.d("TOKEN", SettingUtil.getToken(getBaseContext()));
 
     }
 
@@ -1121,6 +1123,11 @@ public class MainActivity extends AppCompatActivity
     int imageID = 0;
     int camImageID = 0;
     int galleryImageID = 0;
+
+    Uri[] imagesUri;
+
+    ArrayList<Uri> uris = new ArrayList <Uri>();
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1129,6 +1136,7 @@ public class MainActivity extends AppCompatActivity
 
             Uri selectedImageURI = data.getData();
             File imageFile = new File(getRealPathFromURI(selectedImageURI));
+
 
             ImageUploadService service = new ImageUploadService(new SoapResult() {
                 @Override
@@ -1148,6 +1156,10 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
+                //imagesUri[imageID] = data.getData();
+                uris.add(data.getData());
+
+
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
                 AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.CROP));
@@ -1182,6 +1194,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            uris.add(data.getData());
 
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
 
@@ -1616,6 +1629,59 @@ private int whichAddestatePage = 0;
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
 
                                                  if (!resArray.get(resArray.size() - 1).isError()) {
+
+                                                     hash = resArray.get(resArray.size()-1).getHash();
+
+                                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                         if (!Settings.System.canWrite(MainActivity.this)) {
+                                                             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                                     Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+                                                         } else {
+                                                             for (int i = 0; i < uris.size(); i++) {
+                                                                 Log.d("UPLOAD_URI", uris.get(0).toString());
+                                                                 File imageFile = new File(getRealPathFromURI(uris.get(i)));
+                                                                 Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
+
+                                                                 ImageUploadService service = new ImageUploadService(new SoapResult() {
+                                                                     @Override
+                                                                     public void parseRerult(String result) {
+                                                                         Log.e("error", "succes" + result);
+                                                                     }
+                                                                 }, imageFile);
+                                                                 try {
+                                                                     // ingatlan hash-t átadni.
+                                                                     Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
+                                                                     service.execute(resArray.get(resArray.size()-1).getHash());
+                                                                 } catch (Exception e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                             }
+                                                         }
+                                                     } else {
+                                                         for (int i = 0; i < uris.size(); i++) {
+                                                             Log.d("UPLOAD_URI", uris.get(0).toString());
+                                                             File imageFile = new File(getRealPathFromURI(uris.get(i)));
+                                                             Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
+
+                                                             ImageUploadService service = new ImageUploadService(new SoapResult() {
+                                                                 @Override
+                                                                 public void parseRerult(String result) {
+                                                                     Log.e("error", "succes" + result);
+                                                                 }
+                                                             }, imageFile);
+                                                             try {
+                                                                 // ingatlan hash-t átadni.
+                                                                 Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
+                                                                 service.execute(resArray.get(resArray.size()-1).getHash());
+                                                             } catch (Exception e) {
+                                                                 e.printStackTrace();
+                                                             }
+                                                         }
+                                                     }
+
+
+
+                                                     resArray.get(resArray.size() - 1).getHash();
                                                      //TODO: képfeltöltés...
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
                                                      isBackPressed = true;
@@ -1663,8 +1729,42 @@ private int whichAddestatePage = 0;
                                          }, estateSize, estateCity, estateStreet, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
-                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int));
+                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()));
                     break;
+            }
+        }
+    }
+
+
+    String hash;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 2909: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("Permission", "Granted");
+                    for (int i = 0; i < uris.size(); i++) {
+                        Log.d("UPLOAD_URI", uris.get(0).toString());
+                        File imageFile = new File(getRealPathFromURI(uris.get(i)));
+                        Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
+
+                        ImageUploadService service = new ImageUploadService(new SoapResult() {
+                            @Override
+                            public void parseRerult(String result) {
+                                Log.e("error", "succes" + result);
+                            }
+                        }, imageFile);
+                        try {
+                            // ingatlan hash-t átadni.
+                            service.execute(hash);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    Log.e("Permission", "Denied");
+                }
+                return;
             }
         }
     }
@@ -2165,8 +2265,8 @@ private int whichAddestatePage = 0;
                 }
                 break;
             case R.id.action_map:
-                SettingUtil.setLatForMap(getBaseContext(), null);
-                SettingUtil.setLngForMap(getBaseContext(), null);
+                SettingUtil.setLatForMap(getBaseContext(), "0.0");
+                SettingUtil.setLngForMap(getBaseContext(), "0.0");
                 startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 break;
             case R.id.action_calendar:
