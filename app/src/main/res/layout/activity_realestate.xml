@@ -159,7 +159,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingTop="5sp"
                     android:paddingBottom="5sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/realestate_type_spinner"
                         android:layout_width="match_parent"
@@ -191,7 +191,7 @@
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
                     android:background="@drawable/spinner_border"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/realestate_localisation_spinner"
                         android:layout_width="match_parent"
@@ -380,7 +380,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/realestate_elevator_spinner"
                         android:layout_width="match_parent"
@@ -412,7 +412,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/realestate_balcony_spinner"
                         android:layout_width="match_parent"
@@ -444,7 +444,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/realestate_size_spinner"
                         android:layout_width="match_parent"
@@ -476,7 +476,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/view_type_realestate_spinner"
                         android:layout_width="match_parent"
@@ -508,7 +508,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/hasfurniture_spinner"
                         android:layout_width="match_parent"
@@ -540,7 +540,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/parking_type_spinner"
                         android:layout_width="match_parent"
@@ -573,7 +573,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/condition_spinner"
                         android:layout_width="match_parent"
@@ -605,7 +605,7 @@
                     android:background="@drawable/spinner_border"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:paddingLeft="2sp">
+                    android:paddingLeft="3sp">
                     <Spinner
                         android:id="@+id/ecertificate_search_spinner"
                         android:layout_width="match_parent"
