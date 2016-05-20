@@ -76,7 +76,9 @@ import android.widget.ViewFlipper;
 import com.hkm.slider.SliderLayout;
 import com.hkm.slider.SliderTypes.BaseSliderView;
 import com.hkm.slider.SliderTypes.DefaultSliderView;
+import com.hkm.slider.Tricks.ViewPagerEx;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -275,7 +277,7 @@ public class MainActivity extends AppCompatActivity
 
         setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
-        loadEstateImages();
+        //loadEstateImages();
 
         prewViews.add(0);
 
@@ -1801,6 +1803,17 @@ private int whichAddestatePage = 0;
                 JSONObject obj = (JSONObject) result;
                 try {
 
+                    JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
+                    List<String> imageUrls = new ArrayList<String>();
+                    imageUrls.clear();
+                    for (int j=0; j < kepekArray.length(); j++) {
+                        JSONObject jsonKep = kepekArray.getJSONObject(j);
+                        //imageURL = jsonKep.getString("kepek_url");
+                        imageUrls.add(jsonKep.getString("kepek_url"));
+                    }
+
+                    loadEstateImages(imageUrls);
+
                     title.setText(obj.getString("ingatlan_title"));
                     adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
                     roomcount.setText(obj.getString("ingatlan_szsz"));
@@ -1854,7 +1867,11 @@ private int whichAddestatePage = 0;
                     String pattern = "###,###";
                     DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
                     String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
-                    price.setText(format + " Ft");
+                    if (obj.getString("ing_e_type").equals("Eladó")) {
+                        price.setText(format + " Ft");
+                    } else {
+                        price.setText(format + " Ft/hó");
+                    }
 
                     isFavEstate = obj.getBoolean("kedvenc");
 
@@ -2028,42 +2045,56 @@ private int whichAddestatePage = 0;
 
 
 
-    public void loadEstateImages() {
+    public void loadEstateImages(final List<String> urls) {
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
         //final List<String> urls = slideImageURLLists();
 
-        final List<String> urls = new ArrayList<String>();
+        /*final List<String> urls = new ArrayList<String>();
         urls.add("https://s-media-cache-ak0.pinimg.com/736x/e7/f2/81/e7f2812089086a6e9e7e6408457c76c4.jpg");
         urls.add("https://scontent.fomr1-1.fna.fbcdn.net/hphotos-xfp1/v/t1.0-9/10399388_1037153376364726_5568922816957393250_n.jpg?oh=6c8027e95134a0fc5310ba3e0847372d&oe=577B8A7D");
         urls.add("https://scontent.fomr1-1.fna.fbcdn.net/v/t1.0-9/10500443_784808998244322_3120390074428787735_n.jpg?oh=f5ca0004521550b3146dff315a43f37d&oe=5779D2CB");
-
+        */
+        sliderLayout.removeAllSliders();
         for(int i = 0; i<urls.size();i ++) {
             DefaultSliderView defaultSliderView = new DefaultSliderView(this);
-            final int finalI = i;
             defaultSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
             defaultSliderView.image(urls.get(i))
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-                            Log.d("CLICKED ON: ", urls.get(finalI));
-                            if(sliderLayout.getScaleX() == 1) {
+                            /*if (sliderLayout.getScaleX() == 1) {
                                 sliderLayout.setScaleY(0.5f);
                                 sliderLayout.setScaleX(0.5f);
                             } else {
                                 sliderLayout.setScaleY(1);
                                 sliderLayout.setScaleX(1);
-                            }
+                            }*/
                         }
                     });
 
-            //sliderLayout.addOnPageChangeListener();
+            /*sliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });*/
 
             sliderLayout.addSlider(defaultSliderView);
 
-            //sliderLayout.destroyDrawingCache();
+            sliderLayout.destroyDrawingCache();
         }
-
+        urls.clear();
     }
 
     EstateUtil estateUtil_fav;
