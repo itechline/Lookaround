@@ -208,7 +208,7 @@ public class EstateUtil {
     private static final String INGATLAN_LAT = "ingatlan_lat";
     private static final String INGATLAN_LNG = "ingatlan_lng";
     private static final String INGATLAN_TYPE = "ing_e_type_id";
-
+    private static final String KEPEK_URL = "kepek_url";
 
     public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls) {
         this.id = id;
@@ -279,7 +279,15 @@ public class EstateUtil {
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
                                 int priceJson = json_data.getInt(INGATLAN_AR);
                                 boolean isFav = json_data.getBoolean(ISFAVOURITE);
-                                String url = json_data.getString(INGATLAN_PIC_URL);
+
+
+                                String imageURL = "";
+                                JSONArray kepekArray = new JSONArray(json_data.getString("kepek"));
+                                for (int j=0; j < kepekArray.length(); j++) {
+                                    JSONObject jsonKep = kepekArray.getJSONObject(j);
+                                    imageURL = jsonKep.getString("kepek_url");
+                                    Log.d("JSON_URL", imageURL);
+                                }
 
                                 String meretJson = json_data.getString(INGATLAN_MERET);
                                 int parkolasJson = json_data.getInt(INGATLAN_PARKOLAS);
@@ -288,7 +296,8 @@ public class EstateUtil {
                                 int erkelyJson = json_data.getInt(INGATLAN_ERKELY);
                                 int typeJson = json_data.getInt(INGATLAN_TYPE);
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, url));
+
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;
