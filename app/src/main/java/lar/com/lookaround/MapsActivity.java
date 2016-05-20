@@ -339,6 +339,8 @@ public class MapsActivity extends AppCompatActivity {
                 final TextView ecertificate = (TextView) findViewById(R.id.energy_certificate_realestate_item_value);
                 final TextView hasfurniture = (TextView) findViewById(R.id.hasfurniture_realestate_item_value);
                 final TextView item_realestate_description_text = (TextView) findViewById(R.id.item_realestate_description_text);
+                TextView seeonmap = (TextView) findViewById(R.id.iwantoseeonmaps_button);
+                seeonmap.setVisibility(View.GONE);
 
                 tvCity.setText("");
                 tvStreet.setText("");
@@ -408,7 +410,7 @@ public class MapsActivity extends AppCompatActivity {
                                 imageUrls.add(jsonKep.getString("kepek_url"));
                             }
 
-                            //loadEstateImages(imageUrls);
+                            loadEstateImages(imageUrls);
 
                             title.setText(obj.getString("ingatlan_title"));
                             adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
