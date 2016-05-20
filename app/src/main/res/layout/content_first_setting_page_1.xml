@@ -28,7 +28,8 @@
             android:hint="@string/first_setting_p1_hint"
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:singleLine="true"/>
 
         <TextView
             android:layout_width="wrap_content"

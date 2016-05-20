@@ -141,11 +141,12 @@
 
 
         <RelativeLayout
+            android:id="@+id/layoutfor_registerbutton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/fszf_text"
+            android:layout_height="fill_parent"
             android:layout_below="@+id/relative_individual"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/fszf_text">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,11 +167,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/acceptingfszf"
-            android:layout_alignParentEnd="false"
             android:gravity="bottom|center_horizontal"
             android:textStyle="italic"
             android:layout_above="@+id/fszf_btn_text"
-            android:layout_marginTop="5sp" />
+            android:textSize="12sp"
+            android:textIsSelectable="true" />
         <TextView
             android:id="@+id/fszf_btn_text"
             android:layout_width="match_parent"
@@ -181,8 +182,10 @@
             android:textColor="#0066cc"
             android:textStyle="italic"
             android:onClick="openBlankPage"
-            android:layout_marginBottom="10sp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5sp"
+            android:textSize="12sp"
+            android:textIsSelectable="true" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -244,7 +247,8 @@
             android:textColor="#8c9397"
             android:layout_marginBottom="60sp"
             android:textStyle="italic"
-            android:paddingRight="2sp" />
+            android:paddingRight="2sp"
+            android:textSize="12sp" />
         <TextView
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
@@ -255,7 +259,8 @@
             android:textColor="#0066cc"
             android:layout_marginBottom="60sp"
             android:textStyle="italic"
-            android:paddingLeft="2sp" />
+            android:paddingLeft="2sp"
+            android:textSize="12sp" />
     </LinearLayout>
 
 
