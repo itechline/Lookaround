@@ -52,7 +52,6 @@ import lar.com.lookaround.util.SettingUtil;
 public class MapsActivity extends AppCompatActivity {
     private GoogleMap mMap;
     private MapView mapView;
-    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,7 @@ public class MapsActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(
                             MapsActivity.this,
-                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                            0);
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
             } else {
                 mapView.getMapAsync(new OnMapReadyCallback() {
@@ -112,8 +110,7 @@ public class MapsActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.

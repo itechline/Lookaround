@@ -1652,6 +1652,7 @@ private int whichAddestatePage = 0;
                                                                          Log.e("error", "succes" + result);
                                                                          progress[0] += 1;
                                                                          progressBar.setProgress(progress[0]);
+                                                                         Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
                                                                      }
                                                                  }, imageFile);
                                                                  try {
@@ -1684,6 +1685,7 @@ private int whichAddestatePage = 0;
                                                                      Log.e("error", "succes" + result);
                                                                      progress[0] += 1;
                                                                      progressBar.setProgress(progress[0]);
+                                                                     Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
                                                                  }
                                                              }, imageFile);
                                                              try {
@@ -1846,6 +1848,22 @@ private int whichAddestatePage = 0;
                     roomcount.setText(obj.getString("ingatlan_szsz"));
                     size.setText(obj.getString("ingatlan_meret"));
                     type.setText(obj.getString("ingatlan_tipus"));
+                    item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+
+                    Locale locale = new Locale("en", "UK");
+
+                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+                    //symbols.setDecimalSeparator(';');
+                    symbols.setGroupingSeparator('.');
+
+                    String pattern = "###,###";
+                    DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+                    String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
+                    if (obj.getString("ing_e_type").equals("Eladó")) {
+                        price.setText(format + " Ft");
+                    } else {
+                        price.setText(format + " Ft/hó");
+                    }
 
                     if (obj.getInt("ingatlan_lift") == 1) {
                         elevator.setText("Van");
@@ -1874,31 +1892,6 @@ private int whichAddestatePage = 0;
                         hasfurniture.setText("Alku tárgya");
                     }
 
-                    if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
-                        //SettingUtil.setLatForMap(getBaseContext(), obj.getString("ingatlan_lat"));
-                        latMap = obj.getString("ingatlan_lat");
-                        Log.d("SETLAT", "BEGINNED");
-                    }
-
-                    if (obj.getString("ingatlan_lng") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
-                        //SettingUtil.setLngForMap(getBaseContext(), obj.getString("ingatlan_lng"));
-                        lngMap = obj.getString("ingatlan_lng");
-                    }
-
-                    Locale locale = new Locale("en", "UK");
-
-                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-                    //symbols.setDecimalSeparator(';');
-                    symbols.setGroupingSeparator('.');
-
-                    String pattern = "###,###";
-                    DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-                    String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
-                    if (obj.getString("ing_e_type").equals("Eladó")) {
-                        price.setText(format + " Ft");
-                    } else {
-                        price.setText(format + " Ft/hó");
-                    }
 
                     isFavEstate = obj.getBoolean("kedvenc");
 
@@ -1912,7 +1905,16 @@ private int whichAddestatePage = 0;
                         favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
                     }
 
-                    item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+                    if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
+                        //SettingUtil.setLatForMap(getBaseContext(), obj.getString("ingatlan_lat"));
+                        latMap = obj.getString("ingatlan_lat");
+                        Log.d("SETLAT", "BEGINNED");
+                    }
+
+                    if (obj.getString("ingatlan_lng") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
+                        //SettingUtil.setLngForMap(getBaseContext(), obj.getString("ingatlan_lng"));
+                        lngMap = obj.getString("ingatlan_lng");
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
