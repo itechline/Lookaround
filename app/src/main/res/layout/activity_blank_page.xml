@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="lar.com.lookaround.BlankPageActivity">
+    tools:context="lar.com.lookaround.BlankPageActivity"
+    tools:showIn="@layout/content_blank_page">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
