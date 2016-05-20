@@ -65,15 +65,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/profile_surename_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/profile_surename_textView"
         android:layout_below="@+id/profile_top_textview"
         android:background="@drawable/spinner_border"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_above="@+id/profile_firstname_editText"
+        android:layout_marginBottom="5sp"
+        android:layout_alignLeft="@+id/profile_firstname_editText"
+        android:layout_alignStart="@+id/profile_firstname_editText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,15 +96,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/profile_firstname_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/profile_firstname_textView"
         android:layout_below="@+id/profile_surename_textView"
         android:background="@drawable/spinner_border"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_above="@+id/profile_phone_editText"
+        android:layout_marginBottom="5sp"
+        android:layout_alignLeft="@+id/profile_phone_editText"
+        android:layout_alignStart="@+id/profile_phone_editText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,10 +131,13 @@
         android:id="@+id/profile_phone_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/profile_phone_textView"
         android:layout_below="@+id/profile_firstname_textView"
         android:background="@drawable/spinner_border"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_above="@+id/profile_mail_editText"
+        android:layout_marginBottom="5sp"
+        android:layout_alignLeft="@+id/profile_mail_editText"
+        android:layout_alignStart="@+id/profile_mail_editText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -149,20 +156,19 @@
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/profile_mail_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/profile_mail_textView"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_below="@+id/profile_phone_textView"
         android:background="@drawable/spinner_border"
-        android:layout_alignLeft="@+id/profile_phone_editText"
-        android:layout_alignStart="@+id/profile_phone_editText"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_alignLeft="@+id/change_passw_editText"
+        android:layout_alignStart="@+id/change_passw_editText" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -208,10 +214,13 @@
         android:id="@+id/change_passw_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/change_pass_textView"
-        android:layout_below="@+id/change_pass_header_linearLayout"
         android:background="@drawable/spinner_border"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_toRightOf="@+id/change_pass_textView"
+        android:layout_toEndOf="@+id/change_pass_textView"
+        android:layout_above="@+id/change_pass_new_editText"
+        android:layout_marginBottom="5sp"
+        android:layout_below="@+id/change_pass_header_linearLayout" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -236,10 +245,13 @@
         android:id="@+id/change_pass_new_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/change_pass_new_textView"
         android:layout_below="@+id/change_pass_textView"
         android:background="@drawable/spinner_border"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_alignLeft="@+id/change_passw_editText"
+        android:layout_alignStart="@+id/change_passw_editText"
+        android:layout_above="@+id/passw_again_editText"
+        android:layout_marginBottom="5sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -258,14 +270,15 @@
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passw_again_editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/pass_again_textView"
         android:background="@drawable/spinner_border"
         android:layout_below="@+id/change_pass_new_textView"
-        android:layout_marginRight="5sp" />
+        android:layout_marginRight="5sp"
+        android:layout_alignLeft="@+id/change_pass_new_editText"
+        android:layout_alignStart="@+id/change_pass_new_editText" />
 </RelativeLayout>
