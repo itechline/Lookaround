@@ -591,6 +591,24 @@ public class MapsActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public void onBackPressed() {
+
+
+
+        //TODO: visszalépésnl tökéletesíteni a megjelenő ikonokat (mindig a megfelelőek jelenejenek meg)
+        switch (viewFlip.getDisplayedChild()) {
+            case MAPS:
+                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                finish();
+                break;
+            case CONTENT:
+                switchLayoutTo(MAPS);
+                break;
+        }
+
+        supportInvalidateOptionsMenu();
+    }
 
     
 
