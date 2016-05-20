@@ -15,6 +15,8 @@ public class SettingUtil {
     private static final String LAT = "LAT";
     private static final String LNG = "LNG";
 
+    private static final String BOOL = "BOOL";
+
     public static final String getToken(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
         Log.d("GET_TOKEN:", sharedPref.getString(TOKEN_KEY, ""));
@@ -51,6 +53,18 @@ public class SettingUtil {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(LNG, token);
+        editor.commit();
+    }
+
+    public static final boolean getLofasz(Context ctx) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
+        return sharedPref.getBoolean(BOOL, false);
+    }
+
+    public static final void setLofasz(Context ctx, boolean bool) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(BOOL, bool);
         editor.commit();
     }
 

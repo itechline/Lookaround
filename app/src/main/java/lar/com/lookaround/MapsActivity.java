@@ -1,6 +1,7 @@
 package lar.com.lookaround;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -15,11 +16,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,6 +37,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
+import com.hkm.slider.SliderLayout;
+import com.hkm.slider.SliderTypes.BaseSliderView;
+import com.hkm.slider.SliderTypes.DefaultSliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,14 +62,35 @@ public class MapsActivity extends AppCompatActivity {
     private GoogleMap mMap;
     private MapView mapView;
 
+    ViewFlipper viewFlip;
+    View maps_view, content_view;
+    LayoutInflater inflater;
+
+    private static final int MAPS = 0;
+    private static final int CONTENT = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        //setContentView(R.layout.activity_maps);
+        setContentView(R.layout.teszt_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        maps_view = inflater.inflate(R.layout.activity_maps, null);
+        content_view = inflater.inflate(R.layout.content_realestate, null);
+
+
+        viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperTest);
+        viewFlip.addView(maps_view, MAPS);
+        viewFlip.addView(content_view, CONTENT);
+
 
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
+
+
 
 
         String myVersion = android.os.Build.VERSION.RELEASE;
@@ -257,8 +287,9 @@ public class MapsActivity extends AppCompatActivity {
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                startActivity(new Intent(MapsActivity.this, MainActivity.class));
-                finish();
+                //startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                //finish();
+                switchLayoutTo(CONTENT);
             }
         });
 
@@ -291,6 +322,24 @@ public class MapsActivity extends AppCompatActivity {
                 final TextView tvDesc = (TextView) myContentsView.findViewById(R.id.item_realestate_description_maps);
                 final ImageView imageView = (ImageView) myContentsView.findViewById(R.id.item_realestate_mainpic_maps);
 
+
+                final TextView price = (TextView) findViewById(R.id.item_realestate_price);
+                final TextView title = (TextView) findViewById(R.id.item_realestate_needed_address);
+                final TextView adress = (TextView) findViewById(R.id.item_realestate_optional_address);
+                final TextView roomcount = (TextView) findViewById(R.id.roomcount_realestate_value);
+                final TextView size = (TextView) findViewById(R.id.size_realestate_item_value);
+                final TextView type = (TextView) findViewById(R.id.type_realestate_value);
+                final TextView elevator = (TextView) findViewById(R.id.elevator_realestate_value);
+                final TextView balcony = (TextView) findViewById(R.id.balcony_realestate_value);
+                final TextView parking = (TextView) findViewById(R.id.parking_realestate_value);
+                final TextView kilatas = (TextView) findViewById(R.id.view_realestate_value);
+                final TextView condition = (TextView) findViewById(R.id.condition_realestate_value);
+                final TextView floors = (TextView) findViewById(R.id.floors_realestate_value);
+                final TextView heating = (TextView) findViewById(R.id.heating_realestate_value);
+                final TextView ecertificate = (TextView) findViewById(R.id.energy_certificate_realestate_item_value);
+                final TextView hasfurniture = (TextView) findViewById(R.id.hasfurniture_realestate_item_value);
+                final TextView item_realestate_description_text = (TextView) findViewById(R.id.item_realestate_description_text);
+
                 tvCity.setText("");
                 tvStreet.setText("");
                 tvSize.setText("");
@@ -313,9 +362,11 @@ public class MapsActivity extends AppCompatActivity {
                                 imageURL = jsonKep.getString("kepek_url");
                             }
 
+                            if (kepekArray.length() != 0) {
                             final DownloadImageTask task = new DownloadImageTask(imageView, myContentsView);
                             imageList.add(task);
                             task.execute(imageURL);
+                            }
 
                             tvCity.setText(obj.getString("ingatlan_varos"));
                             tvStreet.setText(obj.getString("ingatlan_utca"));
@@ -343,6 +394,63 @@ public class MapsActivity extends AppCompatActivity {
                             myContentsView.invalidate();
                             Log.d("MAPS_TRY ", "finished");
                             marker.showInfoWindow();
+
+
+
+
+
+                            JSONArray kepekArrayFull = new JSONArray(obj.getString("kepek"));
+                            List<String> imageUrls = new ArrayList<String>();
+                            imageUrls.clear();
+                            for (int j = 0; j < kepekArrayFull.length(); j++) {
+                                JSONObject jsonKep = kepekArrayFull.getJSONObject(j);
+                                //imageURL = jsonKep.getString("kepek_url");
+                                imageUrls.add(jsonKep.getString("kepek_url"));
+                            }
+
+                            //loadEstateImages(imageUrls);
+
+                            title.setText(obj.getString("ingatlan_title"));
+                            adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
+                            roomcount.setText(obj.getString("ingatlan_szsz"));
+                            size.setText(obj.getString("ingatlan_meret"));
+                            type.setText(obj.getString("ingatlan_tipus"));
+                            item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+
+                            if (obj.getString("ing_e_type").equals("Eladó")) {
+                                price.setText(format + " Ft");
+                            } else {
+                                price.setText(format + " Ft/hó");
+                            }
+
+                            if (obj.getInt("ingatlan_lift") == 1) {
+                                elevator.setText("Van");
+                            } else {
+                                elevator.setText("Nincs");
+                            }
+
+                            if (obj.getInt("ingatlan_erkely") == 1) {
+                                balcony.setText("Van");
+                            } else {
+                                balcony.setText("Nincs");
+                            }
+
+                            parking.setText(obj.getString("ingatlan_parkolas"));
+                            kilatas.setText(obj.getString("ingatlan_kilatas"));
+                            condition.setText(obj.getString("ingatlan_allapot"));
+                            floors.setText(obj.getString("ingatlan_emelet"));
+                            heating.setText(obj.getString("ingatlan_futestipus"));
+                            ecertificate.setText(obj.getString("ingatlan_energiatan"));
+
+                            if (obj.getInt("ingatlan_butorozott") == 1) {
+                                hasfurniture.setText("Nem");
+                            } else if (obj.getInt("ingatlan_butorozott") == 2) {
+                                hasfurniture.setText("Igen");
+                            } else if (obj.getInt("ingatlan_butorozott") == 3) {
+                                hasfurniture.setText("Alku tárgya");
+                            }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -480,4 +588,118 @@ public class MapsActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+
+    
+
+    public void loadEstateImages(final List<String> urls) {
+        final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
+        sliderLayout.removeAllSliders();
+        for(int i = 0; i<urls.size();i ++) {
+            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
+            defaultSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
+            defaultSliderView.image(urls.get(i))
+                    .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                        @Override
+                        public void onSliderClick(BaseSliderView slider) {
+                            if (sliderLayout.getScaleY() == 1) {
+                                sliderLayout.setScaleY(3);
+                                sliderLayout.setScaleX(3);
+                                //sliderLayout.getCurrentSlider().setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
+                            } else {
+                                sliderLayout.setScaleY(1);
+                                sliderLayout.setScaleX(1);
+                            }
+                        }
+                    });
+
+            /*sliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });*/
+
+            sliderLayout.addSlider(defaultSliderView);
+
+            sliderLayout.destroyDrawingCache();
+        }
+        urls.clear();
+    }
+
+
+
+    private int mCurrentLayoutState;
+    public void switchLayoutTo(int switchTo){
+        while(mCurrentLayoutState != switchTo){
+            if(mCurrentLayoutState > switchTo){
+                mCurrentLayoutState--;
+                viewFlip.setInAnimation(inFromLeftAnimation());
+                viewFlip.setOutAnimation(outToRightAnimation());
+                viewFlip.setDisplayedChild(switchTo);
+            } else {
+                mCurrentLayoutState++;
+                viewFlip.setInAnimation(inFromRightAnimation());
+                viewFlip.setOutAnimation(outToLeftAnimation());
+                viewFlip.setDisplayedChild(switchTo);
+            }
+        }
+    }
+
+    protected Animation inFromRightAnimation() {
+
+        Animation inFromRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromRight.setDuration(300);
+        inFromRight.setInterpolator(new AccelerateInterpolator());
+        return inFromRight;
+    }
+
+    protected Animation outToLeftAnimation() {
+        Animation outtoLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoLeft.setDuration(300);
+        outtoLeft.setInterpolator(new AccelerateInterpolator());
+        return outtoLeft;
+    }
+
+    protected Animation inFromLeftAnimation() {
+        Animation inFromLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        inFromLeft.setDuration(300);
+        inFromLeft.setInterpolator(new AccelerateInterpolator());
+        return inFromLeft;
+    }
+
+    protected Animation outToRightAnimation() {
+        Animation outtoRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, +1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        outtoRight.setDuration(300);
+        outtoRight.setInterpolator(new AccelerateInterpolator());
+        return outtoRight;
+    }
 }
