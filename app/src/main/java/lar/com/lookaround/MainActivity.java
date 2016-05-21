@@ -1347,7 +1347,14 @@ public class MainActivity extends AppCompatActivity
             SettingUtil.setLngForMap(getBaseContext(), lngMap);
         }
 
-        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
+            startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        } else {
+            Snackbar.make(view, "Sikertelen művelet!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+
+
     }
 
     public boolean isNetworkAvailable() {
@@ -1797,8 +1804,8 @@ private int whichAddestatePage = 0;
         }
     }
 
-    String latMap;
-    String lngMap;
+    String latMap = "0.0";
+    String lngMap = "0.0";
 
     public void getEstateContent(int id) {
 

@@ -42,6 +42,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_action_phone_test"
-        android:background="#0066cc"/>
+        app:backgroundTint="#37c837"/>
 
 </android.support.design.widget.CoordinatorLayout>

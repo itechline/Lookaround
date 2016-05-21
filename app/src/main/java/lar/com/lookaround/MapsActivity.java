@@ -9,9 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -92,14 +94,16 @@ public class MapsActivity extends AppCompatActivity {
 
 
 
-
-        String myVersion = android.os.Build.VERSION.RELEASE;
-        Log.d("VERSION", myVersion);
-
-
-
-
-
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone_maps);
+        fab_phone.setVisibility(View.INVISIBLE);
+        fab_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:06304979787"));
+                startActivity(intent);
+            }
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(MapsActivity.this,
@@ -182,7 +186,14 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.maps, menu);
+        switch (viewFlip.getDisplayedChild()) {
+            case MAPS:
+                getMenuInflater().inflate(R.menu.maps, menu);
+                break;
+            case CONTENT:
+                getMenuInflater().inflate(R.menu.menu_realestate, menu);
+                break;
+        }
         return true;
     }
 
@@ -290,6 +301,8 @@ public class MapsActivity extends AppCompatActivity {
                 //startActivity(new Intent(MapsActivity.this, MainActivity.class));
                 //finish();
                 switchLayoutTo(CONTENT);
+                FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone_maps);
+                fab_phone.setVisibility(View.VISIBLE);
             }
         });
 
@@ -595,9 +608,6 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-
-
         //TODO: visszalépésnl tökéletesíteni a megjelenő ikonokat (mindig a megfelelőek jelenejenek meg)
         switch (viewFlip.getDisplayedChild()) {
             case MAPS:
@@ -605,11 +615,11 @@ public class MapsActivity extends AppCompatActivity {
                 finish();
                 break;
             case CONTENT:
+                FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone_maps);
+                fab_phone.setVisibility(View.INVISIBLE);
                 switchLayoutTo(MAPS);
                 break;
         }
-
-        supportInvalidateOptionsMenu();
     }
 
     
@@ -676,6 +686,7 @@ public class MapsActivity extends AppCompatActivity {
                 viewFlip.setDisplayedChild(switchTo);
             }
         }
+        supportInvalidateOptionsMenu();
     }
 
     protected Animation inFromRightAnimation() {

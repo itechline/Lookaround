@@ -8,6 +8,15 @@
     tools:context=".MapsActivity">
 
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_phone_maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_action_phone_test"
+        app:backgroundTint="#37c837"/>
+
 
     <ViewFlipper
         android:id="@+id/viewFlipperTest"
