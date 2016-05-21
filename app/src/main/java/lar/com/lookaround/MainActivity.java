@@ -1862,7 +1862,7 @@ private int whichAddestatePage = 0;
 
                     String pattern = "###,###";
                     DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-                    String format = decimalFormat.format(obj.getInt("ingatlan_ar"));
+                    String format = decimalFormat.format(obj.getString("ingatlan_ar"));
                     if (obj.getString("ing_e_type").equals("Eladó")) {
                         price.setText(format + " Ft");
                     } else {

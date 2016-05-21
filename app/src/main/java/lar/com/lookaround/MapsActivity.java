@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -363,6 +364,9 @@ public class MapsActivity extends AppCompatActivity {
                 tvRooms.setText("");
                 tvPrice.setText("");
                 tvDesc.setText("");
+                if (imageView != null && imageView.getDrawable() != null && ((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
+                    ((BitmapDrawable) imageView.getDrawable()).getBitmap().recycle();
+                }
                 imageView.setImageBitmap(null);
 
                 EstateUtil.getEstate(new SoapObjectResult() {
