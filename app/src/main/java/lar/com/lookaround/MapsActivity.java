@@ -17,6 +17,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -303,6 +304,7 @@ public class MapsActivity extends AppCompatActivity {
                 switchLayoutTo(CONTENT);
                 FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone_maps);
                 fab_phone.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -412,7 +414,7 @@ public class MapsActivity extends AppCompatActivity {
 
 
 
-
+                            isFavEstate = obj.getBoolean("kedvenc");
 
                             JSONArray kepekArrayFull = new JSONArray(obj.getString("kepek"));
                             List<String> imageUrls = new ArrayList<String>();
@@ -526,7 +528,8 @@ public class MapsActivity extends AppCompatActivity {
     }
 
 
-
+    MenuView.ItemView favItem;
+    boolean isFavEstate = false;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -534,9 +537,53 @@ public class MapsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_list) {
-            startActivity(new Intent(MapsActivity.this, MainActivity.class));
-            finish();
+        switch (item.getItemId()) {
+            case R.id.action_list:
+                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                finish();
+                break;
+            case R.id.action_fav:
+                //TODO: kedvencekhez hozzáadást térképen tökéletesíteni...
+                favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+                Log.d("FAV ", "MAIN");
+
+                if (!isFavEstate) {
+                    Log.d("FAV ", "IF");
+                    EstateUtil.setFavorite(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            Log.d("FAV RESULT", result.toString());
+                            if (!(boolean)result) {
+                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                                isFavEstate = true;
+                            }
+                        }
+                    },String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(MapsActivity.this), "1");
+                } else {
+                    EstateUtil.setFavorite(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            Log.d("FAV RESULT", result.toString());
+                            if (!(boolean) result) {
+                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                            }
+                        }
+                    },String.valueOf(clickedClusterItem.getID()), SettingUtil.getToken(MapsActivity.this), "0");
+                }
+                break;
+            case R.id.action_calendar:
+                //switchLayoutTo(BOOKING);
+                break;
+            case R.id.action_message:
+                //switchLayoutTo(MESSAGES);
+                break;
+            case R.id.action_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -608,7 +655,6 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //TODO: visszalépésnl tökéletesíteni a megjelenő ikonokat (mindig a megfelelőek jelenejenek meg)
         switch (viewFlip.getDisplayedChild()) {
             case MAPS:
                 startActivity(new Intent(MapsActivity.this, MainActivity.class));
