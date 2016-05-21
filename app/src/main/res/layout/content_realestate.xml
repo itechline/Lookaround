@@ -54,7 +54,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="13.450.990 HUF"
                     android:id="@+id/item_realestate_price"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
@@ -77,7 +76,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Budapest 6. kerület, Munkácsy Mihály utca"
                     android:id="@+id/item_realestate_needed_address"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -89,7 +87,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Külső-Terézváros, Diplomatanegyed"
                     android:id="@+id/item_realestate_optional_address"
                     android:layout_below="@id/item_realestate_needed_address"
                     android:layout_centerInParent="true"/>
@@ -128,7 +125,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/roomcount_realestate_value"
-                                android:text="79"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -142,7 +138,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/size_realestate_item_value"
-                                android:text="140"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -157,7 +152,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/type_realestate_value"
-                                android:text="Tégla építésű lakás"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -171,7 +165,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/elevator_realestate_value"
-                                android:text="Nincs"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -185,7 +178,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/balcony_realestate_value"
-                                android:text="80m2"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -199,7 +191,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/parking_realestate_value"
-                                android:text="Garázs az árban"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -213,7 +204,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/view_realestate_value"
-                                android:text="kertre néző"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -240,7 +230,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/condition_realestate_value"
-                                android:text="Új építésú"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -254,7 +243,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/floors_realestate_value"
-                                android:text="2"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -268,7 +256,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/heating_realestate_value"
-                                android:text="gáz (cirko)"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -282,7 +269,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/energy_certificate_realestate_item_value"
-                                android:text="3m vagy magasabb"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -296,7 +282,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/hasfurniture_realestate_item_value"
-                                android:text="igen"
                                 android:gravity="right"
                                 android:padding="3sp" />
                         </TableRow>
@@ -309,7 +294,6 @@
                                 android:textStyle="bold"/>
                             <TextView
                                 android:id="@+id/heating_value"
-                                android:text="gáz (cirko)"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
@@ -321,7 +305,6 @@
                                 android:padding="3sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:text="luxus"
                                 android:gravity="right"
                                 android:padding="3sp"/>
                         </TableRow>
