@@ -1883,7 +1883,6 @@ private int whichAddestatePage = 0;
 
                     parking.setText(obj.getString("ingatlan_parkolas"));
                     kilatas.setText(obj.getString("ingatlan_kilatas"));
-                    condition.setText(obj.getString("ingatlan_allapot"));
                     floors.setText(obj.getString("ingatlan_emelet"));
                     heating.setText(obj.getString("ingatlan_futestipus"));
                     ecertificate.setText(obj.getString("ingatlan_energiatan"));
@@ -1919,6 +1918,9 @@ private int whichAddestatePage = 0;
                         //SettingUtil.setLngForMap(getBaseContext(), obj.getString("ingatlan_lng"));
                         lngMap = obj.getString("ingatlan_lng");
                     }
+
+                    //TODO: a honapon felrakott ingatlanok nem térnek vissza ingatlan_allapottal csak ingatlan_allapot_id-vel
+                    condition.setText(obj.getString("ingatlan_allapot"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
