@@ -291,7 +291,7 @@
     <string name="invite_page_top_hint_text">Hívd meg ismerőseidet és barátaidat, hogy ők is lássák mennyire király ez az app ;)</string>
     <string name="i_want_to_see_it_on_maps">Megnézem a térképen</string>
 
-    <string-array name="varosok">
+    <string-array name="varosok_array">
         <item>Aba</item>
         <item>Abádszalók</item>
         <item>Abaliget</item>

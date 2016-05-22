@@ -53,6 +53,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -262,6 +263,11 @@ public class MainActivity extends AppCompatActivity
 
         loadAddEstateSpinners();
 
+        autocompleteSetter();
+        // string array-be kéne rakni a resource-ból oszt menne csak valamiért mégse megy
+
+
+
         Calendar now = Calendar.getInstance();
 
         setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
@@ -272,6 +278,20 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("TOKEN", SettingUtil.getToken(getBaseContext()));
 
+    }
+
+
+    //String[] some_array = getResources().getStringArray(R.array.varosok_array);
+    String[] gyax = {"Kolbász","Volvo","Cibakháza","Debrecen","Gyuluska","Apuka","DIKK","Kicsoda?","Mérnem?"};
+    //autocomplete
+    public void autocompleteSetter(){
+        AutoCompleteTextView autocomplete = (AutoCompleteTextView)
+                findViewById(R.id.keyword_realestate_search_edittext);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item, gyax);
+
+        autocomplete.setThreshold(2);
+        autocomplete.setAdapter(adapter);
     }
 
 
@@ -1272,6 +1292,7 @@ public class MainActivity extends AppCompatActivity
     int minute_x;
     int hour_x_end;
     int minute_x_end;
+    AutoCompleteTextView autocompletetextview;
 
     public void showTimePicker(View view) {
         showDialog(DIALOG_ID);
