@@ -20,7 +20,30 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_realestate_drawer" />
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="170sp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/nav_drawer_layout_r"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>
+
+
+        </android.support.design.widget.NavigationView>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view_search"
