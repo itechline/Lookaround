@@ -55,15 +55,11 @@ public class MapsActivity extends AppCompatActivity {
     private GoogleMap mMap;
     private MapView mapView;
 
-
-    private static final int MAPS = 0;
-    private static final int CONTENT = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        setTitle("Tértkép");
+        setTitle("Térkép");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
