@@ -2,6 +2,7 @@ package lar.com.lookaround;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -16,7 +17,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setTitle("Hírdetések");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -460,6 +460,19 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         hirdetesSpinner_int = spinnerUtil.getId();
+                        TextView ar = (TextView) findViewById(R.id.add_advert_price_textview);
+                        switch (spinnerUtil.getId()) {
+                            case 1:
+                                ar.setText("Ingatlan Ára*:");
+                                break;
+                            case 2:
+                                ar.setText("Bérleti Díj*:");
+                                break;
+                            default:
+                                ar.setText("Ingatlan Ára*:");
+                                break;
+                        }
+
                     }
 
                     @Override
@@ -1152,6 +1165,19 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 69) {
+            if(resultCode == Activity.RESULT_OK){
+                int result=data.getIntExtra("result", 0);
+                if (result != 0) {
+                    getEstateContent(result);
+                }
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
 
             Uri selectedImageURI = data.getData();
@@ -1378,7 +1404,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
-            startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            Intent i = new Intent(MainActivity.this, MapsActivity.class);
+            startActivityForResult(i, 69);
         } else {
             Snackbar.make(view, "Sikertelen művelet!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -2294,25 +2322,28 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hírdetések");
                 break;
             case CONTENTESTATE:
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
                 fab_phone.setVisibility(View.VISIBLE);
+                getSupportActionBar().setTitle(null);
                 break;
             case ADDESTATE:
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
+                getSupportActionBar().setTitle("Hírdetésfeladás");
                 break;
             case PROFILE:
-
+                getSupportActionBar().setTitle("Profilom");
                 break;
             case MESSAGES:
-
+                getSupportActionBar().setTitle("Üzenetek");
                 break;
             case BOOKING:
-
+                getSupportActionBar().setTitle("Időpontfoglalás");
                 break;
             default:
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
@@ -2326,8 +2357,6 @@ private int whichAddestatePage = 0;
         } else if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         }
-
-        supportInvalidateOptionsMenu();
     }
 
     @Override
@@ -2364,7 +2393,9 @@ private int whichAddestatePage = 0;
             case R.id.action_map:
                 SettingUtil.setLatForMap(getBaseContext(), "0.0");
                 SettingUtil.setLngForMap(getBaseContext(), "0.0");
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivityForResult(i, 69);
                 break;
             case R.id.action_calendar:
                 switchLayoutTo(BOOKING);
@@ -2565,6 +2596,8 @@ private int whichAddestatePage = 0;
         } else {
             isBackPressed = false;
         }
+
+        supportInvalidateOptionsMenu();
     }
 
     public void switchLayoutToAddEstate(int switchTo){
