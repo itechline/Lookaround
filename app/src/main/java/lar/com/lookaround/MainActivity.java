@@ -1206,8 +1206,6 @@ public class MainActivity extends AppCompatActivity
     int camImageID = 0;
     int galleryImageID = 0;
 
-    Uri[] imagesUri;
-
     ArrayList<Uri> uris = new ArrayList <Uri>();
 
     @Override
