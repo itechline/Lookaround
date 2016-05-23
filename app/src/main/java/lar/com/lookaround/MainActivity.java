@@ -281,17 +281,26 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //String[] some_array = getResources().getStringArray(R.array.varosok_array);
+
     String[] gyax = {"Kolbász","Volvo","Cibakháza","Debrecen","Gyuluska","Apuka","DIKK","Kicsoda?","Mérnem?"};
     //autocomplete
     public void autocompleteSetter(){
+        String[] some_array = getResources().getStringArray(R.array.varosok_array);
+
         AutoCompleteTextView autocomplete = (AutoCompleteTextView)
                 findViewById(R.id.keyword_realestate_search_edittext);
+
+        AutoCompleteTextView autocomplete_addestate = (AutoCompleteTextView)
+                findViewById(R.id.add_advert_city_edittext);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item, gyax);
+                (this,android.R.layout.select_dialog_item, some_array);
 
         autocomplete.setThreshold(2);
         autocomplete.setAdapter(adapter);
+
+        autocomplete_addestate.setThreshold(2);
+        autocomplete_addestate.setAdapter(adapter);
     }
 
 
@@ -1292,7 +1301,7 @@ public class MainActivity extends AppCompatActivity
     int minute_x;
     int hour_x_end;
     int minute_x_end;
-    AutoCompleteTextView autocompletetextview;
+
 
     public void showTimePicker(View view) {
         showDialog(DIALOG_ID);

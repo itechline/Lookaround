@@ -229,7 +229,7 @@
                 android:layout_margin="5sp"
                 android:textSize="16sp"/>
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
                 android:id="@+id/add_advert_city_edittext"
