@@ -2512,6 +2512,30 @@ private int whichAddestatePage = 0;
     boolean isBackPressed = false;
 
     public void switchLayoutTo(int switchTo){
+        switch(switchTo) {
+            case ADDESTATE:
+                getSupportActionBar().setTitle("Hírdetésfeladás");
+                break;
+            case ESTATESLIST:
+                getSupportActionBar().setTitle("Hírdetések");
+                break;
+            case INVITE:
+                getSupportActionBar().setTitle("Meghívás");
+                break;
+            case PROFILE:
+                getSupportActionBar().setTitle("Profilom");
+                break;
+            case MESSAGES:
+                getSupportActionBar().setTitle("Üzenetek");
+                break;
+            case BOOKING:
+                getSupportActionBar().setTitle("Időpontfoglalás");
+                break;
+            default:
+                getSupportActionBar().setTitle(null);
+                break;
+        }
+
         if (viewFlip.getDisplayedChild() == switchTo) {
             if (prewViews.size() > 1) {
                 switchTo = prewViews.get(prewViews.size() - 2);
