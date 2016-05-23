@@ -460,6 +460,19 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         hirdetesSpinner_int = spinnerUtil.getId();
+                        TextView ar = (TextView) findViewById(R.id.add_advert_price_textview);
+                        switch (spinnerUtil.getId()) {
+                            case 1:
+                                ar.setText("Ingatlan Ára*:");
+                                break;
+                            case 2:
+                                ar.setText("Bérleti Díj*:");
+                                break;
+                            default:
+                                ar.setText("Ingatlan Ára*:");
+                                break;
+                        }
+
                     }
 
                     @Override
