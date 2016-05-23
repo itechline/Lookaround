@@ -2,6 +2,7 @@ package lar.com.lookaround;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -16,7 +17,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -1165,6 +1165,19 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 69) {
+            if(resultCode == Activity.RESULT_OK){
+                int result=data.getIntExtra("result", 0);
+                if (result != 0) {
+                    getEstateContent(result);
+                }
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
 
             Uri selectedImageURI = data.getData();
@@ -1391,7 +1404,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
-            startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            Intent i = new Intent(MainActivity.this, MapsActivity.class);
+            startActivityForResult(i, 69);
         } else {
             Snackbar.make(view, "Sikertelen művelet!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -2378,7 +2393,9 @@ private int whichAddestatePage = 0;
             case R.id.action_map:
                 SettingUtil.setLatForMap(getBaseContext(), "0.0");
                 SettingUtil.setLngForMap(getBaseContext(), "0.0");
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                //startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivityForResult(i, 69);
                 break;
             case R.id.action_calendar:
                 switchLayoutTo(BOOKING);

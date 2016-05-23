@@ -1,6 +1,7 @@
 package lar.com.lookaround;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -259,6 +260,10 @@ public class MapsActivity extends AppCompatActivity {
             public void onInfoWindowClick(Marker marker) {
                 //startActivity(new Intent(MapsActivity.this, MainActivity.class));
                 //finish();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",clickedClusterItem.getID());
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
             }
         });
 
@@ -417,7 +422,10 @@ public class MapsActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_list:
-                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                //startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                //finish();
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();
                 break;
         }
@@ -487,11 +495,13 @@ public class MapsActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
-                startActivity(new Intent(MapsActivity.this, MainActivity.class));
-                finish();
+                //startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                //finish();
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
     }
 
 }
