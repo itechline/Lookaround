@@ -239,6 +239,7 @@
                 android:layout_toEndOf="@+id/advert_type_textview"
                 android:textSize="14sp"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:background="@drawable/spinner_border"
                 android:layout_marginRight="5sp"
                 android:layout_toRightOf="@+id/advert_type_textview"
