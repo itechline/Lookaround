@@ -1552,12 +1552,21 @@ private int whichAddestatePage = 0;
                     }
 
                     if (hirdetesSpinner_int == 0) {
-                        hirdetesSpinner.setBackgroundColor(0xFFFF0000);
+                        hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         hirdetesSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        hirdetesSpinner.setBackgroundColor(0xFFFFFFFF);
+                        hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         hirdetesSpinner.invalidate();
+                    }
+
+                    if (butorozottSpinner_int == 0) {
+                        butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
+                        butorozottSpinner.invalidate();
+                        isFilledOut = false;
+                    } else {
+                        butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                        butorozottSpinner.invalidate();
                     }
 
                     if (isFilledOut) {
@@ -1587,76 +1596,98 @@ private int whichAddestatePage = 0;
                 case 2:
                     //TODO: hátttérszín változtatás tökéletesítése
                     if (szobaszamSpinner_int == 0) {
-                        szobaszamSpinner.setBackgroundColor(0xFFFF0000);
+                        szobaszamSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         szobaszamSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        szobaszamSpinner.setBackgroundColor(0xFFFFFFFF);
+                        szobaszamSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         szobaszamSpinner.invalidate();
                     }
 
                     if (allapotSpinner_int == 0) {
-                        allapotSpinner.setBackgroundColor(0xFFFF0000);
+                        allapotSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         allapotSpinner.invalidate();
                         isFilledOut = false;
                     } else  {
-                        allapotSpinner.setBackgroundColor(0xFFFFFFFF);
+                        allapotSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         allapotSpinner.invalidate();
                     }
 
                     if (emeletekSpinner_int == 0) {
-                        emeletekSpinner.setBackgroundColor(0xFFFF0000);
+                        emeletekSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         emeletekSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        emeletekSpinner.setBackgroundColor(0xFFFFFFFF);
+                        emeletekSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         emeletekSpinner.invalidate();
                     }
 
                     if (ingatlanTipusSpinner_int == 0) {
-                        ingatlanTipusSpinner.setBackgroundColor(0xFFFF0000);
+                        ingatlanTipusSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         ingatlanTipusSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        ingatlanTipusSpinner.setBackgroundColor(0xFFFFFFFF);
+                        ingatlanTipusSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         ingatlanTipusSpinner.invalidate();
                     }
 
                     if (parkolasSpinner_int == 0) {
-                        parkolasSpinner.setBackgroundColor(0xFFFF0000);
+                        parkolasSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         parkolasSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        parkolasSpinner.setBackgroundColor(0xFFFFFFFF);
+                        parkolasSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         parkolasSpinner.invalidate();
                     }
 
                     if (futesSpinner_int == 0) {
-                        futesSpinner.setBackgroundColor(0xFFFF0000);
+                        futesSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         futesSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        futesSpinner.setBackgroundColor(0xFFFFFFFF);
+                        futesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         futesSpinner.invalidate();
                     }
 
                     if (energiaSpinner_int == 0) {
-                        energiaSpinner.setBackgroundColor(0xFFFF0000);
+                        energiaSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         energiaSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        energiaSpinner.setBackgroundColor(0xFFFFFFFF);
+                        energiaSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         energiaSpinner.invalidate();
                     }
 
                     if (kilatasSpinner_int == 0) {
-                        kilatasSpinner.setBackgroundColor(0xFFFF0000);
+                        kilatasSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         kilatasSpinner.invalidate();
                         isFilledOut = false;
                     } else {
-                        kilatasSpinner.setBackgroundColor(0xFFFFFFFF);
+                        kilatasSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
                         kilatasSpinner.invalidate();
                     }
+
+                    if (balconySpinner_int == 0) {
+                        balconySpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
+                        balconySpinner.invalidate();
+                        isFilledOut = false;
+                    } else {
+                        balconySpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                        balconySpinner.invalidate();
+                    }
+
+                    if (elevatorSpinner_int == 0) {
+                        elevatorSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
+                        elevatorSpinner.invalidate();
+                        isFilledOut = false;
+                    } else {
+                        elevatorSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                        elevatorSpinner.invalidate();
+
+                    }
+
+
+
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
