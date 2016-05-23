@@ -1,9 +1,6 @@
 package lar.com.lookaround.util;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +11,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import lar.com.lookaround.R;
-import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -340,8 +335,9 @@ public class EstateUtil {
                 @Override
                 public void parseRerult(String result) {
 
-                    Log.d("GET_ESTATE ", result.toString());
+
                     if (result != null) {
+                        Log.d("GET_ESTATE ", result.toString());
                         try {
                             JSONObject jsonObject = new JSONObject(result);
                             Object obj = jsonObject;
