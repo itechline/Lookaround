@@ -173,7 +173,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/timepicker_finish_button_layout"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/dayselector_textview"
@@ -190,16 +191,16 @@
                     android:id="@+id/dayselector_days_linear_layout"
                     android:orientation="horizontal"
                     android:layout_centerHorizontal="true"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:background="@drawable/spinner_border"
                     android:padding="1sp">
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="H"
                     android:id="@+id/daypicker_day1"
@@ -207,11 +208,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="K"
                     android:id="@+id/daypicker_day2"
@@ -219,11 +221,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
                     android:onClick="daypicker3"
@@ -231,11 +234,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="CS"
                     android:id="@+id/daypicker_day4"
@@ -243,11 +247,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="P"
                     android:id="@+id/daypicker_day5"
@@ -255,11 +260,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="SZ"
                     android:onClick="daypicker6"
@@ -267,11 +273,12 @@
                     android:layout_gravity="center"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
-                    android:layout_marginTop="1sp" />
+                    android:layout_marginTop="1sp"
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:layout_width="38sp"
-                    android:layout_height="30sp"
+                    android:layout_width="36sp"
+                    android:layout_height="28sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="V"
                     android:onClick="daypicker7"
@@ -280,7 +287,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginLeft="1sp"
                     android:layout_marginTop="1sp"
-                    android:layout_marginRight="1sp" />
+                    android:layout_marginRight="1sp"
+                    android:textSize="12sp" />
 
                 </LinearLayout>
 
