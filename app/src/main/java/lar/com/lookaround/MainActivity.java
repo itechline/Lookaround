@@ -1887,9 +1887,6 @@ private int whichAddestatePage = 0;
 
         final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
-        switchLayoutTo(CONTENTESTATE);
-        supportInvalidateOptionsMenu();
-
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
@@ -1897,11 +1894,10 @@ private int whichAddestatePage = 0;
                 JSONObject obj = (JSONObject) result;
                 try {
 
-
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
                     imageUrls.clear();
-                    for (int j = 0; j < kepekArray.length(); j++) {
+                    for (int j=0; j < kepekArray.length(); j++) {
                         JSONObject jsonKep = kepekArray.getJSONObject(j);
                         //imageURL = jsonKep.getString("kepek_url");
                         imageUrls.add(jsonKep.getString("kepek_url"));
@@ -1981,7 +1977,7 @@ private int whichAddestatePage = 0;
                         lngMap = obj.getString("ingatlan_lng");
                     }
 
-                    //TODO: a honapon felrakott ingatlanok nem térnek vissza ingatlan_allapottal csak ingatlan_allapot_id-vel
+                    //TODO: a honlapon felrakott ingatlanok nem térnek vissza ingatlan_allapottal csak ingatlan_allapot_id-vel
                     condition.setText(obj.getString("ingatlan_allapot"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1997,7 +1993,11 @@ private int whichAddestatePage = 0;
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
         fab_phone.setVisibility(View.VISIBLE);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        if (viewFlip.getDisplayedChild() != CONTENTESTATE) {
+            switchLayoutTo(CONTENTESTATE);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+            supportInvalidateOptionsMenu();
+        }
         findViewById(R.id.scrollView2).scrollTo(0, 0);
 
     }
