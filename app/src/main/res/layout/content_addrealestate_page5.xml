@@ -153,7 +153,8 @@
                 android:drawableRight="@android:drawable/btn_radio"
                 android:drawableLeft="@drawable/kiemel_a_radio"
                 android:gravity="left|center_vertical|right"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                android:textColor="#666666" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -165,7 +166,8 @@
                 android:drawableRight="@android:drawable/btn_radio"
                 android:drawableLeft="@drawable/kiemel_b_radio"
                 android:gravity="left|center_vertical|right"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                android:textColor="#666666" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -177,7 +179,8 @@
                 android:drawableRight="@android:drawable/btn_radio"
                 android:drawableLeft="@drawable/kiemel_c_radio"
                 android:gravity="left|center_vertical|right"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                android:textColor="#666666" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -189,7 +192,8 @@
                 android:drawableRight="@android:drawable/btn_radio"
                 android:gravity="center_vertical|right"
                 android:layout_gravity="right"
-                android:layout_margin="10sp" />
+                android:layout_margin="10sp"
+                android:textColor="#666666" />
 
             </RadioGroup>
 
