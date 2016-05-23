@@ -1813,9 +1813,9 @@ private int whichAddestatePage = 0;
 
                                                          final int[] progress = {0};
                                                          for (int i = 0; i < uris.size(); i++) {
-                                                             Log.d("UPLOAD_URI", uris.get(0).toString());
+                                                             //Log.d("UPLOAD_URI", uris.get(0).toString());
                                                              File imageFile = new File(getRealPathFromURI(uris.get(i)));
-                                                             Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
+                                                             //Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
 
                                                              ImageUploadService service = new ImageUploadService(new SoapResult() {
                                                                  @Override
