@@ -1069,19 +1069,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void TakeImage(View view) {
-        if (ContextCompat.checkSelfPermission(this,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA)) {
 
 
-            } else {
-                ActivityCompat.requestPermissions(this,
+                } else {
+                    ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA},
                         TAKE_IMAGE_REQUEST);
 
+                }
+            } else {
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            startActivityForResult(intent, TAKE_IMAGE_REQUEST);
             }
         } else {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -1190,7 +1195,8 @@ public class MainActivity extends AppCompatActivity
 
     private String getRealPathFromURI(Uri contentURI) {
         String result;
-        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        String[] proj = { MediaStore.MediaColumns.DATA };
+        Cursor cursor = getContentResolver().query(contentURI, proj, null, null, null);
         if (cursor == null) { // Source is Dropbox or other similar local file path
             result = contentURI.getPath();
         } else {
@@ -1548,8 +1554,6 @@ private int whichAddestatePage = 0;
                     estetaHouseNumber = num.getText().toString();
                     estateSize = size.getText().toString();
 
-
-                    //TODO: hátttérszín változtatás tökéletesítése
                     if(!isValidString(estateTitle)) {
                         title.setError("Hiba!");
                         title.invalidate();
@@ -1635,7 +1639,6 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 2:
-                    //TODO: hátttérszín változtatás tökéletesítése
                     if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         szobaszamSpinner.invalidate();
@@ -1749,8 +1752,6 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 5:
-                    //TODO: bútor spinner, erkély spinner
-
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
@@ -1770,13 +1771,13 @@ private int whichAddestatePage = 0;
                                                              requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                                                      Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
                                                          } else {
-                                                             final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                                                             ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
                                                              progressBar.setMessage("Feltöltés...");
                                                              progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                                                              progressBar.setIndeterminate(true);
                                                              progressBar.setProgress(0);
                                                              progressBar.setMax(uris.size());
-                                                             progressBar.show();
+                                                             //progressBar.show();
 
                                                              final int[] progress = {0};
                                                              for (int i = 0; i < uris.size(); i++) {
@@ -1788,11 +1789,11 @@ private int whichAddestatePage = 0;
                                                                      @Override
                                                                      public void parseRerult(String result) {
                                                                          Log.e("error", "succes" + result);
-                                                                         progress[0] += 1;
-                                                                         progressBar.setProgress(progress[0]);
+                                                                         //progress[0] += 1;
+                                                                         //progressBar.setProgress(progress[0]);
                                                                          Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
                                                                      }
-                                                                 }, imageFile);
+                                                                 }, imageFile, progressBar);
                                                                  try {
                                                                      // ingatlan hash-t átadni.
                                                                      Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
@@ -1803,13 +1804,13 @@ private int whichAddestatePage = 0;
                                                              }
                                                          }
                                                      } else {
-                                                         final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                                                         ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
                                                          progressBar.setMessage("Feltöltés...");
                                                          progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                                                          progressBar.setIndeterminate(true);
                                                          progressBar.setProgress(0);
                                                          progressBar.setMax(uris.size());
-                                                         progressBar.show();
+                                                         //progressBar.show();
 
                                                          final int[] progress = {0};
                                                          for (int i = 0; i < uris.size(); i++) {
@@ -1821,11 +1822,11 @@ private int whichAddestatePage = 0;
                                                                  @Override
                                                                  public void parseRerult(String result) {
                                                                      Log.e("error", "succes" + result);
-                                                                     progress[0] += 1;
-                                                                     progressBar.setProgress(progress[0]);
+                                                                     //progress[0] += 1;
+                                                                     //progressBar.setProgress(progress[0]);
                                                                      Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
                                                                  }
-                                                             }, imageFile);
+                                                             }, imageFile, progressBar);
                                                              try {
                                                                  // ingatlan hash-t átadni.
                                                                  Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
@@ -1896,13 +1897,13 @@ private int whichAddestatePage = 0;
         switch (requestCode) {
             case 2909: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    final ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+                    ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
                     progressBar.setMessage("Feltöltés...");
                     progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                     progressBar.setIndeterminate(true);
                     progressBar.setProgress(0);
                     progressBar.setMax(uris.size());
-                    progressBar.show();
+                    //progressBar.show();
 
                     final int[] progress = {0};
                     Log.e("Permission", "Granted");
@@ -1915,10 +1916,10 @@ private int whichAddestatePage = 0;
                             @Override
                             public void parseRerult(String result) {
                                 Log.e("error", "succes" + result);
-                                progress[0] += 1;
-                                progressBar.setProgress(progress[0]);
+                                //progress[0] += 1;
+                                //progressBar.setProgress(progress[0]);
                             }
-                        }, imageFile);
+                        }, imageFile, progressBar);
                         try {
                             // ingatlan hash-t átadni.
                             service.execute(hash);

@@ -1,26 +1,18 @@
 package lar.com.lookaround.restapi;
 
-import android.graphics.Bitmap;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Attila_Dan on 16. 05. 11..
@@ -33,10 +25,12 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
     String twoHyphens = "--";
     String boundary =  "*****";
     File toUpload;
+    ProgressDialog pg;
 
-    public ImageUploadService(SoapResult result, File toUpload) {
+    public ImageUploadService(SoapResult result, File toUpload, ProgressDialog pg) {
         this.result = result;
         this.toUpload = toUpload;
+        this.pg = pg;
     }
 
     @Override
@@ -46,8 +40,7 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
         HttpURLConnection urlConnection = null;
 
         try {
-            URL url = new URL("http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=" + params[0]);
-            Log.d("UPLOAD_URL", url.toString());
+            URL url = new URL("https://bonodom.com/upload/uploadtoserver?ing_hash=" + params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);
@@ -84,6 +77,12 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
 
             while (bytesRead > 0)
             {
+                if (pg != null) {
+                    pg.setMessage("LOFASZ...");
+                    pg.setProgress(8);
+                    pg.show();
+                    Log.d("PROGRESSBAR", "CALLED");
+                }
                 request.write(buffer, 0, bufferSize);
                 bytesAvailable = fis.available();
                 bufferSize = Math.min(bytesAvailable, maxBufferSize);
@@ -143,6 +142,7 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
         }
         return null;
     }
+
 
     @Override
     protected void onPostExecute(String s) {
