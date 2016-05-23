@@ -64,6 +64,10 @@ public class MapsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setTitle("Tértkép");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         //setContentView(R.layout.teszt_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -415,16 +419,15 @@ public class MapsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
+        Intent returnIntent = new Intent();
         switch (item.getItemId()) {
             case R.id.action_list:
                 //startActivity(new Intent(MapsActivity.this, MainActivity.class));
                 //finish();
-                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_CANCELED, returnIntent);
+                finish();
+                break;
+            case android.R.id.home:
                 setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();
                 break;

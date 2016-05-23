@@ -1887,6 +1887,9 @@ private int whichAddestatePage = 0;
 
         final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
+        switchLayoutTo(CONTENTESTATE);
+        supportInvalidateOptionsMenu();
+
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
@@ -1894,10 +1897,11 @@ private int whichAddestatePage = 0;
                 JSONObject obj = (JSONObject) result;
                 try {
 
+
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
                     imageUrls.clear();
-                    for (int j=0; j < kepekArray.length(); j++) {
+                    for (int j = 0; j < kepekArray.length(); j++) {
                         JSONObject jsonKep = kepekArray.getJSONObject(j);
                         //imageURL = jsonKep.getString("kepek_url");
                         imageUrls.add(jsonKep.getString("kepek_url"));
@@ -1993,10 +1997,9 @@ private int whichAddestatePage = 0;
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
         fab_phone.setVisibility(View.VISIBLE);
 
-        switchLayoutTo(CONTENTESTATE);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         findViewById(R.id.scrollView2).scrollTo(0, 0);
-        supportInvalidateOptionsMenu();
+
     }
 
     public void prewAddestatePage(View view) {
@@ -2359,13 +2362,14 @@ private int whichAddestatePage = 0;
         }
     }
 
+    //private Menu menu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         /*if(viewFlip.getDisplayedChild() == ESTATESLIST) {
             getMenuInflater().inflate(R.menu.main, menu);
         }*/
-
+        //this.menu = menu;
         switch (viewFlip.getDisplayedChild()) {
             case ESTATESLIST:
                 getMenuInflater().inflate(R.menu.main, menu);

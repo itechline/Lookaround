@@ -6,7 +6,7 @@
         android:id="@+id/action_list"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        android:icon="@drawable/ic_action_menuicon"
+        android:icon="@drawable/ic_action_lista_a"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_search"
