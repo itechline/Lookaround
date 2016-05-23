@@ -1214,20 +1214,7 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 69) {
-            if(resultCode == Activity.RESULT_OK){
-                int result=data.getIntExtra("result", 0);
-                if (result != 0) {
-                    getEstateContent(result);
-                }
-
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
-
-        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+        /*if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
 
             Uri selectedImageURI = data.getData();
             File imageFile = new File(getRealPathFromURI(selectedImageURI));
@@ -1246,7 +1233,7 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
             }
 
-        }
+        }*/
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
@@ -1317,6 +1304,13 @@ public class MainActivity extends AppCompatActivity
             imageID += 1;
             linearLayoutCam.setDividerPadding(0);
 
+        }
+
+        if (requestCode == 69 && resultCode == Activity.RESULT_OK) {
+                int result=data.getIntExtra("result", 0);
+                if (result != 0) {
+                    getEstateContent(result);
+                }
         }
     }
 
