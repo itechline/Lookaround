@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Hírdetések");
+        getSupportActionBar().setTitle("Hirdetések");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -2326,7 +2326,7 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hírdetések");
+                getSupportActionBar().setTitle("Hirdetések");
                 break;
             case CONTENTESTATE:
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
@@ -2338,7 +2338,7 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
-                getSupportActionBar().setTitle("Hírdetésfeladás");
+                getSupportActionBar().setTitle("Hirdetés feladás");
                 break;
             case PROFILE:
                 getSupportActionBar().setTitle("Profilom");
@@ -2550,10 +2550,10 @@ private int whichAddestatePage = 0;
     public void switchLayoutTo(int switchTo){
         switch(switchTo) {
             case ADDESTATE:
-                getSupportActionBar().setTitle("Hírdetésfeladás");
+                getSupportActionBar().setTitle("Hirdetés feladás");
                 break;
             case ESTATESLIST:
-                getSupportActionBar().setTitle("Hírdetések");
+                getSupportActionBar().setTitle("Hirdetések");
                 break;
             case INVITE:
                 getSupportActionBar().setTitle("Meghívás");
