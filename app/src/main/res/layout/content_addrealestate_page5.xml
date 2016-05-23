@@ -136,124 +136,62 @@
             android:layout_centerInParent="true"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:src="@drawable/kiemel_a"
-                android:layout_width="80sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/enchancement_img_1"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_margin="10sp" />
-
-            <ImageView
-                android:src="@drawable/kiemel_b"
-                android:layout_width="80sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/enchancement_img_2"
-                android:layout_below="@+id/enchancement_img_1"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_margin="10sp" />
-
-            <ImageView
-                android:src="@drawable/kiemel_c"
-                android:layout_width="80sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/enchancement_img_3"
-                android:layout_below="@+id/enchancement_img_2"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_margin="10sp"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/enchancement_hint_img_txt"
-                android:id="@+id/enchancement_a_text"
-                android:layout_alignBottom="@+id/enchancement_img_1"
-                android:layout_marginBottom="20sp"
-                android:layout_toLeftOf="@+id/ench_a_radio"
-                android:layout_toRightOf="@+id/enchancement_img_1"
-                android:layout_toEndOf="@+id/enchancement_img_1" />
-
-            <TextView
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/enchancement_hint_img_txt"
-                android:id="@+id/enchancement_b_text"
-                android:layout_alignBottom="@+id/enchancement_img_2"
-                android:layout_toRightOf="@+id/enchancement_img_2"
-                android:layout_toEndOf="@+id/enchancement_img_2"
-                android:layout_marginBottom="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/enchancement_hint_img_txt"
-                android:id="@+id/enchancement_c_text"
-                android:layout_alignBottom="@+id/enchancement_img_3"
-                android:layout_toRightOf="@+id/enchancement_img_3"
-                android:layout_toEndOf="@+id/enchancement_img_3"
-                android:layout_marginBottom="20sp" />
-
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="fill_horizontal|center_vertical">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ench_a_radio"
-                android:layout_alignBottom="@+id/enchancement_a_text"
-                android:layout_alignRight="@+id/enchancement_b_text"
-                android:layout_alignEnd="@+id/enchancement_b_text"
-                android:layout_alignTop="@+id/enchancement_a_text"
-                android:layout_marginRight="10sp" />
+                android:button="@null"
+                android:text="@string/enchancement_hint_img_txt"
+                android:drawablePadding="30sp"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:drawableLeft="@drawable/kiemel_a_radio"
+                android:gravity="left|center_vertical|right"
+                android:layout_margin="10sp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ench_b_radio"
-                android:layout_alignBottom="@+id/enchancement_b_text"
-                android:layout_alignRight="@+id/enchancement_b_text"
-                android:layout_alignEnd="@+id/enchancement_b_text"
-                android:layout_alignTop="@+id/enchancement_b_text"
-                android:layout_marginRight="10sp" />
+                android:button="@null"
+                android:text="@string/enchancement_hint_img_txt"
+                android:drawablePadding="30sp"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:drawableLeft="@drawable/kiemel_b_radio"
+                android:gravity="left|center_vertical|right"
+                android:layout_margin="10sp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ench_c_radio"
-                android:layout_alignBottom="@+id/enchancement_c_text"
-                android:layout_alignRight="@+id/enchancement_c_text"
-                android:layout_alignEnd="@+id/enchancement_c_text"
-                android:layout_alignTop="@+id/enchancement_c_text"
-                android:layout_marginRight="10sp" />
+                android:button="@null"
+                android:text="@string/enchancement_hint_img_txt"
+                android:drawablePadding="30sp"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:drawableLeft="@drawable/kiemel_c_radio"
+                android:gravity="left|center_vertical|right"
+                android:layout_margin="10sp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dntwant_ench_radio"
-                android:layout_alignRight="@+id/idontwant_enchancement_text"
-                android:layout_alignEnd="@+id/idontwant_enchancement_text"
-                android:layout_marginRight="10sp"
-                android:gravity="center_vertical"
-                android:layout_alignBottom="@+id/idontwant_enchancement_text"
-                android:layout_alignTop="@+id/idontwant_enchancement_text" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="35sp"
+                android:button="@null"
                 android:text="@string/idnt_want_to_ecnh"
-                android:id="@+id/idontwant_enchancement_text"
-                android:layout_below="@+id/enchancement_img_3"
-                android:layout_alignLeft="@+id/enchancement_c_text"
-                android:layout_alignStart="@+id/enchancement_c_text"
-                android:layout_marginTop="10sp"
-                android:gravity="center_vertical" />
+                android:drawablePadding="30sp"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:gravity="center_vertical|right"
+                android:layout_gravity="right"
+                android:layout_margin="10sp" />
+
+            </RadioGroup>
 
         </RelativeLayout>
 
