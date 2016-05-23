@@ -1994,6 +1994,7 @@ private int whichAddestatePage = 0;
         fab_phone.setVisibility(View.VISIBLE);
 
         if (viewFlip.getDisplayedChild() != CONTENTESTATE) {
+            //TODO: megtekintés térképen->infoWindow->MainActivity ContentEstate fav icon bug
             switchLayoutTo(CONTENTESTATE);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
             supportInvalidateOptionsMenu();
