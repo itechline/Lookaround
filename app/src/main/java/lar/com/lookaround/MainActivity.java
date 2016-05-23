@@ -472,6 +472,10 @@ public class MainActivity extends AppCompatActivity
                                 ar.setText("Ingatlan Ára*:");
                                 break;
                         }
+                        if (hirdetesSpinner_int != 0) {
+                            hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            hirdetesSpinner.invalidate();
+                        }
 
                     }
 
@@ -502,6 +506,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         szobaszamSpinner_int = spinnerUtil.getId();
+                        if (szobaszamSpinner_int != 0) {
+                            szobaszamSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            szobaszamSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -532,6 +540,11 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         allapotSpinner_int = spinnerUtil.getId();
+                        if (allapotSpinner_int != 0) {
+                            allapotSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            allapotSpinner.invalidate();
+                        }
+
                     }
 
                     @Override
@@ -563,6 +576,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         emeletekSpinner_int = spinnerUtil.getId();
+                        if (emeletekSpinner_int != 0) {
+                            emeletekSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            emeletekSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -593,6 +610,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         ingatlanTipusSpinner_int = spinnerUtil.getId();
+                        if (ingatlanTipusSpinner_int != 0) {
+                            ingatlanTipusSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            ingatlanTipusSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -624,6 +645,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         parkolasSpinner_int = spinnerUtil.getId();
+                        if (parkolasSpinner_int != 0) {
+                            parkolasSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            parkolasSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -653,6 +678,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         futesSpinner_int = spinnerUtil.getId();
+                        if (futesSpinner_int != 0) {
+                            futesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            futesSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -683,6 +712,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         energiaSpinner_int = spinnerUtil.getId();
+                        if (energiaSpinner_int != 0) {
+                            energiaSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            energiaSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -712,6 +745,10 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         kilatasSpinner_int = spinnerUtil.getId();
+                        if (kilatasSpinner_int != 0) {
+                            kilatasSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                            kilatasSpinner.invalidate();
+                        }
                     }
 
                     @Override
@@ -736,6 +773,10 @@ public class MainActivity extends AppCompatActivity
                 ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterButor.getItem(position);
                 butorozottSpinner_int = spinnerUtil.getId();
+                if (butorozottSpinner_int != 0) {
+                    butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                    butorozottSpinner.invalidate();
+                }
             }
 
             @Override
@@ -758,6 +799,10 @@ public class MainActivity extends AppCompatActivity
                 ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterBalcony.getItem(position);
                 balconySpinner_int = spinnerUtil.getId();
+                if (balconySpinner_int != 0) {
+                    balconySpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                    balconySpinner.invalidate();
+                }
             }
 
             @Override
@@ -780,6 +825,10 @@ public class MainActivity extends AppCompatActivity
                 ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterElevator.getItem(position);
                 elevatorSpinner_int = spinnerUtil.getId();
+                if (elevatorSpinner_int != 0) {
+                    elevatorSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                    elevatorSpinner.invalidate();
+                }
             }
 
             @Override
