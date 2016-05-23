@@ -184,7 +184,7 @@
 
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60sp"
                 android:id="@+id/dntwant_ench_radio"
                 android:button="@null"
                 android:text="@string/idnt_want_to_ecnh"
