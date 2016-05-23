@@ -108,7 +108,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_balcony_spinner_rlayout"
                 android:layout_above="@+id/addestate_heatingtype_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_parking_spinner"
                     android:layout_width="fill_parent"
@@ -136,7 +136,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_floors_spinner_rlayout"
                 android:layout_above="@+id/addestate_balcony_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_type_spinner"
                     android:layout_width="fill_parent"
@@ -162,7 +162,7 @@
                 android:layout_alignStart="@+id/addestate_ecertificate_spinner_rlayout"
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_ecertificate_spinner_rlayout"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/adestate_view_spinner"
                     android:layout_width="fill_parent"
@@ -190,7 +190,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_heatingtype_spinner_rlayout"
                 android:layout_above="@+id/addestate_e_certification_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_elevator_spinner"
                     android:layout_width="fill_parent"
@@ -231,7 +231,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_alignParentTop="true"
                 android:layout_above="@+id/addestate_condition_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -259,7 +259,7 @@
                 android:layout_alignStart="@+id/addestate_parking_spinner_rlayout"
                 android:layout_below="@+id/addestate_parking_spinner_rlayout"
                 android:layout_above="@+id/addestate_elevator_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_heatingtype_spinner"
                     android:layout_width="fill_parent"
@@ -287,7 +287,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_elevator_spinner_rlayout"
                 android:layout_above="@+id/addestate_view_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_ecertificate_spinner"
                     android:layout_width="fill_parent"
@@ -315,7 +315,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_rooms_spinner_rlayout"
                 android:layout_above="@+id/addestate_floors_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_condition_spinner"
                     android:layout_width="fill_parent"
@@ -343,7 +343,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_above="@+id/addestate_parking_textview"
                 android:layout_below="@+id/addestate_type_spinner_rlayout"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_balcony_spinner"
                     android:layout_width="fill_parent"
@@ -370,7 +370,7 @@
                 android:background="@drawable/spinner_border"
                 android:layout_below="@+id/addestate_condition_spinner_rlayout"
                 android:layout_above="@+id/addestate_type_textview"
-                android:padding="3sp">
+                android:padding="-1sp">
                 <Spinner
                     android:id="@+id/addestate_floors_spinner"
                     android:layout_width="fill_parent"
