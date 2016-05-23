@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setTitle("Hírdetések");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -2294,25 +2294,28 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
                 fab_phone.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hírdetések");
                 break;
             case CONTENTESTATE:
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
                 fab_phone.setVisibility(View.VISIBLE);
+                getSupportActionBar().setTitle(null);
                 break;
             case ADDESTATE:
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                 fab.setVisibility(View.VISIBLE);
+                getSupportActionBar().setTitle("Hírdetésfeladás");
                 break;
             case PROFILE:
-
+                getSupportActionBar().setTitle("Profilom");
                 break;
             case MESSAGES:
-
+                getSupportActionBar().setTitle("Üzenetek");
                 break;
             case BOOKING:
-
+                getSupportActionBar().setTitle("Időpontfoglalás");
                 break;
             default:
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int));
@@ -2326,8 +2329,6 @@ private int whichAddestatePage = 0;
         } else if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         }
-
-        supportInvalidateOptionsMenu();
     }
 
     @Override
@@ -2565,6 +2566,8 @@ private int whichAddestatePage = 0;
         } else {
             isBackPressed = false;
         }
+
+        supportInvalidateOptionsMenu();
     }
 
     public void switchLayoutToAddEstate(int switchTo){
