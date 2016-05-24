@@ -296,6 +296,8 @@
     <string name="enchancement_hint_img_txt">Ingatlan kiemelése egy, a sarokban elhelyezkedő ikonnal</string>
     <string name="aszf_text">Az ÁSZF-et elolvastam és elfogadom, egyetértek azokkal</string>
     <string name="idnt_want_to_ecnh">Nem szeretném kiemelni a hírdetésem</string>
+    <string name="vr_button">Körbejárás</string>
+    <string name="coming_soon">(Hamarosan)</string>
 
     <string-array name="varosok_array">
         <item>Aba</item>
