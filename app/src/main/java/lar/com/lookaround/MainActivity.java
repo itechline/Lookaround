@@ -2283,7 +2283,7 @@ private int whichAddestatePage = 0;
 
     private int pageCount = 0;
     private boolean isRefreshing = false;
-    private String favToSend;
+    private String favToSend = "0";
 
 
     public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int justme) {
