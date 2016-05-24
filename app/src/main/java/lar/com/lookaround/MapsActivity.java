@@ -13,6 +13,7 @@ import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -107,6 +111,17 @@ public class MapsActivity extends AppCompatActivity {
                 }
             });
         }
+
+        String[] some_array = getResources().getStringArray(R.array.varosok_array);
+
+        AutoCompleteTextView autocomplete = (AutoCompleteTextView)
+                findViewById(R.id.maps_edittext_input);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item, some_array);
+
+        autocomplete.setThreshold(2);
+        autocomplete.setAdapter(adapter);
     }
 
     @Override
@@ -384,16 +399,20 @@ public class MapsActivity extends AppCompatActivity {
         Geocoder gc = new Geocoder(this);
 
         List<Address> list = gc.getFromLocationName(adress, 1);
-        Address add = list.get(0);
-
-        double lat = add.getLatitude();
-        double lng = add.getLongitude();
-
-
-        MyItem offsetItem = new MyItem(lat, lng, 1);
-        mClusterManager.addItem(offsetItem);
+            if (!list.isEmpty()) {
+                Address add = list.get(0);
+                double lat = add.getLatitude();
+                double lng = add.getLongitude();
+                gotoLocation(lat, lng, 12);
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.maps_search_main_relative);
+                linearLayout.setVisibility(View.GONE);
+            } else {
+                Snackbar.make(mapView, "Hibás cím!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        //MyItem offsetItem = new MyItem(lat, lng, 1);
+        //mClusterManager.addItem(offsetItem);
         //gotoLocation(lat, lng, 10);
-
     }
 
 
@@ -422,6 +441,10 @@ public class MapsActivity extends AppCompatActivity {
                 //finish();
                 setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();
+                break;
+            case R.id.action_search_maps:
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.maps_search_main_relative);
+                linearLayout.setVisibility(View.VISIBLE);
                 break;
             case android.R.id.home:
                 setResult(Activity.RESULT_CANCELED, returnIntent);
@@ -490,6 +513,15 @@ public class MapsActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+    public void searchOnMap(View view) {
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.maps_edittext_input);
+        try {
+            getLocate(autoCompleteTextView.getText().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
