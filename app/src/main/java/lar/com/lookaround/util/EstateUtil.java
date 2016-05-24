@@ -214,10 +214,11 @@ public class EstateUtil {
     private static final String INGATLAN_TYPE = "ing_e_type_id";
     private static final String KEPEK_URL = "kepek_url";
 
-    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls, String justme) {
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls, String justme, String hash) {
         this.id = id;
         this.adress = adress;
         this.street = street;
+        this.hash = hash;
         this.description = description;
         this.price = price;
         this.isFavourite = isFavourite;
@@ -290,6 +291,7 @@ public class EstateUtil {
                                 String adressJson = json_data.getString(INGATLAN_VAROS);
                                 String streetJson = json_data.getString(INGATLAN_UTCA);
                                 String descriptionJson = json_data.getString(INGATLAN_ROVIDLEIRAS);
+                                String hash = json_data.getString("ingatlan_hash");
                                 int priceJson = json_data.getInt(INGATLAN_AR);
                                 boolean isFav = json_data.getBoolean(ISFAVOURITE);
 
@@ -310,7 +312,7 @@ public class EstateUtil {
                                 int typeJson = json_data.getInt(INGATLAN_TYPE);
 
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL, jstme));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL, jstme, hash));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;

@@ -74,7 +74,8 @@ public class SoapService extends AsyncTask<URL, Integer, String> {
             in.close();
             return result.toString();
         } catch (Exception e) {
-            Log.d("SoapService", e.toString());
+            e.printStackTrace();
+            Log.d("SoapService", "link: " + params[0].toString());
         }
         return null;
     }

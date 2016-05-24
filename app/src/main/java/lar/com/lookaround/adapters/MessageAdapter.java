@@ -42,145 +42,24 @@ import lar.com.lookaround.util.SettingUtil;
 public class MessageAdapter extends ArrayAdapter<MessageUtil> {
 
     public MessageAdapter(Context context, ArrayList<MessageUtil> users) {
-        super(context, R.layout.content_messages_item, users);
-    }
-
-
-
-    public void stopDownloadingImage(int firstVisibleItem, int lastVisibleItem) {
-        ArrayList<DownloadImageTask> tmp = new ArrayList<>();
-        for (DownloadImageTask tsk :
-                imageList) {
-            if(tsk.position < firstVisibleItem || tsk.position > lastVisibleItem) {
-                tmp.add(tsk);
-            }
-        }
-        for (DownloadImageTask tsk: tmp) {
-            imageList.remove(tsk);
-            tsk.cancel(true);
-        }
+        super(context, R.layout.message_you_item, users);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        //Log.e("KURVAFASZA", "1");
-
         // Get the data item for this position
         final MessageUtil message = getItem(position);
 
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_realestate, parent, false);
-            //new DownloadImageTask((ImageView) convertView.findViewById(R.id.item_realestate_mainpic), convertView.getId()).execute(estate.getUrls());
+        if(message.getFromme() == 0) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.message_you_item, parent, false);
         } else {
-            ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
-            if (image != null && image.getDrawable() != null && ((BitmapDrawable) image.getDrawable()).getBitmap() != null) {
-                ((BitmapDrawable) image.getDrawable()).getBitmap().recycle();
-            }
-            ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
-            progressBar.setVisibility(View.VISIBLE);
-            image.setImageBitmap(null);
-
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.message_me_item, parent, false);
         }
 
-        TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
-        TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
-        TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
-        TextView price = (TextView) convertView.findViewById(R.id.Price);
-        final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
-        ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
-
-
-
-        //adress.setText(estate.getAdress());
-        //street.setText(estate.getStreet());
-        //description.setText(estate.getDescription());
-
-        Locale locale = new Locale("en", "UK");
-
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-        //symbols.setDecimalSeparator(';');
-        symbols.setGroupingSeparator('.');
-
-        String pattern = "###,###";
-        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-        //String format = decimalFormat.format(estate.getPrice());
-
-        //price.setText(format + " Ft");
-
-
-
-        final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
-        imageList.add(task);
-        //task.execute(estate.getUrls());
+        TextView msg = (TextView) convertView.findViewById(R.id.single_message_item);
+        msg.setText(message.getMsg());
 
         return convertView;
     }
 
-
-
-    private static ArrayList<DownloadImageTask> imageList= new ArrayList<>();
-
-
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        //ImageView bmImage;
-        View convertView;
-        public int position;
-        private final WeakReference<ImageView> imageViewReference;
-
-
-
-        public DownloadImageTask(ImageView bmImage, int position, View convertView) {
-            //this.bmImage = bmImage;
-            imageViewReference = new WeakReference<ImageView>(bmImage);
-            this.position = position;
-            this.convertView = convertView;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-
-            if (isCancelled())
-                result = null;
-
-            if(Thread.interrupted()) {
-                result = null;
-            }
-
-            if (imageList == null) {
-                imageList = new ArrayList<>();
-            }
-            imageList.remove(this);
-            //Log.e("LOSHIT", "darabszám: "+imageList.size());
-
-            if (result != null) {
-                //bmImage.setImageBitmap(result);
-                //bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                if (imageViewReference != null && result != null) {
-                    final ImageView imageView = imageViewReference.get();
-                    if (imageView != null) {
-                        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                        imageView.setImageBitmap(result);
-                    }
-                }
-
-                ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        }
-    }
 }
