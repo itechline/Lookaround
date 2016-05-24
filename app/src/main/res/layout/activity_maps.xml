@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/maps_search_main_relative"
         android:background="#f1f2f3"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center_vertical|center_horizontal">
 
         <RelativeLayout
