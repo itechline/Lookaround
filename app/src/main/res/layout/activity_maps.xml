@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/maps_search_main_relative"
-        android:background="#f1f2f3">
+        android:background="#f1f2f3"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/estate_types_changing_layout"
