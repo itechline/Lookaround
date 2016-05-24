@@ -52,12 +52,25 @@ public class MessageAdapter extends ArrayAdapter<MessageUtil> {
 
         if(message.getFromme() == 0) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.message_you_item, parent, false);
+        } else if(message.getFromme() == -1) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_messages_item, parent, false);
         } else {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.message_me_item, parent, false);
         }
 
-        TextView msg = (TextView) convertView.findViewById(R.id.single_message_item);
-        msg.setText(message.getMsg());
+        if(message.getFromme() == -1) {
+            TextView name = (TextView) convertView.findViewById(R.id.item_message_profile_name_text);
+            TextView date = (TextView) convertView.findViewById(R.id.message_date_textView);
+            TextView msg = (TextView) convertView.findViewById(R.id.message_text_textview);
+
+            name.setText(message.getVeznev()+ " " + message.getKernev());
+            date.setText(message.getDate());
+            msg.setText(message.getVaros()+ " " +message.getUtca());
+
+        } else {
+            TextView msg = (TextView) convertView.findViewById(R.id.single_message_item);
+            msg.setText(message.getMsg());
+        }
 
         return convertView;
     }

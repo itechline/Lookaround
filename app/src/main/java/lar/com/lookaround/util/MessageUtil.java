@@ -25,6 +25,60 @@ public class MessageUtil {
     private String date;
     private int fromme;
     private String msg;
+    private String veznev;
+    private String kernev;
+    private String varos;
+    private String utca;
+    private int uid;
+    private String hash;
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getVeznev() {
+        return veznev;
+    }
+
+    public void setVeznev(String veznev) {
+        this.veznev = veznev;
+    }
+
+    public String getKernev() {
+        return kernev;
+    }
+
+    public void setKernev(String kernev) {
+        this.kernev = kernev;
+    }
+
+    public String getVaros() {
+        return varos;
+    }
+
+    public void setVaros(String varos) {
+        this.varos = varos;
+    }
+
+    public String getUtca() {
+        return utca;
+    }
+
+    public void setUtca(String utca) {
+        this.utca = utca;
+    }
 
     public String getMsg() {
         return msg;
@@ -128,7 +182,8 @@ public class MessageUtil {
         }
     }
 
-    public static void setMessage(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, String msg) {
+
+    public static void sendMessage(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, String msg) {
         try {
             String url = "https://bonodom.com/api/send_message";
 
@@ -163,13 +218,65 @@ public class MessageUtil {
         }
     }
 
-    public static void listMessagesForEstate(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash) {
+    public static void listMessages(final SoapObjectResult getBackWhenItsDone, String tokenTosend) {
+        try {
+            String url = "https://bonodom.com/api/get_messages";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", tokenTosend);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.d("listEstates", "Return: " + result);
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
+                            ArrayList<MessageUtil> messages = new ArrayList<MessageUtil>();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+
+                                MessageUtil msg = new MessageUtil();
+                                msg.setDate(json_data.getString("date"));
+                                msg.setVeznev(json_data.getString("fel_vezeteknev"));
+                                msg.setKernev(json_data.getString("fel_keresztnev"));
+                                msg.setVaros(json_data.getString("ingatlan_varos"));
+                                msg.setUtca(json_data.getString("ingatlan_utca"));
+                                msg.setHash(json_data.getString("hash"));
+                                msg.setUid(json_data.getInt("uid"));
+                                msg.setFromme(-1);
+
+                                messages.add(msg);
+                            }
+
+                            getBackWhenItsDone.parseRerult(messages);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void listMessagesForEstate(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, int uid) {
         try {
             String url = "https://bonodom.com/api/get_messagebyestate";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("token", tokenTosend);
             postadatok.put("hash", hash);
+            if(uid != 0) {
+                postadatok.put("uid", String.valueOf(uid));
+            }
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {

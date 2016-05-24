@@ -2327,7 +2327,33 @@ private int whichAddestatePage = 0;
     private boolean isRefreshing = false;
     private String favToSend = "0";
 
-    public void loadMessagesForEstate(final String hash) {
+    public void loadMessages() {
+        switchLayoutTo(MESSAGES);
+
+        MessageUtil.listMessages(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
+                ListView thread = (ListView) findViewById(R.id.allmessages);
+
+                final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
+
+                thread.setAdapter(adapter);
+                thread.setDividerHeight(0);
+
+                thread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        MessageUtil ms = adapter.getItem(i);
+                        loadMessagesForEstate(ms.getHash(), ms.getUid());
+                    }
+                });
+
+            }
+        }, SettingUtil.getToken(this));
+    }
+
+    public void loadMessagesForEstate(final String hash, int uid) {
         switchLayoutTo(MESSAGES2);
 
         MessageUtil.listMessagesForEstate(new SoapObjectResult() {
@@ -2346,11 +2372,11 @@ private int whichAddestatePage = 0;
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MessageUtil.setMessage(new SoapObjectResult() {
+                        MessageUtil.sendMessage(new SoapObjectResult() {
                             @Override
                             public void parseRerult(Object result) {
-                                boolean b = (boolean)result;
-                                if(!b) {
+                                boolean b = (boolean) result;
+                                if (!b) {
                                     MessageUtil ms = new MessageUtil();
                                     ms.setFromme(1);
                                     ms.setMsg(et.getText().toString());
@@ -2366,7 +2392,7 @@ private int whichAddestatePage = 0;
                 });
 
             }
-        }, SettingUtil.getToken(this), hash);
+        }, SettingUtil.getToken(this), hash, uid);
     }
 
     public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int justme) {
@@ -2608,7 +2634,7 @@ private int whichAddestatePage = 0;
 
 
     public void showMessages(View view) {
-        switchLayoutTo(MESSAGES);
+        loadMessages();
         closeDrawer();
     }
 
@@ -2678,7 +2704,7 @@ private int whichAddestatePage = 0;
                 }
                 break;
             case R.id.action_message:
-                loadMessagesForEstate(estateHash);
+                loadMessagesForEstate(estateHash, 0);
                 break;
             case R.id.action_share:
                 Intent sendIntent = new Intent();
