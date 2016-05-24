@@ -36,7 +36,13 @@ public class EstateUtil {
     private double lng;
     private String justme;
 
+    public String getJustme() {
+        return justme;
+    }
 
+    public void setJustme(String justme) {
+        this.justme = justme;
+    }
 
     public double getLat() {
         return lat;
@@ -208,7 +214,7 @@ public class EstateUtil {
     private static final String INGATLAN_TYPE = "ing_e_type_id";
     private static final String KEPEK_URL = "kepek_url";
 
-    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls) {
+    public EstateUtil(int id, String adress, String street, String description, int price, boolean isFavourite, String meret, int parkolas, int szobaszam, int butor, int erkely, int type, String urls, String justme) {
         this.id = id;
         this.adress = adress;
         this.street = street;
@@ -222,6 +228,7 @@ public class EstateUtil {
         this.erkely = erkely;
         this.urls = urls;
         this.type = type;
+        this.justme = justme;
     }
 
    public EstateUtil(boolean error, String hash, int id) {
@@ -237,7 +244,7 @@ public class EstateUtil {
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering, String token, String justme) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering, final String jstme) {
         try {
             String url = "https://bonodom.com/api/list_estates";
 
@@ -248,8 +255,14 @@ public class EstateUtil {
             postadatok.put("favorites", favorites);
             postadatok.put("etype", etype);
             postadatok.put("ordering", ordering);
-            postadatok.put("token", token);
-            postadatok.put("justme", justme);
+            postadatok.put("justme", jstme);
+            Log.d("UTIL_INGATLAN_ID", idPost);
+            Log.d("UTIL_PAGE", pagePost);
+            Log.d("UTIL_TOKEN", tokenTosend);
+            Log.d("UTIL_FAVORITES", favorites);
+            Log.d("UTIL_ETYPE", etype);
+            Log.d("UTIL_ORDERING", ordering);
+            Log.d("UTIL_JUSTME", jstme);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -297,7 +310,7 @@ public class EstateUtil {
                                 int typeJson = json_data.getInt(INGATLAN_TYPE);
 
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL));
+                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL, jstme));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;
@@ -414,8 +427,6 @@ public class EstateUtil {
         try {
             String url = "https://bonodom.com/api/add_estate";
 
-
-            //TODO: tokent is át kell adni
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_meret", meret);
             postadatok.put("ingatlan_varos", varos);

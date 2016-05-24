@@ -198,7 +198,7 @@ public class MapsActivity extends AppCompatActivity {
                 }
                 //mapView.invalidate();
             }
-        });
+        }, SettingUtil.getToken(getBaseContext()));
     }
 
 
