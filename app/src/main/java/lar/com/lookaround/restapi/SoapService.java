@@ -15,6 +15,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
+
 /**
  * Created by dante on 2015.05.13..
  */
@@ -47,9 +49,9 @@ public class SoapService extends AsyncTask<URL, Integer, String> {
 
     @Override
     protected String doInBackground(URL... params) {
-        HttpURLConnection urlConnection = null;
+        HttpsURLConnection urlConnection = null;
         try {
-            urlConnection = (HttpURLConnection) params[0].openConnection();
+            urlConnection = (HttpsURLConnection) params[0].openConnection();
             StringBuilder result = new StringBuilder();
             urlConnection.setRequestMethod("POST");
             urlConnection.setDoInput(true);

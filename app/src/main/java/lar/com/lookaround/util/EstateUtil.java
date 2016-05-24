@@ -437,7 +437,7 @@ public class EstateUtil {
                 @Override
                 public void parseRerult(String result) {
 
-                    Log.d("RESULT_ADD_ESTATE ", result.toString());
+                    //Log.d("RESULT_ADD_ESTATE ", result.toString());
                     if (result != null) {
                         try {
 

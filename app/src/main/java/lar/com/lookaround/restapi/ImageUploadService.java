@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 /**
  * Created by Attila_Dan on 16. 05. 11..
  */
@@ -37,11 +39,11 @@ public class ImageUploadService extends AsyncTask<String, Integer, String> {
     protected String doInBackground(String... params) {
         //HttpURLConnection urlConnection = null;
 
-        HttpURLConnection urlConnection = null;
+        HttpsURLConnection urlConnection = null;
 
         try {
             URL url = new URL("https://bonodom.com/upload/uploadtoserver?ing_hash=" + params[0]);
-            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
