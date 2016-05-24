@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="right">
 
     <ImageView
         android:src="@drawable/user_avatar"
@@ -16,13 +17,13 @@
 
     <RelativeLayout
         android:id="@+id/single_message_item_rlayout_me"
-        android:layout_width="250sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/message_profile_pic_me"
-        android:layout_toStartOf="@+id/message_profile_pic_me"
         android:background="@drawable/msg_backgroud_me"
-        >
+        android:layout_margin="10sp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/message_profile_pic_me"
+        android:layout_toLeftOf="@+id/message_profile_pic_me">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,6 +34,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:textColor="#ffffff"
-            android:layout_margin="5sp" />
+            android:layout_margin="5sp"
+            android:maxWidth="250sp"
+            />
     </RelativeLayout>
 </RelativeLayout>
