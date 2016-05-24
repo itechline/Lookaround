@@ -2283,6 +2283,8 @@ private int whichAddestatePage = 0;
 
     private int pageCount = 0;
     private boolean isRefreshing = false;
+    private int justme = 0;
+    private String favToSend;
 
 
     public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering) {
@@ -2303,6 +2305,12 @@ private int whichAddestatePage = 0;
                 listView.setOnItemClickListener(new ItemList());
                 final int mPosition=0;
                 final int mOffset=0;
+
+                if (justme == 1 && fav.equals("1")) {
+                    favToSend = "0";
+                } else {
+                    favToSend = "1";
+                }
                 //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
                 final View csok = (View) findViewById(R.id.sorting_estates_relativeLayout);
 
@@ -2348,6 +2356,11 @@ private int whichAddestatePage = 0;
                                 pageCount += 1;
                                 String pageStr = String.valueOf(pageCount);
                                 String lrgst = String.valueOf(EstateUtil.largestId);
+                                if (justme == 1 && fav.equals("1")) {
+                                    favToSend = "0";
+                                } else {
+                                    favToSend = "1";
+                                }
                                 EstateUtil.listEstates(new SoapObjectResult() {
                                     @Override
                                     public void parseRerult(Object result) {
@@ -2355,19 +2368,18 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = true;
                                     }
-                                }, lrgst, pageStr, tokenToSend, fav, etypeString, ordering);
+                                }, lrgst, pageStr, tokenToSend, favToSend, etypeString, ordering, SettingUtil.getToken(getBaseContext()), String.valueOf(justme));
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend, fav, etypeString, ordering);
+        }, idPost, pagePost, tokenToSend, favToSend, etypeString, ordering, SettingUtil.getToken((getBaseContext())), String.valueOf(justme));
 
 
         supportInvalidateOptionsMenu();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -2457,6 +2469,10 @@ private int whichAddestatePage = 0;
 
     MenuView.ItemView favItem;
     boolean isFavEstate = false;
+
+    public void showMessages(View view) {
+        switchLayoutTo(MESSAGES);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

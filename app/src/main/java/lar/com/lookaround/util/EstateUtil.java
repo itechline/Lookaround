@@ -34,6 +34,9 @@ public class EstateUtil {
     private int type;
     private double lat;
     private double lng;
+    private String justme;
+
+
 
     public double getLat() {
         return lat;
@@ -234,7 +237,7 @@ public class EstateUtil {
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering, String token, String justme) {
         try {
             String url = "https://bonodom.com/api/list_estates";
 
@@ -245,6 +248,8 @@ public class EstateUtil {
             postadatok.put("favorites", favorites);
             postadatok.put("etype", etype);
             postadatok.put("ordering", ordering);
+            postadatok.put("token", token);
+            postadatok.put("justme", justme);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -469,11 +474,12 @@ public class EstateUtil {
     }
 
 
-    public static void list_map_estates(final SoapObjectResult getBackWhenItsDone) {
+    public static void list_map_estates(final SoapObjectResult getBackWhenItsDone, String token) {
         try {
             String url = "https://bonodom.com/api/list_maps_estates";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -515,46 +521,5 @@ public class EstateUtil {
             e.printStackTrace();
         }
     }
-
-
-    /*public static void uploadImage(final SoapObjectResult getBackWhenItsDone, Bitmap bitmap) {
-        try {
-            String url = "http://lookrnd.me/dev/upload/uploadtoserver?ing_hash=anh3x2fz5np1";
-
-            //HashMap<String, String> postadatok = new HashMap<String, String>();
-            //postadatok.put("ingatlan_meret", meret);
-
-
-
-            ImageUploadService ss = new ImageUploadService(new SoapResult() {
-                @Override
-                public void parseRerult(String result) {
-                    Log.d("ADDESTATE: ", "Return: " + result);
-
-                    if (result != null) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-
-                            Object isSuccesfull = jsonObject.getBoolean("error");
-                            //Object id = jsonObject.getInt("id");
-
-                            getBackWhenItsDone.parseRerult(isSuccesfull);
-
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Log.e("ServiceHandler", "Couldn't get any data from the url");
-                    }
-                }
-            }, bitmap);
-            ss.execute(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }*/
 
 }
