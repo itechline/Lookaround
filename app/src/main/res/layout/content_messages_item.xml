@@ -6,7 +6,8 @@
     <RelativeLayout
         android:id="@+id/message_item_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_border1">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -68,10 +69,13 @@
                 android:text="Kezicsókolom, csak asszeretném mekkérdezni, hogy ilyen bidbull-agár keverékkutyák érdeklik-e cserébe?"
                 android:id="@+id/message_text_textview"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="5sp"
                 android:textSize="11sp"
                 android:maxLines="2"
-                android:ellipsize="end"/>
+                android:ellipsize="end"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="5sp"
+                android:layout_marginBottom="5sp" />
 
 
         </LinearLayout>
