@@ -70,88 +70,89 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.item_realestate_progressbar);
             progressBar.setVisibility(View.VISIBLE);
             image.setImageBitmap(null);
-
         }
+            TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
+            TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
+            TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
 
-        TextView adress = (TextView) convertView.findViewById(R.id.item_realestate_adress1);
-        TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
-        TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
-        TextView price = (TextView) convertView.findViewById(R.id.Price);
-        final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
-        ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
+            final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
+            ImageView image = (ImageView) convertView.findViewById(R.id.item_realestate_mainpic);
 
-        TextView size = (TextView) convertView.findViewById(R.id.list_size_textView);
-        TextView rooms = (TextView) convertView.findViewById(R.id.list_roomcount_textView);
-        ImageView furniture = (ImageView) convertView.findViewById(R.id.list_furniture_imageview);
-        ImageView balcony = (ImageView) convertView.findViewById(R.id.list_balcony_imageview);
-        ImageView parking = (ImageView) convertView.findViewById(R.id.list_parking_imageview);
+            TextView size = (TextView) convertView.findViewById(R.id.list_size_textView);
+            TextView rooms = (TextView) convertView.findViewById(R.id.list_roomcount_textView);
+            ImageView furniture = (ImageView) convertView.findViewById(R.id.list_furniture_imageview);
+            ImageView balcony = (ImageView) convertView.findViewById(R.id.list_balcony_imageview);
+            ImageView parking = (ImageView) convertView.findViewById(R.id.list_parking_imageview);
 
-        size.setText(estate.getMeret());
-        rooms.setText(String.valueOf(estate.getSzobaszam()));
+            size.setText(estate.getMeret());
+            rooms.setText(String.valueOf(estate.getSzobaszam()));
 
-        if (estate.getButor() == 1) {
-            furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nofurniture));
-        } else {
-            furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
-        }
-
-        if (estate.getErkely() == 0) {
-            balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nobalcony));
-        } else {
-            balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
-        }
-
-        if (estate.getParkolas() == 4 ) {
-            parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
-        } else {
-            parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));
-        }
-
-
-
-
-        adress.setText(estate.getAdress());
-        street.setText(estate.getStreet());
-        description.setText(estate.getDescription());
-
-        Locale locale = new Locale("en", "UK");
-
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-        //symbols.setDecimalSeparator(';');
-        symbols.setGroupingSeparator('.');
-
-        String pattern = "###,###";
-        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-        String format = decimalFormat.format(estate.getPrice());
-
-        if (estate.getType() == 1) {
-            price.setText(format + " Ft");
-        } else {
-            price.setText(format + " Ft/hó");
-        }
-        fav.setChecked(estate.isFavourite());
-
-        fav.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //is chkIos checked?
-                if (((CheckBox) v).isChecked()) {
-                //if (fav.isChecked()) {
-                    setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
-                } else {
-                    setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
-                }
+            if (estate.getButor() == 1) {
+                furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nofurniture));
+            } else {
+                furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
             }
-        });
 
-        // TODO: remove comment signs to load images
-        if (estate.getUrls() != null || !estate.getUrls().equals("")) {
-            Log.d("URLS", estate.getUrls());
-            final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
-            imageList.add(task);
-            task.execute(estate.getUrls());
-        }
+            if (estate.getErkely() == 0) {
+                balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nobalcony));
+            } else {
+                balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
+            }
+
+            if (estate.getParkolas() == 4) {
+                parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
+            } else {
+                parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));
+            }
+
+
+            adress.setText(estate.getAdress());
+            street.setText(estate.getStreet());
+            description.setText(estate.getDescription());
+
+            if (estate.getJustme().equals("0")) {
+                TextView price = (TextView) convertView.findViewById(R.id.Price);
+
+                Locale locale = new Locale("en", "UK");
+
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+                //symbols.setDecimalSeparator(';');
+                symbols.setGroupingSeparator('.');
+
+                String pattern = "###,###";
+                DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+                String format = decimalFormat.format(estate.getPrice());
+
+                if (estate.getType() == 1) {
+                    price.setText(format + " Ft");
+                } else {
+                    price.setText(format + " Ft/hó");
+                }
+                fav.setChecked(estate.isFavourite());
+
+                fav.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //is chkIos checked?
+                        if (((CheckBox) v).isChecked()) {
+                            //if (fav.isChecked()) {
+                            setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "1");
+                        } else {
+                            setEstateFavourite(estate, fav, String.valueOf(estate.getId()), SettingUtil.getToken(getContext()), "0");
+                        }
+                    }
+                });
+            }
+
+            // TODO: remove comment signs to load images
+            if (estate.getUrls() != null || !estate.getUrls().equals("")) {
+                Log.d("URLS", estate.getUrls());
+                final DownloadImageTask task = new DownloadImageTask(image, position, convertView);
+                imageList.add(task);
+                task.execute(estate.getUrls());
+            }
+
 
         return convertView;
     }

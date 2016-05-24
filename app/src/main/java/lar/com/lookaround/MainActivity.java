@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity
 
                 //String lrgst = String.valueOf(EstateUtil.largestId);
                 if (!isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                 } else {
                     loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
                 }
@@ -296,6 +296,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    int prewMessageCount = 0;
     public void refreshMessageCount() {
         MessageUtil.getMessageCount(new SoapObjectResult() {
             @Override
@@ -303,8 +304,14 @@ public class MainActivity extends AppCompatActivity
                 try {
                     int c = (int) result;
                     TextView count = (TextView) findViewById(R.id.nav_message_count);
-
                     count.setText(String.valueOf(result));
+                    if (prewMessageCount < c) {
+                        if (prewMessageCount != 0) {
+                            Snackbar.make(viewFlip.getCurrentView(), "Hirdetés feladva!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        prewMessageCount = c;
+                    }
                 } catch (Exception e) {
                     Log.e("MSG", "COUNT");
                 }
@@ -895,7 +902,7 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     showFav = "0";
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
             }
 
             @Override
@@ -1458,15 +1465,15 @@ public class MainActivity extends AppCompatActivity
         switch (adType) {
             case 1:
                 typeText.setText("Eladó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1", String.valueOf(sortingSpinner_int), 0);
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1", String.valueOf(sortingSpinner_int), isMyAds);
                 break;
             case 2:
                 typeText.setText("Kiadó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2", String.valueOf(sortingSpinner_int), 0);
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2", String.valueOf(sortingSpinner_int), isMyAds);
                 break;
             default:
                 typeText.setText("Mindegy");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0", String.valueOf(sortingSpinner_int), 0);
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0", String.valueOf(sortingSpinner_int), isMyAds);
                 adType = 0;
                 break;
         }
@@ -2332,6 +2339,7 @@ private int whichAddestatePage = 0;
                 final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
 
                 thread.setAdapter(adapter);
+                thread.setDividerHeight(0);
 
                 final EditText et = (EditText) findViewById(R.id.write_message_edittext);
                 RelativeLayout send = (RelativeLayout)findViewById(R.id.sent_message_text_rlayout);
@@ -2383,8 +2391,6 @@ private int whichAddestatePage = 0;
 
                 if (justme == 1 && fav.equals("1")) {
                     favToSend = "0";
-                } else {
-                    favToSend = "1";
                 }
                 Log.d("FAVTOSEND", favToSend);
                 //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
@@ -2434,8 +2440,6 @@ private int whichAddestatePage = 0;
                                 String lrgst = String.valueOf(EstateUtil.largestId);
                                 if (justme == 1 && fav.equals("1")) {
                                     favToSend = "0";
-                                } else {
-                                    favToSend = "1";
                                 }
                                 EstateUtil.listEstates(new SoapObjectResult() {
                                     @Override
@@ -2550,9 +2554,11 @@ private int whichAddestatePage = 0;
         switchLayoutTo(MESSAGES);
     }
 
+    int isMyAds = 0;
     public void showMyAds(View view) {
+        isMyAds = 1;
         switchLayoutTo(ESTATESLIST);
-        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 1);
+        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
     }
 
     @Override
@@ -2653,7 +2659,8 @@ private int whichAddestatePage = 0;
                 if (viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+                isMyAds = 0;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                 break;
             case R.id.nav_profile:
                 switchLayoutTo(PROFILE);
@@ -2672,7 +2679,8 @@ private int whichAddestatePage = 0;
                 if(viewFlip.getDisplayedChild() != ESTATESLIST) {
                     switchLayoutTo(ESTATESLIST);
                 }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+                isMyAds = 0;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                 break;
             case R.id.nav_admonitor:
                 //TODO: létrehozni hozzá az API-t
@@ -2735,6 +2743,8 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setTitle("Üzenetek");
                 break;
             case MESSAGES2:
+                final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+                fab_phone.setVisibility(View.INVISIBLE);
                 getSupportActionBar().setTitle("Üzenetek");
                 break;
             case BOOKING:
