@@ -2696,6 +2696,7 @@ private int whichAddestatePage = 0;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab_phone.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
+        getSupportActionBar().setTitle("Saját");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         closeDrawer();
     }
