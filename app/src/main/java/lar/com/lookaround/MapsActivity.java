@@ -404,6 +404,11 @@ public class MapsActivity extends AppCompatActivity {
                 double lat = add.getLatitude();
                 double lng = add.getLongitude();
                 gotoLocation(lat, lng, 12);
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.maps_search_main_relative);
+                linearLayout.setVisibility(View.GONE);
+            } else {
+                Snackbar.make(mapView, "Hibás cím!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         //MyItem offsetItem = new MyItem(lat, lng, 1);
         //mClusterManager.addItem(offsetItem);
@@ -515,11 +520,7 @@ public class MapsActivity extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.maps_edittext_input);
         try {
             getLocate(autoCompleteTextView.getText().toString());
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.maps_search_main_relative);
-            linearLayout.setVisibility(View.GONE);
         } catch (IOException e) {
-            Snackbar.make(view, "Hibás cím!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
             e.printStackTrace();
         }
     }
