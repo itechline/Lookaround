@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -491,6 +492,11 @@ public class MapsActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void searchOnMap(View view) {
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.maps_edittext_input);
+        //getLocate
     }
 
 
