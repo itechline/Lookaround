@@ -21,10 +21,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/msg_backgroud_me"
         android:layout_margin="10sp"
-        android:layout_toLeftOf="@+id/message_profile_pic_me"
-        android:layout_alignParentRight="false"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/message_profile_pic_me"
+        android:layout_toLeftOf="@+id/message_profile_pic_me">
 
         <TextView
             android:layout_width="wrap_content"
