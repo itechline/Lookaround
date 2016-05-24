@@ -20,8 +20,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -108,6 +110,17 @@ public class MapsActivity extends AppCompatActivity {
                 }
             });
         }
+
+        String[] some_array = getResources().getStringArray(R.array.varosok_array);
+
+        AutoCompleteTextView autocomplete = (AutoCompleteTextView)
+                findViewById(R.id.maps_edittext_input);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item, some_array);
+
+        autocomplete.setThreshold(2);
+        autocomplete.setAdapter(adapter);
     }
 
     @Override
@@ -391,10 +404,10 @@ public class MapsActivity extends AppCompatActivity {
         double lng = add.getLongitude();
 
 
-        MyItem offsetItem = new MyItem(lat, lng, 1);
-        mClusterManager.addItem(offsetItem);
+        //MyItem offsetItem = new MyItem(lat, lng, 1);
+        //mClusterManager.addItem(offsetItem);
         //gotoLocation(lat, lng, 10);
-
+        gotoLocation(lat,lng, 12);
     }
 
 
@@ -423,6 +436,10 @@ public class MapsActivity extends AppCompatActivity {
                 //finish();
                 setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();
+                break;
+            case R.id.action_search_maps:
+                RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.maps_search_main_relative);
+                relativeLayout.setVisibility(View.VISIBLE);
                 break;
             case android.R.id.home:
                 setResult(Activity.RESULT_CANCELED, returnIntent);
@@ -496,7 +513,13 @@ public class MapsActivity extends AppCompatActivity {
 
     public void searchOnMap(View view) {
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.maps_edittext_input);
-        //getLocate
+        try {
+            getLocate(autoCompleteTextView.getText().toString());
+            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.maps_search_main_relative);
+            relativeLayout.setVisibility(View.GONE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
