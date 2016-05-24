@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sorting_estates_relativeLayout"
+        android:id="@+id/maps_search_main_relative"
         android:background="#f1f2f3">
 
         <RelativeLayout
