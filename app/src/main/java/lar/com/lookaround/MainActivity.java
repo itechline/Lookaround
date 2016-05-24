@@ -2550,8 +2550,66 @@ private int whichAddestatePage = 0;
     MenuView.ItemView favItem;
     boolean isFavEstate = false;
 
+    /*
+            case R.id.nav_profile:
+                switchLayoutTo(PROFILE);
+                break;
+            case R.id.nav_messages:
+                switchLayoutTo(MESSAGES);
+                break;
+            case R.id.nav_billing:
+                switchLayoutTo(BOOKING);
+                break;
+            case R.id.nav_myads:
+                break;
+            case R.id.nav_myfavs:
+                isShowingFavorites = true;
+                if(viewFlip.getDisplayedChild() != ESTATESLIST) {
+                    switchLayoutTo(ESTATESLIST);
+                }
+                isMyAds = 0;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+                break;
+            case R.id.nav_admonitor:
+                break;
+            case R.id.nav_invitation:
+                switchLayoutTo(INVITE);
+                break;
+            case R.id.nav_logout:
+                //finishActivity();
+                LoginUtil.logout(this, new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                        if ((boolean) result) {
+                            Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null)
+
+                                    .show();
+                        } else {
+                            SettingUtil.setToken(MainActivity.this, "");
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        }
+                    }
+                });
+
+                //finish();
+                break;
+     */
+
+    public void showAllEstates(View view) {
+        isShowingFavorites = false;
+        if (viewFlip.getDisplayedChild() != ESTATESLIST) {
+            switchLayoutTo(ESTATESLIST);
+        }
+        isMyAds = 0;
+        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+        closeDrawer();
+    }
+
+
     public void showMessages(View view) {
         switchLayoutTo(MESSAGES);
+        closeDrawer();
     }
 
     int isMyAds = 0;
@@ -2559,6 +2617,13 @@ private int whichAddestatePage = 0;
         isMyAds = 1;
         switchLayoutTo(ESTATESLIST);
         loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+        closeDrawer();
+    }
+
+    public void closeDrawer() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
     }
 
     @Override
