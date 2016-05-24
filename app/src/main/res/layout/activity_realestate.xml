@@ -24,14 +24,279 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="170sp"
+            android:paddingTop="160sp"
             >
 
             <RelativeLayout
                 android:id="@+id/nav_drawer_layout_r"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/menu_all_add_layout">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_all_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_mainpage"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mainpage"
+                        android:id="@+id/nav_mainpage"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_profile_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_all_add_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_profile_img"
+                        android:src="@drawable/ic_action_prof"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile"
+                        android:id="@+id/nav_profile"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_messages_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_profile_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_envelop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_messages_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/messages"
+                        android:id="@+id/nav_messages"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="69"
+                        android:id="@+id/nav_message_count"
+                        android:layout_gravity="center_vertical|right"
+                        android:gravity="right"
+                        android:background="#f25e36"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="10sp"
+                        android:paddingLeft="2sp"
+                        android:paddingRight="2sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_billing_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_messages_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_billing_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/billing"
+                        android:id="@+id/nav_billing"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nav_myads_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_billing_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_house"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_myads_img"
+                        android:layout_marginLeft="10sp"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/myadvertisements"
+                        android:id="@+id/nav_myads"
+                        android:layout_marginLeft="10sp"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_favs_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/nav_myads_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_heart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_myfavs_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/myfavourites"
+                        android:id="@+id/nav_myfavs"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_admonitor_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_favs_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_binocular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_admonitor_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/admonitor"
+                        android:id="@+id/nav_admonitor"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_agency_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_admonitor_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_agencies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_agency_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agency"
+                        android:id="@+id/nav_agency"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_invite_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_agency_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_users"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_invitation_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/invitation"
+                        android:id="@+id/nav_invitation"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_logout_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_invite_layout"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_logout_img"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/logout"
+                        android:id="@+id/nav_logout"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+
 
 
 
