@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity
 
 
     final int TAKE_PHOTO_CODE = 9999;
-
+    private String mobileNum = "0";
 
 
     File cacheFile;
@@ -207,13 +207,14 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
         fab_phone.setVisibility(View.INVISIBLE);
         fab_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:06304979787"));
+                intent.setData(Uri.parse("tel:" + mobileNum));
                 startActivity(intent);
             }
         });
@@ -1998,6 +1999,13 @@ private int whichAddestatePage = 0;
 
         final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
+        final TextView name = (TextView) findViewById(R.id.profile_name_text);
+        final TextView profile_type = (TextView) findViewById(R.id.profile_type_text);
+
+
+
+
+
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
@@ -2022,6 +2030,10 @@ private int whichAddestatePage = 0;
                     size.setText(obj.getString("ingatlan_meret"));
                     type.setText(obj.getString("ingatlan_tipus"));
                     item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
+
+                    name.setText(obj.getString("vezeteknev") + " " + obj.getString("keresztnev"));
+                    profile_type.setText(obj.getString("tipus"));
+                    mobileNum = obj.getString("mobil");
 
                     Locale locale = new Locale("en", "UK");
 
