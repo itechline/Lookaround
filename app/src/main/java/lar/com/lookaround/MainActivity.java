@@ -2069,12 +2069,14 @@ private int whichAddestatePage = 0;
 
                     favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
 
-                    if (isFavEstate) {
-                        Log.d("ISFAV ", "TRUE");
-                        favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
-                    } else {
-                        Log.d("ISFAV ", "FALSE");
-                        favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                    if (favItem != null) {
+                        if (isFavEstate) {
+                            Log.d("ISFAV ", "TRUE");
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                        } else {
+                            Log.d("ISFAV ", "FALSE");
+                            favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                        }
                     }
 
                     if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
@@ -2393,11 +2395,17 @@ private int whichAddestatePage = 0;
         }, SettingUtil.getToken(this), hash, uid);
     }
 
-    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int justme) {
+    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int jstme) {
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
-        Log.d("JUSTME_LOADREALESTATES", String.valueOf(justme));
+        favToSend = "0";
+        if (jstme == 1 && fav.equals("1")) {
+            favToSend = "0";
+        }
+        if (jstme == 0 && fav.equals("1")) {
+            favToSend = "1";
+        }
         EstateUtil.listEstates(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
@@ -2413,10 +2421,7 @@ private int whichAddestatePage = 0;
                 final int mPosition=0;
                 final int mOffset=0;
 
-                if (justme == 1 && fav.equals("1")) {
-                    favToSend = "0";
-                }
-                Log.d("FAVTOSEND", favToSend);
+
                 //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
                 final View csok = (View) findViewById(R.id.sorting_estates_relativeLayout);
 
@@ -2462,7 +2467,7 @@ private int whichAddestatePage = 0;
                                 pageCount += 1;
                                 String pageStr = String.valueOf(pageCount);
                                 String lrgst = String.valueOf(EstateUtil.largestId);
-                                if (justme == 1 && fav.equals("1")) {
+                                if (jstme == 1 && fav.equals("1")) {
                                     favToSend = "0";
                                 }
                                 EstateUtil.listEstates(new SoapObjectResult() {
@@ -2472,14 +2477,14 @@ private int whichAddestatePage = 0;
                                         adapter.addAll(arrayOfUsers);
                                         isRefreshing = true;
                                     }
-                                }, lrgst, pageStr, tokenToSend, favToSend, etypeString, ordering, String.valueOf(justme));
+                                }, lrgst, pageStr, tokenToSend, favToSend, etypeString, ordering, String.valueOf(jstme));
                             }
                         }
                     }
                 });
                 swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend, favToSend, etypeString, ordering, String.valueOf(justme));
+        }, idPost, pagePost, tokenToSend, favToSend, etypeString, ordering, String.valueOf(jstme));
 
 
         supportInvalidateOptionsMenu();
@@ -2577,12 +2582,6 @@ private int whichAddestatePage = 0;
     boolean isFavEstate = false;
 
     /*
-            case R.id.nav_profile:
-                switchLayoutTo(PROFILE);
-                break;
-            case R.id.nav_messages:
-                switchLayoutTo(MESSAGES);
-                break;
             case R.id.nav_billing:
                 switchLayoutTo(BOOKING);
                 break;
@@ -2622,8 +2621,54 @@ private int whichAddestatePage = 0;
                 break;
      */
 
+    public void doLogout(View view) {
+        LoginUtil.logout(this, new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if ((boolean) result) {
+                    Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+
+                            .show();
+                } else {
+                    SettingUtil.setToken(MainActivity.this, "");
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            }
+        });
+    }
+
+    public void showInviteFriends(View view) {
+        isBackPressed = false;
+        switchLayoutTo(INVITE);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        closeDrawer();
+    }
+
+    public void showMyFavs(View view) {
+        isBackPressed = false;
+        isShowingFavorites = true;
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        if(viewFlip.getDisplayedChild() != ESTATESLIST) {
+            switchLayoutTo(ESTATESLIST);
+        }
+        isMyAds = 0;
+        Log.d("MY", "FAVS");
+        getSupportActionBar().setTitle("Kedvencek");
+        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+        closeDrawer();
+    }
+
+    public void showProfile(View view) {
+        isBackPressed = false;
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        switchLayoutTo(PROFILE);
+        closeDrawer();
+    }
+
     public void showAllEstates(View view) {
         isBackPressed = false;
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         isShowingFavorites = false;
         if (viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
@@ -2636,6 +2681,7 @@ private int whichAddestatePage = 0;
 
     public void showMessages(View view) {
         isBackPressed = false;
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         loadMessages();
         closeDrawer();
     }
@@ -2726,10 +2772,24 @@ private int whichAddestatePage = 0;
                 FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
                 switch (viewFlip.getDisplayedChild()) {
                     case ESTATESLIST:
-                        if (drawer.isDrawerOpen(GravityCompat.START)) {
-                            drawer.closeDrawer(GravityCompat.START);
+                        if (isShowingFavorites) {
+                            isMyAds = 0;
+                            isShowingFavorites = false;
+                            getSupportActionBar().setTitle("Hirdetések");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                            loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+                        } else if (isMyAds == 1) {
+                            isMyAds = 0;
+                            isShowingFavorites = false;
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                            getSupportActionBar().setTitle("Hirdetések");
+                            loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else {
-                            drawer.openDrawer(GravityCompat.START);
+                            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                                drawer.closeDrawer(GravityCompat.START);
+                            } else {
+                                drawer.openDrawer(GravityCompat.START);
+                            }
                         }
                         break;
                     default:

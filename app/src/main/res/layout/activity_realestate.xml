@@ -65,6 +65,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
+                    android:onClick="showProfile"
                     android:layout_below="@+id/menu_all_add_layout"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/navbar_button">
@@ -186,6 +187,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
+                    android:onClick="showMyFavs"
                     android:layout_below="@+id/nav_myads_layout"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/navbar_button">
@@ -266,6 +268,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
+                    android:onClick="showInviteFriends"
                     android:layout_below="@+id/menu_agency_layout"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/navbar_button">
@@ -292,6 +295,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
+                    android:onClick="doLogout"
                     android:layout_below="@+id/menu_invite_layout"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/navbar_button">
