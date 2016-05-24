@@ -135,7 +135,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/nav_billing_img"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10sp" />
+                        android:layout_marginLeft="10sp"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -143,7 +144,8 @@
                         android:text="@string/billing"
                         android:id="@+id/nav_billing"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10sp" />
+                        android:layout_marginLeft="10sp"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -235,7 +237,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/nav_agency_img"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10sp" />
+                        android:layout_marginLeft="10sp"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -243,7 +246,8 @@
                         android:text="@string/agency"
                         android:id="@+id/nav_agency"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10sp" />
+                        android:layout_marginLeft="10sp"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <LinearLayout
