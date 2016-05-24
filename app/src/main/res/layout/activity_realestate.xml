@@ -39,6 +39,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:id="@+id/menu_all_add_layout"
+                    android:onClick="showAllEstates"
                     android:background="@drawable/navbar_button">
 
                     <ImageView
