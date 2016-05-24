@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity
                     count.setText(String.valueOf(result));
                     if (prewMessageCount < c) {
                         if (prewMessageCount != 0) {
-                            Snackbar.make(viewFlip.getCurrentView(), "Hirdetés feladva!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(viewFlip.getCurrentView(), "Üzenete érkezett!", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         prewMessageCount = c;
@@ -320,8 +320,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    String[] gyax = {"Kolbász","Volvo","Cibakháza","Debrecen","Gyuluska","Apuka","DIKK","Kicsoda?","Mérnem?"};
-    //autocomplete
     public void autocompleteSetter(){
         String[] some_array = getResources().getStringArray(R.array.varosok_array);
 
@@ -2498,7 +2496,6 @@ private int whichAddestatePage = 0;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-
         if (prewViews.size() > 0) {
             isBackPressed = true;
             switchLayoutTo(prewViews.get(prewViews.size() - 1));
@@ -2535,6 +2532,9 @@ private int whichAddestatePage = 0;
                 getSupportActionBar().setTitle("Profilom");
                 break;
             case MESSAGES:
+                fab.setVisibility(View.INVISIBLE);
+                fab_phone.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 getSupportActionBar().setTitle("Üzenetek");
                 break;
             case BOOKING:
@@ -2623,6 +2623,7 @@ private int whichAddestatePage = 0;
      */
 
     public void showAllEstates(View view) {
+        isBackPressed = false;
         isShowingFavorites = false;
         if (viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
@@ -2634,15 +2635,22 @@ private int whichAddestatePage = 0;
 
 
     public void showMessages(View view) {
+        isBackPressed = false;
         loadMessages();
         closeDrawer();
     }
 
     int isMyAds = 0;
     public void showMyAds(View view) {
+        isBackPressed = false;
         isMyAds = 1;
         switchLayoutTo(ESTATESLIST);
         loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+        FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab_phone.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         closeDrawer();
     }
 
@@ -2744,7 +2752,7 @@ private int whichAddestatePage = 0;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id) {
+        /*switch (id) {
             case R.id.nav_mainpage:
                 isShowingFavorites = false;
                 if (viewFlip.getDisplayedChild() != ESTATESLIST) {
@@ -2805,7 +2813,7 @@ private int whichAddestatePage = 0;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.END);*/
         return true;
     }
 
@@ -2846,11 +2854,13 @@ private int whichAddestatePage = 0;
                 break;
         }
 
-        if (viewFlip.getDisplayedChild() == switchTo) {
+        // TODO: ez itt nem jó :D de nagyon nem. de egylőre gyorsan javítottam.
+        if (viewFlip.getDisplayedChild() == switchTo && isBackPressed) {
             if (prewViews.size() > 1) {
                 switchTo = prewViews.get(prewViews.size() - 2);
             }
         }
+
         while(mCurrentLayoutState != switchTo){
             if(mCurrentLayoutState > switchTo){
                 mCurrentLayoutState--;
