@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/maps_search_main_relative"
         android:background="#f1f2f3"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:gravity="center_vertical|center_horizontal">
 
         <RelativeLayout
             android:id="@+id/sort_estates_spinner_layout"
