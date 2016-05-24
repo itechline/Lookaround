@@ -11,19 +11,20 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -32,27 +33,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
-import android.view.LayoutInflater;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import lar.com.lookaround.adapters.AddImageAdapter;
-import lar.com.lookaround.restapi.SoapObjectResult;
-import lar.com.lookaround.restapi.SoapResult;
-import lar.com.lookaround.restapi.SoapService;
-import lar.com.lookaround.util.AddImageUtil;
-import lar.com.lookaround.util.LoginUtil;
-import lar.com.lookaround.util.ScalingUtilities;
-import lar.com.lookaround.util.SettingUtil;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -60,13 +40,26 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import lar.com.lookaround.restapi.SoapObjectResult;
+import lar.com.lookaround.util.EstateUtil;
+import lar.com.lookaround.util.LoginUtil;
+import lar.com.lookaround.util.ScalingUtilities;
+import lar.com.lookaround.util.SettingUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -134,14 +127,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     int whichPage = 0;
+    private double lat = 0d;
+    private double lng = 0d;
 
-    public void nextPageFirstSetting(View view) {
+    public void nextPageFirstSetting(final View view) {
         if (whichPage < 3) {
             whichPage += 1;
 
+            EditText phone = (EditText) findViewById(R.id.first_setting_phone_edittext);
+            EditText varos = (EditText) findViewById(R.id.first_setting_city_edittext);
             switch (whichPage) {
                 case 1:
-                    EditText varos = (EditText) findViewById(R.id.first_setting_city_edittext);
                     String varosString = varos.getText().toString();
 
                     if(!isValidName(varosString)) {
@@ -149,12 +145,25 @@ public class LoginActivity extends AppCompatActivity {
                         varos.invalidate();
                         whichPage = 0;
                     } else {
+                        Geocoder gc = new Geocoder(this);
+
+                        List<Address> list = null;
+                        try {
+                            list = gc.getFromLocationName(varosString, 1);
+
+                            if (!list.isEmpty()) {
+                                Address add = list.get(0);
+                                lat = add.getLatitude();
+                                lng = add.getLongitude();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         switchLayoutToFirstSettings(whichPage);
                         pageIndicatorSetter(whichPage);
                     }
                     break;
                 case 2:
-                    EditText phone = (EditText) findViewById(R.id.first_setting_phone_edittext);
                     String phoneString = phone.getText().toString();
 
                     if(!isValidName(phoneString)) {
@@ -168,8 +177,19 @@ public class LoginActivity extends AppCompatActivity {
                     break;
                 case 3:
                     //TODO: adatokat feltölteni és profilképet is ha van
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    EstateUtil.updateReg(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            if ((boolean) result) {
+                                Snackbar.make(view, "Hiba történt!", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            } else {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            }
+
+                        }
+                    }, SettingUtil.getToken(this), String.valueOf(lat), String.valueOf(lng), phone.getText().toString());
                     break;
             }
 
