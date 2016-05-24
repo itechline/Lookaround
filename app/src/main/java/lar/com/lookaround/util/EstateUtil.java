@@ -236,7 +236,7 @@ public class EstateUtil {
 
     public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_estates";
+            String url = "https://bonodom.com/api/list_estates";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_id", idPost);
@@ -326,7 +326,7 @@ public class EstateUtil {
 
     public static void getEstate(final SoapObjectResult getBackWhenItsDone, String idPost, String tokenTosend) {
         try {
-            String url = "http://lookrnd.me/dev/api/get_estate";
+            String url = "https://bonodom.com/api/get_estate";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("id", idPost);
@@ -364,7 +364,7 @@ public class EstateUtil {
 
     public static void setFavorite(final SoapObjectResult getBackWhenItsDone, String idSend, String tokenSend, String favorite) {
         try {
-            String url = "http://lookrnd.me/dev/api/set_favorite";
+            String url = "https://bonodom.com/api/set_favorite";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_id", idSend);
@@ -407,7 +407,7 @@ public class EstateUtil {
                                  String lift, String futes, String parkolas, String erkely, String tipus, String emelet,
                                  String allapot, String szobaszam, String lng, String lat, String title, String type, String token) {
         try {
-            String url = "http://lookrnd.me/dev/api/add_estate";
+            String url = "https://bonodom.com/api/add_estate";
 
 
             //TODO: tokent is át kell adni
@@ -471,7 +471,7 @@ public class EstateUtil {
 
     public static void list_map_estates(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_maps_estates";
+            String url = "https://bonodom.com/api/list_maps_estates";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             SoapService ss = new SoapService(new SoapResult() {

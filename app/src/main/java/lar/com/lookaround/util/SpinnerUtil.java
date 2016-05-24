@@ -74,7 +74,7 @@ public class SpinnerUtil {
 
     public static void get_list_hirdetestipusa(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_hirdetestipusa";
+            String url = "https://bonodom.com/api/list_hirdetestipusa";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -115,7 +115,7 @@ public class SpinnerUtil {
 
     public static void get_list_ingatlanallapota(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanallapota";
+            String url = "https://bonodom.com/api/list_ingatlanallapota";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -156,7 +156,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlanenergia
     public static void get_list_ingatlanenergia(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanenergia";
+            String url = "https://bonodom.com/api/list_ingatlanenergia";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -197,7 +197,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlanfutes
     public static void get_list_ingatlanfutes(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanfutes";
+            String url = "https://bonodom.com/api/list_ingatlanfutes";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -240,7 +240,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlankilatas
     public static void get_list_ingatlankilatas(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlankilatas";
+            String url = "https://bonodom.com/api/list_ingatlankilatas";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -283,7 +283,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlanparkolas
     public static void get_list_ingatlanparkolas(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanparkolas";
+            String url = "https://bonodom.com/api/list_ingatlanparkolas";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -325,7 +325,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlanszoba
     public static void get_list_ingatlanszoba(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanszoba";
+            String url = "https://bonodom.com/api/list_ingatlanszoba";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -368,7 +368,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlantipus
     public static void get_list_ingatlantipus(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlantipus";
+            String url = "https://bonodom.com/api/list_ingatlantipus";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 
@@ -410,7 +410,7 @@ public class SpinnerUtil {
     //http://lookrnd.me/dev/api/list_ingatlanemelet
     public static void get_list_ingatlanemelet(final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/list_ingatlanemelet";
+            String url = "https://bonodom.com/api/list_ingatlanemelet";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
 

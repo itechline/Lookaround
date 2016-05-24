@@ -3,10 +3,8 @@ package lar.com.lookaround.util;
 import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,7 +28,7 @@ public class LoginUtil {
 
     public static void login(final Context ctx, final SoapObjectResult getBackWhenItsDone, String mail, String passw) {
         try {
-            String url = "http://lookrnd.me/dev/api/do_login";
+            String url = "https://bonodom.com/api/do_login";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("email", mail);
@@ -76,7 +74,7 @@ public class LoginUtil {
 
     public static void logout(final Context ctx, final SoapObjectResult getBackWhenItsDone) {
         try {
-            String url = "http://lookrnd.me/dev/api/do_logout";
+            String url = "https://bonodom.com/api/do_logout";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("token", SettingUtil.getToken(ctx));
@@ -118,7 +116,7 @@ public class LoginUtil {
 
     public static void tokenValidator(final Context ctx, final SoapObjectResult getBackWhenItsDone, String token) {
         try {
-            String url = "http://lookrnd.me/dev/api/token_validator";
+            String url = "https://bonodom.com/api/token_validator";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("token", token);
@@ -159,7 +157,7 @@ public class LoginUtil {
 
     public static void sendRegistration(final Context ctx, final SoapObjectResult getBackWhenItsDone, String vezeteknev, String keresztnev, String email, String jelszo, String tipus) {
         try {
-            String url = "http://lookrnd.me/dev/api/reg";
+            String url = "https://bonodom.com/api/reg";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("fel_vezeteknev", vezeteknev);
