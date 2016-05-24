@@ -419,6 +419,42 @@ public class EstateUtil {
     }
 
 
+    public static void updateReg(final SoapObjectResult getBackWhenItsDone, String token, String lat, String lng, String mobil) {
+    try {
+        String url = "https://bonodom.com/api/updatereg";
+
+        HashMap<String, String> postadatok = new HashMap<String, String>();
+        postadatok.put("token", token);
+        postadatok.put("fel_lat", lat);
+        postadatok.put("fel_lng", lng);
+        postadatok.put("fel_mobilszam", mobil);
+        SoapService ss = new SoapService(new SoapResult() {
+            @Override
+            public void parseRerult(String result) {
+
+                //Log.d("RESULT_ADD_ESTATE ", result.toString());
+                if (result != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        boolean err = jsonObject.getBoolean("error");
+
+                        getBackWhenItsDone.parseRerult(err);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.e("ServiceHandler", "Couldn't get any data from the url");
+                }
+            }
+        }, postadatok);
+        ss.execute(new URL(url));
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
+}
+
+
 
 
 
