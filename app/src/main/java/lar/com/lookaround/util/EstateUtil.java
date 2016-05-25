@@ -461,7 +461,7 @@ public class EstateUtil {
     public static void addEstate(final SoapObjectResult getBackWhenItsDone, String meret, String varos,
                                  String utca, String leiras, String ar, String energia, String butor, String kilatas,
                                  String lift, String futes, String parkolas, String erkely, String tipus, String emelet,
-                                 String allapot, String szobaszam, String lng, String lat, String title, String type, String token) {
+                                 String allapot, String szobaszam, String lng, String lat, String title, String type, String token, String zipcode) {
         try {
             String url = "https://bonodom.com/api/add_estate";
 
@@ -487,6 +487,7 @@ public class EstateUtil {
             postadatok.put("ingatlan_title", title);
             postadatok.put("ing_e_type_id", type);
             postadatok.put("token", token);
+            postadatok.put("ingatlan_irszam", zipcode);
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {

@@ -158,7 +158,8 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:layout_margin="5sp"
-                android:gravity="right" />
+                android:gravity="right"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <RelativeLayout
