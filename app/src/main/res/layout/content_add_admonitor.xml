@@ -214,37 +214,7 @@
                         />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/text_localisation_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/localisation_search"
-                    android:layout_below="@+id/realestate_type_spinner_layout"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="15sp"
-                    android:layout_marginTop="5sp"
-                    android:layout_marginBottom="5sp"
-                    android:layout_marginLeft="10sp"/>
 
-                <RelativeLayout
-                    android:id="@+id/realestate_localisation_spinner_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35sp"
-                    android:layout_below="@+id/text_localisation_search"
-                    android:layout_centerHorizontal="true"
-                    android:paddingTop="5sp"
-                    android:paddingBottom="5sp"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:background="@drawable/spinner_border"
-                    android:paddingLeft="3sp">
-                    <Spinner
-                        android:id="@+id/realestate_localisation_spinner_admonitor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </RelativeLayout>
 
 
                 <TextView
@@ -253,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/floors_search"
-                    android:layout_below="@+id/realestate_localisation_spinner_layout"
+                    android:layout_below="@+id/realestate_type_spinner_layout"
                     android:layout_alignParentLeft="true"
                     android:textSize="15sp"
                     android:layout_marginTop="5sp"
