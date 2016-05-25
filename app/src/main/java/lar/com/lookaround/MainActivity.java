@@ -1099,6 +1099,7 @@ public class MainActivity extends AppCompatActivity
     private int TAKE_IMAGE_REQUEST = 0;
 
     public void pickImage(View view) {
+        takeOrPick = false;
         Intent intent = new Intent();
 
         intent.setType("image/*");
@@ -1107,7 +1108,9 @@ public class MainActivity extends AppCompatActivity
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
+    boolean takeOrPick;
     public void TakeImage(View view) {
+        takeOrPick = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
@@ -1251,7 +1254,8 @@ public class MainActivity extends AppCompatActivity
     int camImageID = 0;
     int galleryImageID = 0;
 
-    ArrayList<Uri> uris = new ArrayList <Uri>();
+    public ArrayList<Uri> uris = new ArrayList <Uri>();
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1283,6 +1287,7 @@ public class MainActivity extends AppCompatActivity
             try {
                 //imagesUri[imageID] = data.getData();
                 uris.add(data.getData());
+                Log.d("URIS_GET", uris.get(imageID).toString());
 
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -1380,8 +1385,14 @@ public class MainActivity extends AppCompatActivity
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
-
+                        uris.set(id, null);
+                        layout.getChildAt(id).setVisibility(View.GONE);
                         popupWindow.dismiss();
+                        if (takeOrPick) {
+                            TakeImage(viewFlipAddEstate.getCurrentView());
+                        } else {
+                            pickImage(viewFlipAddEstate.getCurrentView());
+                        }
                     }
                 });
 
@@ -1401,6 +1412,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View arg0) {
                         //layout.removeViewAt(id);
                         layout.getChildAt(id).setVisibility(View.GONE);
+                        uris.set(id, null);
                         popupWindow.dismiss();
 
                     }
@@ -1540,6 +1552,7 @@ public class MainActivity extends AppCompatActivity
 
     public double lat;
     public double lng;
+    public String zipcodeToSend = "0000";
 
 
 
@@ -1663,8 +1676,14 @@ private int whichAddestatePage = 0;
 
                             if (!list.isEmpty()) {
                                 Address add = list.get(0);
+                                zipcodeToSend = add.getPostalCode();
                                 lat = add.getLatitude();
                                 lng = add.getLongitude();
+                                if (zipcodeToSend != null) {
+                                    Log.d("ZIPCODE_1", zipcodeToSend);
+                                } else {
+                                    zipcodeToSend = "0000";
+                                }
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -1791,6 +1810,7 @@ private int whichAddestatePage = 0;
                     break;
 
                 case 5:
+                    Log.d("ZIPCODE_2", zipcodeToSend);
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
@@ -1798,82 +1818,17 @@ private int whichAddestatePage = 0;
 
                                                  if (!resArray.get(resArray.size() - 1).isError()) {
 
-                                                     hash = resArray.get(resArray.size()-1).getHash();
-
-
-
-
-
+                                                     hash = resArray.get(resArray.size() - 1).getHash();
 
                                                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                                          if (!Settings.System.canWrite(MainActivity.this)) {
                                                              requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                                                      Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
                                                          } else {
-                                                             ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
-                                                             progressBar.setMessage("Feltöltés...");
-                                                             progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                                                             progressBar.setIndeterminate(true);
-                                                             progressBar.setProgress(0);
-                                                             progressBar.setMax(uris.size());
-                                                             //progressBar.show();
-
-                                                             final int[] progress = {0};
-                                                             for (int i = 0; i < uris.size(); i++) {
-                                                                 Log.d("UPLOAD_URI", uris.get(0).toString());
-                                                                 File imageFile = new File(getRealPathFromURI(uris.get(i)));
-                                                                 Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
-
-                                                                 ImageUploadService service = new ImageUploadService(new SoapResult() {
-                                                                     @Override
-                                                                     public void parseRerult(String result) {
-                                                                         Log.e("error", "succes" + result);
-                                                                         //progress[0] += 1;
-                                                                         //progressBar.setProgress(progress[0]);
-                                                                         Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
-                                                                     }
-                                                                 }, imageFile, progressBar);
-                                                                 try {
-                                                                     // ingatlan hash-t átadni.
-                                                                     Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
-                                                                     service.execute(resArray.get(resArray.size()-1).getHash());
-                                                                 } catch (Exception e) {
-                                                                     e.printStackTrace();
-                                                                 }
-                                                             }
+                                                             uploadImages(hash);
                                                          }
                                                      } else {
-                                                         ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
-                                                         progressBar.setMessage("Feltöltés...");
-                                                         progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                                                         progressBar.setIndeterminate(true);
-                                                         progressBar.setProgress(0);
-                                                         progressBar.setMax(uris.size());
-                                                         //progressBar.show();
-
-                                                         final int[] progress = {0};
-                                                         for (int i = 0; i < uris.size(); i++) {
-                                                             //Log.d("UPLOAD_URI", uris.get(0).toString());
-                                                             File imageFile = new File(getRealPathFromURI(uris.get(i)));
-                                                             //Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
-
-                                                             ImageUploadService service = new ImageUploadService(new SoapResult() {
-                                                                 @Override
-                                                                 public void parseRerult(String result) {
-                                                                     Log.e("error", "succes" + result);
-                                                                     //progress[0] += 1;
-                                                                     //progressBar.setProgress(progress[0]);
-                                                                     Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
-                                                                 }
-                                                             }, imageFile, progressBar);
-                                                             try {
-                                                                 // ingatlan hash-t átadni.
-                                                                 Log.d("UPLOAD_HASH", resArray.get(resArray.size()-1).getHash());
-                                                                 service.execute(resArray.get(resArray.size()-1).getHash());
-                                                             } catch (Exception e) {
-                                                                 e.printStackTrace();
-                                                             }
-                                                         }
+                                                         uploadImages(hash);
                                                      }
 
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
@@ -1923,9 +1878,55 @@ private int whichAddestatePage = 0;
                                          }, estateSize, estateCity, estateStreet, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
-                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int), String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()));
+                            String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int),
+                            String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()), zipcodeToSend);
                     break;
             }
+        }
+    }
+
+    public void uploadImages(String hash) {
+        Log.d("UPLOAD_URI_SIZE", String.valueOf(uris.size()));
+        ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
+        progressBar.setMessage("Feltöltés...");
+        progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressBar.setIndeterminate(true);
+        progressBar.setProgress(0);
+        int imageCount = 0;
+        /*for (int i = 0; i < uris.size(); i++) {
+            if (uris.get(i) != null) {
+                imageCount += 1;
+            }
+        }
+        progressBar.setMax(imageCount);*/
+        progressBar.setMax(uris.size());
+
+        progressBar.show();
+        //final int[] progress = {0};
+        Log.d("UPLOAD_URI_FOR_CYCLE", "CALLED");
+        for (int j = 0; j < uris.size(); j++) {
+            Log.d("UPLOAD_URI_FOR_CYCLE", String.valueOf(j));
+            //if (!uris.get(j).equals(null)) {
+                File imageFile = new File(getRealPathFromURI(uris.get(j)));
+                Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
+
+                ImageUploadService service = new ImageUploadService(new SoapResult() {
+                    @Override
+                    public void parseRerult(String result) {
+                        Log.e("error", "succes" + result);
+                        //progress[0] += 1;
+                        //progressBar.setProgress(progress[0]);
+                        //Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
+                    }
+                }, imageFile, progressBar);
+                try {
+                    // ingatlan hash-t átadni.
+                    Log.d("UPLOAD_HASH", hash);
+                    service.execute(hash);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            //}
         }
     }
 
@@ -1936,36 +1937,7 @@ private int whichAddestatePage = 0;
         switch (requestCode) {
             case 2909: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
-                    progressBar.setMessage("Feltöltés...");
-                    progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                    progressBar.setIndeterminate(true);
-                    progressBar.setProgress(0);
-                    progressBar.setMax(uris.size());
-                    //progressBar.show();
-
-                    final int[] progress = {0};
-                    Log.e("Permission", "Granted");
-                    for (int i = 0; i < uris.size(); i++) {
-                        Log.d("UPLOAD_URI", uris.get(0).toString());
-                        File imageFile = new File(getRealPathFromURI(uris.get(i)));
-                        Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
-
-                        ImageUploadService service = new ImageUploadService(new SoapResult() {
-                            @Override
-                            public void parseRerult(String result) {
-                                Log.e("error", "succes" + result);
-                                //progress[0] += 1;
-                                //progressBar.setProgress(progress[0]);
-                            }
-                        }, imageFile, progressBar);
-                        try {
-                            // ingatlan hash-t átadni.
-                            service.execute(hash);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    uploadImages(hash);
                 } else {
                     Log.e("Permission", "Denied");
                 }
