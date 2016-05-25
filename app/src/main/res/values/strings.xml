@@ -36,6 +36,8 @@
     <string name="button_picdelete">Kép törlése</string>
     <string name="button_delete">törlés</string>
     <string name="button_modify">módosít</string>
+    <string name="button_yes">Igen</string>
+    <string name="button_no">Nem</string>
 
     <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
@@ -298,6 +300,7 @@
     <string name="idnt_want_to_ecnh">Nem szeretném kiemelni a hírdetésem</string>
     <string name="vr_button">Körbejárás</string>
     <string name="coming_soon">(Hamarosan)</string>
+    <string name="areyousure_delete">Biztosan törli a hírdetést?</string>
 
     <string-array name="varosok_array">
         <item>Aba</item>

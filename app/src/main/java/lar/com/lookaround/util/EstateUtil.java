@@ -487,6 +487,7 @@ public class EstateUtil {
             postadatok.put("ingatlan_title", title);
             postadatok.put("ing_e_type_id", type);
             postadatok.put("token", token);
+            postadatok.put("ingatlan_irszam", "1234");
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {

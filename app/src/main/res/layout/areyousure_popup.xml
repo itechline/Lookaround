@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:padding="5sp">
+
+    <RelativeLayout
+        android:id="@+id/ad_delete_popup_layout"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/background_shadow_popup"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:text="@string/button_no"
+            android:id="@+id/delete_ad_no_button"
+            android:background="@drawable/colorbutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_below="@+id/areyousure_delete_textView"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:text="@string/button_yes"
+            android:id="@+id/delete_ad_yes_button"
+            android:background="@drawable/colorbutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_below="@+id/areyousure_delete_textView"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/areyousure_delete"
+            android:id="@+id/areyousure_delete_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10sp" />
+
+    </RelativeLayout>
+</RelativeLayout>
