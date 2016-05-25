@@ -88,6 +88,7 @@ import java.util.List;
 import java.util.Locale;
 
 import lar.com.lookaround.adapters.AddImageAdapter;
+import lar.com.lookaround.adapters.AdmonitorAdapter;
 import lar.com.lookaround.adapters.CalendarAdapter;
 import lar.com.lookaround.adapters.CalendarBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
@@ -97,6 +98,7 @@ import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.util.AddImageUtil;
+import lar.com.lookaround.util.AdmonitorUtil;
 import lar.com.lookaround.util.CalendarBookingUtil;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
@@ -124,8 +126,9 @@ public class MainActivity extends AppCompatActivity
     private static final int BOOKING = 6;
     private static final int MESSAGES2 = 7;
     private static final int ADMONITOR = 8;
+    private static final int ADDADMONITOR = 9;
 
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages, booking, message2, admonitor;
+    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages, booking, message2, admonitor, addAdmonitor;
 
     DrawerLayout drawer;
 
@@ -1494,7 +1497,8 @@ public class MainActivity extends AppCompatActivity
         messages = inflater.inflate(R.layout.content_messages, null);
         message2 = inflater.inflate(R.layout.content_message_thread, null);
         booking = inflater.inflate(R.layout.content_booking, null);
-        admonitor = inflater.inflate(R.layout.content_add_admonitor, null);
+        admonitor = inflater.inflate(R.layout.content_admonitor, null);
+        addAdmonitor = inflater.inflate(R.layout.content_add_admonitor, null);
 
 
 
@@ -1518,6 +1522,7 @@ public class MainActivity extends AppCompatActivity
         viewFlip.addView(booking, BOOKING);
         viewFlip.addView(message2, MESSAGES2);
         viewFlip.addView(admonitor, ADMONITOR);
+        viewFlip.addView(addAdmonitor, ADDADMONITOR);
 
         viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
 
@@ -2826,6 +2831,10 @@ private boolean isAddingEstate = false;
         }, SettingUtil.getToken(this), hash, uid);
     }
 
+    public void loadAdMonitorList() {
+
+    }
+
     public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int jstme) {
         pageCount = 0;
         isRefreshing = false;
@@ -3051,6 +3060,35 @@ private boolean isAddingEstate = false;
                 //finish();
                 break;
      */
+    public void admonitorList() {
+        final ArrayList<AdmonitorUtil> arrayOfUsers = (ArrayList) AdmonitorUtil.get_list_admonitors();
+        if (arrayOfUsers.isEmpty()) {
+            //arrayOfUsers = (ArrayList<AdmonitorUtil>) SettingUtil.getAdmonitor(getBaseContext());
+        }
+
+        final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayOfUsers);
+        // Attach the adapter to a ListView
+        final ListView listView = (ListView) findViewById(R.id.admonitor_listView);
+        listView.setAdapter(adapter);
+        listView.setDivider(null);
+        listView.setDividerHeight(0);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+    }
+
+
+    public void saveAdmonitor(View view) {
+        TextView add_admonitor_edittext = (TextView) findViewById(R.id.add_admonitor_edittext);
+
+        AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        switchLayoutTo(ADMONITOR);
+        admonitorList();
+        //SettingUtil.setAdmonitor(this, AdmonitorUtil.get_list_admonitors());
+    }
 
     public void doLogout(View view) {
         LoginUtil.logout(this, new SoapObjectResult() {
@@ -3069,9 +3107,18 @@ private boolean isAddingEstate = false;
         });
     }
 
+    public void showAddAdmonitor(View view) {
+        isBackPressed = false;
+        switchLayoutTo(ADDADMONITOR);
+        admonitorList();
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        closeDrawer();
+    }
+
     public void showAdmonitor(View view) {
         isBackPressed = false;
         switchLayoutTo(ADMONITOR);
+        admonitorList();
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         closeDrawer();
     }

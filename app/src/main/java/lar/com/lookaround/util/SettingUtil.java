@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Attila_Dan on 16. 04. 14..
  */
@@ -16,6 +20,7 @@ public class SettingUtil {
     private static final String LNG = "LNG";
 
     private static final String BOOL = "BOOL";
+    private static final String ARRAYLIST = "ARRAYLIST";
 
     public static final String getToken(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
@@ -56,15 +61,17 @@ public class SettingUtil {
         editor.commit();
     }
 
-    public static final boolean getLofasz(Context ctx) {
+    public static final Set<String> getAdmonitor(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
-        return sharedPref.getBoolean(BOOL, false);
+        return sharedPref.getStringSet(ARRAYLIST, null);
     }
 
-    public static final void setLofasz(Context ctx, boolean bool) {
+    public static final void setAdmonitor(Context ctx, ArrayList<AdmonitorUtil> list) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(BOOL, bool);
+        Set<String> set = new HashSet<String>();
+        //set.addAll(list);
+        editor.putStringSet(ARRAYLIST, set);
         editor.commit();
     }
 
