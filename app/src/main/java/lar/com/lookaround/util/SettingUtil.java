@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Attila_Dan on 16. 04. 14..
@@ -61,17 +59,16 @@ public class SettingUtil {
         editor.commit();
     }
 
-    public static final Set<String> getAdmonitor(Context ctx) {
+    public static final String getAdmonitor(Context ctx) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
-        return sharedPref.getStringSet(ARRAYLIST, null);
+        return sharedPref.getString(ARRAYLIST, null);
     }
 
     public static final void setAdmonitor(Context ctx, ArrayList<AdmonitorUtil> list) {
         SharedPreferences sharedPref = ctx.getSharedPreferences(KEY_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        Set<String> set = new HashSet<String>();
         //set.addAll(list);
-        editor.putStringSet(ARRAYLIST, set);
+        editor.putString(ARRAYLIST, list.toString());
         editor.commit();
     }
 

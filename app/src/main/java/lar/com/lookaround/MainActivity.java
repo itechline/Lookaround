@@ -3087,7 +3087,6 @@ private boolean isAddingEstate = false;
         AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         switchLayoutTo(ADMONITOR);
         admonitorList();
-        //SettingUtil.setAdmonitor(this, AdmonitorUtil.get_list_admonitors());
     }
 
     public void doLogout(View view) {
