@@ -1937,6 +1937,7 @@ private int whichAddestatePage = 0;
         switch (requestCode) {
             case 2909: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("RESULT_URI", uris.get(0).toString());
                     uploadImages(hash);
                 } else {
                     Log.e("Permission", "Denied");
