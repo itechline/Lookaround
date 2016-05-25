@@ -115,7 +115,7 @@
                     android:orientation="horizontal"
                     android:id="@+id/realestate_price_spinner_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="35sp"
+                    android:layout_height="40sp"
                     android:layout_below="@+id/price_realestate_text"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10sp"
