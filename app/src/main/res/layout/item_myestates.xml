@@ -200,7 +200,7 @@
             android:layout_marginRight="10sp"
             android:layout_marginBottom="10sp">
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
                 android:text="@string/button_modify"
@@ -212,7 +212,7 @@
                 android:layout_marginRight="5sp"
                 android:textColor="#ffffff" />
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
                 android:text="@string/button_delete"

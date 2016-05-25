@@ -144,7 +144,8 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                     }
                 });
             } else {
-
+                TextView delete = (TextView) convertView.findViewById(R.id.myads_delete_button);
+                delete.set
             }
 
             // TODO: remove comment signs to load images
