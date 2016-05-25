@@ -1362,40 +1362,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void callPopupDelete(int id) {
-        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
-
-        final PopupWindow popupWindow;
-        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
-                true);
-
-
-        popupWindow.setTouchable(true);
-        popupWindow.setFocusable(true);
-
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-
-        ((Button) popupView.findViewById(R.id.delete_ad_yes_button))
-                .setOnClickListener(new View.OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-                    public void onClick(View arg0) {
-                        popupWindow.dismiss();
-                    }
-                });
-
-        ((Button) popupView.findViewById(R.id.delete_ad_no_button))
-                .setOnClickListener(new View.OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-                    public void onClick(View arg0) {
-                        popupWindow.dismiss();
-                    }
-                });
-    }
 
     private void callPopup(final int id, final LinearLayout layout) {
 

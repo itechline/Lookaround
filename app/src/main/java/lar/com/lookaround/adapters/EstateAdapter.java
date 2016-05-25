@@ -1,17 +1,23 @@
 package lar.com.lookaround.adapters;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -144,8 +150,13 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                     }
                 });
             } else {
-                TextView delete = (TextView) convertView.findViewById(R.id.myads_delete_button);
-                delete.set
+                Button delete = (Button) convertView.findViewById(R.id.myads_delete_button);
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callPopupDelete(estate.getId());
+                    }
+                });
             }
 
             // TODO: remove comment signs to load images
@@ -158,6 +169,42 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
 
         return convertView;
+    }
+
+
+    private void callPopupDelete(int id) {
+        LayoutInflater layoutInflater = (LayoutInflater) getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+        ((Button) popupView.findViewById(R.id.delete_ad_yes_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+        ((Button) popupView.findViewById(R.id.delete_ad_no_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
     }
 
 
