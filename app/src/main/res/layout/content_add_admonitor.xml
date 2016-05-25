@@ -66,11 +66,11 @@
                 android:id="@+id/add_addmonitor_relative">
 
                 <TextView
-                    android:id="@+id/keyword_realestate_search_text"
+                    android:id="@+id/add_admonitor_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/keyword_search"
+                    android:text="@string/advert_monitor_name"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:textSize="15sp"
@@ -80,10 +80,43 @@
                     android:layout_centerInParent="true"
                     />
 
+                <EditText
+                    android:id="@+id/add_admonitor_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="35sp"
+                    android:hint="@string/admonitor_name_hint"
+                    android:layout_below="@+id/add_admonitor_name_text"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="12sp"
+                    android:singleLine="true"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:background="@drawable/spinner_border"
+                    android:padding="5sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/keyword_realestate_search_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/keyword_search"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="15sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/add_admonitor_edittext"
+                    />
+
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="35sp"
-                    android:id="@+id/keyword_realestate_search_edittext"
+                    android:id="@+id/keyword_realestate_admonitor_edittext"
                     android:hint="@string/search_hint"
                     android:layout_below="@+id/keyword_realestate_search_text"
                     android:layout_alignParentLeft="true"
@@ -104,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/price_search"
-                    android:layout_below="@+id/keyword_realestate_search_edittext"
+                    android:layout_below="@+id/keyword_realestate_admonitor_edittext"
                     android:layout_alignParentLeft="true"
                     android:textSize="15sp"
                     android:layout_marginTop="5sp"
@@ -124,7 +157,7 @@
                     android:paddingBottom="5sp">
 
                     <EditText
-                        android:id="@+id/realestate_price_edittext_min"
+                        android:id="@+id/realestate_price_admonitor_min"
                         android:layout_width="150sp"
                         android:layout_height="fill_parent"
                         android:singleLine="true"
@@ -136,7 +169,7 @@
                         android:numeric="decimal"/>
 
                     <EditText
-                        android:id="@+id/realestate_price_edittext_max"
+                        android:id="@+id/realestate_price_admonitor_max"
                         android:layout_width="150sp"
                         android:layout_height="fill_parent"
                         android:singleLine="true"
@@ -174,7 +207,7 @@
                     android:paddingBottom="5sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/realestate_type_spinner"
+                        android:id="@+id/realestate_type_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -206,7 +239,7 @@
                     android:background="@drawable/spinner_border"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/realestate_localisation_spinner"
+                        android:id="@+id/realestate_localisation_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -259,7 +292,7 @@
                         android:paddingBottom="5sp"
                         android:background="@drawable/spinner_border">
                         <Spinner
-                            android:id="@+id/realestate_floors_min_spinner"
+                            android:id="@+id/realestate_floors_min_spinner_admonitor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -283,7 +316,7 @@
                         android:paddingBottom="5sp"
                         android:background="@drawable/spinner_border">
                         <Spinner
-                            android:id="@+id/realestate_floors_max_spinner"
+                            android:id="@+id/realestate_floors_max_spinner_admonitor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -338,7 +371,7 @@
                         <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/realestate_roomcount_min_spinner"
+                            android:id="@+id/realestate_roomcount_min_spinner_admonitor"
                             android:textSize="15sp"
                             />
                     </RelativeLayout>
@@ -361,7 +394,7 @@
                         <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/realestate_roomcount_max_spinner"
+                            android:id="@+id/realestate_roomcount_max_spinner_admonitor"
                             android:textSize="15sp"
                             />
                     </RelativeLayout>
@@ -395,7 +428,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/realestate_elevator_spinner"
+                        android:id="@+id/realestate_elevator_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -427,7 +460,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/realestate_balcony_spinner"
+                        android:id="@+id/realestate_balcony_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -459,7 +492,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/realestate_size_spinner"
+                        android:id="@+id/realestate_size_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -491,7 +524,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/view_type_realestate_spinner"
+                        android:id="@+id/view_type_realestate_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -523,7 +556,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/hasfurniture_spinner"
+                        android:id="@+id/hasfurniture_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -555,7 +588,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/parking_type_spinner"
+                        android:id="@+id/parking_type_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -588,7 +621,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/condition_spinner"
+                        android:id="@+id/condition_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -620,7 +653,7 @@
                     android:layout_marginRight="10sp"
                     android:paddingLeft="3sp">
                     <Spinner
-                        android:id="@+id/ecertificate_search_spinner"
+                        android:id="@+id/ecertificate_search_spinner_admonitor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />

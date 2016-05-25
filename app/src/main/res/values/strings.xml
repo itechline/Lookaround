@@ -96,6 +96,7 @@
     <string name="energy_certificate_realestate">Energiatanúsítvány</string>
     <string name="show_only_csok_estates">CSOK ingatlanok mutatása</string>
     <string name="add_admonitor">Hírdetésfigyelő készítése</string>
+    <string name="admonitor_name_hint">Nevezd el a figyelődet</string>
 
 
     <string-array name="realestate_type_spinner_array">
