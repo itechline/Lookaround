@@ -1580,7 +1580,7 @@ public class MainActivity extends AppCompatActivity
 
 private int whichAddestatePage = 0;
 
-
+private boolean isAddingEstate = false;
 
     public void nextAddestatePage(final View view) {
         if (whichAddestatePage < 5) {
@@ -1823,8 +1823,7 @@ private int whichAddestatePage = 0;
 
 
                                                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
-                                                                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                                                         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                                                              if (!Settings.System.canWrite(MainActivity.this)) {
                                                                  requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                                                          Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
@@ -1913,7 +1912,9 @@ private int whichAddestatePage = 0;
         Log.d("UPLOAD_URI_FOR_CYCLE", "CALLED");
         for (int j = 0; j < uris.size(); j++) {
             Log.d("UPLOAD_URI_FOR_CYCLE", String.valueOf(j));
-            //if (!uris.get(j).equals(null)) {
+            if (uris.get(j) != null) {
+                Log.d("URI_IN_FOR_CYCLE", uris.get(j).toString());
+            //TODO: képfeltöltés megint fos, lehal a getRealPathFromURI...
                 File imageFile = new File(getRealPathFromURI(uris.get(j)));
 
                 ImageUploadService service = new ImageUploadService(new SoapResult() {
@@ -1932,7 +1933,7 @@ private int whichAddestatePage = 0;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            //}
+            }
         }
     }
 
@@ -2766,14 +2767,14 @@ private int whichAddestatePage = 0;
                         if (isShowingFavorites) {
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setTitle("Hirdetések");
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                            getSupportActionBar().setTitle("Kedvencek");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else if (isMyAds == 1) {
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                            getSupportActionBar().setTitle("Hirdetések");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                            getSupportActionBar().setTitle("Saját");
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else {
                             if (drawer.isDrawerOpen(GravityCompat.START)) {
