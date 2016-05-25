@@ -143,6 +143,8 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                         }
                     }
                 });
+            } else {
+
             }
 
             // TODO: remove comment signs to load images

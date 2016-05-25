@@ -1362,6 +1362,41 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void callPopupDelete(int id) {
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+        ((Button) popupView.findViewById(R.id.delete_ad_yes_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+        ((Button) popupView.findViewById(R.id.delete_ad_no_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+    }
+
     private void callPopup(final int id, final LinearLayout layout) {
 
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
@@ -1820,10 +1855,16 @@ private int whichAddestatePage = 0;
 
                                                      hash = resArray.get(resArray.size() - 1).getHash();
 
+
                                                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                         if (!Settings.System.canWrite(MainActivity.this)) {
-                                                             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                                                     Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+                                                         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                                                                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                                                             if (!Settings.System.canWrite(MainActivity.this)) {
+                                                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                                         Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+                                                             } else {
+                                                                 uploadImages(hash);
+                                                             }
                                                          } else {
                                                              uploadImages(hash);
                                                          }
@@ -1908,7 +1949,6 @@ private int whichAddestatePage = 0;
             Log.d("UPLOAD_URI_FOR_CYCLE", String.valueOf(j));
             //if (!uris.get(j).equals(null)) {
                 File imageFile = new File(getRealPathFromURI(uris.get(j)));
-                Log.d("UPLOAD_IMAGE", imageFile.getAbsolutePath());
 
                 ImageUploadService service = new ImageUploadService(new SoapResult() {
                     @Override
@@ -1937,7 +1977,6 @@ private int whichAddestatePage = 0;
         switch (requestCode) {
             case 2909: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d("RESULT_URI", uris.get(0).toString());
                     uploadImages(hash);
                 } else {
                     Log.e("Permission", "Denied");
