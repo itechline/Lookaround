@@ -63,7 +63,7 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/navbar_search_relative">
+                android:id="@+id/add_addmonitor_relative">
 
                 <TextView
                     android:id="@+id/keyword_realestate_search_text"
@@ -164,7 +164,7 @@
                 <RelativeLayout
                     android:id="@+id/realestate_type_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:background="@drawable/spinner_border"
                     android:layout_below="@+id/type_realestate_textview"
                     android:layout_centerHorizontal="true"
@@ -196,7 +196,7 @@
                 <RelativeLayout
                     android:id="@+id/realestate_localisation_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_localisation_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -253,7 +253,7 @@
                         />
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35sp"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
@@ -277,7 +277,7 @@
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35sp"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
@@ -330,7 +330,7 @@
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35sp"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
@@ -353,7 +353,7 @@
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35sp"
                         android:layout_weight="1"
                         android:paddingTop="5sp"
                         android:paddingBottom="5sp"
@@ -385,7 +385,7 @@
                 <RelativeLayout
                     android:id="@+id/realestate_elevator_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_elevator_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -417,7 +417,7 @@
                 <RelativeLayout
                     android:id="@+id/realestate_balcony_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_balcony_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -449,7 +449,7 @@
                 <RelativeLayout
                     android:id="@+id/realestate_size_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_size_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -481,7 +481,7 @@
                 <RelativeLayout
                     android:id="@+id/view_type_realestate_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_view_type_realestate"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -513,7 +513,7 @@
                 <RelativeLayout
                     android:id="@+id/has_furniture_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_has_furniture_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -545,7 +545,7 @@
                 <RelativeLayout
                     android:id="@+id/parking_type_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_parking_type_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -578,7 +578,7 @@
                 <RelativeLayout
                     android:id="@+id/condition_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_condition_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
@@ -610,7 +610,7 @@
                 <RelativeLayout
                     android:id="@+id/ecertificate_spinner_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_below="@+id/text_energy_certificate_search"
                     android:layout_centerHorizontal="true"
                     android:paddingTop="5sp"
