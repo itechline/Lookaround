@@ -143,7 +143,7 @@
                         android:id="@+id/nav_billing_img"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10sp"
-                        />
+                        android:alpha="0.5" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -251,7 +251,7 @@
                         android:id="@+id/nav_agency_img"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10sp"
-                        />
+                        android:alpha="0.5" />
 
                     <TextView
                         android:layout_width="wrap_content"
