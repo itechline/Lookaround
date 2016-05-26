@@ -2,14 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="wrap_content"
-    android:id="@+id/item_empty_linear">
+    android:layout_height="match_parent"
+    android:id="@+id/item_empty_linear"
+    android:gravity="center_vertical|center_horizontal">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/empty_textview"
-        android:text="asdf" />
+        android:text="@string/theres_no_such_ad"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textStyle="italic"/>
 
 </LinearLayout>
