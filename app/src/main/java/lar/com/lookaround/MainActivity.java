@@ -298,7 +298,6 @@ public class MainActivity extends AppCompatActivity
                 handler.postDelayed(this, 60 * 1000);
             }
         }, 1000);
-
     }
 
     int prewMessageCount = 0;
@@ -3084,12 +3083,21 @@ private boolean isAddingEstate = false;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageView asd = (ImageView) findViewById(R.id.admonitor_list_item_edit_image);
+                asd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("CLICK", "CLICK");
+                    }
+                });
                 switchLayoutTo(ESTATESLIST);
                 isMyAds = 0;
                 isShowingFavorites = false;
                 loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
             }
         });
+
+
 
     }
 
@@ -3125,6 +3133,26 @@ private boolean isAddingEstate = false;
             AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), searchString, minPriceStr, maxPriceStr, type_int_admonitor, floorsMint_int_admonitor, floorsMax_int_admonitor, szobaMin_int_admonitor, szobaMax_int_admonitor, lift_int_admonitor, balcony_int_admonitor, meret_int_admonitor, panoramaSpinner_int_admonitor, furniture_int_admonitor, parkolasSpinner_int_admonitor, allapot_int_admonitor, energigenyo_int_admonitor);
             switchLayoutTo(ADMONITOR);
             admonitorList();
+
+            type_int_admonitor = 0;
+            floorsMint_int_admonitor = 0;
+            floorsMax_int_admonitor = 0;
+            szobaMin_int_admonitor = 0;
+            szobaMax_int_admonitor = 0;
+            lift_int_admonitor = 0;
+            balcony_int_admonitor = 0;
+            meret_int_admonitor = 0;
+            panoramaSpinner_int_admonitor = 0;
+            furniture_int_admonitor = 0;
+            parkolasSpinner_int_admonitor = 0;
+            allapot_int_admonitor = 0;
+            energigenyo_int_admonitor = 0;
+            add_admonitor_edittext.setText("");
+            search.setText("");
+            minPrice.setText("");
+            maxPrice.setText("");
+
+            loadSearchSpinners();
         } else {
             add_admonitor_edittext.setError("Hiba!");
             add_admonitor_edittext.invalidate();

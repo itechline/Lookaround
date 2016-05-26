@@ -38,13 +38,13 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         TextView name = (TextView) convertView.findViewById(R.id.admonitor_liset_item_textView);
         name.setText(admonitorUtil.getName());
 
-        ImageView modify = (ImageView) convertView.findViewById(R.id.admonitor_list_item_edit_image);
+        /*View modify = (ImageView) convertView.findViewById(R.id.admonitor_list_item_edit_image);
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
 
         ImageView delete = (ImageView) convertView.findViewById(R.id.admonitor_list_item_delete_image);
         final View finalConvertView = convertView;
