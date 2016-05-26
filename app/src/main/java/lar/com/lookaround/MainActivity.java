@@ -353,16 +353,28 @@ public class MainActivity extends AppCompatActivity
 
 
     public void nextMonth(View view) {
-        whichMonth += 1;
-        monthSetter += 1;
+        if (whichMonth < 11) {
+            whichMonth += 1;
+            monthSetter += 1;
+        } else {
+            whichMonth = 0;
+            monthSetter = 0;
+            whichYear += 1;
+        }
 
         setCalendar(whichYear, whichMonth);
 
     }
 
     public void prewMonth(View view) {
-        whichMonth -= 1;
-        monthSetter -= 1;
+        if (whichMonth > 0) {
+            whichMonth -= 1;
+            monthSetter -= 1;
+        } else {
+            whichMonth = 11;
+            monthSetter = 11;
+            whichYear -= 1;
+        }
 
         setCalendar(whichYear, whichMonth);
 
