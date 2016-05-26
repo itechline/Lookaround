@@ -178,6 +178,9 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
         View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
 
+        TextView textView = (TextView) popupView.findViewById(R.id.areyousure_delete_textView);
+        textView.setText("Biztosan törli a hirdetés?");
+
         final PopupWindow popupWindow;
         popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
                 true);

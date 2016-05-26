@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -40,6 +41,22 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         TextView name = (TextView) convertView.findViewById(R.id.admonitor_liset_item_textView);
         name.setText(admonitorUtil.getName());
 
+        ImageView modify = (ImageView) convertView.findViewById(R.id.admonitor_list_item_edit_image);
+        modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        ImageView delete = (ImageView) convertView.findViewById(R.id.admonitor_list_item_delete_image);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callPopupDelete(admonitorUtil.getId());
+            }
+        });
+
 
         return convertView;
     }
@@ -50,6 +67,8 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
+        TextView textView = (TextView) popupView.findViewById(R.id.areyousure_delete_textView);
+        textView.setText("Biztosan törli a hirdetésfigyelőt?");
 
         final PopupWindow popupWindow;
         popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,

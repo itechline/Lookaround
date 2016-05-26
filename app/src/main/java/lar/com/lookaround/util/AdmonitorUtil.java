@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by Attila_Dan on 16. 05. 25..
  */
 public class AdmonitorUtil {
+    private int id;
     private String name;
     private String search;
     private String priceMin;
@@ -23,6 +24,14 @@ public class AdmonitorUtil {
     private int parking;
     private int condition;
     private int etype;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -160,8 +169,9 @@ public class AdmonitorUtil {
         this.etype = etype;
     }
 
-    public AdmonitorUtil (String name, String search, String priceMin, String priceMax, int type, int floorsMin, int floorsMax,
+    public AdmonitorUtil (int id, String name, String search, String priceMin, String priceMax, int type, int floorsMin, int floorsMax,
             int roomsMin, int roomsMax, int elevator, int balcony, int size, int view, int hasFurniture, int parking, int condition, int etype) {
+        this.id = id;
         this.name = name;
         this.search = search;
         this.priceMin = priceMin;
@@ -184,7 +194,7 @@ public class AdmonitorUtil {
     public static void addAdmonitor(String name, String search, String priceMin, String priceMax, int type, int floorsMin, int floorsMax,
                              int roomsMin, int roomsMax, int elevator, int balcony, int size, int view, int hasFurniture, int parking, int condition, int etype) {
 
-        admonitorUtils.add(new AdmonitorUtil(name, search, priceMin, priceMax, type, floorsMin, floorsMax, roomsMin, roomsMax, elevator, balcony, size, view, hasFurniture, parking, condition, etype));
+        admonitorUtils.add(new AdmonitorUtil(admonitorUtils.size(),name, search, priceMin, priceMax, type, floorsMin, floorsMax, roomsMin, roomsMax, elevator, balcony, size, view, hasFurniture, parking, condition, etype));
     }
 
     public static ArrayList<AdmonitorUtil> get_list_admonitors() {

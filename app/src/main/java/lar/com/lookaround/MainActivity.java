@@ -3061,21 +3061,23 @@ private boolean isAddingEstate = false;
                 break;
      */
     public void admonitorList() {
-        final ArrayList<AdmonitorUtil> arrayOfUsers = (ArrayList) AdmonitorUtil.get_list_admonitors();
-        if (arrayOfUsers.isEmpty()) {
-            //arrayOfUsers = (ArrayList<AdmonitorUtil>) SettingUtil.getAdmonitor(getBaseContext());
-        }
+        final ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
-        final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayOfUsers);
+
+        final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
         // Attach the adapter to a ListView
         final ListView listView = (ListView) findViewById(R.id.admonitor_listView);
         listView.setAdapter(adapter);
+        if (arrayList.isEmpty()) {
+            View header = (View)getLayoutInflater().inflate(R.layout.item_myestates,null);
+            listView.addHeaderView(header);
+        }
         listView.setDivider(null);
         listView.setDividerHeight(0);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                switchLayoutTo(ESTATESLIST);
             }
         });
     }
@@ -3083,10 +3085,39 @@ private boolean isAddingEstate = false;
 
     public void saveAdmonitor(View view) {
         TextView add_admonitor_edittext = (TextView) findViewById(R.id.add_admonitor_edittext);
+        AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.keyword_realestate_admonitor_edittext);
+        TextView minPrice = (TextView) findViewById(R.id.realestate_price_admonitor_min);
+        TextView maxPrice = (TextView) findViewById(R.id.realestate_price_admonitor_max);
 
-        AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        switchLayoutTo(ADMONITOR);
-        admonitorList();
+        String searchString, minPriceStr, maxPriceStr;
+
+        if (isValidString(search.getText().toString())) {
+            searchString = search.getText().toString();
+        } else {
+            searchString = "";
+        }
+
+        if (isValidString(minPrice.getText().toString())) {
+            minPriceStr = minPrice.getText().toString();
+        } else {
+            minPriceStr = "";
+        }
+
+        if (isValidString(maxPrice.getText().toString())) {
+            maxPriceStr = maxPrice.getText().toString();
+        } else {
+            maxPriceStr = "";
+        }
+
+
+        if (isValidString(add_admonitor_edittext.getText().toString())) {
+            AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), searchString, minPriceStr, maxPriceStr, type_int_admonitor, floorsMint_int_admonitor, floorsMax_int_admonitor, szobaMin_int_admonitor, szobaMax_int_admonitor, lift_int_admonitor, balcony_int_admonitor, meret_int_admonitor, panoramaSpinner_int_admonitor, furniture_int_admonitor, parkolasSpinner_int_admonitor, allapot_int_admonitor, energigenyo_int_admonitor);
+            switchLayoutTo(ADMONITOR);
+            admonitorList();
+        } else {
+            add_admonitor_edittext.setError("Hiba!");
+            add_admonitor_edittext.invalidate();
+        }
     }
 
     public void doLogout(View view) {
