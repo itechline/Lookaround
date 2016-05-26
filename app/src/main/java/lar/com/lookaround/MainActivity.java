@@ -1552,6 +1552,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     boolean takeOrPick;
+    //TODO: max 10 kép engedlyezése
     public void TakeImage(View view) {
         takeOrPick = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
