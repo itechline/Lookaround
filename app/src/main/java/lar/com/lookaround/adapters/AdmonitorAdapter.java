@@ -34,9 +34,6 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_admonitor_item, parent, false);
-
-        } else {
-
         }
         TextView name = (TextView) convertView.findViewById(R.id.admonitor_liset_item_textView);
         name.setText(admonitorUtil.getName());
@@ -50,10 +47,11 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         });
 
         ImageView delete = (ImageView) convertView.findViewById(R.id.admonitor_list_item_delete_image);
+        final View finalConvertView = convertView;
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callPopupDelete(admonitorUtil.getId());
+                callPopupDelete(admonitorUtil.getId(), finalConvertView);
             }
         });
 
@@ -62,7 +60,7 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
     }
 
 
-    private void callPopupDelete(int id) {
+    private void callPopupDelete(final int id, final View view) {
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -85,6 +83,8 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
+                        AdmonitorUtil.removeAdmonitor(id);
+                        view.setVisibility(View.INVISIBLE);
                         popupWindow.dismiss();
                     }
                 });

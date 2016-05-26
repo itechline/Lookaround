@@ -200,4 +200,8 @@ public class AdmonitorUtil {
     public static ArrayList<AdmonitorUtil> get_list_admonitors() {
         return admonitorUtils;
     }
+
+    public static void removeAdmonitor(int id) {
+        admonitorUtils.remove(id);
+    }
 }

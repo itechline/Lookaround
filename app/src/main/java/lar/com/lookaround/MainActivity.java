@@ -3060,26 +3060,37 @@ private boolean isAddingEstate = false;
                 //finish();
                 break;
      */
-    public void admonitorList() {
-        final ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
+    View header;
+    public void admonitorList() {
+        ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
         final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
         // Attach the adapter to a ListView
-        final ListView listView = (ListView) findViewById(R.id.admonitor_listView);
-        listView.setAdapter(adapter);
-        if (arrayList.isEmpty()) {
-            View header = (View)getLayoutInflater().inflate(R.layout.item_myestates,null);
+        ListView listView = (ListView) findViewById(R.id.admonitor_listView);
+        if (arrayList.isEmpty() && listView.getHeaderViewsCount() == 0) {
+            header = getLayoutInflater().inflate(R.layout.item_empty_list, null);
+            Log.d("HEADER", "ADDED");
             listView.addHeaderView(header);
+        } else {
+                Log.d("HEADER", "REMOVED");
+                header.findViewById(R.id.item_empty_linear).setVisibility(View.GONE);
+                //listView.removeHeaderView(header);
         }
+        listView.setAdapter(adapter);
+
         listView.setDivider(null);
         listView.setDividerHeight(0);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switchLayoutTo(ESTATESLIST);
+                isMyAds = 0;
+                isShowingFavorites = false;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
             }
         });
+
     }
 
 
@@ -3164,9 +3175,9 @@ private boolean isAddingEstate = false;
         isBackPressed = false;
         isShowingFavorites = true;
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        if(viewFlip.getDisplayedChild() != ESTATESLIST) {
+        //if(viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
-        }
+        //}
         isMyAds = 0;
         Log.d("MY", "FAVS");
         getSupportActionBar().setTitle("Kedvencek");
@@ -3185,9 +3196,9 @@ private boolean isAddingEstate = false;
         isBackPressed = false;
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         isShowingFavorites = false;
-        if (viewFlip.getDisplayedChild() != ESTATESLIST) {
+        //if (viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
-        }
+        //}
         isMyAds = 0;
         loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
         closeDrawer();
@@ -3289,16 +3300,18 @@ private boolean isAddingEstate = false;
                 switch (viewFlip.getDisplayedChild()) {
                     case ESTATESLIST:
                         if (isShowingFavorites) {
+                            switchLayoutTo(ESTATESLIST);
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setTitle("Kedvencek");
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                            getSupportActionBar().setTitle("Hirdetések");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else if (isMyAds == 1) {
+                            switchLayoutTo(ESTATESLIST);
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                            getSupportActionBar().setTitle("Saját");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                            getSupportActionBar().setTitle("Hirdetések");
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else {
                             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -3403,41 +3416,6 @@ private boolean isAddingEstate = false;
     public void switchLayoutTo(int switchTo){
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        switch(switchTo) {
-            case ADDESTATE:
-                getSupportActionBar().setTitle("Hirdetés feladás");
-                break;
-            case ESTATESLIST:
-                getSupportActionBar().setTitle("Hirdetések");
-                break;
-            case INVITE:
-                getSupportActionBar().setTitle("Meghívás");
-                break;
-            case PROFILE:
-                getSupportActionBar().setTitle("Profilom");
-                break;
-            case MESSAGES:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case MESSAGES2:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case BOOKING:
-                getSupportActionBar().setTitle("Időpontfoglalás");
-                break;
-            case ADMONITOR:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hirdetésfigyelő");
-                break;
-            default:
-                getSupportActionBar().setTitle(null);
-                break;
-        }
 
         // TODO: ez itt nem jó :D de nagyon nem. de egylőre gyorsan javítottam.
         if (viewFlip.getDisplayedChild() == switchTo && isBackPressed) {
@@ -3469,6 +3447,56 @@ private boolean isAddingEstate = false;
             }
         } else {
             isBackPressed = false;
+        }
+
+        switch(viewFlip.getDisplayedChild()) {
+            case ADDESTATE:
+                getSupportActionBar().setTitle("Hirdetés feladás");
+                break;
+            case ESTATESLIST:
+                if (isShowingFavorites) {
+                    getSupportActionBar().setTitle("Kedvencek");
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                } else if (isMyAds == 1) {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                    getSupportActionBar().setTitle("Saját");
+                } else {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    getSupportActionBar().setTitle("Hirdetések");
+                }
+                break;
+            case INVITE:
+                getSupportActionBar().setTitle("Meghívás");
+                break;
+            case PROFILE:
+                getSupportActionBar().setTitle("Profilom");
+                break;
+            case MESSAGES:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Üzenetek");
+                break;
+            case MESSAGES2:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Üzenetek");
+                break;
+            case BOOKING:
+                getSupportActionBar().setTitle("Időpontfoglalás");
+                break;
+            case ADMONITOR:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hirdetésfigyelő");
+                break;
+            case ADDADMONITOR:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hirdetésfigyelő");
+                break;
+            default:
+                getSupportActionBar().setTitle(null);
+                break;
         }
 
         supportInvalidateOptionsMenu();
