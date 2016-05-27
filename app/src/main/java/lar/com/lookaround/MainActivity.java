@@ -1907,7 +1907,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private static final int TIME_PICKER_INTERVAL=30;
+    /*private static final int TIME_PICKER_INTERVAL=30;
     private boolean mIgnoreEvent=false;
 
     private TimePicker.OnTimeChangedListener mTimePickerListener=new TimePicker.OnTimeChangedListener(){
@@ -1925,7 +1925,8 @@ public class MainActivity extends AppCompatActivity
             }
 
         }
-    };
+    };*/
+
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -2311,8 +2312,44 @@ private boolean isAddingEstate = false;
                     break;
 
                 case 4:
-                    setAddestatePageIndicator(whichAddestatePage);
-                    switchLayoutToAddEstate(whichAddestatePage);
+                    boolean isCorrect = true;
+                    boolean isCorrect2 = true;
+                    if (isDay1 || isDay2 || isDay3 || isDay4 || isDay5 || isDay6 || isDay7) {
+                        if (hour_x == 0 || hour_x_end == 0) {
+                            isCorrect = false;
+                        }
+                    }
+
+                    if (hour_x != 0) {
+                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
+                            isCorrect2 = false;
+                        }
+                    }
+
+                    if (hour_x_end != 0) {
+                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
+                            isCorrect2 = false;
+                        }
+                    }
+
+                    if (isCorrect && isCorrect2) {
+                        setAddestatePageIndicator(whichAddestatePage);
+                        switchLayoutToAddEstate(whichAddestatePage);
+                    } else {
+                        if (!isCorrect && !isCorrect2) {
+                            Snackbar.make(view, "Hibás időpont és nap adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        if (isCorrect && !isCorrect2) {
+                            Snackbar.make(view, "Hibás nap adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        if (!isCorrect && isCorrect2) {
+                            Snackbar.make(view, "Hibás időpont adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        whichAddestatePage = 3;
+                    }
                     break;
 
                 case 5:
@@ -2358,6 +2395,22 @@ private boolean isAddingEstate = false;
                                                      balconySpinner_int = 0;
                                                      elevatorSpinner_int = 0;
                                                      whichAddestatePage = 0;
+                                                     mon = 0;
+                                                     tue = 0;
+                                                     wed = 0;
+                                                     thu = 0;
+                                                     fri = 0;
+                                                     sat = 0;
+                                                     sun = 0;
+                                                     hour_x = 0;
+                                                     hour_x_end = 0;
+                                                     minute_x = 0;
+                                                     minute_x_end = 0;
+                                                     TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
+                                                     TextView finishText = (TextView) findViewById(R.id.timepicker_finish_textView);
+                                                     startText.setText("Adja meg a megtikintések kezdőidőpontját");
+                                                     finishText.setText("Adja meg a megtekintések végének időpontját");
+
                                                      TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                                                      TextView description = (TextView) findViewById(R.id.advert_description_edittext);
                                                      TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
