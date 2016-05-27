@@ -1606,10 +1606,12 @@ public class MainActivity extends AppCompatActivity
             day1text.setTextColor(Color.parseColor("#000000"));
             day1text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay1 = false;
+            mon = 0;
         } else {
             day1text.setTextColor(Color.parseColor("#FFFFFF"));
             day1text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay1 = true;
+            mon = 1;
         }
     }
 
@@ -1619,10 +1621,12 @@ public class MainActivity extends AppCompatActivity
             day2text.setTextColor(Color.parseColor("#000000"));
             day2text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay2 = false;
+            tue = 0;
         } else {
             day2text.setTextColor(Color.parseColor("#FFFFFF"));
             day2text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay2 = true;
+            tue = 1;
         }
     }
 
@@ -1632,10 +1636,12 @@ public class MainActivity extends AppCompatActivity
             day3text.setTextColor(Color.parseColor("#000000"));
             day3text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay3 = false;
+            wed = 0;
         } else {
             day3text.setTextColor(Color.parseColor("#FFFFFF"));
             day3text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay3 = true;
+            wed = 1;
         }
     }
 
@@ -1645,10 +1651,12 @@ public class MainActivity extends AppCompatActivity
             day4text.setTextColor(Color.parseColor("#000000"));
             day4text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay4 = false;
+            thu = 0;
         } else {
             day4text.setTextColor(Color.parseColor("#FFFFFF"));
             day4text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay4 = true;
+            thu = 1;
         }
     }
 
@@ -1658,10 +1666,12 @@ public class MainActivity extends AppCompatActivity
             day5text.setTextColor(Color.parseColor("#000000"));
             day5text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay5 = false;
+            fri = 0;
         } else {
             day5text.setTextColor(Color.parseColor("#FFFFFF"));
             day5text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay5 = true;
+            fri = 1;
         }
     }
 
@@ -1671,10 +1681,12 @@ public class MainActivity extends AppCompatActivity
             day6text.setTextColor(Color.parseColor("#000000"));
             day6text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay6 = false;
+            sat = 0;
         } else {
             day6text.setTextColor(Color.parseColor("#FFFFFF"));
             day6text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay6 = true;
+            sat = 1;
         }
     }
 
@@ -1684,10 +1696,12 @@ public class MainActivity extends AppCompatActivity
             day7text.setTextColor(Color.parseColor("#000000"));
             day7text.setBackgroundColor(Color.parseColor("#FFFFFF"));
             isDay7 = false;
+            sun = 0;
         } else {
             day7text.setTextColor(Color.parseColor("#FFFFFF"));
             day7text.setBackgroundColor(Color.parseColor("#0066CC"));
             isDay7 = true;
+            sun = 1;
         }
     }
 
@@ -1878,10 +1892,10 @@ public class MainActivity extends AppCompatActivity
 
     static final int DIALOG_ID = 0;
     static final int DIALOGEND_ID = 1;
-    int hour_x;
-    int minute_x;
-    int hour_x_end;
-    int minute_x_end;
+    int hour_x = 0;
+    int minute_x = 0;
+    int hour_x_end = 0;
+    int minute_x_end = 0;
 
 
     public void showTimePicker(View view) {
@@ -1891,6 +1905,28 @@ public class MainActivity extends AppCompatActivity
     public void showTimePickerEnd(View view) {
         showDialog(DIALOGEND_ID);
     }
+
+
+    /*private static final int TIME_PICKER_INTERVAL=30;
+    private boolean mIgnoreEvent=false;
+
+    private TimePicker.OnTimeChangedListener mTimePickerListener=new TimePicker.OnTimeChangedListener(){
+        public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute){
+            if (mIgnoreEvent)
+                return;
+            if (minute%TIME_PICKER_INTERVAL!=0){
+                int minuteFloor=minute-(minute%TIME_PICKER_INTERVAL);
+                minute=minuteFloor + (minute==minuteFloor+1 ? TIME_PICKER_INTERVAL : 0);
+                if (minute==60)
+                    minute=0;
+                mIgnoreEvent=true;
+                timePicker.setCurrentMinute(minute);
+                mIgnoreEvent=false;
+            }
+
+        }
+    };*/
+
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -1908,6 +1944,8 @@ public class MainActivity extends AppCompatActivity
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     hour_x = hourOfDay;
                     minute_x = minute;
+                    TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
+                    startText.setText(String.valueOf(hour_x) + ":" + String.valueOf(minute_x));
                 }
     };
 
@@ -1917,6 +1955,8 @@ public class MainActivity extends AppCompatActivity
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     hour_x_end = hourOfDay;
                     minute_x_end = minute;
+                    TextView startText = (TextView) findViewById(R.id.timepicker_finish_textView);
+                    startText.setText(String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end));
                 }
             };
 
@@ -2037,6 +2077,16 @@ public class MainActivity extends AppCompatActivity
 private int whichAddestatePage = 0;
 
 private boolean isAddingEstate = false;
+
+    private int mon = 0;
+    private int tue = 0;
+    private int wed = 0;
+    private int thu = 0;
+    private int fri = 0;
+    private int sat = 0;
+    private int sun = 0;
+    private String start = "0";
+    private String finish = "0";
 
     public void nextAddestatePage(final View view) {
         if (whichAddestatePage < 5) {
@@ -2262,12 +2312,49 @@ private boolean isAddingEstate = false;
                     break;
 
                 case 4:
-                    setAddestatePageIndicator(whichAddestatePage);
-                    switchLayoutToAddEstate(whichAddestatePage);
+                    boolean isCorrect = true;
+                    boolean isCorrect2 = true;
+                    if (isDay1 || isDay2 || isDay3 || isDay4 || isDay5 || isDay6 || isDay7) {
+                        if (hour_x == 0 || hour_x_end == 0) {
+                            isCorrect = false;
+                        }
+                    }
+
+                    if (hour_x != 0) {
+                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
+                            isCorrect2 = false;
+                        }
+                    }
+
+                    if (hour_x_end != 0) {
+                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
+                            isCorrect2 = false;
+                        }
+                    }
+
+                    if (isCorrect && isCorrect2) {
+                        setAddestatePageIndicator(whichAddestatePage);
+                        switchLayoutToAddEstate(whichAddestatePage);
+                    } else {
+                        if (!isCorrect && !isCorrect2) {
+                            Snackbar.make(view, "Hibás időpont és nap adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        if (isCorrect && !isCorrect2) {
+                            Snackbar.make(view, "Hibás nap adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        if (!isCorrect && isCorrect2) {
+                            Snackbar.make(view, "Hibás időpont adatok!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        whichAddestatePage = 3;
+                    }
                     break;
 
                 case 5:
-                    Log.d("ZIPCODE_2", zipcodeToSend);
+                    start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
+                    finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
@@ -2308,6 +2395,22 @@ private boolean isAddingEstate = false;
                                                      balconySpinner_int = 0;
                                                      elevatorSpinner_int = 0;
                                                      whichAddestatePage = 0;
+                                                     mon = 0;
+                                                     tue = 0;
+                                                     wed = 0;
+                                                     thu = 0;
+                                                     fri = 0;
+                                                     sat = 0;
+                                                     sun = 0;
+                                                     hour_x = 0;
+                                                     hour_x_end = 0;
+                                                     minute_x = 0;
+                                                     minute_x_end = 0;
+                                                     TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
+                                                     TextView finishText = (TextView) findViewById(R.id.timepicker_finish_textView);
+                                                     startText.setText("Adja meg a megtikintések kezdőidőpontját");
+                                                     finishText.setText("Adja meg a megtekintések végének időpontját");
+
                                                      TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                                                      TextView description = (TextView) findViewById(R.id.advert_description_edittext);
                                                      TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
@@ -2341,7 +2444,8 @@ private boolean isAddingEstate = false;
                             String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int),
-                            String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()), zipcodeToSend);
+                            String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()), zipcodeToSend,
+                            String.valueOf(mon), String.valueOf(tue), String.valueOf(wed), String.valueOf(thu), String.valueOf(fri), String.valueOf(sat), String.valueOf(sun), start, finish);
                     break;
             }
         }
