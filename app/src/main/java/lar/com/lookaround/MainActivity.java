@@ -298,7 +298,6 @@ public class MainActivity extends AppCompatActivity
                 handler.postDelayed(this, 60 * 1000);
             }
         }, 1000);
-
     }
 
     int prewMessageCount = 0;
@@ -354,16 +353,28 @@ public class MainActivity extends AppCompatActivity
 
 
     public void nextMonth(View view) {
-        whichMonth += 1;
-        monthSetter += 1;
+        if (whichMonth < 11) {
+            whichMonth += 1;
+            monthSetter += 1;
+        } else {
+            whichMonth = 0;
+            monthSetter = 0;
+            whichYear += 1;
+        }
 
         setCalendar(whichYear, whichMonth);
 
     }
 
     public void prewMonth(View view) {
-        whichMonth -= 1;
-        monthSetter -= 1;
+        if (whichMonth > 0) {
+            whichMonth -= 1;
+            monthSetter -= 1;
+        } else {
+            whichMonth = 11;
+            monthSetter = 11;
+            whichYear -= 1;
+        }
 
         setCalendar(whichYear, whichMonth);
 
@@ -1553,6 +1564,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     boolean takeOrPick;
+    //TODO: max 10 kép engedlyezése
     public void TakeImage(View view) {
         takeOrPick = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -3060,26 +3072,46 @@ private boolean isAddingEstate = false;
                 //finish();
                 break;
      */
-    public void admonitorList() {
-        final ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
+    View header;
+    public void admonitorList() {
+        ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
         final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
         // Attach the adapter to a ListView
-        final ListView listView = (ListView) findViewById(R.id.admonitor_listView);
-        listView.setAdapter(adapter);
-        if (arrayList.isEmpty()) {
-            View header = (View)getLayoutInflater().inflate(R.layout.item_myestates,null);
+        ListView listView = (ListView) findViewById(R.id.admonitor_listView);
+        if (arrayList.isEmpty() && listView.getHeaderViewsCount() == 0) {
+            header = getLayoutInflater().inflate(R.layout.item_empty_list, null);
+            Log.d("HEADER", "ADDED");
             listView.addHeaderView(header);
+        } else {
+                Log.d("HEADER", "REMOVED");
+                header.findViewById(R.id.item_empty_linear).setVisibility(View.GONE);
+                //listView.removeHeaderView(header);
         }
+        listView.setAdapter(adapter);
+
         listView.setDivider(null);
         listView.setDividerHeight(0);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageView asd = (ImageView) findViewById(R.id.admonitor_list_item_edit_image);
+                asd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("CLICK", "CLICK");
+                    }
+                });
                 switchLayoutTo(ESTATESLIST);
+                isMyAds = 0;
+                isShowingFavorites = false;
+                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
             }
         });
+
+
+
     }
 
 
@@ -3114,6 +3146,26 @@ private boolean isAddingEstate = false;
             AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), searchString, minPriceStr, maxPriceStr, type_int_admonitor, floorsMint_int_admonitor, floorsMax_int_admonitor, szobaMin_int_admonitor, szobaMax_int_admonitor, lift_int_admonitor, balcony_int_admonitor, meret_int_admonitor, panoramaSpinner_int_admonitor, furniture_int_admonitor, parkolasSpinner_int_admonitor, allapot_int_admonitor, energigenyo_int_admonitor);
             switchLayoutTo(ADMONITOR);
             admonitorList();
+
+            type_int_admonitor = 0;
+            floorsMint_int_admonitor = 0;
+            floorsMax_int_admonitor = 0;
+            szobaMin_int_admonitor = 0;
+            szobaMax_int_admonitor = 0;
+            lift_int_admonitor = 0;
+            balcony_int_admonitor = 0;
+            meret_int_admonitor = 0;
+            panoramaSpinner_int_admonitor = 0;
+            furniture_int_admonitor = 0;
+            parkolasSpinner_int_admonitor = 0;
+            allapot_int_admonitor = 0;
+            energigenyo_int_admonitor = 0;
+            add_admonitor_edittext.setText("");
+            search.setText("");
+            minPrice.setText("");
+            maxPrice.setText("");
+
+            loadSearchSpinners();
         } else {
             add_admonitor_edittext.setError("Hiba!");
             add_admonitor_edittext.invalidate();
@@ -3164,9 +3216,9 @@ private boolean isAddingEstate = false;
         isBackPressed = false;
         isShowingFavorites = true;
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        if(viewFlip.getDisplayedChild() != ESTATESLIST) {
+        //if(viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
-        }
+        //}
         isMyAds = 0;
         Log.d("MY", "FAVS");
         getSupportActionBar().setTitle("Kedvencek");
@@ -3185,9 +3237,9 @@ private boolean isAddingEstate = false;
         isBackPressed = false;
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
         isShowingFavorites = false;
-        if (viewFlip.getDisplayedChild() != ESTATESLIST) {
+        //if (viewFlip.getDisplayedChild() != ESTATESLIST) {
             switchLayoutTo(ESTATESLIST);
-        }
+        //}
         isMyAds = 0;
         loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
         closeDrawer();
@@ -3289,16 +3341,18 @@ private boolean isAddingEstate = false;
                 switch (viewFlip.getDisplayedChild()) {
                     case ESTATESLIST:
                         if (isShowingFavorites) {
+                            switchLayoutTo(ESTATESLIST);
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setTitle("Kedvencek");
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                            getSupportActionBar().setTitle("Hirdetések");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else if (isMyAds == 1) {
+                            switchLayoutTo(ESTATESLIST);
                             isMyAds = 0;
                             isShowingFavorites = false;
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                            getSupportActionBar().setTitle("Saját");
+                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                            getSupportActionBar().setTitle("Hirdetések");
                             loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
                         } else {
                             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -3403,41 +3457,6 @@ private boolean isAddingEstate = false;
     public void switchLayoutTo(int switchTo){
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        switch(switchTo) {
-            case ADDESTATE:
-                getSupportActionBar().setTitle("Hirdetés feladás");
-                break;
-            case ESTATESLIST:
-                getSupportActionBar().setTitle("Hirdetések");
-                break;
-            case INVITE:
-                getSupportActionBar().setTitle("Meghívás");
-                break;
-            case PROFILE:
-                getSupportActionBar().setTitle("Profilom");
-                break;
-            case MESSAGES:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case MESSAGES2:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case BOOKING:
-                getSupportActionBar().setTitle("Időpontfoglalás");
-                break;
-            case ADMONITOR:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hirdetésfigyelő");
-                break;
-            default:
-                getSupportActionBar().setTitle(null);
-                break;
-        }
 
         // TODO: ez itt nem jó :D de nagyon nem. de egylőre gyorsan javítottam.
         if (viewFlip.getDisplayedChild() == switchTo && isBackPressed) {
@@ -3469,6 +3488,56 @@ private boolean isAddingEstate = false;
             }
         } else {
             isBackPressed = false;
+        }
+
+        switch(viewFlip.getDisplayedChild()) {
+            case ADDESTATE:
+                getSupportActionBar().setTitle("Hirdetés feladás");
+                break;
+            case ESTATESLIST:
+                if (isShowingFavorites) {
+                    getSupportActionBar().setTitle("Kedvencek");
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                } else if (isMyAds == 1) {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                    getSupportActionBar().setTitle("Saját");
+                } else {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+                    getSupportActionBar().setTitle("Hirdetések");
+                }
+                break;
+            case INVITE:
+                getSupportActionBar().setTitle("Meghívás");
+                break;
+            case PROFILE:
+                getSupportActionBar().setTitle("Profilom");
+                break;
+            case MESSAGES:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Üzenetek");
+                break;
+            case MESSAGES2:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Üzenetek");
+                break;
+            case BOOKING:
+                getSupportActionBar().setTitle("Időpontfoglalás");
+                break;
+            case ADMONITOR:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hirdetésfigyelő");
+                break;
+            case ADDADMONITOR:
+                fab_phone.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hirdetésfigyelő");
+                break;
+            default:
+                getSupportActionBar().setTitle(null);
+                break;
         }
 
         supportInvalidateOptionsMenu();
