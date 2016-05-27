@@ -112,19 +112,22 @@
                 android:id="@+id/timepicker_start_button_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/timepicker_start_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/advert_seeing_start"
-                android:onClick="showTimePicker"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="10sp"
-                android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"
-                android:padding="5sp" />
+                <RelativeLayout
+                    android:id="@+id/spinner_booking_start_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_border"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <Spinner
+                        android:id="@+id/booking_time_start_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical|center_horizontal">
+
+                    </Spinner>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -134,7 +137,8 @@
                     android:id="@+id/timepicker_stert_textView"
                     android:layout_margin="10sp"
                     android:gravity="center_vertical|right"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,19 +146,22 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/timepicker_start_button_layout">
-            <TextView
-                android:id="@+id/timepicker_finish_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/advert_seeing_finish"
-                android:layout_below="@+id/timepicker_start_button_layout"
-                android:onClick="showTimePickerEnd"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="10sp"
-                android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"
-                android:padding="5sp" />
+                <RelativeLayout
+                    android:id="@+id/spinner_booking_end_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_border"
+                    android:layout_weight="1"
+                    android:layout_gravity="center">
+
+                    <Spinner
+                        android:id="@+id/booking_time_end_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical|center_horizontal">
+
+                    </Spinner>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -164,7 +171,8 @@
                     android:id="@+id/timepicker_finish_textView"
                     android:layout_margin="10sp"
                     android:gravity="center_vertical|right"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
