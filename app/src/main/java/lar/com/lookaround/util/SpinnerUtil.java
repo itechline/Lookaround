@@ -493,5 +493,59 @@ public class SpinnerUtil {
         return hiredtestipusa;
     }
 
+    public static ArrayList<SpinnerUtil> get_list_booking_start() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Kezdés"));
+        hiredtestipusa.add(new SpinnerUtil(1, "8:00"));
+        hiredtestipusa.add(new SpinnerUtil(2, "8:30"));
+        hiredtestipusa.add(new SpinnerUtil(3, "9:00"));
+        hiredtestipusa.add(new SpinnerUtil(4, "9:30"));
+        hiredtestipusa.add(new SpinnerUtil(5, "10:00"));
+        hiredtestipusa.add(new SpinnerUtil(6, "10:30"));
+        hiredtestipusa.add(new SpinnerUtil(7, "11:00"));
+        hiredtestipusa.add(new SpinnerUtil(8, "11:30"));
+        hiredtestipusa.add(new SpinnerUtil(9, "12:00"));
+        hiredtestipusa.add(new SpinnerUtil(10, "12:30"));
+        hiredtestipusa.add(new SpinnerUtil(11, "13:00"));
+        hiredtestipusa.add(new SpinnerUtil(12, "13:30"));
+        hiredtestipusa.add(new SpinnerUtil(13, "14:00"));
+        hiredtestipusa.add(new SpinnerUtil(14, "14:30"));
+        hiredtestipusa.add(new SpinnerUtil(15, "15:00"));
+        hiredtestipusa.add(new SpinnerUtil(16, "15:30"));
+        hiredtestipusa.add(new SpinnerUtil(17, "16:00"));
+        hiredtestipusa.add(new SpinnerUtil(18, "16:30"));
+        hiredtestipusa.add(new SpinnerUtil(19, "17:00"));
+        hiredtestipusa.add(new SpinnerUtil(20, "17:30"));
+        hiredtestipusa.add(new SpinnerUtil(20, "18:00"));
+        return hiredtestipusa;
+    }
+
+    public static ArrayList<SpinnerUtil> get_list_booking_finish() {
+        ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+        hiredtestipusa.add(new SpinnerUtil(0, "Vége"));
+        hiredtestipusa.add(new SpinnerUtil(1, "8:00"));
+        hiredtestipusa.add(new SpinnerUtil(2, "8:30"));
+        hiredtestipusa.add(new SpinnerUtil(3, "9:00"));
+        hiredtestipusa.add(new SpinnerUtil(4, "9:30"));
+        hiredtestipusa.add(new SpinnerUtil(5, "10:00"));
+        hiredtestipusa.add(new SpinnerUtil(6, "10:30"));
+        hiredtestipusa.add(new SpinnerUtil(7, "11:00"));
+        hiredtestipusa.add(new SpinnerUtil(8, "11:30"));
+        hiredtestipusa.add(new SpinnerUtil(9, "12:00"));
+        hiredtestipusa.add(new SpinnerUtil(10, "12:30"));
+        hiredtestipusa.add(new SpinnerUtil(11, "13:00"));
+        hiredtestipusa.add(new SpinnerUtil(12, "13:30"));
+        hiredtestipusa.add(new SpinnerUtil(13, "14:00"));
+        hiredtestipusa.add(new SpinnerUtil(14, "14:30"));
+        hiredtestipusa.add(new SpinnerUtil(15, "15:00"));
+        hiredtestipusa.add(new SpinnerUtil(16, "15:30"));
+        hiredtestipusa.add(new SpinnerUtil(17, "16:00"));
+        hiredtestipusa.add(new SpinnerUtil(18, "16:30"));
+        hiredtestipusa.add(new SpinnerUtil(19, "17:00"));
+        hiredtestipusa.add(new SpinnerUtil(20, "17:30"));
+        hiredtestipusa.add(new SpinnerUtil(20, "18:00"));
+        return hiredtestipusa;
+    }
+
 
 }

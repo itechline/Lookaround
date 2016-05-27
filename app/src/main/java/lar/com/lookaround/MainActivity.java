@@ -4,9 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -65,7 +63,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.ViewFlipper;
 
 import com.hkm.slider.SliderLayout;
@@ -203,6 +200,7 @@ public class MainActivity extends AppCompatActivity
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
                 switchLayoutTo(ADDESTATE);
+                loadAddEstateBookingSpinners();
                 setAddestatePageIndicator(whichAddestatePage);
                 getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                 fab.setVisibility(View.INVISIBLE);
@@ -1898,6 +1896,7 @@ public class MainActivity extends AppCompatActivity
     int minute_x_end = 0;
 
 
+    /*
     public void showTimePicker(View view) {
         showDialog(DIALOG_ID);
     }
@@ -1907,43 +1906,39 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    /*private static final int TIME_PICKER_INTERVAL=30;
-    private boolean mIgnoreEvent=false;
-
-    private TimePicker.OnTimeChangedListener mTimePickerListener=new TimePicker.OnTimeChangedListener(){
-        public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute){
-            if (mIgnoreEvent)
-                return;
-            if (minute%TIME_PICKER_INTERVAL!=0){
-                int minuteFloor=minute-(minute%TIME_PICKER_INTERVAL);
-                minute=minuteFloor + (minute==minuteFloor+1 ? TIME_PICKER_INTERVAL : 0);
-                if (minute==60)
-                    minute=0;
-                mIgnoreEvent=true;
-                timePicker.setCurrentMinute(minute);
-                mIgnoreEvent=false;
-            }
-
-        }
-    };*/
-
 
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG_ID) {
-            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, true);
+            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, true){
+                public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                    updateDisplay(view, hourOfDay, minute);
+
+            };
         } else if (id == DIALOGEND_ID) {
             return new TimePickerDialog(MainActivity.this, kTimePickerEndDialog, hour_x_end, minute_x_end, true);
         }
         return null;
     }
 
+    private void updateDisplay(TimePicker timePicker, int hourOfDay, int minute) {
+    }
+
     protected TimePickerDialog.OnTimeSetListener kTimpePickerDialog =
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    if (minute >= 45) {
+                        minute_x = 0;
+                    }
+                    if (minute >= 15 && minute < 45) {
+                        minute_x = 30;
+                    }
+                    if (minute < 15) {
+                        minute_x = 0;
+                    }
                     hour_x = hourOfDay;
-                    minute_x = minute;
+                    //minute_x = minute;
                     TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
                     startText.setText(String.valueOf(hour_x) + ":" + String.valueOf(minute_x));
                 }
@@ -1959,6 +1954,7 @@ public class MainActivity extends AppCompatActivity
                     startText.setText(String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end));
                 }
             };
+    */
 
     int adType = 0;
     public void adTypeChange(View view) {
@@ -2353,8 +2349,8 @@ private boolean isAddingEstate = false;
                     break;
 
                 case 5:
-                    start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
-                    finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
+                    //start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
+                    //finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
@@ -2402,14 +2398,8 @@ private boolean isAddingEstate = false;
                                                      fri = 0;
                                                      sat = 0;
                                                      sun = 0;
-                                                     hour_x = 0;
-                                                     hour_x_end = 0;
-                                                     minute_x = 0;
-                                                     minute_x_end = 0;
-                                                     TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
-                                                     TextView finishText = (TextView) findViewById(R.id.timepicker_finish_textView);
-                                                     startText.setText("Adja meg a megtikintések kezdőidőpontját");
-                                                     finishText.setText("Adja meg a megtekintések végének időpontját");
+                                                     start = "0";
+                                                     finish = "0";
 
                                                      TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                                                      TextView description = (TextView) findViewById(R.id.advert_description_edittext);
@@ -2451,6 +2441,51 @@ private boolean isAddingEstate = false;
         }
     }
 
+    Spinner startSpinner, finishSpinner;
+    //TODO: spinner getview valamiért túl sokszor fut le (valszeg vmilyen xml hiba, match parent vagy tudja a tök)
+
+    public void loadAddEstateBookingSpinners() {
+        ArrayList<SpinnerUtil> arrayListStart = (ArrayList) SpinnerUtil.get_list_booking_start();
+        final SpinnerAdapter adapterStart = new SpinnerAdapter(MainActivity.this, arrayListStart);
+        startSpinner = (Spinner) findViewById(R.id.booking_time_start_spinner);
+        adapterStart.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        startSpinner.setAdapter(adapterStart);
+
+        startSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterStart.getItem(position);
+                start = spinnerUtil.getName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+
+        ArrayList<SpinnerUtil> arrayListFinish = (ArrayList) SpinnerUtil.get_list_booking_finish();
+        final SpinnerAdapter adapterFurniture = new SpinnerAdapter(MainActivity.this, arrayListFinish);
+        finishSpinner = (Spinner) findViewById(R.id.booking_time_end_spinner);
+        adapterFurniture.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        finishSpinner.setAdapter(adapterFurniture);
+
+        finishSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+                SpinnerUtil spinnerUtil = adapterFurniture.getItem(position);
+                finish = spinnerUtil.getName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            }
+        });
+    }
+
     public void uploadImages(String hash) {
         Log.d("UPLOAD_URI_SIZE", String.valueOf(uris.size()));
         ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
@@ -2459,6 +2494,7 @@ private boolean isAddingEstate = false;
         progressBar.setIndeterminate(true);
         progressBar.setProgress(0);
         int imageCount = 0;
+        //TODO: egyelőre kikommentelve mert lehal sok telefonon
         /*for (int i = 0; i < uris.size(); i++) {
             if (uris.get(i) != null) {
                 imageCount += 1;
@@ -2792,7 +2828,7 @@ private boolean isAddingEstate = false;
 
     public void showAlert() {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage("Napasztmek! Nincs internet! :'(")
+        myAlert.setMessage("Nincs internet! :'(")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -3602,12 +3638,17 @@ private boolean isAddingEstate = false;
                 if (isShowingFavorites) {
                     getSupportActionBar().setTitle("Kedvencek");
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+                    fab.setVisibility(View.INVISIBLE);
+                    fab_phone.setVisibility(View.INVISIBLE);
                 } else if (isMyAds == 1) {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
                     getSupportActionBar().setTitle("Saját");
+                    fab.setVisibility(View.INVISIBLE);
+                    fab_phone.setVisibility(View.INVISIBLE);
                 } else {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
                     getSupportActionBar().setTitle("Hirdetések");
+                    fab.setVisibility(View.VISIBLE);
                 }
                 break;
             case INVITE:
