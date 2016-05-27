@@ -41,26 +41,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/booking_text"
+            android:text="@string/agree"
             android:id="@+id/booking_date_agree"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="5sp"
+            android:layout_margin="15sp"
             android:textColor="#0066cc"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Szabad Időpont"
+            android:text="@string/disagree"
             android:id="@+id/booking_date_disaggree"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/booking_minutes_text"
-            android:layout_toEndOf="@+id/booking_minutes_text"
             android:textSize="18sp"
-            android:layout_marginLeft="15sp" />
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/booking_date_agree"
+            android:layout_margin="15sp"
+            android:textColor="#ff0000"/>
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="Redneck Johnie"
+            android:id="@+id/who_booked_it_text"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/booking_minutes_text"
+            android:layout_margin="10sp" />
     </RelativeLayout>
 
 

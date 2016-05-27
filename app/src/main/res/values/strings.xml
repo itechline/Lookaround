@@ -294,6 +294,8 @@
     <string name="invite_page_top_hint_text">Hívd meg ismerőseidet és barátaidat, hogy ők is lássák mennyire király ez az app ;)</string>
     <string name="i_want_to_see_it_on_maps">Megnézem a térképen</string>
     <string name="theres_no_such_ad">Nincs a keresének megfelelő hírdetés!</string>
+    <string name="disagree">Elutasít</string>
+    <string name="agree">Elfogad</string>
 
     <string name="enchancement_title">Kiemelés:</string>
     <string name="enchancement_hint_text">Különböztesse meg a hírdetését másokétól! A hírdetés kiemelésének ára 300FT</string>
