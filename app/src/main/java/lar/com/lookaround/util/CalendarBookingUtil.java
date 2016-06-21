@@ -11,6 +11,15 @@ import java.util.ArrayList;
 public class CalendarBookingUtil {
     private int hours;
     private int minutes;
+    private boolean foglalt;
+
+    public boolean isFoglalt() {
+        return foglalt;
+    }
+
+    public void setFoglalt(boolean foglalt) {
+        this.foglalt = foglalt;
+    }
 
     public int getHours() {
         return hours;

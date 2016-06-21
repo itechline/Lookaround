@@ -23,15 +23,7 @@
         android:gravity="center_horizontal"
         android:layout_margin="10sp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/button_back"
-            android:id="@+id/profile_back_button"
-            android:textColor="#0066cc"
-            android:textSize="16sp"
-            android:layout_margin="5sp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,12 +38,16 @@
             android:padding="3sp"/>
     </LinearLayout>
 
+    <ScrollView
+        android:layout_above="@+id/profile_buttons_layout"
+        android:layout_below="@+id/profile_top_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:id="@+id/content_profile_relative_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/profile_buttons_layout"
-        android:layout_below="@+id/profile_top_textview"
         android:layout_centerInParent="true"
         android:gravity="center_vertical|center_horizontal">
     <RelativeLayout
@@ -193,6 +189,7 @@
         android:layout_gravity="center"
         android:layout_margin="5sp"
         android:layout_weight="1"
+        android:enabled="false"
         android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
@@ -219,7 +216,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40sp"
+        android:layout_height="0sp"
         android:id="@+id/change_pass_layout"
         android:layout_below="@+id/change_pass_header_linearLayout"
         android:layout_alignParentLeft="true"
@@ -228,6 +225,7 @@
         android:id="@+id/change_pass_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/passw_actual"
         android:layout_marginLeft="5sp"
@@ -245,6 +243,7 @@
         android:background="@drawable/spinner_border"
         android:layout_gravity="center"
         android:ems="10"
+        android:visibility="gone"
         android:layout_weight="2"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="5sp"
@@ -320,4 +319,7 @@
         android:layout_weight="1" />
     </RelativeLayout>
     </RelativeLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

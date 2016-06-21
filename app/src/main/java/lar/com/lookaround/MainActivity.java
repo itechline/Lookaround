@@ -23,7 +23,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -40,15 +39,15 @@ import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -81,6 +80,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -91,9 +91,9 @@ import lar.com.lookaround.adapters.CalendarBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.MessageAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
+import lar.com.lookaround.models.UserModel;
 import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
-import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.util.AddImageUtil;
 import lar.com.lookaround.util.AdmonitorUtil;
 import lar.com.lookaround.util.CalendarBookingUtil;
@@ -107,53 +107,33 @@ import lar.com.lookaround.util.SpinnerUtil;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    ViewFlipper viewFlip, viewFlipAddEstate;
-    LayoutInflater inflater;
-    private int mCurrentLayoutState;
-    private int mCurrentLayoutStateAddEstate;
-
-    private static final int ESTATESLIST = 0;
-    private static final int CONTENTESTATE = 1;
-    private static final int ADDESTATE = 2;
-
-    private static final int INVITE = 3;
-    private static final int PROFILE = 4;
-    private static final int MESSAGES = 5;
-    private static final int BOOKING = 6;
-    private static final int MESSAGES2 = 7;
-    private static final int ADMONITOR = 8;
-    private static final int ADDADMONITOR = 9;
-
-    View estatesView, contentRealestate, addEstate, addEstate2, addEstate3, addEstate4, addEstate5, addEstate1, invite, profile, messages, booking, message2, admonitor, addAdmonitor;
+    EstateUtil currentEstate;
 
     DrawerLayout drawer;
-
-    private SwipeRefreshLayout swipeContainer;
-
-    private static int page = 0;
-    private static String id;
-
-    private boolean isShowingFavorites = false;
-
-
-    final int TAKE_PHOTO_CODE = 9999;
-    private String mobileNum = "0";
-
-
-    File cacheFile;
+    private int furniture_int = 0;
+    private int lift_int = 0;
+    private int balcony_int = 0;
+    private int meret_int = 0;
+    private int szobaMax_int = 0;
+    private int szobaMin_int = 0;
+    private int floorsMint_int = 0;
+    private int floorsMax_int = 0;
+    private int type_int = 0;
+    private int allapot_int = 0;
+    private int energigenyo_int = 0;
+    private int panoramaSpinner_int = 0;
+    private String price_from = "";
+    private String price_to = "";
+    private String key = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
-        Debug.getNativeHeapSize();
-
-        setViewFlipper();
 
         if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
-                tokenValidation();
+                tokenValidation(true);
             } else {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
@@ -169,71 +149,10 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
-        /**
-         *  Képfeltöltés
-         *
-         */
-
-        // Here, the counter will be incremented each time, and the
-        // picture taken by camera will be stored as 1.jpg,2.jpg
-        // and likewise.
-
-        /*File outputDir = getCacheDir(); // context being the Activity pointer
-        try {
-
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-            startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        /**
-         * Vége
-         */
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                switchLayoutTo(ADDESTATE);
-                loadAddEstateBookingSpinners();
-                setAddestatePageIndicator(whichAddestatePage);
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                fab.setVisibility(View.INVISIBLE);
-
-            }
-        });
-
-
-
-        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        fab_phone.setVisibility(View.INVISIBLE);
-        fab_phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + mobileNum));
-                startActivity(intent);
-            }
-        });
-
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
+        currentEstate = null;
 
         // TODO: do it in XML
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -242,50 +161,20 @@ public class MainActivity extends AppCompatActivity
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView2.setNavigationItemSelectedListener(this);
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
-                //fetchTimelineAsync(0);
-
-                //String lrgst = String.valueOf(EstateUtil.largestId);
-                if (!isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-                } else {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
-                }
-            }
-        });
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-
-
         loadSearchSpinners();
 
 
-        loadAddEstateSpinners();
+        //loadAddEstateSpinners();
 
-        autocompleteSetter();
+        //autocompleteSetter();
         // string array-be kéne rakni a resource-ból oszt menne csak valamiért mégse megy
 
 
+        // Calendar now = Calendar.getInstance();
 
-        Calendar now = Calendar.getInstance();
-
-        setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
+        //setCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH));
 
         //loadEstateImages();
-
-        prewViews.add(0);
-
-        Log.d("TOKEN", SettingUtil.getToken(getBaseContext()));
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -309,7 +198,7 @@ public class MainActivity extends AppCompatActivity
                     count.setText(String.valueOf(result));
                     if (prewMessageCount < c) {
                         if (prewMessageCount != 0) {
-                            Snackbar.make(viewFlip.getCurrentView(), "Üzenete érkezett!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(count, "Üzenete érkezett!", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         prewMessageCount = c;
@@ -340,9 +229,6 @@ public class MainActivity extends AppCompatActivity
         autocomplete_addestate.setThreshold(2);
         autocomplete_addestate.setAdapter(adapter);
     }
-
-
-
 
     Calendar most = Calendar.getInstance();
     int whichYear = most.get(Calendar.YEAR);
@@ -378,11 +264,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     public void setCalendar(int year, int month) {
         final ArrayList<String> lst = new ArrayList<String>();
 
-        Calendar hlper = Calendar.getInstance();
+        final Calendar hlper = Calendar.getInstance();
         hlper.set(Calendar.DAY_OF_MONTH, 1);
         hlper.set(Calendar.MONTH, month);
         hlper.set(Calendar.YEAR, year);
@@ -436,7 +321,7 @@ public class MainActivity extends AppCompatActivity
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
-
+                hlper.set(Calendar.DAY_OF_MONTH, Integer.valueOf(adapter.getItem(position)));
 
                 //TODO: nem kell az összeset null-ra állítani, meg kell jegyeztetni az elsőt, és csak azt nullázni
                 for (int i=0; i < gridview.getChildCount();i++) {
@@ -457,6 +342,24 @@ public class MainActivity extends AppCompatActivity
                 final CalendarBookingAdapter cba = new CalendarBookingAdapter(MainActivity.this, appointments);
                 final ListView listView = (ListView) findViewById(R.id.listView_booking);
                 listView.setAdapter(cba);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        CalendarBookingUtil u = (CalendarBookingUtil) appointments.get(i);
+                        cba.getItem(i).setFoglalt(true);
+                        cba.notifyDataSetChanged();
+
+                        String mikor = hlper.get(Calendar.YEAR)+"-"+hlper.get(Calendar.MONTH)+"-"+hlper.get(Calendar.DAY_OF_MONTH)+" "+ u.getHours() +":"+ u.getMinutes() +":00";
+
+                        EstateUtil.addIdopont(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                Snackbar.make(listView, "Sikeres foglalás!", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }
+                        }, SettingUtil.getToken(MainActivity.this), String.valueOf(currentEstate.getId()), mikor);
+                    }
+                });
 
                 //final ArrayList<CalendarBookingUtil> appointmentsNew = (ArrayList) CalendarBookingUtil.getAppointments();
                 //cba.addAll(appointmentsNew);
@@ -466,81 +369,13 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-
     public String getMonth(int month) {
         return new DateFormatSymbols().getMonths()[month];
     }
 
-
-    Spinner hirdetesSpinner, szobaszamSpinner, allapotSpinner, emeletekSpinner, ingatlanTipusSpinner, parkolasSpinner, parkolasSpinner_admonitor, futesSpinner;
-    Spinner energiaSpinner, kilatasSpinner, typeSpinner, panoramaSpinner, panoramaSpinner_admonitor, typeSpinner_admonitor;
-
-    ArrayAdapter<CharSequence> typespinnerAdapter;
-
-    int hirdetesSpinner_int = 0;
-    int szobaszamSpinner_int = 0;
-    int allapotSpinner_int = 0;
-    int emeletekSpinner_int = 0;
-    int ingatlanTipusSpinner_int = 0;
-    int parkolasSpinner_int = 0;
-    int futesSpinner_int = 0;
-    int energiaSpinner_int = 0;
-    int kilatasSpinner_int = 0;
-    int butorozottSpinner_int = 0;
-    int balconySpinner_int = 0;
-    int elevatorSpinner_int = 0;
-    int parkolasSpinner_int_admonitor = 0;
-    int panoramaSpinner_int = 0;
-    int panoramaSpinner_int_admonitor = 0;
-
-
-
     public void loadAddEstateSpinners() {
         //add_advert_type_spinner
-        SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
-                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
-
-                hirdetesSpinner = (Spinner) findViewById(R.id.add_advert_type_spinner);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                hirdetesSpinner.setAdapter(adapter);
-
-                hirdetesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        hirdetesSpinner_int = spinnerUtil.getId();
-                        TextView ar = (TextView) findViewById(R.id.add_advert_price_textview);
-                        switch (spinnerUtil.getId()) {
-                            case 1:
-                                ar.setText("Ingatlan Ára*:");
-                                break;
-                            case 2:
-                                ar.setText("Bérleti Díj*:");
-                                break;
-                            default:
-                                ar.setText("Ingatlan Ára*:");
-                                break;
-                        }
-                        if (hirdetesSpinner_int != 0) {
-                            hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
-                            hirdetesSpinner.invalidate();
-                        }
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-            }
-        });
-
+        /*
 
         //addestate_rooms_spinner
         SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
@@ -891,46 +726,31 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+    }*/
     }
-
-    Spinner enegigenyo, butorozottSpinner, balconySpinner, elevatorSpinner, sortingSpinner, floorsMin, floorsMax, szobaMin, szobaMax, meret, balcony, lift, furniture;
-    int sortingSpinner_int = 0;
-    int floorsMint_int = 0;
-    int floorsMax_int = 0;
-    int szobaMin_int = 0;
-    int szobaMax_int = 0;
-    int meret_int = 0;
-    int balcony_int = 0;
-    int lift_int = 0;
-    int furniture_int = 0;
-
-
-    Spinner allapot, allapot_admonitor, enegigenyo_admonitor, butorozottSpinner_admonitor, balconySpinner_admonitor, elevatorSpinner_admonitor, sortingSpinner_admonitor, floorsMin_admonitor, floorsMax_admonitor, szobaMin_admonitor, szobaMax_admonitor, meret_admonitor, balcony_admonitor, lift_admonitor, furniture_admonitor;
-    int sortingSpinner_int_admonitor = 0;
-    int floorsMint_int_admonitor = 0;
-    int floorsMax_int_admonitor = 0;
-    int szobaMin_int_admonitor = 0;
-    int szobaMax_int_admonitor = 0;
-    int meret_int_admonitor = 0;
-    int balcony_int_admonitor = 0;
-    int lift_int_admonitor = 0;
-    int furniture_int_admonitor = 0;
-    int type_int = 0;
-    int type_int_admonitor = 0;
-    int allapot_int = 0;
-    int allapot_int_admonitor = 0;
-    int energigenyo_int = 0;
-    int energigenyo_int_admonitor = 0;
-
     public void loadSearchSpinners() {
+        TextView go = (TextView) findViewById(R.id.search_button_go);
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText keyword = (EditText) findViewById(R.id.keyword_realestate_search_edittext);
+                EditText pf = (EditText) findViewById(R.id.realestate_price_edittext_min);
+                EditText pt = (EditText) findViewById(R.id.realestate_price_edittext_max);
+
+                price_from = pf.getText().toString();
+                price_to = pt.getText().toString();
+                key = keyword.getText().toString();
+
+                closeDrawer();
+                loadRealEstates();
+            }
+        });
+
         //hasfurniture_spinner
         ArrayList<SpinnerUtil> arrayListFurniture = (ArrayList) SpinnerUtil.get_list_butorozott();
         final SpinnerAdapter adapterFurniture = new SpinnerAdapter(MainActivity.this, arrayListFurniture);
-        furniture = (Spinner) findViewById(R.id.hasfurniture_spinner);
-        furniture_admonitor = (Spinner) findViewById(R.id.hasfurniture_spinner_admonitor);
-        adapterFurniture.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner furniture = (Spinner) findViewById(R.id.hasfurniture_spinner);
         furniture.setAdapter(adapterFurniture);
-        furniture_admonitor.setAdapter(adapterFurniture);
 
         furniture.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -946,28 +766,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        furniture_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-                SpinnerUtil spinnerUtil = adapterFurniture.getItem(position);
-                furniture_int_admonitor = spinnerUtil.getId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
 
         //realestate_elevator_spinner
         ArrayList<SpinnerUtil> arrayListElevator = (ArrayList) SpinnerUtil.get_list_lift();
         final SpinnerAdapter adapterElevator = new SpinnerAdapter(MainActivity.this, arrayListElevator);
-        lift = (Spinner) findViewById(R.id.realestate_elevator_spinner);
-        lift_admonitor = (Spinner) findViewById(R.id.realestate_elevator_spinner_admonitor);
+        Spinner lift = (Spinner) findViewById(R.id.realestate_elevator_spinner);
         adapterElevator.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lift.setAdapter(adapterElevator);
-        lift_admonitor.setAdapter(adapterElevator);
 
         lift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -983,27 +788,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        lift_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-                SpinnerUtil spinnerUtil = adapterElevator.getItem(position);
-                lift_int_admonitor = spinnerUtil.getId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
         ArrayList<SpinnerUtil> arrayListBalcony = (ArrayList) SpinnerUtil.get_list_erkely();
         final SpinnerAdapter adapterBalcony = new SpinnerAdapter(MainActivity.this, arrayListBalcony);
-        balcony = (Spinner) findViewById(R.id.realestate_balcony_spinner);
-        balcony_admonitor = (Spinner) findViewById(R.id.realestate_balcony_spinner_admonitor);
+        Spinner balcony = (Spinner) findViewById(R.id.realestate_balcony_spinner);
         adapterBalcony.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         balcony.setAdapter(adapterBalcony);
-        balcony_admonitor.setAdapter(adapterBalcony);
 
         balcony.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1019,27 +808,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        balcony_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-                SpinnerUtil spinnerUtil = adapterBalcony.getItem(position);
-                balcony_int_admonitor = spinnerUtil.getId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
         ArrayList<SpinnerUtil> arrayListSize= (ArrayList) SpinnerUtil.get_list_meret();
         final SpinnerAdapter adapterSize = new SpinnerAdapter(MainActivity.this, arrayListSize);
-        meret = (Spinner) findViewById(R.id.realestate_size_spinner);
-        meret_admonitor = (Spinner) findViewById(R.id.realestate_size_spinner_admonitor);
+        Spinner meret = (Spinner) findViewById(R.id.realestate_size_spinner);
         adapterSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         meret.setAdapter(adapterSize);
-        meret_admonitor.setAdapter(adapterSize);
 
         meret.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1055,31 +828,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        meret_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-                SpinnerUtil spinnerUtil = adapterSize.getItem(position);
-                meret_int_admonitor = spinnerUtil.getId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
         SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                szobaMin = (Spinner) findViewById(R.id.realestate_roomcount_min_spinner);
-                szobaMin_admonitor = (Spinner) findViewById(R.id.realestate_roomcount_min_spinner_admonitor);
+                Spinner szobaMin = (Spinner) findViewById(R.id.realestate_roomcount_min_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 szobaMin.setAdapter(adapter);
-                szobaMin_admonitor.setAdapter(adapter);
 
                 szobaMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1095,20 +852,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                szobaMin_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        szobaMin_int_admonitor = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
             }
         });
 
@@ -1118,11 +861,9 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                szobaMax = (Spinner) findViewById(R.id.realestate_roomcount_max_spinner);
-                szobaMax_admonitor = (Spinner) findViewById(R.id.realestate_roomcount_max_spinner_admonitor);
+                Spinner szobaMax = (Spinner) findViewById(R.id.realestate_roomcount_max_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 szobaMax.setAdapter(adapter);
-                szobaMax_admonitor.setAdapter(adapter);
 
                 szobaMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1130,20 +871,6 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         szobaMax_int = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-                szobaMax_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        szobaMax_int_admonitor = spinnerUtil.getId();
                     }
 
                     @Override
@@ -1162,11 +889,9 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                floorsMin = (Spinner) findViewById(R.id.realestate_floors_min_spinner);
-                floorsMin_admonitor = (Spinner) findViewById(R.id.realestate_floors_min_spinner_admonitor);
+                Spinner floorsMin = (Spinner) findViewById(R.id.realestate_floors_min_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 floorsMin.setAdapter(adapter);
-                floorsMin_admonitor.setAdapter(adapter);
 
                 floorsMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1174,20 +899,6 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         floorsMint_int = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-                floorsMin_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        floorsMint_int_admonitor = spinnerUtil.getId();
                     }
 
                     @Override
@@ -1205,11 +916,9 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                floorsMax = (Spinner) findViewById(R.id.realestate_floors_max_spinner);
-                floorsMax_admonitor = (Spinner) findViewById(R.id.realestate_floors_max_spinner_admonitor);
+                Spinner floorsMax = (Spinner) findViewById(R.id.realestate_floors_max_spinner);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 floorsMax.setAdapter(adapter);
-                floorsMax_admonitor.setAdapter(adapter);
 
                 floorsMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1225,52 +934,8 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                floorsMax_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        floorsMax_int_admonitor = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
             }
         });
-
-        ArrayList<SpinnerUtil> arrayListSorting = (ArrayList) SpinnerUtil.get_list_szures();
-        final SpinnerAdapter adapterSorting = new SpinnerAdapter(MainActivity.this, arrayListSorting);
-        sortingSpinner = (Spinner) findViewById(R.id.sort_estates_spinner);
-        adapterSorting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortingSpinner.setAdapter(adapterSorting);
-
-        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-                SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
-                sortingSpinner_int = spinnerUtil.getId();
-                String showFav;
-                if (isShowingFavorites) {
-                    showFav = "1";
-                } else {
-                    showFav = "0";
-                }
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
-            }
-        });
-
-
-
 
         SpinnerUtil.get_list_ingatlantipus(new SoapObjectResult() {
             @Override
@@ -1278,18 +943,18 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
-                typeSpinner_admonitor = (Spinner) findViewById(R.id.realestate_type_spinner_admonitor);
+                Spinner typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 typeSpinner.setAdapter(adapter);
-                typeSpinner_admonitor.setAdapter(adapter);
 
                 typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
+
+
                         type_int = spinnerUtil.getId();
                     }
 
@@ -1299,19 +964,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                typeSpinner_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        type_int_admonitor = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
 
             }
         });
@@ -1322,12 +974,10 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                allapot = (Spinner) findViewById(R.id.condition_spinner);
-                allapot_admonitor = (Spinner) findViewById(R.id.condition_spinner_admonitor);
+                Spinner allapot = (Spinner) findViewById(R.id.condition_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 allapot.setAdapter(adapter);
-                allapot_admonitor.setAdapter(adapter);
 
                 allapot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1335,20 +985,6 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         allapot_int = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-                allapot_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        allapot_int_admonitor = spinnerUtil.getId();
                     }
 
                     @Override
@@ -1367,12 +1003,10 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                enegigenyo = (Spinner) findViewById(R.id.ecertificate_search_spinner);
-                enegigenyo_admonitor = (Spinner) findViewById(R.id.ecertificate_search_spinner_admonitor);
+                Spinner enegigenyo = (Spinner) findViewById(R.id.ecertificate_search_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 enegigenyo.setAdapter(adapter);
-                enegigenyo_admonitor.setAdapter(adapter);
 
                 enegigenyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1380,20 +1014,6 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         energigenyo_int = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-                enegigenyo_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        energigenyo_int_admonitor = spinnerUtil.getId();
                     }
 
                     @Override
@@ -1412,12 +1032,10 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                parkolasSpinner = (Spinner) findViewById(R.id.parking_type_spinner);
-                parkolasSpinner_admonitor = (Spinner) findViewById(R.id.parking_type_spinner_admonitor);
+                Spinner parkolasSpinner = (Spinner) findViewById(R.id.parking_type_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 parkolasSpinner.setAdapter(adapter);
-                parkolasSpinner_admonitor.setAdapter(adapter);
 
                 parkolasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1425,20 +1043,6 @@ public class MainActivity extends AppCompatActivity
                         ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         parkolasSpinner_int = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
-                parkolasSpinner_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        parkolasSpinner_int_admonitor = spinnerUtil.getId();
                     }
 
                     @Override
@@ -1457,12 +1061,10 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
                 final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
 
-                panoramaSpinner = (Spinner) findViewById(R.id.view_type_realestate_spinner);
-                panoramaSpinner_admonitor = (Spinner) findViewById(R.id.view_type_realestate_spinner_admonitor);
+                Spinner panoramaSpinner = (Spinner) findViewById(R.id.view_type_realestate_spinner);
                 //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 panoramaSpinner.setAdapter(adapter);
-                panoramaSpinner_admonitor.setAdapter(adapter);
 
                 panoramaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -1478,26 +1080,13 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                panoramaSpinner_admonitor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                        SpinnerUtil spinnerUtil = adapter.getItem(position);
-                        panoramaSpinner_int_admonitor = spinnerUtil.getId();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
-                    }
-                });
-
             }
         });
     }
 
 
     public void setViewFlipper() {
+        /*
         inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         estatesView = inflater.inflate(R.layout.content_main, null);
         contentRealestate = inflater.inflate(R.layout.content_realestate, null);
@@ -1543,9 +1132,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        viewFlip.setDisplayedChild(ESTATESLIST);
+        viewFlip.setDisplayedChild(ESTATESLIST);*/
     }
-
 
 
     private int PICK_IMAGE_REQUEST = 1;
@@ -1711,7 +1299,7 @@ public class MainActivity extends AppCompatActivity
             result = contentURI.getPath();
         } else {
             cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            int idx = cursor.getColumnIndex( MediaStore.MediaColumns.DATA );
             result = cursor.getString(idx);
             cursor.close();
         }
@@ -1724,39 +1312,14 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<Uri> uris = new ArrayList <Uri>();
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
-
-            Uri selectedImageURI = data.getData();
-            File imageFile = new File(getRealPathFromURI(selectedImageURI));
-
-
-            ImageUploadService service = new ImageUploadService(new SoapResult() {
-                @Override
-                public void parseRerult(String result) {
-                    Log.e("error", "succes" + result);
-                }
-            }, imageFile);
-            try {
-                // ingatlan hash-t átadni.
-                service.execute("FIKAMIKA");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }*/
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
-                //imagesUri[imageID] = data.getData();
                 uris.add(data.getData());
-                Log.d("URIS_GET", uris.get(imageID).toString());
-
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
@@ -1767,18 +1330,16 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
                 final AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);
 
-                View galleryImage = (View) adapter.getView(imageID, null, null);
+                View galleryImage = adapter.getView(imageID, null, null);
 
                 final AddImageUtil addImageUtil = adapter.getItem(galleryImageID);
 
                 galleryImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("GALLERY_ID: ", String.valueOf(addImageUtil.getId()));
                         callPopup(addImageUtil.getId(), linearLayoutGallery);
                     }
                 });
-
 
 
                 linearLayoutGallery.addView(galleryImage, addImageUtil.getId());
@@ -1809,7 +1370,6 @@ public class MainActivity extends AppCompatActivity
             camImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("CAM_ID: ", String.valueOf(addImageUtil.getId()));
                     callPopup(addImageUtil.getId(), linearLayoutCam);
                 }
             });
@@ -1858,9 +1418,9 @@ public class MainActivity extends AppCompatActivity
                         layout.getChildAt(id).setVisibility(View.GONE);
                         popupWindow.dismiss();
                         if (takeOrPick) {
-                            TakeImage(viewFlipAddEstate.getCurrentView());
+                            TakeImage(layout);
                         } else {
-                            pickImage(viewFlipAddEstate.getCurrentView());
+                            pickImage(layout);
                         }
                     }
                 });
@@ -1888,114 +1448,46 @@ public class MainActivity extends AppCompatActivity
                 });
     }
 
-    static final int DIALOG_ID = 0;
-    static final int DIALOGEND_ID = 1;
     int hour_x = 0;
     int minute_x = 0;
     int hour_x_end = 0;
     int minute_x_end = 0;
 
-
-    /*
-    public void showTimePicker(View view) {
-        showDialog(DIALOG_ID);
-    }
-
-    public void showTimePickerEnd(View view) {
-        showDialog(DIALOGEND_ID);
-    }
-
-
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ID) {
-            return new TimePickerDialog(MainActivity.this, kTimpePickerDialog, hour_x, minute_x, true){
-                public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                    updateDisplay(view, hourOfDay, minute);
-
-            };
-        } else if (id == DIALOGEND_ID) {
-            return new TimePickerDialog(MainActivity.this, kTimePickerEndDialog, hour_x_end, minute_x_end, true);
-        }
-        return null;
-    }
-
-    private void updateDisplay(TimePicker timePicker, int hourOfDay, int minute) {
-    }
-
-    protected TimePickerDialog.OnTimeSetListener kTimpePickerDialog =
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    if (minute >= 45) {
-                        minute_x = 0;
-                    }
-                    if (minute >= 15 && minute < 45) {
-                        minute_x = 30;
-                    }
-                    if (minute < 15) {
-                        minute_x = 0;
-                    }
-                    hour_x = hourOfDay;
-                    //minute_x = minute;
-                    TextView startText = (TextView) findViewById(R.id.timepicker_stert_textView);
-                    startText.setText(String.valueOf(hour_x) + ":" + String.valueOf(minute_x));
-                }
-    };
-
-    protected TimePickerDialog.OnTimeSetListener kTimePickerEndDialog =
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    hour_x_end = hourOfDay;
-                    minute_x_end = minute;
-                    TextView startText = (TextView) findViewById(R.id.timepicker_finish_textView);
-                    startText.setText(String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end));
-                }
-            };
-    */
-
     int adType = 0;
     public void adTypeChange(View view) {
-        TextView typeText = (TextView) findViewById(R.id.estate_type_textview);
-        String showFav;
-        if (isShowingFavorites) {
-            showFav = "1";
-        } else {
-            showFav = "0";
-        }
         adType += 1;
         switch (adType) {
             case 1:
-                typeText.setText("Eladó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "1", String.valueOf(sortingSpinner_int), isMyAds);
+                ing_type = 1;
+                loadRealEstates();
                 break;
             case 2:
-                typeText.setText("Kiadó");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "2", String.valueOf(sortingSpinner_int), isMyAds);
+                ing_type = 2;
+                loadRealEstates();
                 break;
             default:
-                typeText.setText("Mindegy");
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), showFav, "0", String.valueOf(sortingSpinner_int), isMyAds);
+                ing_type = 0;
+                loadRealEstates();
                 adType = 0;
                 break;
         }
     }
 
+
+
+    public void doVR(View view) {
+        EstateUtil.addVR(SettingUtil.getToken(getBaseContext()));
+    }
+
     public void seeOnMap(View view) {
         if (latMap != null || !latMap.equals("0.0")) {
             SettingUtil.setLatForMap(getBaseContext(), latMap);
-            Log.d("SETLAT", "FINISHED");
-            Log.d("GETLAT", SettingUtil.getLatForMap(getBaseContext()));
         }
-
         if (lngMap != null || !lngMap.equals("0.0")) {
             SettingUtil.setLngForMap(getBaseContext(), lngMap);
         }
 
         if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
-            //startActivity(new Intent(MainActivity.this, MapsActivity.class));
             Intent i = new Intent(MainActivity.this, MapsActivity.class);
             startActivityForResult(i, 69);
         } else {
@@ -2013,23 +1505,6 @@ public class MainActivity extends AppCompatActivity
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
         return isConnected;
-
-
-        /*ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED) {
-
-            return true;
-
-        }
-        else if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
-                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
-
-            return false;
-        }
-
-        return true;*/
-
     }
 
 
@@ -2057,22 +1532,9 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 
+    private int whichAddestatePage = 0;
 
-    private String bitmapToBase64(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream .toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
-
-    private Bitmap base64ToBitmap(String b64) {
-        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-    }
-
-private int whichAddestatePage = 0;
-
-private boolean isAddingEstate = false;
+    private boolean isAddingEstate = false;
 
     private int mon = 0;
     private int tue = 0;
@@ -2083,13 +1545,35 @@ private boolean isAddingEstate = false;
     private int sun = 0;
     private String start = "0";
     private String finish = "0";
+    private int hirdetesSpinner_int = 0;
+    private int butorozottSpinner_int = 0;
+    private int szobaszamSpinner_int = 0;
+    private int allapotSpinner_int = 0;
+    private int emeletekSpinner_int = 0;
+    private int ingatlanTipusSpinner_int = 0;
+    private int parkolasSpinner_int = 0;
+    private int futesSpinner_int = 0;
+    private int energiaSpinner_int = 0;
+    private int kilatasSpinner_int = 0;
+    private int balconySpinner_int = 0;
+    private int elevatorSpinner_int = 0;
 
-    public void nextAddestatePage(final View view) {
-        if (whichAddestatePage < 5) {
-            whichAddestatePage += 1;
+    public void nextAddestatePage(int whichAddestatePage) {
+        if (whichAddestatePage <= 5) {
+
+            final ViewFlipper viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
             boolean isFilledOut = true;
             switch (whichAddestatePage) {
-                case 1:
+                case 0:
+                    viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
+
+
                     TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
                     TextView description = (TextView) findViewById(R.id.advert_description_edittext);
                     TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
@@ -2099,74 +1583,178 @@ private boolean isAddingEstate = false;
                     TextView num = (TextView) findViewById(R.id.add_advert_str_number_edittext);
                     TextView size = (TextView) findViewById(R.id.estate_size_edittext);
 
+                    title.setText(estateTitle);
+                    description.setText(estateDescription);
+                    price.setText(estatePrice);
+                    city.setText(estateCity);
+                    street.setText(estateStreet);
+                    num.setText(estetaHouseNumber);
+                    size.setText(estateSize);
 
-                    estateTitle = title.getText().toString();
-                    estateDescription = description.getText().toString();
-                    estatePrice = price.getText().toString();
-                    estateCity = city.getText().toString();
+                    TextView next = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.advert1_next_button);
+                    next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            nextAddestatePage(1);
+                        }
+                    });
 
-                    estateStreet = street.getText().toString();
-                    estetaHouseNumber = num.getText().toString();
-                    estateSize = size.getText().toString();
+                    final Spinner hirdetesSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.add_advert_type_spinner);
+
+                    SpinnerUtil.get_list_hirdetestipusa(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                            final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            hirdetesSpinner.setAdapter(adapter);
+                            for(int i = 0; i < arrayList.size(); i++) {
+                                if(hirdetesSpinner_int == arrayList.get(i).getId())
+                                    hirdetesSpinner.setSelection(i);
+                            }
+
+                            hirdetesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    SpinnerUtil spinnerUtil = adapter.getItem(position);
+                                    hirdetesSpinner_int = spinnerUtil.getId();
+                                    TextView ar = (TextView) findViewById(R.id.add_advert_price_textview);
+                                    switch (spinnerUtil.getId()) {
+                                        case 1:
+                                            ar.setText("Ingatlan Ára*:");
+                                            break;
+                                        case 2:
+                                            ar.setText("Bérleti Díj*:");
+                                            break;
+                                        default:
+                                            ar.setText("Ingatlan Ára*:");
+                                            break;
+                                    }
+                                    if (hirdetesSpinner_int != 0) {
+                                        hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                                        hirdetesSpinner.invalidate();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+                            });
+
+                        }
+                    });
+
+                    ArrayList<SpinnerUtil> arrayListButor = (ArrayList) SpinnerUtil.get_list_butorozott();
+                    final SpinnerAdapter adapterButor = new SpinnerAdapter(MainActivity.this, arrayListButor);
+                    final Spinner butorozottSpinner = (Spinner) viewFlipAddEstate.getCurrentView().findViewById(R.id.add_advert_furniture_spinner);
+                    adapterButor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    butorozottSpinner.setAdapter(adapterButor);
+
+                    for(int i = 0; i < arrayListButor.size(); i++) {
+                        if(butorozottSpinner_int == arrayListButor.get(i).getId())
+                            butorozottSpinner.setSelection(i);
+                    }
+
+                    butorozottSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            SpinnerUtil spinnerUtil = adapterButor.getItem(position);
+                            butorozottSpinner_int = spinnerUtil.getId();
+                            if (butorozottSpinner_int != 0) {
+                                butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                                butorozottSpinner.invalidate();
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                            ((TextView) parent.getChildAt(0)).setTextSize(10);
+                        }
+                    });
+
+                    break;
+                case 1:
+                    viewFlipAddEstate.setDisplayedChild(0);
+                    TextView title2 = (TextView) findViewById(R.id.adverttitle_edittext);
+                    TextView description2 = (TextView) findViewById(R.id.advert_description_edittext);
+                    TextView price2 = (TextView) findViewById(R.id.add_advert_price_edittext);
+                    TextView city2 = (TextView) findViewById(R.id.add_advert_city_edittext);
+
+                    TextView street2 = (TextView) findViewById(R.id.add_advert_street_edittext);
+                    TextView num2 = (TextView) findViewById(R.id.add_advert_str_number_edittext);
+                    TextView size2 = (TextView) findViewById(R.id.estate_size_edittext);
+
+                    estateTitle = title2.getText().toString();
+                    estateDescription = description2.getText().toString();
+                    estatePrice = price2.getText().toString();
+                    estateCity = city2.getText().toString();
+
+                    estateStreet = street2.getText().toString();
+                    estetaHouseNumber = num2.getText().toString();
+                    estateSize = size2.getText().toString();
 
                     if(!isValidString(estateTitle)) {
-                        title.setError("Hiba!");
-                        title.invalidate();
+                        title2.setError("Hiba!");
+                        title2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estateDescription)) {
-                        description.setError("Hiba!");
-                        description.invalidate();
+                        description2.setError("Hiba!");
+                        description2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estatePrice)) {
-                        price.setError("Hiba!");
-                        price.invalidate();
+                        price2.setError("Hiba!");
+                        price2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estateCity)) {
-                        city.setError("Hiba!");
-                        city.invalidate();
+                        city2.setError("Hiba!");
+                        city2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estateStreet)) {
-                        street.setError("Hiba!");
-                        street.invalidate();
+                        street2.setError("Hiba!");
+                        street2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estetaHouseNumber)) {
-                        num.setError("Hiba!");
-                        num.invalidate();
+                        num2.setError("Hiba!");
+                        num2.invalidate();
                         isFilledOut = false;
                     }
 
                     if(!isValidString(estateSize)) {
-                        size.setError("Hiba!");
-                        size.invalidate();
+                        size2.setError("Hiba!");
+                        size2.invalidate();
                         isFilledOut = false;
                     }
 
+                    Spinner hirdetesSpinner_ = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.add_advert_type_spinner);
                     if (hirdetesSpinner_int == 0) {
-                        hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
-                        hirdetesSpinner.invalidate();
+                        hirdetesSpinner_.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
+                        hirdetesSpinner_.invalidate();
                         isFilledOut = false;
                     } else {
-                        hirdetesSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
-                        hirdetesSpinner.invalidate();
+                        hirdetesSpinner_.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                        hirdetesSpinner_.invalidate();
                     }
 
+                    Spinner butorozottSpinner_ = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.add_advert_furniture_spinner);
                     if (butorozottSpinner_int == 0) {
-                        butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
-                        butorozottSpinner.invalidate();
+                        butorozottSpinner_.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
+                        butorozottSpinner_.invalidate();
                         isFilledOut = false;
                     } else {
-                        butorozottSpinner.setBackground(getResources().getDrawable(R.drawable.spinner_border));
-                        butorozottSpinner.invalidate();
+                        butorozottSpinner_.setBackground(getResources().getDrawable(R.drawable.spinner_border));
+                        butorozottSpinner_.invalidate();
                     }
 
                     if (isFilledOut) {
@@ -2192,14 +1780,159 @@ private boolean isAddingEstate = false;
                             e.printStackTrace();
                         }
 
+                        viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
+
+                        TextView next2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.button_go_page2);
+                        next2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                nextAddestatePage(2);
+                            }
+                        });
+
+                        TextView back2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.back_button_page2);
+                        back2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                nextAddestatePage(0);
+                            }
+                        });
+
+                        Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinner);
+                        Spinner allapotSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_condition_spinner);
+                        Spinner emeletekSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_floors_spinner);
+                        Spinner ingatlanTipusSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_type_spinner);
+                        Spinner parkolasSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_parking_spinner);
+                        Spinner futesSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_heatingtype_spinner);
+                        Spinner energiaSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_ecertificate_spinner);
+                        Spinner kilatasSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.adestate_view_spinner);
+                        Spinner balconySpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_balcony_spinner);
+                        Spinner elevatorSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_elevator_spinner);
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                szobaszamSpinner_int = util.getId();
+                            }
+                        }, szobaszamSpinner, szobaszamSpinner_int, "list_ingatlanszoba");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil) result;
+                                allapotSpinner_int = util.getId();
+                            }
+                        }, allapotSpinner, allapotSpinner_int, "list_ingatlanallapota");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                emeletekSpinner_int = util.getId();
+                            }
+                        }, emeletekSpinner, emeletekSpinner_int, "list_ingatlanemelet");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                ingatlanTipusSpinner_int = util.getId();
+                            }
+                        }, ingatlanTipusSpinner, ingatlanTipusSpinner_int, "list_ingatlantipus");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                parkolasSpinner_int = util.getId();
+                            }
+                        }, parkolasSpinner, parkolasSpinner_int, "list_ingatlanparkolas");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                futesSpinner_int = util.getId();
+                            }
+                        }, futesSpinner, futesSpinner_int, "list_ingatlanfutes");
+
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                energiaSpinner_int = util.getId();
+                            }
+                        }, energiaSpinner, energiaSpinner_int, "list_ingatlanenergia");
+                        SpinnerUtil.get_list(new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                SpinnerUtil util = (SpinnerUtil)result;
+                                kilatasSpinner_int = util.getId();
+                            }
+                        }, kilatasSpinner, kilatasSpinner_int, "list_ingatlankilatas");
+
+                        ArrayList<SpinnerUtil> balclist = (ArrayList) SpinnerUtil.get_list_erkely();
+                        final SpinnerAdapter adapter2 = new SpinnerAdapter(MainActivity.this, balclist);
+                        balconySpinner.setAdapter(adapter2);
+
+                        for(int i = 0; i < balclist.size(); i++) {
+                            if(balconySpinner_int == balclist.get(i).getId())
+                                balconySpinner.setSelection(i);
+                        }
+
+                        balconySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                SpinnerUtil spinnerUtil = adapter2.getItem(position);
+                                balconySpinner_int = spinnerUtil.getId();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+
+                        ArrayList<SpinnerUtil> list3 = (ArrayList) SpinnerUtil.get_list_erkely();
+                        final SpinnerAdapter adapter3 = new SpinnerAdapter(MainActivity.this, list3);
+                        elevatorSpinner.setAdapter(adapter3);
+
+                        for(int i = 0; i < list3.size(); i++) {
+                            if(elevatorSpinner_int == list3.get(i).getId())
+                                elevatorSpinner.setSelection(i);
+                        }
+
+                        elevatorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                SpinnerUtil spinnerUtil = adapter3.getItem(position);
+                                elevatorSpinner_int = spinnerUtil.getId();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+
                         setAddestatePageIndicator(whichAddestatePage);
-                        switchLayoutToAddEstate(whichAddestatePage);
                     } else {
                         whichAddestatePage = 0;
                     }
                     break;
 
                 case 2:
+                    viewFlipAddEstate.setDisplayedChild(1);
+                    Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinner);
+                    Spinner allapotSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_condition_spinner);
+                    Spinner emeletekSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_floors_spinner);
+                    Spinner ingatlanTipusSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_type_spinner);
+                    Spinner parkolasSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_parking_spinner);
+                    Spinner futesSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_heatingtype_spinner);
+                    Spinner energiaSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_ecertificate_spinner);
+                    Spinner kilatasSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.adestate_view_spinner);
+                    Spinner balconySpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_balcony_spinner);
+                    Spinner elevatorSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_elevator_spinner);
+
                     if (szobaszamSpinner_int == 0) {
                         szobaszamSpinner.setBackground(getResources().getDrawable(R.drawable.buttondelete_border));
                         szobaszamSpinner.invalidate();
@@ -2296,7 +2029,26 @@ private boolean isAddingEstate = false;
 
                     if (isFilledOut) {
                         setAddestatePageIndicator(whichAddestatePage);
-                        switchLayoutToAddEstate(whichAddestatePage);
+                        viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
+
+
+                        TextView next2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.button_go_page3);
+                        next2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                nextAddestatePage(3);
+                            }
+                        });
+
+                        TextView back2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.back_button_page3);
+                        back2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                nextAddestatePage(1);
+                            }
+                        });
+
+
                     } else {
                         whichAddestatePage = 1;
                     }
@@ -2304,7 +2056,25 @@ private boolean isAddingEstate = false;
 
                 case 3:
                     setAddestatePageIndicator(whichAddestatePage);
-                    switchLayoutToAddEstate(whichAddestatePage);
+                    viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
+
+
+                    TextView next2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.button_go_page4);
+                    next2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            nextAddestatePage(4);
+                        }
+                    });
+
+                    TextView back2 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.back_button_page4);
+                    back2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            nextAddestatePage(2);
+                        }
+                    });
+
                     break;
 
                 case 4:
@@ -2329,19 +2099,40 @@ private boolean isAddingEstate = false;
                     }
 
                     if (isCorrect && isCorrect2) {
+                        Log.e("ERROR", "page4");
                         setAddestatePageIndicator(whichAddestatePage);
-                        switchLayoutToAddEstate(whichAddestatePage);
+
+                        viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
+
+
+                        TextView next_5 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.button_go_page5);
+                        next_5.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Log.e("ERROR", "click");
+                                nextAddestatePage(5);
+                            }
+                        });
+
+                        TextView back4 = (TextView) viewFlipAddEstate.getCurrentView().findViewById(R.id.back_button_page5);
+                        back4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                nextAddestatePage(3);
+                            }
+                        });
+
                     } else {
                         if (!isCorrect && !isCorrect2) {
-                            Snackbar.make(view, "Hibás időpont és nap adatok!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(viewFlipAddEstate.getCurrentView(), "Hibás időpont és nap adatok!", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         if (isCorrect && !isCorrect2) {
-                            Snackbar.make(view, "Hibás nap adatok!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(viewFlipAddEstate.getCurrentView(), "Hibás nap adatok!", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         if (!isCorrect && isCorrect2) {
-                            Snackbar.make(view, "Hibás időpont adatok!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(viewFlipAddEstate.getCurrentView(), "Hibás időpont adatok!", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         whichAddestatePage = 3;
@@ -2349,8 +2140,9 @@ private boolean isAddingEstate = false;
                     break;
 
                 case 5:
-                    //start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
-                    //finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
+                    Log.e("ERROR", "ERROR");
+                    start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
+                    finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
@@ -2377,7 +2169,6 @@ private boolean isAddingEstate = false;
                                                      }
 
                                                      //Toast.makeText(MainActivity.this, "Hirdetés feladva!", Toast.LENGTH_SHORT).show();
-                                                     isBackPressed = true;
                                                      hirdetesSpinner_int = 0;
                                                      szobaszamSpinner_int = 0;
                                                      allapotSpinner_int = 0;
@@ -2390,7 +2181,6 @@ private boolean isAddingEstate = false;
                                                      butorozottSpinner_int = 0;
                                                      balconySpinner_int = 0;
                                                      elevatorSpinner_int = 0;
-                                                     whichAddestatePage = 0;
                                                      mon = 0;
                                                      tue = 0;
                                                      wed = 0;
@@ -2400,28 +2190,16 @@ private boolean isAddingEstate = false;
                                                      sun = 0;
                                                      start = "0";
                                                      finish = "0";
+                                                     estateTitle = "";
+                                                     estateDescription = "";
+                                                     estatePrice = "";
+                                                     estateCity = "";
+                                                     estateStreet = "";
+                                                     estetaHouseNumber = "";
+                                                     estateSize = "";
 
-                                                     TextView title = (TextView) findViewById(R.id.adverttitle_edittext);
-                                                     TextView description = (TextView) findViewById(R.id.advert_description_edittext);
-                                                     TextView price = (TextView) findViewById(R.id.add_advert_price_edittext);
-                                                     TextView city = (TextView) findViewById(R.id.add_advert_city_edittext);
-
-                                                     TextView street = (TextView) findViewById(R.id.add_advert_street_edittext);
-                                                     TextView num = (TextView) findViewById(R.id.add_advert_str_number_edittext);
-                                                     TextView size = (TextView) findViewById(R.id.estate_size_edittext);
-                                                     title.setText("");
-                                                     description.setText("");
-                                                     price.setText("");
-                                                     city.setText("");
-                                                     street.setText("");
-                                                     num.setText("");
-                                                     size.setText("");
-
-                                                     loadAddEstateSpinners();
-
-                                                     switchLayoutToAddEstate(0);
                                                      getEstateContent(resArray.get(resArray.size() - 1).getId());
-                                                     Snackbar.make(view, "Hirdetés feladva!", Snackbar.LENGTH_LONG)
+                                                     Snackbar.make(viewFlipAddEstate.getCurrentView(), "Hirdetés feladva!", Snackbar.LENGTH_LONG)
                                                              .setAction("Action", null).show();
                                                      Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
                                                  } else {
@@ -2430,24 +2208,23 @@ private boolean isAddingEstate = false;
                                                  }
 
                                              }
-                                         }, estateSize, estateCity, estateStreet, estateDescription, estatePrice,
+                                         }, estateSize, estateCity, estateStreet, estetaHouseNumber, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int),
                             String.valueOf(lng), String.valueOf(lat), estateTitle, String.valueOf(hirdetesSpinner_int), SettingUtil.getToken(getBaseContext()), zipcodeToSend,
-                            String.valueOf(mon), String.valueOf(tue), String.valueOf(wed), String.valueOf(thu), String.valueOf(fri), String.valueOf(sat), String.valueOf(sun), start, finish);
+                            String.valueOf(mon), String.valueOf(tue), String.valueOf(wed), String.valueOf(thu), String.valueOf(fri), String.valueOf(sat), String.valueOf(sun), start, finish, updateingid);
                     break;
             }
-        }
-    }
 
-    Spinner startSpinner, finishSpinner;
-    //TODO: spinner getview valamiért túl sokszor fut le (valszeg vmilyen xml hiba, match parent vagy tudja a tök)
+        }
+
+    }
 
     public void loadAddEstateBookingSpinners() {
         ArrayList<SpinnerUtil> arrayListStart = (ArrayList) SpinnerUtil.get_list_booking_start();
         final SpinnerAdapter adapterStart = new SpinnerAdapter(MainActivity.this, arrayListStart);
-        startSpinner = (Spinner) findViewById(R.id.booking_time_start_spinner);
+        Spinner startSpinner = (Spinner) findViewById(R.id.booking_time_start_spinner);
         adapterStart.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startSpinner.setAdapter(adapterStart);
 
@@ -2467,7 +2244,7 @@ private boolean isAddingEstate = false;
 
         ArrayList<SpinnerUtil> arrayListFinish = (ArrayList) SpinnerUtil.get_list_booking_finish();
         final SpinnerAdapter adapterFurniture = new SpinnerAdapter(MainActivity.this, arrayListFinish);
-        finishSpinner = (Spinner) findViewById(R.id.booking_time_end_spinner);
+        Spinner finishSpinner = (Spinner) findViewById(R.id.booking_time_end_spinner);
         adapterFurniture.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         finishSpinner.setAdapter(adapterFurniture);
 
@@ -2487,50 +2264,23 @@ private boolean isAddingEstate = false;
     }
 
     public void uploadImages(String hash) {
-        Log.d("UPLOAD_URI_SIZE", String.valueOf(uris.size()));
         ProgressDialog progressBar = new ProgressDialog(MainActivity.this);
         progressBar.setMessage("Feltöltés...");
         progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressBar.setIndeterminate(true);
         progressBar.setProgress(0);
-        int imageCount = 0;
-        //TODO: egyelőre kikommentelve mert lehal sok telefonon
-        /*for (int i = 0; i < uris.size(); i++) {
-            if (uris.get(i) != null) {
-                imageCount += 1;
-            }
-        }
-        progressBar.setMax(imageCount);*/
-        progressBar.setMax(uris.size());
-
+        progressBar.setMax(100);
         progressBar.show();
-        //final int[] progress = {0};
-        Log.d("UPLOAD_URI_FOR_CYCLE", "CALLED");
-        for (int j = 0; j < uris.size(); j++) {
-            Log.d("UPLOAD_URI_FOR_CYCLE", String.valueOf(j));
-            //TODO: ez az if csak balász telefonján fut le...
-            if (uris.get(j) != null) {
-                Log.d("URI_IN_FOR_CYCLE", uris.get(j).toString());
-            //TODO: képfeltöltés megint fos, lehal a getRealPathFromURI...
-                File imageFile = new File(getRealPathFromURI(uris.get(j)));
 
-                ImageUploadService service = new ImageUploadService(new SoapResult() {
-                    @Override
-                    public void parseRerult(String result) {
-                        Log.e("error", "succes" + result);
-                        //progress[0] += 1;
-                        //progressBar.setProgress(progress[0]);
-                        //Log.d("UPLOAD_PROGRESS", String.valueOf(progress[0]));
-                    }
-                }, imageFile, progressBar);
-                try {
-                    // ingatlan hash-t átadni.
-                    Log.d("UPLOAD_HASH", hash);
-                    service.execute(hash);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        ArrayList<File> files = new ArrayList<>();
+        for (int j = 0; j < uris.size(); j++) {
+            File imageFile = new File(getRealPathFromURI(uris.get(j)));
+            files.add(imageFile);
+        }
+        try {
+            ImageUploadService service = new ImageUploadService(files, progressBar);
+            service.execute(hash);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -2553,7 +2303,94 @@ private boolean isAddingEstate = false;
     String latMap = "0.0";
     String lngMap = "0.0";
 
-    public void getEstateContent(int id) {
+    /*private void call(final int id) {
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
+
+        TextView textView = (TextView) popupView.findViewById(R.id.areyousure_delete_textView);
+        textView.setText("Jelenti a hírdetést ?");
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+        ((Button) popupView.findViewById(R.id.delete_ad_yes_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+        ((Button) popupView.findViewById(R.id.delete_ad_no_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+    }*/
+
+    private void callSertoPopup(final int id) {
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View popupView = layoutInflater.inflate(R.layout.areyousure_popup, null);
+
+        TextView textView = (TextView) popupView.findViewById(R.id.areyousure_delete_textView);
+        textView.setText("Jelenti a hírdetést ?");
+
+        final PopupWindow popupWindow;
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
+                true);
+
+
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+        ((Button) popupView.findViewById(R.id.delete_ad_yes_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        EstateUtil.addSerto(SettingUtil.getToken(getBaseContext()), id);
+                        popupWindow.dismiss();
+                    }
+                });
+
+        ((Button) popupView.findViewById(R.id.delete_ad_no_button))
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+                    public void onClick(View arg0) {
+                        popupWindow.dismiss();
+                    }
+                });
+    }
+
+    public void getEstateContent(final int id) {
+
+        LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentRealestate = inflater.inflate(R.layout.content_realestate, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(contentRealestate, 0);
+
+        viewFlip.setDisplayedChild(0);
+
+        menuType = ESTATE_MENU;
+        supportInvalidateOptionsMenu();
+
 
         final TextView price = (TextView) findViewById(R.id.item_realestate_price);
         final TextView title = (TextView) findViewById(R.id.item_realestate_needed_address);
@@ -2571,21 +2408,23 @@ private boolean isAddingEstate = false;
         final TextView heating = (TextView) findViewById(R.id.heating_realestate_value);
         final TextView ecertificate = (TextView) findViewById(R.id.energy_certificate_realestate_item_value);
         final TextView hasfurniture = (TextView) findViewById(R.id.hasfurniture_realestate_item_value);
+        RelativeLayout serto = (RelativeLayout) findViewById(R.id.item_offensive_layout);
 
+        serto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callSertoPopup(id);
+            }
+        });
 
         final TextView item_realestate_description_text = (TextView)findViewById(R.id.item_realestate_description_text);
 
         final TextView name = (TextView) findViewById(R.id.profile_name_text);
         final TextView profile_type = (TextView) findViewById(R.id.profile_type_text);
 
-
-
-
-
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                Log.d("GET_ESTATE Result: ", result.toString());
                 JSONObject obj = (JSONObject) result;
                 try {
 
@@ -2594,11 +2433,26 @@ private boolean isAddingEstate = false;
                     imageUrls.clear();
                     for (int j=0; j < kepekArray.length(); j++) {
                         JSONObject jsonKep = kepekArray.getJSONObject(j);
-                        //imageURL = jsonKep.getString("kepek_url");
                         imageUrls.add(jsonKep.getString("kepek_url"));
                     }
 
-                    loadEstateImages(imageUrls);
+                    SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
+                    RelativeLayout item_realestate_profile_layout = (RelativeLayout) findViewById(R.id.item_realestate_profile_layout);
+                    if(imageUrls.size() != 0) {
+                        sliderLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 250, getResources().getDisplayMetrics()))));
+
+                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams)item_realestate_profile_layout.getLayoutParams();
+                        relativeParams.setMargins(0, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 250, getResources().getDisplayMetrics())), 0, 0);  // left, top, right, bottom
+                        item_realestate_profile_layout.setLayoutParams(relativeParams);
+
+                        loadEstateImages(imageUrls);
+                    } else {
+                        sliderLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
+
+                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams)item_realestate_profile_layout.getLayoutParams();
+                        item_realestate_profile_layout.setLayoutParams(relativeParams);
+                        relativeParams.setMargins(0, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 0, getResources().getDisplayMetrics())), 0, 0);  // left, top, right, bottom
+                    }
 
                     title.setText(obj.getString("ingatlan_title"));
                     adress.setText(obj.getString("ingatlan_varos") + " " + obj.getString("ingatlan_utca"));
@@ -2609,12 +2463,11 @@ private boolean isAddingEstate = false;
 
                     name.setText(obj.getString("vezeteknev") + " " + obj.getString("keresztnev"));
                     profile_type.setText(obj.getString("tipus"));
-                    mobileNum = obj.getString("mobil");
+                    String mobileNum = obj.getString("mobil");
 
                     Locale locale = new Locale("en", "UK");
 
                     DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-                    //symbols.setDecimalSeparator(';');
                     symbols.setGroupingSeparator('.');
 
                     String pattern = "###,###";
@@ -2653,9 +2506,9 @@ private boolean isAddingEstate = false;
                     }
 
 
-                    isFavEstate = obj.getBoolean("kedvenc");
+                    boolean isFavEstate = obj.getBoolean("kedvenc");
 
-                    favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+                    MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
 
                     if (favItem != null) {
                         if (isFavEstate) {
@@ -2668,17 +2521,13 @@ private boolean isAddingEstate = false;
                     }
 
                     if (obj.getString("ingatlan_lat") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
-                        //SettingUtil.setLatForMap(getBaseContext(), obj.getString("ingatlan_lat"));
                         latMap = obj.getString("ingatlan_lat");
-                        Log.d("SETLAT", "BEGINNED");
                     }
 
                     if (obj.getString("ingatlan_lng") != null || !obj.getString("ingatlan_lat").equals("0.0")) {
-                        //SettingUtil.setLngForMap(getBaseContext(), obj.getString("ingatlan_lng"));
                         lngMap = obj.getString("ingatlan_lng");
                     }
 
-                    //TODO: a honlapon felrakott ingatlanok nem térnek vissza ingatlan_allapottal csak ingatlan_allapot_id-vel
                     condition.setText(obj.getString("ingatlan_allapot"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -2694,22 +2543,17 @@ private boolean isAddingEstate = false;
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
         fab_phone.setVisibility(View.VISIBLE);
 
-        if (viewFlip.getDisplayedChild() != CONTENTESTATE) {
-            //TODO: megtekintés térképen->infoWindow->MainActivity ContentEstate fav icon bug
-            switchLayoutTo(CONTENTESTATE);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-            supportInvalidateOptionsMenu();
-        }
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        supportInvalidateOptionsMenu();
+
+        //if (viewFlip.getDisplayedChild() != CONTENTESTATE) {
+        //    //TODO: megtekintés térképen->infoWindow->MainActivity ContentEstate fav icon bug
+        //    switchLayoutTo(CONTENTESTATE);
+        //    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        //    supportInvalidateOptionsMenu();
+        //}
         findViewById(R.id.scrollView2).scrollTo(0, 0);
 
-    }
-
-    public void prewAddestatePage(View view) {
-        if (whichAddestatePage > 0) {
-            whichAddestatePage -= 1;
-            setAddestatePageIndicator(whichAddestatePage);
-            switchLayoutToAddEstate(whichAddestatePage);
-        }
     }
 
     public void setAddestatePageIndicator(int page) {
@@ -2750,44 +2594,31 @@ private boolean isAddingEstate = false;
     }
 
 
-    public void tokenValidation() {
-        //launchRingDialog();
+    public void tokenValidation(final boolean reload) {
         LoginUtil.tokenValidator(this, new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                if ((boolean) result) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
-                    //ringProgressDialog.dismiss();
-                    Log.d("RESULT: ", result.toString());
+                UserModel model = (UserModel)result;
+                if (!model.isError()) {
+                    justme = false;
+                    isFavorite = false;
+                    ing_ordering = 0;
+                    ing_type = 0;
 
+                    TextView tv = (TextView)findViewById(R.id.user_fullname);
+                    ImageView iw = (ImageView)findViewById(R.id.imageViewProfile);
+
+                    iw.setImageResource(R.drawable.avatar);
+                    tv.setText(model.getVezeteknev() + " " + model.getKeresztnev());
+
+                    if(reload)
+                        loadRealEstates();
                 } else {
-                    //ringProgressDialog.dismiss();
-                    Log.d("RESULT: ", result.toString());
-
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
 
             }
         }, SettingUtil.getToken(this));
-    }
-
-    ProgressDialog ringProgressDialog;
-    public void launchRingDialog() {
-        ringProgressDialog = ProgressDialog.show(MainActivity.this, "Please wait ...", "Logging In ...", true);
-        ringProgressDialog.setCancelable(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Here you should write your time consuming task...
-                    // Let the progress ring for 10 seconds...
-                    Thread.sleep(10000);
-                } catch (Exception e) {
-
-                }
-                ringProgressDialog.dismiss();
-            }
-        }).start();
     }
 
     @Override
@@ -2801,7 +2632,7 @@ private boolean isAddingEstate = false;
         super.onResume();  // Always call the superclass method first
         if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
-                tokenValidation();
+                tokenValidation(false);
             } else {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
@@ -2810,25 +2641,9 @@ private boolean isAddingEstate = false;
         }
 
     }
-
-    public void showAlertError(String message) {
+    public void showAlertError(String msg) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setTitle("HIBA")
-                .create();
-        myAlert.show();
-    }
-
-
-    public void showAlert() {
-        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage("Nincs internet! :'(")
+        myAlert.setMessage(msg)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -2841,18 +2656,24 @@ private boolean isAddingEstate = false;
         myAlert.show();
     }
 
-
+    public void showAlert() {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage("Nincs internet! :(")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("HIBA")
+                .create();
+        myAlert.show();
+    }
 
     public void loadEstateImages(final List<String> urls) {
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
-        //final List<String> urls = slideImageURLLists();
-
-        /*final List<String> urls = new ArrayList<String>();
-        urls.add("https://s-media-cache-ak0.pinimg.com/736x/e7/f2/81/e7f2812089086a6e9e7e6408457c76c4.jpg");
-        urls.add("https://scontent.fomr1-1.fna.fbcdn.net/hphotos-xfp1/v/t1.0-9/10399388_1037153376364726_5568922816957393250_n.jpg?oh=6c8027e95134a0fc5310ba3e0847372d&oe=577B8A7D");
-        urls.add("https://scontent.fomr1-1.fna.fbcdn.net/v/t1.0-9/10500443_784808998244322_3120390074428787735_n.jpg?oh=f5ca0004521550b3146dff315a43f37d&oe=5779D2CB");
-        */
         sliderLayout.removeAllSliders();
         for(int i = 0; i<urls.size();i ++) {
             DefaultSliderView defaultSliderView = new DefaultSliderView(this);
@@ -2872,23 +2693,6 @@ private boolean isAddingEstate = false;
                         }
                     });
 
-            /*sliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });*/
-
             sliderLayout.addSlider(defaultSliderView);
 
             sliderLayout.destroyDrawingCache();
@@ -2896,58 +2700,50 @@ private boolean isAddingEstate = false;
         urls.clear();
     }
 
-    EstateUtil estateUtil_fav;
-    int estateID;
-    String estateHash;
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
+    }
+
     private class ItemList implements AdapterView.OnItemClickListener {
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
             EstateUtil estateUtil = adapter.getItem(position);
-            estateID = estateUtil.getId();
-            estateHash = estateUtil.getHash();
-            estateUtil_fav = estateUtil;
-            getEstateContent(estateID);
+            currentEstate = estateUtil;
+            getEstateContent(currentEstate.getId());
         }
     }
 
     private int pageCount = 0;
     private boolean isRefreshing = false;
-    private String favToSend = "0";
-
-    public void loadMessages() {
-        switchLayoutTo(MESSAGES);
-
-        MessageUtil.listMessages(new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-                ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
-                ListView thread = (ListView) findViewById(R.id.allmessages);
-
-                final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
-
-                thread.setAdapter(adapter);
-                thread.setDividerHeight(0);
-
-                thread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        MessageUtil ms = adapter.getItem(i);
-                        loadMessagesForEstate(ms.getHash(), ms.getUid());
-                    }
-                });
-
-            }
-        }, SettingUtil.getToken(this));
-    }
 
     public void loadMessagesForEstate(final String hash, int uid) {
-        switchLayoutTo(MESSAGES2);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+
+        //messages = inflater.inflate(R.layout.content_messages, null);
+        //message2 = inflater.inflate(R.layout.content_message_thread, null);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_message_thread, null);
+        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        viewFlip.setDisplayedChild(0);
+
+        menuType = MESSAGES_THREAD_MENU;
+        supportInvalidateOptionsMenu();
 
         MessageUtil.listMessagesForEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>)result;
+                ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
                 ListView thread = (ListView) findViewById(R.id.messagethread);
 
                 final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
@@ -2956,7 +2752,7 @@ private boolean isAddingEstate = false;
                 thread.setDividerHeight(0);
 
                 final EditText et = (EditText) findViewById(R.id.write_message_edittext);
-                RelativeLayout send = (RelativeLayout)findViewById(R.id.sent_message_text_rlayout);
+                RelativeLayout send = (RelativeLayout) findViewById(R.id.sent_message_text_rlayout);
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -2983,72 +2779,156 @@ private boolean isAddingEstate = false;
         }, SettingUtil.getToken(this), hash, uid);
     }
 
-    public void loadAdMonitorList() {
+    public void showMyFavs(View view) {
+        isFavorite = true;
+        justme = false;
+        ing_type = 0;
+        ing_ordering = 0;
 
+        furniture_int = 0;
+        lift_int = 0;
+        balcony_int = 0;
+        meret_int = 0;
+        szobaMax_int = 0;
+        szobaMin_int = 0;
+        floorsMint_int = 0;
+        floorsMax_int = 0;
+        type_int = 0;
+        allapot_int = 0;
+        energigenyo_int = 0;
+        panoramaSpinner_int = 0;
+
+        price_from = "";
+        price_to = "";
+        key = "";
+
+        loadRealEstates();
+        closeDrawer();
     }
 
-    public void loadRealEstates(String idPost, String pagePost, final String tokenToSend, final String fav, final String etypeString, final String ordering, final int jstme) {
+    boolean isFavorite = false;
+    int ing_type = 0;
+    int ing_ordering = 0;
+    boolean justme = false;
+    int updateingid = 0;
+    public void loadRealEstates() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_istview, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+
+        viewFlip.setDisplayedChild(0);
+
+        getSupportActionBar().setTitle("Hirdetések");
+        if(isFavorite) {
+            getSupportActionBar().setTitle("Kedvencek");
+        }
+        if(justme) {
+            fab.setVisibility(View.INVISIBLE);
+            getSupportActionBar().setTitle("Hírdetéseim");
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        }
+
+        ArrayList<SpinnerUtil> arrayListSorting = (ArrayList) SpinnerUtil.get_list_szures();
+        final SpinnerAdapter adapterSorting = new SpinnerAdapter(MainActivity.this, arrayListSorting);
+        Spinner sortingSpinner = (Spinner) findViewById(R.id.sort_estates_spinner);
+        adapterSorting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortingSpinner.setAdapter(adapterSorting);
+        for (int i = 0; i < arrayListSorting.size(); i++) {
+            if(arrayListSorting.get(i).getId() == ing_ordering) {
+                sortingSpinner.setSelection(i);
+            }
+        }
+
+        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
+                if(ing_ordering != spinnerUtil.getId()) {
+                    ing_ordering = spinnerUtil.getId();
+                    loadRealEstates();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        TextView typeText = (TextView) viewFlip.getCurrentView().findViewById(R.id.estate_type_textview);
+        switch (adType) {
+            case 1:
+                typeText.setText("Eladó");
+                break;
+            case 2:
+                typeText.setText("Kiadó");
+                break;
+            default:
+                typeText.setText("Mindegy");
+                break;
+        }
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                crudEstate(null);
+            }
+        });
+        fab.setVisibility(View.VISIBLE);
+
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        final SwipeRefreshLayout swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setRefreshing(true);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadRealEstates();
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         pageCount = 0;
         isRefreshing = false;
         EstateUtil.largestId = 0;
-        favToSend = "0";
-        if (jstme == 1 && fav.equals("1")) {
-            favToSend = "0";
-        }
-        if (jstme == 0 && fav.equals("1")) {
-            favToSend = "1";
-        }
+        updateingid = 0;
         EstateUtil.listEstates(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
-
-                final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers);
-                // Attach the adapter to a ListView
+                final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers, new SoapObjectResult() {
+                    @Override
+                    public void parseRerult(Object result) {
+                        //TODO: szerkeszt
+                        EstateUtil util = (EstateUtil)result;
+                        crudEstate(util);
+                    }
+                });
                 final ListView listView = (ListView) findViewById(R.id.estateListView);
+                if(listView == null)
+                    return;
                 listView.setAdapter(adapter);
                 listView.setDivider(null);
                 listView.setDividerHeight(0);
                 listView.setOnItemClickListener(new ItemList());
-                final int mPosition=0;
-                final int mOffset=0;
-
-
-                //final RelativeLayout csakcsok = (RelativeLayout) findViewById(R.id.sorting_estates_relativeLayout);
-                final View csok = (View) findViewById(R.id.sorting_estates_relativeLayout);
 
                 listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
-                        int position = listView.getFirstVisiblePosition();
-                        View v = listView.getChildAt(0);
-                        int offset = (v == null) ? 0 : v.getTop();
-
-                        if (mPosition < position || (mPosition == position && mOffset < offset)){
-                            // Scrolled up
-                            /*csok.animate()
-                                    .translationY(0)
-                                    .alpha(0.0f)
-                                    .setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            super.onAnimationEnd(animation);
-                                            csok.setVisibility(View.GONE);
-                                        }
-                                    });*/
-                        } else {
-                            // Scrolled down
-                            /*csok.animate()
-                                    .translationY(csok.getHeight()-75)
-                                    .alpha(1.0f)
-                                    .setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            super.onAnimationEnd(animation);
-                                            csok.setVisibility(View.VISIBLE);
-                                        }
-                                    });*/
-                        }
                     }
 
                     @Override
@@ -3057,267 +2937,239 @@ private boolean isAddingEstate = false;
                         if (firstVisibleItem + visibleItemCount == totalItemCount) {
                             if (!isRefreshing) {
                                 pageCount += 1;
+                                isRefreshing = true;
                                 String pageStr = String.valueOf(pageCount);
                                 String lrgst = String.valueOf(EstateUtil.largestId);
-                                if (jstme == 1 && fav.equals("1")) {
-                                    favToSend = "0";
-                                }
                                 EstateUtil.listEstates(new SoapObjectResult() {
                                     @Override
                                     public void parseRerult(Object result) {
                                         ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
-                                        adapter.addAll(arrayOfUsers);
-                                        isRefreshing = true;
+                                        if(arrayOfUsers.size() == 0) {
+
+                                        } else {
+                                            adapter.addAll(arrayOfUsers);
+                                            isRefreshing = false;
+                                        }
                                     }
-                                }, lrgst, pageStr, tokenToSend, favToSend, etypeString, ordering, String.valueOf(jstme));
+                                }, lrgst, pageStr, SettingUtil.getToken(MainActivity.this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
+                                        furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
+                                        type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
                             }
                         }
                     }
                 });
-                swipeContainer.setRefreshing(false);
+                if (swipeContainer != null)
+                    swipeContainer.setRefreshing(false);
             }
-        }, idPost, pagePost, tokenToSend, favToSend, etypeString, ordering, String.valueOf(jstme));
+        }, String.valueOf(0), String.valueOf(pageCount), SettingUtil.getToken(this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
+                furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
+                type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
 
-
+        menuType = MAIN_MENU;
         supportInvalidateOptionsMenu();
     }
 
-    @Override
-    public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }*/
+    public void loadBooking() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_booking, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        if (prewViews.size() > 0) {
-            isBackPressed = true;
-            switchLayoutTo(prewViews.get(prewViews.size() - 1));
-            prewViews.remove(prewViews.size()-1);
-        } else {
-            prewViews.add(0);
-        }
+        viewFlip.setDisplayedChild(0);
 
+        Calendar hlper = Calendar.getInstance();
 
-        //TODO: visszalépésnl tökéletesíteni a megjelenő ikonokat (mindig a megfelelőek jelenejenek meg)
-        switch (viewFlip.getDisplayedChild()) {
-            case ESTATESLIST:
-                if (isShowingFavorites) {
-                    loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
-                }
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                fab.setVisibility(View.VISIBLE);
-                fab_phone.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hirdetések");
-                break;
-            case CONTENTESTATE:
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                fab.setVisibility(View.INVISIBLE);
-                fab_phone.setVisibility(View.VISIBLE);
-                getSupportActionBar().setTitle(null);
-                break;
-            case ADDESTATE:
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                fab.setVisibility(View.VISIBLE);
-                getSupportActionBar().setTitle("Hirdetés feladás");
-                break;
-            case PROFILE:
-                getSupportActionBar().setTitle("Profilom");
-                break;
-            case MESSAGES:
-                fab.setVisibility(View.INVISIBLE);
-                fab_phone.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case BOOKING:
-                getSupportActionBar().setTitle("Időpontfoglalás");
-                break;
-            default:
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
-                fab.setVisibility(View.VISIBLE);
-                fab_phone.setVisibility(View.INVISIBLE);
-        }
+        setCalendar(hlper.get(Calendar.YEAR), hlper.get(Calendar.MONTH));
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (drawer.isDrawerOpen(GravityCompat.END)) {
-            drawer.closeDrawer(GravityCompat.END);
-        }
     }
 
-    //private Menu menu;
+    public void crudEstate(EstateUtil util) {
+
+        if(util == null) {
+            updateingid = 0;
+        } else {
+            updateingid = util.getId();
+            hirdetesSpinner_int = util.getIng_e_type_id();
+            szobaszamSpinner_int = util.getIngatlan_szsz_id();
+            allapotSpinner_int = util.getIngatlan_allapot_id();
+            emeletekSpinner_int = util.getIngatlan_emelet_id();
+            ingatlanTipusSpinner_int = util.getIngatlan_tipus_id();
+            parkolasSpinner_int = util.getIngatlan_parkolas_id();
+            futesSpinner_int = util.getIngatlan_futestipus_id();
+            energiaSpinner_int = util.getIngatlan_energiatan_id();
+            kilatasSpinner_int = util.getIngatlan_kilatas_id();
+            butorozottSpinner_int = util.getButor();
+            balconySpinner_int = util.getErkely();
+            elevatorSpinner_int = util.getLift();
+
+            estateTitle = util.getEstateTitle();
+            estateDescription = util.getEstateDescription();
+            estatePrice = util.getEstatePrice();
+            estateCity = util.getEstateCity();
+            estateStreet = util.getEstateStreet();
+            estetaHouseNumber = util.getEstetaHouseNumber();
+            estateSize = util.getEstateSize();
+
+            mon = 0;
+            tue = 0;
+            wed = 0;
+            thu = 0;
+            fri = 0;
+            sat = 0;
+            sun = 0;
+            start = "0";
+            finish = "0";
+        }
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_addrealestate, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        viewFlip.setDisplayedChild(0);
+
+        View addEstate1 = inflater.inflate(R.layout.content_addrealestate_page1, null);
+        View addEstate2 = inflater.inflate(R.layout.content_addrealestate_page2, null);
+        View addEstate3 = inflater.inflate(R.layout.content_addrealestate_page3, null);
+        View addEstate4 = inflater.inflate(R.layout.content_addrealestate_page4, null);
+        View addEstate5 = inflater.inflate(R.layout.content_addrealestate_page5, null);
+
+        ViewFlipper viewFlipAddEstate = (ViewFlipper) findViewById(R.id.viewFlipperAddEstate);
+
+        viewFlipAddEstate.addView(addEstate1, 0);
+        viewFlipAddEstate.addView(addEstate2, 1);
+        viewFlipAddEstate.addView(addEstate3, 2);
+        viewFlipAddEstate.addView(addEstate4, 3);
+        viewFlipAddEstate.addView(addEstate5, 4);
+
+        getSupportActionBar().setTitle("Új hírdetés");
+        loadAddEstateBookingSpinners();
+        setAddestatePageIndicator(0);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
+
+        nextAddestatePage(0);
+
+        menuType = ADD_ESTATE_MENU;
+        supportInvalidateOptionsMenu();
+    }
+
+
+
+
+    static final int MAIN_MENU = 0;
+    static final int ESTATE_MENU = 1;
+    static final int PROFILE_MENU = 2;
+    static final int INVITE_MENU = 3;
+    static final int MESSAGES_MENU = 4;
+    static final int MESSAGES_THREAD_MENU = 5;
+    static final int ADD_ESTATE_MENU = 6;
+
+    static final int FIGYELO_MENU = 7;
+    static final int ADD_FIGYELO_MENU = 8;
+
+    int menuType = 0;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        /*if(viewFlip.getDisplayedChild() == ESTATESLIST) {
-            getMenuInflater().inflate(R.menu.main, menu);
-        }*/
-        //this.menu = menu;
-        switch (viewFlip.getDisplayedChild()) {
-            case ESTATESLIST:
+        switch (menuType) {
+            case MAIN_MENU:
                 getMenuInflater().inflate(R.menu.main, menu);
                 break;
-            case CONTENTESTATE:
+            case ESTATE_MENU:
                 getMenuInflater().inflate(R.menu.menu_realestate, menu);
+                break;
+            default:
+                getMenuInflater().inflate(R.menu.main, menu);
                 break;
         }
         return true;
     }
 
-    MenuView.ItemView favItem;
-    boolean isFavEstate = false;
-
-    /*
-            case R.id.nav_billing:
-                switchLayoutTo(BOOKING);
-                break;
-            case R.id.nav_myads:
-                break;
-            case R.id.nav_myfavs:
-                isShowingFavorites = true;
-                if(viewFlip.getDisplayedChild() != ESTATESLIST) {
-                    switchLayoutTo(ESTATESLIST);
-                }
-                isMyAds = 0;
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-                break;
-            case R.id.nav_admonitor:
-                break;
-            case R.id.nav_invitation:
-                switchLayoutTo(INVITE);
-                break;
-            case R.id.nav_logout:
-                //finishActivity();
-                LoginUtil.logout(this, new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        if ((boolean) result) {
-                            Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null)
-
-                                    .show();
-                        } else {
-                            SettingUtil.setToken(MainActivity.this, "");
-                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        }
-                    }
-                });
-
-                //finish();
-                break;
-     */
-
     View header;
     public void admonitorList() {
-        ArrayList<AdmonitorUtil> arrayList = (ArrayList) AdmonitorUtil.get_list_admonitors();
 
-        final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
-        // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.admonitor_listView);
-        if (arrayList.isEmpty() && listView.getHeaderViewsCount() == 0) {
-            header = getLayoutInflater().inflate(R.layout.item_empty_list, null);
-            Log.d("HEADER", "ADDED");
-            listView.addHeaderView(header);
-        } else {
-                Log.d("HEADER", "REMOVED");
-                header.findViewById(R.id.item_empty_linear).setVisibility(View.GONE);
-                //listView.removeHeaderView(header);
-        }
-        listView.setAdapter(adapter);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
 
-        listView.setDivider(null);
-        listView.setDividerHeight(0);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        EstateUtil.listFigyelo(new SoapObjectResult() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ImageView asd = (ImageView) findViewById(R.id.admonitor_list_item_edit_image);
-                asd.setOnClickListener(new View.OnClickListener() {
+            public void parseRerult(Object result) {
+                if (pd != null) {
+                    pd.dismiss();
+                }
+
+                ArrayList<AdmonitorUtil> arrayList = (ArrayList) result;
+
+                final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
+                // Attach the adapter to a ListView
+                ListView listView = (ListView) findViewById(R.id.admonitor_listView);
+                if (arrayList.isEmpty() && listView.getHeaderViewsCount() == 0) {
+                    //header = getLayoutInflater().inflate(R.layout.item_empty_list, null);
+                    //Log.d("HEADER", "ADDED");
+                    //listView.addHeaderView(header);
+                } else {
+                    //Log.d("HEADER", "REMOVED");
+                    //header.findViewById(R.id.item_empty_linear).setVisibility(View.GONE);
+                    //listView.removeHeaderView(header);
+                }
+                listView.setAdapter(adapter);
+
+                listView.setDivider(null);
+                listView.setDividerHeight(0);
+                /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Log.d("CLICK", "CLICK");
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ImageView asd = (ImageView) findViewById(R.id.admonitor_list_item_edit_image);
+                        asd.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("CLICK", "CLICK");
+                            }
+                        });
+                        // TODO: switchLayoutTo(ESTATESLIST);
+                        justme = false;
+                        isFavorite = false;
+                        ing_ordering = 0;
+                        ing_type = 0;
+                        loadRealEstates();
                     }
-                });
-                switchLayoutTo(ESTATESLIST);
-                isMyAds = 0;
-                isShowingFavorites = false;
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+                });*/
+
             }
-        });
-
-
+        }, SettingUtil.getToken(this));
 
     }
 
-
     public void saveAdmonitor(View view) {
-        TextView add_admonitor_edittext = (TextView) findViewById(R.id.add_admonitor_edittext);
+        TextView name = (TextView) findViewById(R.id.add_admonitor_edittext);
         AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.keyword_realestate_admonitor_edittext);
         TextView minPrice = (TextView) findViewById(R.id.realestate_price_admonitor_min);
         TextView maxPrice = (TextView) findViewById(R.id.realestate_price_admonitor_max);
 
-        String searchString, minPriceStr, maxPriceStr;
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
 
-        if (isValidString(search.getText().toString())) {
-            searchString = search.getText().toString();
-        } else {
-            searchString = "";
-        }
-
-        if (isValidString(minPrice.getText().toString())) {
-            minPriceStr = minPrice.getText().toString();
-        } else {
-            minPriceStr = "";
-        }
-
-        if (isValidString(maxPrice.getText().toString())) {
-            maxPriceStr = maxPrice.getText().toString();
-        } else {
-            maxPriceStr = "";
-        }
-
-
-        if (isValidString(add_admonitor_edittext.getText().toString())) {
-            AdmonitorUtil.addAdmonitor(add_admonitor_edittext.getText().toString(), searchString, minPriceStr, maxPriceStr, type_int_admonitor, floorsMint_int_admonitor, floorsMax_int_admonitor, szobaMin_int_admonitor, szobaMax_int_admonitor, lift_int_admonitor, balcony_int_admonitor, meret_int_admonitor, panoramaSpinner_int_admonitor, furniture_int_admonitor, parkolasSpinner_int_admonitor, allapot_int_admonitor, energigenyo_int_admonitor);
-            switchLayoutTo(ADMONITOR);
-            admonitorList();
-
-            type_int_admonitor = 0;
-            floorsMint_int_admonitor = 0;
-            floorsMax_int_admonitor = 0;
-            szobaMin_int_admonitor = 0;
-            szobaMax_int_admonitor = 0;
-            lift_int_admonitor = 0;
-            balcony_int_admonitor = 0;
-            meret_int_admonitor = 0;
-            panoramaSpinner_int_admonitor = 0;
-            furniture_int_admonitor = 0;
-            parkolasSpinner_int_admonitor = 0;
-            allapot_int_admonitor = 0;
-            energigenyo_int_admonitor = 0;
-            add_admonitor_edittext.setText("");
-            search.setText("");
-            minPrice.setText("");
-            maxPrice.setText("");
-
-            loadSearchSpinners();
-        } else {
-            add_admonitor_edittext.setError("Hiba!");
-            add_admonitor_edittext.invalidate();
-        }
+        EstateUtil.addFigyelo(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if( pd != null) {
+                    pd.dismiss();
+                }
+                showAdmonitor(null);
+            }
+        }, SettingUtil.getToken(this), name.getText().toString(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "");
     }
 
-    public void doLogout(View view) {
+    public void doLogout(final View view) {
         LoginUtil.logout(this, new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 if ((boolean) result) {
-                    Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Sikertelen művelet!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null)
 
                             .show();
@@ -3330,81 +3182,276 @@ private boolean isAddingEstate = false;
     }
 
     public void showAddAdmonitor(View view) {
-        isBackPressed = false;
-        switchLayoutTo(ADDADMONITOR);
-        admonitorList();
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_add_admonitor, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        viewFlip.setDisplayedChild(0);
+
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+
         closeDrawer();
+
+        menuType = ADD_FIGYELO_MENU;
+        supportInvalidateOptionsMenu();
     }
 
     public void showAdmonitor(View view) {
-        isBackPressed = false;
-        switchLayoutTo(ADMONITOR);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_admonitor, null);
+        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        viewFlip.setDisplayedChild(0);
+
         admonitorList();
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         closeDrawer();
+
+        menuType = FIGYELO_MENU;
+        supportInvalidateOptionsMenu();
     }
 
     public void showInviteFriends(View view) {
-        isBackPressed = false;
-        switchLayoutTo(INVITE);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        closeDrawer();
-    }
 
-    public void showMyFavs(View view) {
-        isBackPressed = false;
-        isShowingFavorites = true;
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_invite, null);
+        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        final EditText email1 = (EditText) findViewById(R.id.email1);
+        final EditText email2 = (EditText) findViewById(R.id.email2);
+        final EditText email3 = (EditText) findViewById(R.id.email3);
+        final EditText email4 = (EditText) findViewById(R.id.email4);
+        final EditText email5 = (EditText) findViewById(R.id.email5);
+
+        viewFlip.setDisplayedChild(0);
+
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        //if(viewFlip.getDisplayedChild() != ESTATESLIST) {
-            switchLayoutTo(ESTATESLIST);
-        //}
-        isMyAds = 0;
-        Log.d("MY", "FAVS");
-        getSupportActionBar().setTitle("Kedvencek");
-        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), 0);
+        getSupportActionBar().setTitle("Meghívás");
+
+        TextView tv = (TextView) viewFlip.getCurrentView().findViewById(R.id.intive_send_button);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                EstateUtil.sendInvites(SettingUtil.getToken(MainActivity.this), email1.getText().toString(),
+                        email2.getText().toString(), email3.getText().toString(), email4.getText().toString(), email5.getText().toString());
+
+                loadRealEstates();
+
+                Snackbar.make(viewFlip.getCurrentView(), "Köszönjük!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+        });
+
+        menuType = INVITE_MENU;
+
         closeDrawer();
     }
 
     public void showProfile(View view) {
-        isBackPressed = false;
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_profile, null);
+        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        viewFlip.setDisplayedChild(0);
+
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        switchLayoutTo(PROFILE);
+        getSupportActionBar().setTitle("Profilom");
+
+        menuType = PROFILE_MENU;
+
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+
+        final EditText veznev = (EditText) viewFlip.getCurrentView().findViewById(R.id.profile_surename_editText);
+        final EditText kernev = (EditText) viewFlip.getCurrentView().findViewById(R.id.profile_firstname_editText);
+        final EditText mobil = (EditText) viewFlip.getCurrentView().findViewById(R.id.profile_phone_editText);
+        final EditText email = (EditText) viewFlip.getCurrentView().findViewById(R.id.profile_mail_editText);
+
+        final EditText pw = (EditText) viewFlip.getCurrentView().findViewById(R.id.change_pass_new_editText);
+        final EditText pw2 = (EditText) viewFlip.getCurrentView().findViewById(R.id.passw_again_editText);
+
+        TextView tv = (TextView) viewFlip.getCurrentView().findViewById(R.id.profile_save_button);
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!pw.getText().toString().equals(pw2.getText().toString())) {
+                    Snackbar.make(viewFlip.getCurrentView(), "Két jelszó nem egyezik", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else if (pw.getText().toString().length() < 6 && pw.getText().toString().length() != 0) {
+                    Snackbar.make(viewFlip.getCurrentView(), "Jelszónak legalább 6 karakter hosszúnak kell lennie", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    LoginUtil.updateProfile(new SoapObjectResult() {
+                        @Override
+                        public void parseRerult(Object result) {
+                            if(!(boolean)result) {
+                                loadRealEstates();
+                            } else {
+                                Snackbar.make(viewFlip.getCurrentView(), "Mentés sikertelen!", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }
+                        }
+                    }, veznev.getText().toString(), kernev.getText().toString(), mobil.getText().toString(), pw.getText().toString(), SettingUtil.getToken(MainActivity.this));
+                }
+        }
+    });
+
+        LoginUtil.getProfile(this, new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if(pd != null) {
+                    pd.dismiss();
+                }
+                UserModel model = (UserModel) result;
+                if (!model.isError()) {
+                    justme = false;
+                    isFavorite = false;
+                    ing_ordering = 0;
+                    ing_type = 0;
+
+                    veznev.setText(model.getVezeteknev());
+                    kernev.setText(model.getKeresztnev());
+                    email.setText(model.getEmail());
+                    mobil.setText(model.getMobil());
+
+                } else {
+                    Snackbar.make(viewFlip.getCurrentView(), "HIBA", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+            }
+        }, SettingUtil.getToken(this));
+
         closeDrawer();
     }
 
     public void showAllEstates(View view) {
-        isBackPressed = false;
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-        isShowingFavorites = false;
-        //if (viewFlip.getDisplayedChild() != ESTATESLIST) {
-            switchLayoutTo(ESTATESLIST);
-        //}
-        isMyAds = 0;
-        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+        justme = false;
+        isFavorite = false;
+        ing_ordering = 0;
+        ing_type = 0;
+
+        furniture_int = 0;
+        lift_int = 0;
+        balcony_int = 0;
+        meret_int = 0;
+        szobaMax_int = 0;
+        szobaMin_int = 0;
+        floorsMint_int = 0;
+        floorsMax_int = 0;
+        type_int = 0;
+        allapot_int = 0;
+        energigenyo_int = 0;
+        panoramaSpinner_int = 0;
+
+        price_from = "";
+        price_to = "";
+        key = "";
+
+        loadRealEstates();
         closeDrawer();
     }
-
 
     public void showMessages(View view) {
-        isBackPressed = false;
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        loadMessages();
+
+        currentEstate = null;
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_messages, null);
+        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        viewFlip.setDisplayedChild(0);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        getSupportActionBar().setTitle("Üzenetek");
+
+        MessageUtil.listMessages(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
+                ListView thread = (ListView) findViewById(R.id.allmessages);
+
+                final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
+
+                thread.setAdapter(adapter);
+                thread.setDividerHeight(0);
+
+                thread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        MessageUtil ms = adapter.getItem(i);
+                        loadMessagesForEstate(ms.getHash(), ms.getUid());
+                    }
+                });
+
+            }
+        }, SettingUtil.getToken(this));
+
+        menuType = MESSAGES_MENU;
+        supportInvalidateOptionsMenu();
+
         closeDrawer();
     }
 
-    int isMyAds = 0;
     public void showMyAds(View view) {
-        isBackPressed = false;
-        isMyAds = 1;
-        switchLayoutTo(ESTATESLIST);
-        loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-        FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab_phone.setVisibility(View.INVISIBLE);
-        fab.setVisibility(View.INVISIBLE);
-        getSupportActionBar().setTitle("Saját");
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        justme = true;
+        isFavorite = false;
+        ing_ordering = 0;
+        ing_type = 0;
+
+        furniture_int = 0;
+        lift_int = 0;
+        balcony_int = 0;
+        meret_int = 0;
+        szobaMax_int = 0;
+        szobaMin_int = 0;
+        floorsMint_int = 0;
+        floorsMax_int = 0;
+        type_int = 0;
+        allapot_int = 0;
+        energigenyo_int = 0;
+        panoramaSpinner_int = 0;
+
+        price_from = "";
+        price_to = "";
+        key = "";
+
+        loadRealEstates();
         closeDrawer();
     }
 
@@ -3412,6 +3459,10 @@ private boolean isAddingEstate = false;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
+        }
+
     }
 
     @Override
@@ -3432,41 +3483,41 @@ private boolean isAddingEstate = false;
                 startActivityForResult(i, 69);
                 break;
             case R.id.action_calendar:
-                switchLayoutTo(BOOKING);
+                loadBooking();
                 break;
             case R.id.action_fav:
-                favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
-                Log.d("FAV ", "MAIN");
-
-                if (!isFavEstate) {
-                    Log.d("FAV ", "IF");
+                if (!currentEstate.isFavourite()) {
                     EstateUtil.setFavorite(new SoapObjectResult() {
                         @Override
                         public void parseRerult(Object result) {
                             Log.d("FAV RESULT", result.toString());
                             if (!(boolean)result) {
-                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
-                                isFavEstate = true;
-                                estateUtil_fav.setIsFavourite(true);
+                                MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+                                if(favItem != null) {
+                                    favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_filled));
+                                    currentEstate.setIsFavourite(true);
+                                }
                             }
                         }
-                    },String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "1");
+                    },String.valueOf(currentEstate.getId()), SettingUtil.getToken(MainActivity.this), "1");
                 } else {
                     EstateUtil.setFavorite(new SoapObjectResult() {
                         @Override
                         public void parseRerult(Object result) {
                             Log.d("FAV RESULT", result.toString());
                             if (!(boolean) result) {
-                                favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
-                                isFavEstate = false;
-                                estateUtil_fav.setIsFavourite(false);
+                                MenuView.ItemView favItem = (MenuView.ItemView) findViewById(R.id.action_fav);
+                                if(favItem != null) {
+                                    favItem.setIcon(getResources().getDrawable(R.drawable.ic_action_heart_content));
+                                    currentEstate.setIsFavourite(false);
+                                }
                             }
                         }
-                    }, String.valueOf(estateID), SettingUtil.getToken(MainActivity.this), "0");
+                    }, String.valueOf(currentEstate.getId()), SettingUtil.getToken(MainActivity.this), "0");
                 }
                 break;
             case R.id.action_message:
-                loadMessagesForEstate(estateHash, 0);
+                loadMessagesForEstate(currentEstate.getHash(), 0);
                 break;
             case R.id.action_share:
                 Intent sendIntent = new Intent();
@@ -3476,276 +3527,64 @@ private boolean isAddingEstate = false;
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
                 break;
             case android.R.id.home:
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-                switch (viewFlip.getDisplayedChild()) {
-                    case ESTATESLIST:
-                        if (isShowingFavorites) {
-                            switchLayoutTo(ESTATESLIST);
-                            isMyAds = 0;
-                            isShowingFavorites = false;
-                            getSupportActionBar().setTitle("Hirdetések");
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                            loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-                        } else if (isMyAds == 1) {
-                            switchLayoutTo(ESTATESLIST);
-                            isMyAds = 0;
-                            isShowingFavorites = false;
-                            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                            getSupportActionBar().setTitle("Hirdetések");
-                            loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
+                switch (menuType) {
+                    case MAIN_MENU:
+                        if (drawer.isDrawerOpen(GravityCompat.START)) {
+                            drawer.closeDrawer(GravityCompat.START);
                         } else {
-                            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                                drawer.closeDrawer(GravityCompat.START);
-                            } else {
-                                drawer.openDrawer(GravityCompat.START);
-                            }
+                            drawer.openDrawer(GravityCompat.START);
                         }
                         break;
+                    case ESTATE_MENU:
+                        loadRealEstates();
+                        break;
+                    case MESSAGES_THREAD_MENU:
+                        if(currentEstate == null) {
+                            showMessages(null);
+                        } else {
+                            getEstateContent(currentEstate.getId());
+                        }
+                        break;
+                    case ADD_FIGYELO_MENU:
+                        showAdmonitor(null);
+                        break;
+                    case ADD_ESTATE_MENU:
+
+                        hirdetesSpinner_int = 0;
+                        szobaszamSpinner_int = 0;
+                        allapotSpinner_int = 0;
+                        emeletekSpinner_int = 0;
+                        ingatlanTipusSpinner_int = 0;
+                        parkolasSpinner_int = 0;
+                        futesSpinner_int = 0;
+                        energiaSpinner_int = 0;
+                        kilatasSpinner_int = 0;
+                        butorozottSpinner_int = 0;
+                        balconySpinner_int = 0;
+                        elevatorSpinner_int = 0;
+                        mon = 0;
+                        tue = 0;
+                        wed = 0;
+                        thu = 0;
+                        fri = 0;
+                        sat = 0;
+                        sun = 0;
+                        start = "0";
+                        finish = "0";
+
+                        loadRealEstates();
+
+                        break;
                     default:
-                        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                        switchLayoutTo(ESTATESLIST);
-                        fab.setVisibility(View.VISIBLE);
-                        fab_phone.setVisibility(View.INVISIBLE);
-                        supportInvalidateOptionsMenu();
+                        loadRealEstates();
                         break;
                 }
+                supportInvalidateOptionsMenu();
                 break;
 
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        /*switch (id) {
-            case R.id.nav_mainpage:
-                isShowingFavorites = false;
-                if (viewFlip.getDisplayedChild() != ESTATESLIST) {
-                    switchLayoutTo(ESTATESLIST);
-                }
-                isMyAds = 0;
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "0", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-                break;
-            case R.id.nav_profile:
-                switchLayoutTo(PROFILE);
-                break;
-            case R.id.nav_messages:
-                switchLayoutTo(MESSAGES);
-                break;
-            case R.id.nav_billing:
-                switchLayoutTo(BOOKING);
-                break;
-            case R.id.nav_myads:
-                //TODO: estateUtil.listEstatest meghívni (loadRealEstates) és átalakítani h csak a sajátunk jelenjen meg
-                break;
-            case R.id.nav_myfavs:
-                isShowingFavorites = true;
-                if(viewFlip.getDisplayedChild() != ESTATESLIST) {
-                    switchLayoutTo(ESTATESLIST);
-                }
-                isMyAds = 0;
-                loadRealEstates("0", "0", SettingUtil.getToken(MainActivity.this), "1", String.valueOf(adType), String.valueOf(sortingSpinner_int), isMyAds);
-                break;
-            case R.id.nav_admonitor:
-                //TODO: létrehozni hozzá az API-t
-                break;
-            case R.id.nav_agency:
-                //TODO: kitalálni h mi és h is lesz
-                break;
-            case R.id.nav_invitation:
-                switchLayoutTo(INVITE);
-                break;
-            case R.id.nav_logout:
-                //finishActivity();
-                LoginUtil.logout(this, new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        if ((boolean) result) {
-                            Snackbar.make(viewFlip.getCurrentView(), "Sikertelen művelet!", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null)
-
-                                    .show();
-                        } else {
-                            SettingUtil.setToken(MainActivity.this, "");
-                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        }
-                    }
-                });
-
-                //finish();
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        drawer.closeDrawer(GravityCompat.END);*/
-        return true;
-    }
-
-
-
-
-
-    ArrayList<Integer> prewViews = new ArrayList<Integer>();
     boolean isBackPressed = false;
-
-    public void switchLayoutTo(int switchTo){
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-
-        // TODO: ez itt nem jó :D de nagyon nem. de egylőre gyorsan javítottam.
-        if (viewFlip.getDisplayedChild() == switchTo && isBackPressed) {
-            if (prewViews.size() > 1) {
-                switchTo = prewViews.get(prewViews.size() - 2);
-            }
-        }
-
-        while(mCurrentLayoutState != switchTo){
-            if(mCurrentLayoutState > switchTo){
-                mCurrentLayoutState--;
-                viewFlip.setInAnimation(inFromLeftAnimation());
-                viewFlip.setOutAnimation(outToRightAnimation());
-                viewFlip.setDisplayedChild(switchTo);
-            } else {
-                mCurrentLayoutState++;
-                viewFlip.setInAnimation(inFromRightAnimation());
-                viewFlip.setOutAnimation(outToLeftAnimation());
-                viewFlip.setDisplayedChild(switchTo);
-            }
-        }
-
-
-
-        if (!isBackPressed) {
-            prewViews.add(viewFlip.getDisplayedChild());
-            for (int i = 0; i < prewViews.size(); i++) {
-                Log.d("VIEWS: ", prewViews.get(i).toString());
-            }
-        } else {
-            isBackPressed = false;
-        }
-
-        switch(viewFlip.getDisplayedChild()) {
-            case ADDESTATE:
-                getSupportActionBar().setTitle("Hirdetés feladás");
-                break;
-            case ESTATESLIST:
-                if (isShowingFavorites) {
-                    getSupportActionBar().setTitle("Kedvencek");
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                    fab.setVisibility(View.INVISIBLE);
-                    fab_phone.setVisibility(View.INVISIBLE);
-                } else if (isMyAds == 1) {
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-                    getSupportActionBar().setTitle("Saját");
-                    fab.setVisibility(View.INVISIBLE);
-                    fab_phone.setVisibility(View.INVISIBLE);
-                } else {
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-                    getSupportActionBar().setTitle("Hirdetések");
-                    fab.setVisibility(View.VISIBLE);
-                }
-                break;
-            case INVITE:
-                getSupportActionBar().setTitle("Meghívás");
-                break;
-            case PROFILE:
-                getSupportActionBar().setTitle("Profilom");
-                break;
-            case MESSAGES:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case MESSAGES2:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Üzenetek");
-                break;
-            case BOOKING:
-                getSupportActionBar().setTitle("Időpontfoglalás");
-                break;
-            case ADMONITOR:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hirdetésfigyelő");
-                break;
-            case ADDADMONITOR:
-                fab_phone.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.INVISIBLE);
-                getSupportActionBar().setTitle("Hirdetésfigyelő");
-                break;
-            default:
-                getSupportActionBar().setTitle(null);
-                break;
-        }
-
-        supportInvalidateOptionsMenu();
-    }
-
-    public void switchLayoutToAddEstate(int switchTo){
-        while(mCurrentLayoutStateAddEstate != switchTo){
-            if(mCurrentLayoutStateAddEstate > switchTo){
-                mCurrentLayoutStateAddEstate--;
-                viewFlipAddEstate.setInAnimation(inFromLeftAnimation());
-                viewFlipAddEstate.setOutAnimation(outToRightAnimation());
-                viewFlipAddEstate.setDisplayedChild(switchTo);
-            } else {
-                mCurrentLayoutStateAddEstate++;
-                viewFlipAddEstate.setInAnimation(inFromRightAnimation());
-                viewFlipAddEstate.setOutAnimation(outToLeftAnimation());
-                viewFlipAddEstate.setDisplayedChild(switchTo);
-            }
-        }
-    }
-
-    protected Animation inFromRightAnimation() {
-
-        Animation inFromRight = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT, +1.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f);
-        inFromRight.setDuration(300);
-        inFromRight.setInterpolator(new AccelerateInterpolator());
-        return inFromRight;
-    }
-
-    protected Animation outToLeftAnimation() {
-        Animation outtoLeft = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, -1.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f);
-        outtoLeft.setDuration(300);
-        outtoLeft.setInterpolator(new AccelerateInterpolator());
-        return outtoLeft;
-    }
-
-    protected Animation inFromLeftAnimation() {
-        Animation inFromLeft = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT, -1.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f);
-        inFromLeft.setDuration(300);
-        inFromLeft.setInterpolator(new AccelerateInterpolator());
-        return inFromLeft;
-    }
-
-    protected Animation outToRightAnimation() {
-        Animation outtoRight = new TranslateAnimation(
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, +1.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 0.0f);
-        outtoRight.setDuration(300);
-        outtoRight.setInterpolator(new AccelerateInterpolator());
-        return outtoRight;
-    }
 }

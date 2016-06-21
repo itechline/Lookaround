@@ -1,6 +1,9 @@
 package lar.com.lookaround.util;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,7 +13,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
+import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -65,6 +70,11 @@ public class SpinnerUtil {
     }
 
     public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 
@@ -362,6 +372,69 @@ public class SpinnerUtil {
         }
     }
 
+    public static void get_list(final SoapObjectResult soap, final Spinner spinner, final int id, String urlend) {
+        try {
+            String url = "https://bonodom.com/api/" + urlend;
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            hiredtestipusa.add(new SpinnerUtil(0, "Nincs Megadva"));
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                Iterator<String> keys = json_data.keys();
+
+                                int idJson = json_data.getInt((String)keys.next());
+                                String nameJson = json_data.getString((String)keys.next());
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+
+                            final SpinnerAdapter adapter = new SpinnerAdapter(spinner.getContext(), hiredtestipusa);
+                            spinner.setAdapter(adapter);
+
+                            for(int i = 0; i < hiredtestipusa.size(); i++) {
+                                if(hiredtestipusa.get(i).getId() == id) {
+                                    spinner.setSelection(i);
+                                }
+                            }
+
+                            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    SpinnerUtil spinnerUtil = adapter.getItem(i);
+                                    soap.parseRerult(spinnerUtil);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                }
+                            });
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

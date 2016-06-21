@@ -66,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/button_back"
-                android:onClick="prewAddestatePage"
                 android:id="@+id/back_button_page5"
                 android:layout_margin="10sp"
                 android:textColor="#0066cc"/>
@@ -76,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/button_next"
-                android:onClick="nextAddestatePage"
                 android:id="@+id/button_go_page5"
                 android:layout_margin="10sp"
                 android:background="@drawable/colorbutton"

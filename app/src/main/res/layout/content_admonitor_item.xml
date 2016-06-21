@@ -43,6 +43,7 @@
             android:src="@drawable/admonitor_ceruza"
             android:layout_width="wrap_content"
             android:layout_height="18sp"
+            android:visibility="gone"
             android:id="@+id/admonitor_list_item_edit_image"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/admonitor_list_item_delete_image"

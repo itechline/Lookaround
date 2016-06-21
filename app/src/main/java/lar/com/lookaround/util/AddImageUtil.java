@@ -35,7 +35,6 @@ public class AddImageUtil {
     private static ArrayList<AddImageUtil> images = new ArrayList<AddImageUtil>();
 
     public static void addImage(int id, Bitmap bitmap) {
-        Log.d("IMAGE_", "ADDIMAGEUTIL");
         images.add(new AddImageUtil(id, bitmap));
     }
 

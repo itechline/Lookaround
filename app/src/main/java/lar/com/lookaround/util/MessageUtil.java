@@ -158,7 +158,6 @@ public class MessageUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("getMessageCount", "Return: " + result);
                     int count = 0;
                     if (result != null) {
                         try {
@@ -194,7 +193,6 @@ public class MessageUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("sendmeesage", "Return: " + result);
                     boolean err = true;
                     if (result != null) {
                         try {
@@ -227,12 +225,10 @@ public class MessageUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("listEstates", "Return: " + result);
 
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
-                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
                             ArrayList<MessageUtil> messages = new ArrayList<MessageUtil>();
 
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -280,12 +276,10 @@ public class MessageUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("listEstates", "Return: " + result);
 
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
-                            Log.d("JSON_LENGTH", "Return: " + jsonArray.length());
                             ArrayList<MessageUtil> messages = new ArrayList<MessageUtil>();
 
                             for(int i=0;i<jsonArray.length();i++){

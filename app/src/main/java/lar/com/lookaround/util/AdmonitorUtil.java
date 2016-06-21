@@ -169,6 +169,10 @@ public class AdmonitorUtil {
         this.etype = etype;
     }
 
+    public AdmonitorUtil() {
+
+    }
+
     public AdmonitorUtil (int id, String name, String search, String priceMin, String priceMax, int type, int floorsMin, int floorsMax,
             int roomsMin, int roomsMax, int elevator, int balcony, int size, int view, int hasFurniture, int parking, int condition, int etype) {
         this.id = id;

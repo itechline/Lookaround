@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:id="@+id/relativeLayout_withcontent_page1"
         android:layout_margin="5sp"
@@ -64,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/button_next"
-                android:onClick="nextAddestatePage"
                 android:id="@+id/advert1_next_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/colorbutton"
@@ -75,15 +74,20 @@
                 android:layout_margin="10sp" />
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/layout_forbuttons_firstpage"
+            android:layout_below="@+id/adding_advertinfo_relativelayout"
+            >
+
         <RelativeLayout
             android:id="@+id/add_esatet_page1_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/layout_forbuttons_firstpage"
-            android:layout_below="@+id/adding_advertinfo_relativelayout">
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +114,7 @@
                 android:textSize="16sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:id="@+id/adverttitle_edittext"
                 android:layout_alignParentRight="true"
@@ -127,7 +131,7 @@
                 android:paddingLeft="5sp" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="70sp"
                 android:id="@+id/advert_description_edittext"
                 android:layout_alignParentRight="true"
@@ -160,7 +164,7 @@
 
             <RelativeLayout
                 android:id="@+id/add_advert_type_spinner_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -173,7 +177,7 @@
                 android:layout_marginTop="5sp">
 
                 <Spinner
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/add_advert_type_spinner"
                     android:layout_alignParentBottom="true"
@@ -199,7 +203,7 @@
                 android:textSize="16sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:id="@+id/add_advert_price_edittext"
                 android:layout_alignParentRight="true"
@@ -230,7 +234,7 @@
                 android:textSize="16sp"/>
 
             <AutoCompleteTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:id="@+id/add_advert_city_edittext"
                 android:layout_alignParentRight="true"
@@ -261,7 +265,7 @@
                 android:textSize="16sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:id="@+id/add_advert_street_edittext"
                 android:layout_alignParentRight="true"
@@ -291,7 +295,7 @@
                 android:textSize="16sp"/>
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:id="@+id/add_advert_str_number_edittext"
                 android:layout_alignParentRight="true"
@@ -354,7 +358,7 @@
 
             <RelativeLayout
                 android:id="@+id/add_furniture_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:background="@drawable/spinner_border"
                 android:layout_alignParentRight="true"
@@ -365,7 +369,7 @@
                 android:layout_alignTop="@+id/add_estate_furniture_textview">
 
                 <Spinner
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/add_advert_furniture_spinner"
                     android:layout_alignParentBottom="true"
@@ -378,6 +382,8 @@
                     android:padding="3sp" />
             </RelativeLayout>
         </RelativeLayout>
+
+        </ScrollView>
 
     </RelativeLayout>
 

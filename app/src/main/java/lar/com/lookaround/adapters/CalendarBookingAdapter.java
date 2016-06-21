@@ -2,6 +2,7 @@ package lar.com.lookaround.adapters;
 
 import android.content.Context;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,9 @@ public class CalendarBookingAdapter extends ArrayAdapter<CalendarBookingUtil> {
 
         TextView hours = (TextView) convertView.findViewById(R.id.booking_hours_text);
         TextView minutes = (TextView) convertView.findViewById(R.id.booking_minutes_text);
+        TextView foglal = (TextView) convertView.findViewById(R.id.booking_date_agree);
+        foglal.setText("Foglalt");
+        foglal.setTextColor(Color.RED);
 
         hours.setText(String.valueOf(appointment.getHours()));
         minutes.setText(String.valueOf(appointment.getMinutes()));

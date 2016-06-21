@@ -1,5 +1,6 @@
 package lar.com.lookaround.util;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -10,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
@@ -35,6 +37,161 @@ public class EstateUtil {
     private double lat;
     private double lng;
     private String justme;
+    private int lift;
+
+    private String estateTitle;
+    private String estateDescription;
+    private String estatePrice;
+    private String estateCity;
+    private String estateStreet;
+    private String estetaHouseNumber;
+    private String estateSize;
+
+    public String getEstateTitle() {
+        return estateTitle;
+    }
+
+    public void setEstateTitle(String estateTitle) {
+        this.estateTitle = estateTitle;
+    }
+
+    public String getEstateDescription() {
+        return estateDescription;
+    }
+
+    public void setEstateDescription(String estateDescription) {
+        this.estateDescription = estateDescription;
+    }
+
+    public String getEstatePrice() {
+        return estatePrice;
+    }
+
+    public void setEstatePrice(String estatePrice) {
+        this.estatePrice = estatePrice;
+    }
+
+    public String getEstateCity() {
+        return estateCity;
+    }
+
+    public void setEstateCity(String estateCity) {
+        this.estateCity = estateCity;
+    }
+
+    public String getEstateStreet() {
+        return estateStreet;
+    }
+
+    public void setEstateStreet(String estateStreet) {
+        this.estateStreet = estateStreet;
+    }
+
+    public String getEstetaHouseNumber() {
+        return estetaHouseNumber;
+    }
+
+    public void setEstetaHouseNumber(String estetaHouseNumber) {
+        this.estetaHouseNumber = estetaHouseNumber;
+    }
+
+    public String getEstateSize() {
+        return estateSize;
+    }
+
+    public void setEstateSize(String estateSize) {
+        this.estateSize = estateSize;
+    }
+
+    public int getLift() {
+        return lift;
+    }
+
+    public void setLift(int lift) {
+        this.lift = lift;
+    }
+
+    private int ingatlan_energiatan_id;
+    private int ingatlan_kilatas_id;
+    private int ingatlan_futestipus_id;
+    private int ingatlan_parkolas_id;
+    private int ingatlan_tipus_id;
+    private int ingatlan_emelet_id;
+    private int ingatlan_allapot_id;
+    private int ingatlan_szsz_id;
+    private int ing_e_type_id;
+
+    public int getIngatlan_energiatan_id() {
+        return ingatlan_energiatan_id;
+    }
+
+    public void setIngatlan_energiatan_id(int ingatlan_energiatan_id) {
+        this.ingatlan_energiatan_id = ingatlan_energiatan_id;
+    }
+
+    public int getIngatlan_kilatas_id() {
+        return ingatlan_kilatas_id;
+    }
+
+    public void setIngatlan_kilatas_id(int ingatlan_kilatas_id) {
+        this.ingatlan_kilatas_id = ingatlan_kilatas_id;
+    }
+
+    public int getIngatlan_futestipus_id() {
+        return ingatlan_futestipus_id;
+    }
+
+    public void setIngatlan_futestipus_id(int ingatlan_futestipus_id) {
+        this.ingatlan_futestipus_id = ingatlan_futestipus_id;
+    }
+
+    public int getIngatlan_parkolas_id() {
+        return ingatlan_parkolas_id;
+    }
+
+    public void setIngatlan_parkolas_id(int ingatlan_parkolas_id) {
+        this.ingatlan_parkolas_id = ingatlan_parkolas_id;
+    }
+
+    public int getIngatlan_tipus_id() {
+        return ingatlan_tipus_id;
+    }
+
+    public void setIngatlan_tipus_id(int ingatlan_tipus_id) {
+        this.ingatlan_tipus_id = ingatlan_tipus_id;
+    }
+
+    public int getIngatlan_emelet_id() {
+        return ingatlan_emelet_id;
+    }
+
+    public void setIngatlan_emelet_id(int ingatlan_emelet_id) {
+        this.ingatlan_emelet_id = ingatlan_emelet_id;
+    }
+
+    public int getIngatlan_allapot_id() {
+        return ingatlan_allapot_id;
+    }
+
+    public void setIngatlan_allapot_id(int ingatlan_allapot_id) {
+        this.ingatlan_allapot_id = ingatlan_allapot_id;
+    }
+
+    public int getIngatlan_szsz_id() {
+        return ingatlan_szsz_id;
+    }
+
+    public void setIngatlan_szsz_id(int ingatlan_szsz_id) {
+        this.ingatlan_szsz_id = ingatlan_szsz_id;
+    }
+
+    public int getIng_e_type_id() {
+        return ing_e_type_id;
+    }
+
+    public void setIng_e_type_id(int ing_e_type_id) {
+        this.ing_e_type_id = ing_e_type_id;
+    }
 
     public String getJustme() {
         return justme;
@@ -232,6 +389,10 @@ public class EstateUtil {
         this.justme = justme;
     }
 
+    public EstateUtil() {
+
+    }
+
    public EstateUtil(boolean error, String hash, int id) {
         this.error = error;
         this.hash = hash;
@@ -245,7 +406,9 @@ public class EstateUtil {
     }
 
 
-    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering, final String jstme) {
+    public static void listEstates(final SoapObjectResult getBackWhenItsDone, String idPost, String pagePost, String tokenTosend, String favorites, String etype, String ordering, final String jstme,
+                                   int furniture_int, int lift_int, int balcony_int, int meret_int, int szobaMax_int, int szobaMin_int, int floorsMax_int, int floorsMint_int,
+                                   int type_int, int allapot_int,int  energigenyo_int, int panoramaSpinner_int, int parkolas_int, String price_from, String price_to, String key) {
         try {
             String url = "https://bonodom.com/api/list_estates";
 
@@ -257,19 +420,30 @@ public class EstateUtil {
             postadatok.put("etype", etype);
             postadatok.put("ordering", ordering);
             postadatok.put("justme", jstme);
-            Log.d("UTIL_INGATLAN_ID", idPost);
-            Log.d("UTIL_PAGE", pagePost);
-            Log.d("UTIL_TOKEN", tokenTosend);
-            Log.d("UTIL_FAVORITES", favorites);
-            Log.d("UTIL_ETYPE", etype);
-            Log.d("UTIL_ORDERING", ordering);
-            Log.d("UTIL_JUSTME", jstme);
-            SoapService ss = new SoapService(new SoapResult() {
+
+            postadatok.put("ingatlan_butorozott", String.valueOf(furniture_int));
+            postadatok.put("ingatlan_lift", String.valueOf(lift_int));
+            postadatok.put("ingatlan_erkely", String.valueOf(balcony_int));
+            postadatok.put("ingatlan_meret", String.valueOf(meret_int));
+            postadatok.put("ingatlan_szsz_max", String.valueOf(szobaMax_int));
+            postadatok.put("ingatlan_szsz_min", String.valueOf(szobaMin_int));
+            postadatok.put("ingatlan_emelet_max", String.valueOf(floorsMax_int));
+            postadatok.put("ingatlan_emelet_min", String.valueOf(floorsMint_int));
+            postadatok.put("ingatlan_tipus_id", String.valueOf(type_int));
+            postadatok.put("ingatlan_allapot_id", String.valueOf(allapot_int));
+            postadatok.put("ingatlan_energiatan_id", String.valueOf(energigenyo_int));
+            postadatok.put("ingatlan_kilatas_id", String.valueOf(panoramaSpinner_int));
+            postadatok.put("ingatlan_ar_min", String.valueOf(price_from));
+            postadatok.put("ingatlan_ar_max", String.valueOf(price_to));
+            postadatok.put("keyword", String.valueOf(key));
+            postadatok.put("ingatlan_parkolas_id", String.valueOf(parkolas_int));
+
+
+
+                SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-
                     if (result != null) {
-                        Log.d("LIST_ESTATES: Result: ", result.toString());
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             ArrayList<EstateUtil> estates = new ArrayList<EstateUtil>();
@@ -301,7 +475,6 @@ public class EstateUtil {
                                 for (int j=0; j < kepekArray.length(); j++) {
                                     JSONObject jsonKep = kepekArray.getJSONObject(j);
                                     imageURL = jsonKep.getString("kepek_url");
-                                    Log.d("JSON_URL", imageURL);
                                 }
 
                                 String meretJson = json_data.getString(INGATLAN_MERET);
@@ -312,7 +485,40 @@ public class EstateUtil {
                                 int typeJson = json_data.getInt(INGATLAN_TYPE);
 
 
-                                estates.add(new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL, jstme, hash));
+                                EstateUtil util = new EstateUtil(idJson, adressJson, streetJson, descriptionJson, priceJson, isFav, meretJson, parkolasJson, szszJson, butorJson, erkelyJson, typeJson, imageURL, jstme, hash);
+
+                                /*
+                                    private int ingatlan_energiatan_id;
+                                    private int ingatlan_kilatas_id;
+                                    private int ingatlan_futestipus_id;
+                                    private int ingatlan_parkolas_id;
+                                    private int ingatlan_tipus_id;
+                                    private int ingatlan_emelet_id;
+                                    private int ingatlan_allapot_id;
+                                    private int ingatlan_szsz_id;
+                                    private int ing_e_type_id;
+                                 */
+
+                                util.setIngatlan_energiatan_id(json_data.getInt("ingatlan_energiatan_id"));
+                                util.setIngatlan_kilatas_id(json_data.getInt("ingatlan_kilatas_id"));
+                                util.setIngatlan_futestipus_id(json_data.getInt("ingatlan_futestipus_id"));
+                                util.setIngatlan_parkolas_id(json_data.getInt("ingatlan_parkolas_id"));
+                                util.setIngatlan_tipus_id(json_data.getInt("ingatlan_tipus_id"));
+                                util.setIngatlan_emelet_id(json_data.getInt("ingatlan_emelet_id"));
+                                util.setIngatlan_allapot_id(json_data.getInt("ingatlan_allapot_id"));
+                                util.setIngatlan_szsz_id(json_data.getInt("ingatlan_szsz_id"));
+                                util.setIng_e_type_id(json_data.getInt("ingatlan_e_type_id"));
+                                util.setLift(json_data.getInt("ingatlan_lift"));
+
+                                util.setEstateTitle(json_data.getString("ingatlan_title"));
+                                util.setEstateDescription(json_data.getString("ingatlan_rovidleiras"));
+                                util.setEstatePrice(json_data.getString("ingatlan_ar"));
+                                util.setEstateCity(json_data.getString("ingatlan_varos"));
+                                util.setEstateStreet(json_data.getString("ingatlan_utca"));
+                                util.setEstetaHouseNumber(json_data.getString("ingatlan_hsz"));
+                                util.setEstateSize(json_data.getString("ingatlan_meret"));
+
+                                estates.add(util);
 
                                 if (idJson > largestId) {
                                     largestId = idJson;
@@ -339,8 +545,138 @@ public class EstateUtil {
         }
     }
 
+    public static void deleteFigyelo(Context ctx, final SoapObjectResult getBackWhenItsDone, int id) {
+        try {
+            String url = "https://bonodom.com/api/delete_figyelo";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("hir_id", String.valueOf(id));
+            postadatok.put("token", SettingUtil.getToken(ctx));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.e("error", "_"+result);
+                    getBackWhenItsDone.parseRerult(true);
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void listFigyelo(final SoapObjectResult getBackWhenItsDone, String tokenTosend) {
+        try {
+            String url = "https://bonodom.com/api/list_figyelo";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", tokenTosend);
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<AdmonitorUtil> figyelok = new ArrayList<>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                AdmonitorUtil mon = new AdmonitorUtil();
+                                mon.setId(json_data.getInt("hir_id"));
+                                mon.setName(json_data.getString("name"));
+                                figyelok.add(mon);
+
+                            }
+
+                            getBackWhenItsDone.parseRerult(figyelok);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addFigyelo(final SoapObjectResult getBackWhenItsDone, String tokenTosend,
+                                  String name,
+                                   int furniture_int, int lift_int, int balcony_int, int meret_int, int szobaMax_int, int szobaMin_int, int floorsMax_int, int floorsMint_int,
+                                   int type_int, int allapot_int,int  energigenyo_int, int panoramaSpinner_int, int parkolas_int, String price_from, String price_to, String key) {
+        try {
+            String url = "https://bonodom.com/api/add_figyelo";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", tokenTosend);
+            postadatok.put("name", name);
+            postadatok.put("ingatlan_butorozott", String.valueOf(furniture_int));
+            postadatok.put("ingatlan_lift", String.valueOf(lift_int));
+            postadatok.put("ingatlan_erkely", String.valueOf(balcony_int));
+            postadatok.put("ingatlan_meret", String.valueOf(meret_int));
+            postadatok.put("ingatlan_szsz_max", String.valueOf(szobaMax_int));
+            postadatok.put("ingatlan_szsz_min", String.valueOf(szobaMin_int));
+            postadatok.put("ingatlan_emelet_max", String.valueOf(floorsMax_int));
+            postadatok.put("ingatlan_emelet_min", String.valueOf(floorsMint_int));
+            postadatok.put("ingatlan_tipus_id", String.valueOf(type_int));
+            postadatok.put("ingatlan_allapot_id", String.valueOf(allapot_int));
+            postadatok.put("ingatlan_energiatan_id", String.valueOf(energigenyo_int));
+            postadatok.put("ingatlan_kilatas_id", String.valueOf(panoramaSpinner_int));
+            postadatok.put("ingatlan_ar_min", String.valueOf(price_from));
+            postadatok.put("ingatlan_ar_max", String.valueOf(price_to));
+            postadatok.put("keyword", String.valueOf(key));
+            postadatok.put("ingatlan_parkolas_id", String.valueOf(parkolas_int));
 
 
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    if (result != null) {
+                        try {
+
+                            JSONObject obj = new JSONObject(result);
+                            getBackWhenItsDone.parseRerult(obj.getBoolean("error"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteEstate(Context ctx, final SoapObjectResult getBackWhenItsDone, int id) {
+        try {
+            String url = "https://bonodom.com/api/delete_estate";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("ingatlan_id", String.valueOf(id));
+            postadatok.put("token", SettingUtil.getToken(ctx));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    Log.e("error", "_"+result);
+                    getBackWhenItsDone.parseRerult(true);
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -418,58 +754,153 @@ public class EstateUtil {
         }
     }
 
+    public static void addIdopont(final SoapObjectResult getBackWhenItsDone, String token, String ingatlan_id, String mikor) {
+        try {
+            String url = "https://bonodom.com/api/add_idopont";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("mikor", mikor);
+            postadatok.put("ingatlan_id", ingatlan_id);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    //Log.d("RESULT_ADD_ESTATE ", result.toString());
+                    if (result != null) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            boolean err = jsonObject.getBoolean("error");
+
+                            getBackWhenItsDone.parseRerult(err);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendInvites(String token, String email1, String email2, String email3, String email4, String email5) {
+        try {
+            String url = "https://bonodom.com/api/sendmeghivo";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("email1", email1);
+            postadatok.put("email2", email2);
+            postadatok.put("email3", email3);
+            postadatok.put("email4", email4);
+            postadatok.put("email5", email5);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addSerto(String token, int ingId) {
+        try {
+            String url = "https://bonodom.com/api/addserto";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("ingid", String.valueOf(ingId));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addVR(String token) {
+        try {
+            String url = "https://bonodom.com/api/addvr";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void updateReg(final SoapObjectResult getBackWhenItsDone, String token, String lat, String lng, String mobil) {
-    try {
-        String url = "https://bonodom.com/api/updatereg";
+        try {
+            String url = "https://bonodom.com/api/updatereg";
 
-        HashMap<String, String> postadatok = new HashMap<String, String>();
-        postadatok.put("token", token);
-        postadatok.put("fel_lat", lat);
-        postadatok.put("fel_lng", lng);
-        postadatok.put("fel_mobilszam", mobil);
-        SoapService ss = new SoapService(new SoapResult() {
-            @Override
-            public void parseRerult(String result) {
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("fel_lat", lat);
+            postadatok.put("fel_lng", lng);
+            postadatok.put("fel_mobilszam", mobil);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
 
-                //Log.d("RESULT_ADD_ESTATE ", result.toString());
-                if (result != null) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        boolean err = jsonObject.getBoolean("error");
+                    //Log.d("RESULT_ADD_ESTATE ", result.toString());
+                    if (result != null) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            boolean err = jsonObject.getBoolean("error");
 
-                        getBackWhenItsDone.parseRerult(err);
+                            getBackWhenItsDone.parseRerult(err);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
                     }
-                } else {
-                    Log.e("ServiceHandler", "Couldn't get any data from the url");
                 }
-            }
-        }, postadatok);
-        ss.execute(new URL(url));
-    } catch (MalformedURLException e) {
-        e.printStackTrace();
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
-}
 
 
 
 
 
     public static void addEstate(final SoapObjectResult getBackWhenItsDone, String meret, String varos,
-                                 String utca, String leiras, String ar, String energia, String butor, String kilatas,
+                                 String utca, String hsz, String leiras, String ar, String energia, String butor, String kilatas,
                                  String lift, String futes, String parkolas, String erkely, String tipus, String emelet,
                                  String allapot, String szobaszam, String lng, String lat, String title, String type, String token, String zipcode,
-                                 String mon, String tue, String wed, String thu, String fri, String sat, String sun, String start, String finish) {
+                                 String mon, String tue, String wed, String thu, String fri, String sat, String sun, String start, String finish, int updateingid) {
         try {
             String url = "https://bonodom.com/api/add_estate";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("id", String.valueOf(updateingid));
             postadatok.put("ingatlan_meret", meret);
             postadatok.put("ingatlan_varos", varos);
             postadatok.put("ingatlan_utca", utca);
+            postadatok.put("ingatlan_hsz", hsz);
             postadatok.put("ingatlan_rovidleiras", leiras);
             postadatok.put("ingatlan_ar", ar);
             postadatok.put("ingatlan_energiatan_id", energia);

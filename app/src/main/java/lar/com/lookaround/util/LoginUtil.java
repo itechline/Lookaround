@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import lar.com.lookaround.models.UserModel;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -123,20 +124,109 @@ public class LoginUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-
+                    UserModel model = new UserModel();
+                    model.setError(true);
                     if (result != null) {
                         try {
 
                             JSONObject jsonObj = new JSONObject(result);
 
                             Object isTokenValid = jsonObj.getBoolean(TOKEN_ACTIVE);
-                            getBackWhenItsDone.parseRerult(isTokenValid);
                             if (!(boolean)isTokenValid) {
                                 SettingUtil.setToken(ctx, "");
+                            } else {
+                                model.setError(false);
+                                model.setVezeteknev(jsonObj.getString("veznev"));
+                                model.setKeresztnev(jsonObj.getString("kernev"));
                             }
 
 
 
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                    getBackWhenItsDone.parseRerult(model);
+                }
+            }, postadatok);
+
+
+
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getProfile(final Context ctx, final SoapObjectResult getBackWhenItsDone, String token) {
+        try {
+            String url = "https://bonodom.com/api/get_profile";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    UserModel model = new UserModel();
+                    model.setError(true);
+                    if (result != null) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(result);
+
+                            Object isTokenValid = jsonObj.getBoolean(TOKEN_ACTIVE);
+                            if (!(boolean)isTokenValid) {
+                                SettingUtil.setToken(ctx, "");
+                            } else {
+                                model.setError(false);
+                                model.setVezeteknev(jsonObj.getString("veznev"));
+                                model.setKeresztnev(jsonObj.getString("kernev"));
+                                model.setMobil(jsonObj.getString("mobil"));
+                                model.setEmail(jsonObj.getString("email"));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                    getBackWhenItsDone.parseRerult(model);
+                }
+            }, postadatok);
+
+
+
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateProfile(final SoapObjectResult getBackWhenItsDone, String vezeteknev, String keresztnev, String mobil, String jelszo, String token) {
+        try {
+            String url = "https://bonodom.com/api/update_profile";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("fel_vezeteknev", vezeteknev);
+            postadatok.put("fel_keresztnev", keresztnev);
+            postadatok.put("fel_jelszo", jelszo);
+            postadatok.put("fel_mobilszam", mobil);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(result);
+                            Object isStatus = jsonObj.getBoolean("error");
+
+                            getBackWhenItsDone.parseRerult(isStatus);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

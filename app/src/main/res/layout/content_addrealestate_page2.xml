@@ -69,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/button_back"
-                android:onClick="prewAddestatePage"
                 android:id="@+id/back_button_page2"
                 android:layout_margin="10sp"
                 android:textColor="#0066cc" />
@@ -79,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/button_next"
-                android:onClick="nextAddestatePage"
                 android:id="@+id/button_go_page2"
                 android:layout_margin="10sp"
                 android:background="@drawable/colorbutton"
@@ -87,19 +85,22 @@
                 android:padding="3sp" />
         </LinearLayout>
 
+        <ScrollView
+            android:layout_above="@+id/linearLayout_forbuttons"
+            android:layout_below="@+id/adding_estateinfo_relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/content_add_estate_layout"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/adding_estateinfo_relativelayout"
-            android:gravity="center_vertical"
-            android:layout_above="@+id/linearLayout_forbuttons">
+            android:gravity="center_vertical">
 
             <RelativeLayout
                 android:id="@+id/addestate_parking_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -110,8 +111,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_parking_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -126,7 +127,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_type_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -137,8 +138,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_type_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -152,7 +153,7 @@
 
             <RelativeLayout
                 android:id="@+id/adestate_view_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="false"
@@ -162,8 +163,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/adestate_view_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -178,7 +179,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_elevator_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -189,8 +190,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_elevator_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -218,7 +219,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_rooms_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -228,8 +229,8 @@
                 android:layout_above="@+id/addestate_condition_textview"
                 android:background="@drawable/spinner_border">
                 <Spinner
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:id="@+id/addestate_rooms_spinner"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
@@ -245,7 +246,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_heatingtype_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -256,8 +257,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_heatingtype_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -272,7 +273,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_ecertificate_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -283,8 +284,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_ecertificate_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -299,7 +300,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_condition_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -310,8 +311,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_condition_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -326,7 +327,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_balcony_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -337,8 +338,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_balcony_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"
@@ -352,7 +353,7 @@
 
             <RelativeLayout
                 android:id="@+id/addestate_floors_spinner_rlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -363,8 +364,8 @@
                 android:background="@drawable/spinner_border">
                 <Spinner
                     android:id="@+id/addestate_floors_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
                     android:layout_alignParentEnd="false"
                     android:gravity="left"
                     android:spinnerMode="dialog"
@@ -487,6 +488,8 @@
                 android:layout_margin="7sp"
                 />
         </RelativeLayout>
+
+        </ScrollView>
 
     </RelativeLayout>
 

@@ -18,9 +18,10 @@
                 android:id="@+id/item_realestate_profile_layout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/slider">
+                android:layout_height="50sp"
+                android:layout_marginTop="250sp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true">
 
                 <ImageView
                     android:src="@drawable/user_avatar"
@@ -357,6 +358,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/realestate_whats_near_layout"
                 android:layout_margin="10sp"
+                android:onClick="doVR"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/spinner_border">
 
@@ -420,6 +422,8 @@
                 android:id="@+id/slider"
                 android:layout_width="match_parent"
                 android:layout_height="250sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
                 />
 
 

@@ -38,7 +38,7 @@
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/email_1_editText"
+            android:id="@+id/email1"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
             android:layout_margin="10sp" />
@@ -68,7 +68,7 @@
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/email2"
             android:layout_alignParentEnd="true"
             android:layout_margin="10sp"
             android:background="@drawable/spinner_border"/>
@@ -97,7 +97,7 @@
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/email3"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
             android:layout_margin="10sp" />
@@ -126,7 +126,7 @@
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText3"
+            android:id="@+id/email4"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
             android:layout_margin="10sp" />
@@ -156,7 +156,7 @@
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText4"
+            android:id="@+id/email5"
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
@@ -177,18 +177,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/button_back"
-            android:id="@+id/invite_back_button"
-            android:textSize="16sp"
-            android:layout_margin="5sp"
-            android:padding="2sp"
-            android:textColor="#0066cc"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/button_save"
+            android:text="Küld"
             android:id="@+id/intive_send_button"
             android:textColor="#ffffff"
             android:background="@drawable/colorbutton"

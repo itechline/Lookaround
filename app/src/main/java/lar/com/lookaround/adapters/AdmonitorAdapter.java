@@ -1,6 +1,7 @@
 package lar.com.lookaround.adapters;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.view.Gravity;
@@ -17,7 +18,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import lar.com.lookaround.R;
+import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.AdmonitorUtil;
+import lar.com.lookaround.util.EstateUtil;
 
 public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
 
@@ -51,7 +54,7 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callPopupDelete(admonitorUtil.getId(), finalConvertView);
+                callPopupDelete(admonitorUtil, finalConvertView);
             }
         });
 
@@ -60,7 +63,7 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
     }
 
 
-    private void callPopupDelete(final int id, final View view) {
+    private void callPopupDelete(final AdmonitorUtil utl, final View view) {
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -72,7 +75,6 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
         popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT,
                 true);
 
-
         popupWindow.setTouchable(true);
         popupWindow.setFocusable(true);
 
@@ -83,9 +85,23 @@ public class AdmonitorAdapter extends ArrayAdapter<AdmonitorUtil> {
 
                     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     public void onClick(View arg0) {
-                        AdmonitorUtil.removeAdmonitor(id);
+                        remove(utl);
                         view.setVisibility(View.INVISIBLE);
                         popupWindow.dismiss();
+
+                        final ProgressDialog pd = new ProgressDialog(getContext());
+                        pd.show();
+
+                        EstateUtil.deleteFigyelo(getContext(), new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                if (pd != null)
+                                    pd.hide();
+                                remove(utl);
+                                notifyDataSetChanged();
+                            }
+                        }, utl.getId());
+
                     }
                 });
 
