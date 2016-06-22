@@ -41,8 +41,13 @@ public class CalendarBookingAdapter extends ArrayAdapter<CalendarBookingUtil> {
         TextView hours = (TextView) convertView.findViewById(R.id.booking_hours_text);
         TextView minutes = (TextView) convertView.findViewById(R.id.booking_minutes_text);
         TextView foglal = (TextView) convertView.findViewById(R.id.booking_date_agree);
-        foglal.setText("Foglalt");
-        foglal.setTextColor(Color.RED);
+        if(appointment.isFoglalt()) {
+            foglal.setText("Foglalt");
+            foglal.setTextColor(Color.RED);
+        } else {
+            foglal.setText("Foglalás");
+            foglal.setTextColor(Color.parseColor("#0066cc"));
+        }
 
         hours.setText(String.valueOf(appointment.getHours()));
         minutes.setText(String.valueOf(appointment.getMinutes()));

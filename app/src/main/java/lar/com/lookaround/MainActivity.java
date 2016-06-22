@@ -78,6 +78,7 @@ import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -91,6 +92,7 @@ import lar.com.lookaround.adapters.CalendarBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.MessageAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
+import lar.com.lookaround.models.Idopont;
 import lar.com.lookaround.models.UserModel;
 import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
@@ -267,7 +269,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void setCalendar(int year, int month) {
+    public void setCalendar(final int year, final int month) {
         final ArrayList<String> lst = new ArrayList<String>();
 
         final Calendar hlper = Calendar.getInstance();
@@ -309,67 +311,127 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        int thisMonth = hlper.get(Calendar.MONTH);
-        int thisYear = hlper.get(Calendar.YEAR);
+        final int thisMonth = hlper.get(Calendar.MONTH);
+        final int thisYear = hlper.get(Calendar.YEAR);
+
+        final GridView gridview = (GridView) findViewById(R.id.booking_calendar);
 
         TextView month_o_year = (TextView) findViewById(R.id.current_date_textView);
         month_o_year.setText(getMonth(month));
 
-
-        CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, thisYear , thisMonth);
-
-        final GridView gridview = (GridView) findViewById(R.id.booking_calendar);
-        gridview.setAdapter(calendarAdapter);
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                CalendarAdapter adapter = (CalendarAdapter)parent.getAdapter();
-                hlper.set(Calendar.DAY_OF_MONTH, Integer.valueOf(adapter.getItem(position)));
-
-                //TODO: nem kell az összeset null-ra állítani, meg kell jegyeztetni az elsőt, és csak azt nullázni
-                for (int i=0; i < gridview.getChildCount();i++) {
-                    gridview.getChildAt(i).setBackground(null);
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+        EstateUtil.getIdoponts(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if (pd != null) {
+                    pd.dismiss();
                 }
-                gridview.getChildAt(position).setBackgroundResource(R.drawable.b_d_border);
-                gridview.getChildAt(position).setHovered(true);
+                final ArrayList<String> lst_dates = (ArrayList<String>) result;
+                final java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                final java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd");
 
-                for (int i = 0; i < 24; i++) {
-                    for (int j = 0; j < 31; j+=30) {
-                        CalendarBookingUtil.addAppointment(i,j);
-                    }
-                }
+                CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, lst_dates, thisYear, thisMonth);
+                gridview.setAdapter(calendarAdapter);
+                gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                        CalendarAdapter adapter = (CalendarAdapter) parent.getAdapter();
+                        if(adapter.getItem(position).isEmpty())
+                            return;
 
+                        for (int i = 0; i < gridview.getChildCount(); i++) {
+                            if(!adapter.getItem(i).isEmpty()) {
+                                hlper.set(Calendar.DAY_OF_MONTH, Integer.valueOf(adapter.getItem(i)));
+                                if(!lst_dates.contains(sdf2.format(hlper.getTime()))) {
+                                    gridview.getChildAt(i).setBackground(null);
+                                } else {
+                                    gridview.getChildAt(i).setBackgroundResource(R.drawable.b_d_border1);
+                                }
+                            } else {
+                                gridview.getChildAt(i).setBackground(null);
+                            }
+                        }
+                        hlper.set(Calendar.DAY_OF_MONTH, Integer.valueOf(adapter.getItem(position)));
+                        gridview.getChildAt(position).setBackgroundResource(R.drawable.b_d_border);
+                        gridview.getChildAt(position).setHovered(true);
 
+                        final ProgressDialog pd = new ProgressDialog(MainActivity.this);
+                        pd.show();
 
-                final ArrayList<CalendarBookingUtil> appointments = (ArrayList) CalendarBookingUtil.getAppointments();
-                final CalendarBookingAdapter cba = new CalendarBookingAdapter(MainActivity.this, appointments);
-                final ListView listView = (ListView) findViewById(R.id.listView_booking);
-                listView.setAdapter(cba);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        CalendarBookingUtil u = (CalendarBookingUtil) appointments.get(i);
-                        cba.getItem(i).setFoglalt(true);
-                        cba.notifyDataSetChanged();
-
-                        String mikor = hlper.get(Calendar.YEAR)+"-"+hlper.get(Calendar.MONTH)+"-"+hlper.get(Calendar.DAY_OF_MONTH)+" "+ u.getHours() +":"+ u.getMinutes() +":00";
-
-                        EstateUtil.addIdopont(new SoapObjectResult() {
+                        EstateUtil.getIdopontsByDate(new SoapObjectResult() {
                             @Override
                             public void parseRerult(Object result) {
-                                Snackbar.make(listView, "Sikeres foglalás!", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
+                                if(pd != null) {
+                                    pd.dismiss();
+                                }
+
+                                CalendarBookingUtil.getAppointments().clear();
+
+                                for (int i = 0; i < 24; i++) {
+                                    for (int j = 0; j < 31; j += 30) {
+                                        CalendarBookingUtil.addAppointment(i, j);
+                                    }
+                                }
+
+                                final ArrayList<Idopont> foglaltak = (ArrayList<Idopont>)result;
+                                final ArrayList<CalendarBookingUtil> appointments = (ArrayList) CalendarBookingUtil.getAppointments();
+                                for(int ii = 0; ii < foglaltak.size(); ii++) {
+                                    Calendar ttt = Calendar.getInstance();
+                                    try {
+                                        ttt.setTime(sdf.parse(foglaltak.get(ii).getDatum()));
+                                        for(int jj = 0; jj < appointments.size(); jj++) {
+                                            if (ttt.get(Calendar.MINUTE) == appointments.get(jj).getMinutes() &&
+                                                    ttt.get(Calendar.HOUR_OF_DAY) == appointments.get(jj).getHours()
+                                                    ) {
+                                                appointments.get(jj).setFoglalt(true);
+                                            }
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                final CalendarBookingAdapter cba = new CalendarBookingAdapter(MainActivity.this, appointments);
+                                final ListView listView = (ListView) findViewById(R.id.listView_booking);
+                                listView.setAdapter(cba);
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        CalendarBookingUtil u = (CalendarBookingUtil) appointments.get(i);
+                                        if (cba.getItem(i).isFoglalt()) {
+                                            Snackbar.make(listView, "Ez az időpont már foglalt!", Snackbar.LENGTH_LONG)
+                                                    .setAction("Action", null).show();
+                                            return;
+                                        }
+                                        cba.getItem(i).setFoglalt(true);
+                                        cba.notifyDataSetChanged();
+
+                                        Calendar tmp = Calendar.getInstance();
+                                        tmp.setTimeInMillis(hlper.getTimeInMillis());
+                                        tmp.set(Calendar.MINUTE, u.getMinutes());
+                                        tmp.set(Calendar.HOUR_OF_DAY, u.getHours());
+                                        tmp.set(Calendar.SECOND, 0);
+
+                                        String mikor = sdf.format(tmp.getTime());
+
+                                        EstateUtil.addIdopont(new SoapObjectResult() {
+                                            @Override
+                                            public void parseRerult(Object result) {
+                                                lst_dates.add(sdf2.format(hlper.getTime()));
+                                                Snackbar.make(listView, "Sikeres foglalás!", Snackbar.LENGTH_LONG)
+                                                        .setAction("Action", null).show();
+                                            }
+                                        }, SettingUtil.getToken(MainActivity.this), String.valueOf(currentEstate.getId()), mikor);
+                                    }
+                                });
                             }
-                        }, SettingUtil.getToken(MainActivity.this), String.valueOf(currentEstate.getId()), mikor);
+                        }, SettingUtil.getToken(MainActivity.this), sdf2.format(hlper.getTime()), currentEstate.getId());
+
                     }
                 });
 
-                //final ArrayList<CalendarBookingUtil> appointmentsNew = (ArrayList) CalendarBookingUtil.getAppointments();
-                //cba.addAll(appointmentsNew);
-
-                //Toast.makeText(MainActivity.this, "" + adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
-        });
+        }, SettingUtil.getToken(this), currentEstate.getId());
+
     }
 
     public String getMonth(int month) {

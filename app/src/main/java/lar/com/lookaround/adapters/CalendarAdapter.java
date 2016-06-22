@@ -3,6 +3,7 @@ package lar.com.lookaround.adapters;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -23,10 +25,13 @@ public class CalendarAdapter extends ArrayAdapter<String> {
 
     int m, y;
 
-    public CalendarAdapter(Context context, List<String> objs, int y, int m) {
+    ArrayList<String> selected;
+
+    public CalendarAdapter(Context context, List<String> objs, ArrayList<String> objs2, int y, int m) {
         super(context, R.layout.content_booking_days, objs);
         this.m = m;
         this.y = y;
+        this.selected = objs2;
     }
 
 
@@ -46,6 +51,9 @@ public class CalendarAdapter extends ArrayAdapter<String> {
         day.setText(key);
         day.setTag(key);
 
+        final Calendar hlper = Calendar.getInstance();
+        final java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd");
+
         int d = 0;
         try {
             d = Integer.valueOf(key);
@@ -53,6 +61,19 @@ public class CalendarAdapter extends ArrayAdapter<String> {
 
         }
 
+        if(d != 0) {
+            hlper.set(Calendar.DAY_OF_MONTH, d);
+            hlper.set(Calendar.MONTH, m);
+            hlper.set(Calendar.YEAR, y);
+
+            if(selected.contains(sdf2.format(hlper.getTime()))) {
+                convertView.setBackgroundResource(R.drawable.b_d_border1);
+            } else {
+                convertView.setBackground(null);
+            }
+        } else {
+            convertView.setBackground(null);
+        }
 
 
         //Calendar thisDay = Calendar.getInstance();

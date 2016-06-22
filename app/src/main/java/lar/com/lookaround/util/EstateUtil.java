@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import lar.com.lookaround.models.Idopont;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.restapi.SoapResult;
 import lar.com.lookaround.restapi.SoapService;
@@ -744,6 +745,85 @@ public class EstateUtil {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getIdopontsByDate(final SoapObjectResult getBackWhenItsDone, String token, String mikor, int ingatlan_id) {
+        try {
+            String url = "https://bonodom.com/api/get_idopont_by_date";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("datum", mikor);
+            postadatok.put("ingatlan_id", String.valueOf(ingatlan_id));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    ArrayList<Idopont> dates = new ArrayList<>();
+
+                    if (result != null) {
+                        try {
+                            JSONArray arrs = new JSONArray(result);
+                            for (int i = 0; i < arrs.length(); i++) {
+                                JSONObject obj = arrs.getJSONObject(i);
+                                Idopont tmp = new Idopont();
+                                tmp.setId(obj.getInt("idopont_id"));
+                                tmp.setIid(obj.getInt("idopont_ingatlan_id"));
+                                tmp.setDatum(obj.getString("idopont_bejelentkezes"));
+                                tmp.setStatus(obj.getInt("idopont_statusz"));
+                                tmp.setFelid(obj.getInt("idopont_id"));
+                                dates.add(tmp);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        getBackWhenItsDone.parseRerult(dates);
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getIdoponts(final SoapObjectResult getBackWhenItsDone, String token, int ingatlan_id) {
+        try {
+            String url = "https://bonodom.com/api/get_idopont_dates";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("ingatlan_id", String.valueOf(ingatlan_id));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    ArrayList<String> dates = new ArrayList<>();
+
+                    if (result != null) {
+                        try {
+                            JSONArray arrs = new JSONArray(result);
+                            for (int i = 0; i < arrs.length(); i++) {
+                                JSONObject obj = arrs.getJSONObject(i);
+                                dates.add(obj.getString("idopont"));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        getBackWhenItsDone.parseRerult(dates);
                     } else {
                         Log.e("ServiceHandler", "Couldn't get any data from the url");
                     }
