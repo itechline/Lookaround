@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -47,6 +48,7 @@ import com.facebook.login.LoginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,6 +58,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lar.com.lookaround.restapi.ProfileImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.LoginUtil;
@@ -182,6 +185,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     break;
                 case 3:
+
+
+
                     //TODO: adatokat feltölteni és profilképet is ha van
                     EstateUtil.updateReg(new SoapObjectResult() {
                         @Override
@@ -190,8 +196,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Snackbar.make(view, "Hiba történt!", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                             } else {
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
+                                if (uri != null) {
+                                    uploadImages(SettingUtil.getToken(LoginActivity.this));
+                                }
                             }
 
                         }
@@ -243,6 +250,58 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    Uri uri;
+
+    public void uploadImages(String token) {
+        ProgressDialog progressBar = new ProgressDialog(LoginActivity.this);
+        progressBar.setMessage("Feltöltés...");
+        progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
+        progressBar.show();
+
+
+        File imageFile = null;
+        if(getRealPathFromURI(uri) != null) {
+            imageFile = new File(getRealPathFromURI(uri));
+        }
+
+
+
+
+        //ArrayList<File> files = new ArrayList<>();
+        //for (int j = 0; j < uris.size(); j++) {
+            //files.add(imageFile);
+        //}
+        try {
+            ProfileImageUploadService service = new ProfileImageUploadService(imageFile, progressBar, new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                }
+            });
+            service.execute(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        String[] proj = { MediaStore.MediaColumns.DATA };
+        Cursor cursor = getContentResolver().query(contentURI, proj, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex( MediaStore.MediaColumns.DATA );
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
+
 
     private int PICK_IMAGE_REQUEST = 2;
     private int TAKE_IMAGE_REQUEST = 1;
@@ -282,7 +341,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri uri = data.getData();
+            uri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
@@ -296,7 +355,7 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         } else if (requestCode == TAKE_IMAGE_REQUEST && resultCode == RESULT_OK) {
-
+            uri = data.getData();
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
 
             ImageView cam = (ImageView) findViewById(R.id.profile_photo_cam);
