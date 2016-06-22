@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import lar.com.lookaround.models.UserModel;
@@ -155,6 +156,38 @@ public class LoginUtil {
 
 
 
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getNotifications(Context ctx, final SoapObjectResult getBackWhenItsDone) {
+        try {
+
+            if(SettingUtil.getToken(ctx).isEmpty())
+                return;
+
+            String url = "https://bonodom.com/api/get_notification";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", SettingUtil.getToken(ctx));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    ArrayList<String> noti = new ArrayList<>();
+                    try {
+                        JSONObject obj = new JSONObject(result);
+                        if(obj.getBoolean("have_notifi")) {
+                            noti.add(0, obj.getString("title"));
+                            noti.add(1, obj.getString("msg"));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    getBackWhenItsDone.parseRerult(noti);
+                }
+            }, postadatok);
             ss.execute(new URL(url));
         } catch (MalformedURLException e) {
             e.printStackTrace();

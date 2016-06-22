@@ -206,8 +206,8 @@ public class MapsActivity extends AppCompatActivity {
 
                     mClusterManager.addItem(offsetItem);
                 }
-                if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
-                    gotoLocation(Double.parseDouble(SettingUtil.getLatForMap(getBaseContext())),Double.parseDouble(SettingUtil.getLngForMap(getBaseContext())), 14);
+                if (Math.round(SettingUtil.getLatForMap(getBaseContext())) != 0 && Math.round(SettingUtil.getLngForMap(getBaseContext())) != 0) {
+                    gotoLocation(SettingUtil.getLatForMap(getBaseContext()),SettingUtil.getLngForMap(getBaseContext()), 14);
                 } else {
                     gotoLocation(arrayOfUsers.get(4).getLat(), arrayOfUsers.get(4).getLng(), 10);
                 }

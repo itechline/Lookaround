@@ -247,6 +247,44 @@ public class SpinnerUtil {
 
 
 
+    //http://bonodom.com/api/list_statuses
+    public static void listStatuses(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "https://bonodom.com/api/list_statuses";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt("id");
+                                String nameJson = json_data.getString("nev");
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     //http://lookrnd.me/dev/api/list_ingatlankilatas
     public static void get_list_ingatlankilatas(final SoapObjectResult getBackWhenItsDone) {
         try {

@@ -658,12 +658,13 @@ public class EstateUtil {
         }
     }
 
-    public static void deleteEstate(Context ctx, final SoapObjectResult getBackWhenItsDone, int id) {
+    public static void deleteEstate(Context ctx, final SoapObjectResult getBackWhenItsDone, int id, int status) {
         try {
             String url = "https://bonodom.com/api/delete_estate";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("ingatlan_id", String.valueOf(id));
+            postadatok.put("ingatlan_status", String.valueOf(status));
             postadatok.put("token", SettingUtil.getToken(ctx));
             SoapService ss = new SoapService(new SoapResult() {
                 @Override

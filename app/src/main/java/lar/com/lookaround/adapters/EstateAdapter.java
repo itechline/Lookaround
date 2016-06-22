@@ -1,8 +1,10 @@
 package lar.com.lookaround.adapters;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,6 +37,7 @@ import lar.com.lookaround.R;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.SettingUtil;
+import lar.com.lookaround.util.SpinnerUtil;
 
 public class EstateAdapter extends ArrayAdapter<EstateUtil> {
 
@@ -190,7 +193,61 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
     }
 
 
+    int popupDelete = 0;
     private void callPopupDelete(final EstateUtil estate) {
+
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.show();
+
+        SpinnerUtil.listStatuses(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if (pd != null) {
+                    pd.dismiss();
+                }
+                final ArrayList<SpinnerUtil> list = (ArrayList<SpinnerUtil>) result;
+                String[] strArray = new String[list.size()];
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Miért törli a hírdetést ?");
+                for(int i = 0; i < list.size(); i++) {
+                    strArray[i] = list.get(i).getName();
+                }
+                builder.setSingleChoiceItems(strArray, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        popupDelete = list.get(which).getId();
+                    }
+                });
+                builder.setNegativeButton("Mégsem", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog pd = new ProgressDialog(getContext());
+                        pd.show();
+
+                        EstateUtil.deleteEstate(getContext(), new SoapObjectResult() {
+                            @Override
+                            public void parseRerult(Object result) {
+                                if(pd != null)
+                                    pd.hide();
+                                remove(estate);
+                                notifyDataSetChanged();
+                            }
+                        }, estate.getId(), popupDelete);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
+        /*
+
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -237,7 +294,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                     public void onClick(View arg0) {
                         popupWindow.dismiss();
                     }
-                });
+                });*/
     }
 
 

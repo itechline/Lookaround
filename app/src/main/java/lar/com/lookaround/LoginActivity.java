@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -131,6 +132,11 @@ public class LoginActivity extends AppCompatActivity {
     private double lng = 0d;
 
     public void nextPageFirstSetting(final View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
         if (whichPage < 3) {
             whichPage += 1;
 
@@ -198,6 +204,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void prewPageFirstSetting(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
         if (whichPage > 0) {
             whichPage -= 1;
             switchLayoutToFirstSettings(whichPage);
@@ -468,10 +479,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void showLogin(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         switchLayoutTo(LOGIN);
     }
 
     public void sendRegistration(final View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         boolean isAbleToJoin = true;
         if (!isCompany) {
             emailEditText = (EditText) findViewById(R.id.mail);

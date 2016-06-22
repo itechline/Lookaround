@@ -131,6 +131,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realestate);
 
+        AlarmReceiver alarmReceiver = new AlarmReceiver();
+        alarmReceiver.resetAllReminder(this);
+
         if (isNetworkAvailable()) {
             if (!SettingUtil.getToken(this).equals("")) {
                 tokenValidation(true);
@@ -1480,14 +1483,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void seeOnMap(View view) {
-        if (latMap != null || !latMap.equals("0.0")) {
-            SettingUtil.setLatForMap(getBaseContext(), latMap);
-        }
-        if (lngMap != null || !lngMap.equals("0.0")) {
-            SettingUtil.setLngForMap(getBaseContext(), lngMap);
-        }
-
-        if (SettingUtil.getLatForMap(getBaseContext()) != null && SettingUtil.getLngForMap(getBaseContext()) != null && !SettingUtil.getLatForMap(getBaseContext()).equals("0.0") && !SettingUtil.getLngForMap(getBaseContext()).equals("0.0")) {
+        if (latMap != null && lngMap != null && !latMap.isEmpty() && !lngMap.isEmpty()) {
+            SettingUtil.setLatForMap(getBaseContext(), Float.parseFloat(latMap));
+            SettingUtil.setLngForMap(getBaseContext(), Float.parseFloat(lngMap));
             Intent i = new Intent(MainActivity.this, MapsActivity.class);
             startActivityForResult(i, 69);
         } else {
@@ -2140,12 +2138,18 @@ public class MainActivity extends AppCompatActivity
                     break;
 
                 case 5:
-                    Log.e("ERROR", "ERROR");
                     start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
                     finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
+
+                    final ProgressDialog pd = new ProgressDialog(this);
+                    pd.show();
+
                     EstateUtil.addEstate(new SoapObjectResult() {
                                              @Override
                                              public void parseRerult(Object result) {
+                                                 if (pd != null) {
+                                                     pd.dismiss();
+                                                 }
                                                  final ArrayList<EstateUtil> resArray = (ArrayList) result;
 
                                                  if (!resArray.get(resArray.size() - 1).isError()) {
@@ -2300,8 +2304,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    String latMap = "0.0";
-    String lngMap = "0.0";
+    String latMap = null;
+    String lngMap = null;
 
     /*private void call(final int id) {
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -2379,7 +2383,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getEstateContent(final int id) {
-
         LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
@@ -2422,11 +2425,17 @@ public class MainActivity extends AppCompatActivity
         final TextView name = (TextView) findViewById(R.id.profile_name_text);
         final TextView profile_type = (TextView) findViewById(R.id.profile_type_text);
 
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 JSONObject obj = (JSONObject) result;
                 try {
+                    if(pd != null) {
+                        pd.dismiss();
+                    }
 
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
@@ -2740,9 +2749,16 @@ public class MainActivity extends AppCompatActivity
         menuType = MESSAGES_THREAD_MENU;
         supportInvalidateOptionsMenu();
 
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+
         MessageUtil.listMessagesForEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
+
+                if(pd!= null) {
+                    pd.dismiss();
+                }
                 ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
                 ListView thread = (ListView) findViewById(R.id.messagethread);
 
@@ -2812,6 +2828,11 @@ public class MainActivity extends AppCompatActivity
     boolean justme = false;
     int updateingid = 0;
     public void loadRealEstates() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View list = inflater.inflate(R.layout.content_istview, null);
         ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
@@ -3156,7 +3177,7 @@ public class MainActivity extends AppCompatActivity
         EstateUtil.addFigyelo(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                if( pd != null) {
+                if (pd != null) {
                     pd.dismiss();
                 }
                 showAdmonitor(null);
@@ -3326,7 +3347,7 @@ public class MainActivity extends AppCompatActivity
         LoginUtil.getProfile(this, new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
-                if(pd != null) {
+                if (pd != null) {
                     pd.dismiss();
                 }
                 UserModel model = (UserModel) result;
@@ -3400,9 +3421,17 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         getSupportActionBar().setTitle("Üzenetek");
 
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+
+
         MessageUtil.listMessages(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
+
+                if(pd != null) {
+                    pd.dismiss();
+                }
                 ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
                 ListView thread = (ListView) findViewById(R.id.allmessages);
 
@@ -3476,8 +3505,8 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.action_map:
-                SettingUtil.setLatForMap(getBaseContext(), "0.0");
-                SettingUtil.setLngForMap(getBaseContext(), "0.0");
+                SettingUtil.setLatForMap(getBaseContext(), 0);
+                SettingUtil.setLngForMap(getBaseContext(), 0);
                 //startActivity(new Intent(MainActivity.this, MapsActivity.class));
                 Intent i = new Intent(MainActivity.this, MapsActivity.class);
                 startActivityForResult(i, 69);
