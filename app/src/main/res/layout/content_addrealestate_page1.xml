@@ -128,7 +128,8 @@
                 android:layout_toRightOf="@+id/advert_type_textview"
                 android:layout_alignParentTop="true"
                 android:layout_above="@+id/advert_description_textveiw"
-                android:paddingLeft="5sp" />
+                android:paddingLeft="5sp"
+                android:capitalize="sentences" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -148,7 +149,8 @@
                 android:layout_toRightOf="@+id/advert_type_textview"
                 android:gravity="top"
                 android:paddingLeft="5sp"
-                android:paddingTop="2sp" />
+                android:paddingTop="2sp"
+                android:capitalize="sentences" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -280,7 +282,8 @@
                 android:layout_below="@+id/add_advert_city_text"
                 android:layout_above="@+id/add_advert_str_number_textview"
                 android:layout_marginTop="5sp"
-                android:paddingLeft="5sp" />
+                android:paddingLeft="5sp"
+                android:capitalize="sentences" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -310,7 +313,8 @@
                 android:layout_below="@+id/add_advert_street_edittext"
                 android:layout_above="@+id/add_estate_size_textview"
                 android:layout_marginTop="5sp"
-                android:paddingLeft="5sp" />
+                android:paddingLeft="5sp"
+                android:capitalize="sentences" />
 
             <TextView
                 android:id="@+id/add_estate_size_textview"
