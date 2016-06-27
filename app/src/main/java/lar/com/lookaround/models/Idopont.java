@@ -10,6 +10,15 @@ public class Idopont {
     private int status;
     private String datum;
     private int felid;
+    private String fel;
+
+    public String getFel() {
+        return fel;
+    }
+
+    public void setFel(String fel) {
+        this.fel = fel;
+    }
 
     public int getId() {
         return id;

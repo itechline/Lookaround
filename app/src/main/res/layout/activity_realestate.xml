@@ -210,12 +210,40 @@
                         android:layout_marginLeft="10sp" />
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:id="@+id/menu_admonitor_layout"
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_favs_layout"
+                    android:layout_alignParentStart="true"
+                    android:onClick="showMyDates"
+                    android:background="@drawable/navbar_button">
+
+                    <ImageView
+                        android:src="@drawable/ic_action_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nav_admonitor_img2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Időpontjaim"
+                        android:id="@+id/nav_idopontjaim"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_admonitor_layout2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_below="@+id/menu_admonitor_layout"
                     android:layout_alignParentStart="true"
                     android:onClick="showAdmonitor"
                     android:background="@drawable/navbar_button">
@@ -242,7 +270,7 @@
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="40sp"
-                    android:layout_below="@+id/menu_admonitor_layout"
+                    android:layout_below="@+id/menu_admonitor_layout2"
                     android:layout_alignParentStart="true"
                     android:visibility="gone"
                     android:background="@drawable/navbar_button">

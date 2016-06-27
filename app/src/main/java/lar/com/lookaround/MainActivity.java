@@ -89,6 +89,7 @@ import lar.com.lookaround.adapters.AddImageAdapter;
 import lar.com.lookaround.adapters.AdmonitorAdapter;
 import lar.com.lookaround.adapters.CalendarAdapter;
 import lar.com.lookaround.adapters.CalendarBookingAdapter;
+import lar.com.lookaround.adapters.CalendarMyBookingAdapter;
 import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.MessageAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
@@ -820,14 +821,13 @@ public class MainActivity extends AppCompatActivity
         furniture.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterFurniture.getItem(position);
                 furniture_int = spinnerUtil.getId();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -842,15 +842,15 @@ public class MainActivity extends AppCompatActivity
         lift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterElevator.getItem(position);
                 lift_int = spinnerUtil.getId();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
+
         });
 
         ArrayList<SpinnerUtil> arrayListBalcony = (ArrayList) SpinnerUtil.get_list_erkely();
@@ -862,15 +862,15 @@ public class MainActivity extends AppCompatActivity
         balcony.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterBalcony.getItem(position);
                 balcony_int = spinnerUtil.getId();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
+
         });
 
         ArrayList<SpinnerUtil> arrayListSize= (ArrayList) SpinnerUtil.get_list_meret();
@@ -882,15 +882,15 @@ public class MainActivity extends AppCompatActivity
         meret.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterSize.getItem(position);
                 meret_int = spinnerUtil.getId();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
+
         });
 
         SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
@@ -906,15 +906,15 @@ public class MainActivity extends AppCompatActivity
                 szobaMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         szobaMin_int = spinnerUtil.getId();
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
                     }
+
                 });
 
             }
@@ -933,15 +933,15 @@ public class MainActivity extends AppCompatActivity
                 szobaMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         szobaMax_int = spinnerUtil.getId();
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
                     }
+
                 });
 
             }
@@ -961,14 +961,12 @@ public class MainActivity extends AppCompatActivity
                 floorsMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         floorsMint_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -988,14 +986,12 @@ public class MainActivity extends AppCompatActivity
                 floorsMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         floorsMax_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1016,7 +1012,6 @@ public class MainActivity extends AppCompatActivity
                 typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
 
 
@@ -1025,7 +1020,6 @@ public class MainActivity extends AppCompatActivity
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1047,14 +1041,12 @@ public class MainActivity extends AppCompatActivity
                 allapot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         allapot_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1076,14 +1068,12 @@ public class MainActivity extends AppCompatActivity
                 enegigenyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         energigenyo_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1105,14 +1095,12 @@ public class MainActivity extends AppCompatActivity
                 parkolasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         parkolasSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1134,14 +1122,12 @@ public class MainActivity extends AppCompatActivity
                 panoramaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                         SpinnerUtil spinnerUtil = adapter.getItem(position);
                         panoramaSpinner_int = spinnerUtil.getId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        ((TextView) parent.getChildAt(0)).setTextSize(10);
                     }
                 });
 
@@ -1211,7 +1197,16 @@ public class MainActivity extends AppCompatActivity
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.System.canWrite(this)) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+            } else {
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            }
+        } else {
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        }
     }
 
     boolean takeOrPick;
@@ -1730,7 +1725,6 @@ public class MainActivity extends AppCompatActivity
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
-                            ((TextView) parent.getChildAt(0)).setTextSize(10);
                         }
                     });
 
@@ -2140,26 +2134,8 @@ public class MainActivity extends AppCompatActivity
                 case 4:
                     boolean isCorrect = true;
                     boolean isCorrect2 = true;
-                    if (isDay1 || isDay2 || isDay3 || isDay4 || isDay5 || isDay6 || isDay7) {
-                        if (hour_x == 0 || hour_x_end == 0) {
-                            isCorrect = false;
-                        }
-                    }
-
-                    if (hour_x != 0) {
-                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
-                            isCorrect2 = false;
-                        }
-                    }
-
-                    if (hour_x_end != 0) {
-                        if (!isDay1 && !isDay2 && !isDay3 && !isDay4 && !isDay5 && !isDay6 && !isDay7) {
-                            isCorrect2 = false;
-                        }
-                    }
 
                     if (isCorrect && isCorrect2) {
-                        Log.e("ERROR", "page4");
                         setAddestatePageIndicator(whichAddestatePage);
 
                         viewFlipAddEstate.setDisplayedChild(whichAddestatePage);
@@ -2169,7 +2145,6 @@ public class MainActivity extends AppCompatActivity
                         next_5.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Log.e("ERROR", "click");
                                 nextAddestatePage(5);
                             }
                         });
@@ -2297,14 +2272,12 @@ public class MainActivity extends AppCompatActivity
         startSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterStart.getItem(position);
                 start = spinnerUtil.getName();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
             }
         });
 
@@ -2317,14 +2290,12 @@ public class MainActivity extends AppCompatActivity
         finishSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
                 SpinnerUtil spinnerUtil = adapterFurniture.getItem(position);
                 finish = spinnerUtil.getName();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                ((TextView) parent.getChildAt(0)).setTextSize(10);
             }
         });
     }
@@ -2490,29 +2461,46 @@ public class MainActivity extends AppCompatActivity
         final ProgressDialog pd = new ProgressDialog(this);
         pd.show();
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
+
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab_phone.setVisibility(View.VISIBLE);
+
         EstateUtil.getEstate(new SoapObjectResult() {
             @Override
             public void parseRerult(Object result) {
                 JSONObject obj = (JSONObject) result;
                 try {
-                    if(pd != null) {
+                    if (pd != null) {
                         pd.dismiss();
                     }
+
+                    final String mobil = obj.getString("mobil");
+
+                    fab_phone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", mobil, null));
+                            startActivity(intent);
+
+                        }
+                    });
 
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
                     imageUrls.clear();
-                    for (int j=0; j < kepekArray.length(); j++) {
+                    for (int j = 0; j < kepekArray.length(); j++) {
                         JSONObject jsonKep = kepekArray.getJSONObject(j);
                         imageUrls.add(jsonKep.getString("kepek_url"));
                     }
 
                     SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
                     RelativeLayout item_realestate_profile_layout = (RelativeLayout) findViewById(R.id.item_realestate_profile_layout);
-                    if(imageUrls.size() != 0) {
+                    if (imageUrls.size() != 0) {
                         sliderLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 250, getResources().getDisplayMetrics()))));
 
-                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams)item_realestate_profile_layout.getLayoutParams();
+                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) item_realestate_profile_layout.getLayoutParams();
                         relativeParams.setMargins(0, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 250, getResources().getDisplayMetrics())), 0, 0);  // left, top, right, bottom
                         item_realestate_profile_layout.setLayoutParams(relativeParams);
 
@@ -2520,7 +2508,7 @@ public class MainActivity extends AppCompatActivity
                     } else {
                         sliderLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
 
-                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams)item_realestate_profile_layout.getLayoutParams();
+                        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) item_realestate_profile_layout.getLayoutParams();
                         item_realestate_profile_layout.setLayoutParams(relativeParams);
                         relativeParams.setMargins(0, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 0, getResources().getDisplayMetrics())), 0, 0);  // left, top, right, bottom
                     }
@@ -2606,13 +2594,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         }, String.valueOf(id), SettingUtil.getToken(getBaseContext()));
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setVisibility(View.INVISIBLE);
-
-        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-        fab_phone.setVisibility(View.VISIBLE);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
         supportInvalidateOptionsMenu();
@@ -3297,6 +3278,7 @@ public class MainActivity extends AppCompatActivity
 
         admonitorList();
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        getSupportActionBar().setTitle("Hírdetés figyelő");
         closeDrawer();
 
         menuType = FIGYELO_MENU;
@@ -3459,6 +3441,62 @@ public class MainActivity extends AppCompatActivity
         key = "";
 
         loadRealEstates();
+        closeDrawer();
+    }
+
+    public void showMyDates(View view) {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+
+        currentEstate = null;
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View list = inflater.inflate(R.layout.content_messages, null);
+        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+        viewFlip.removeAllViews();
+        viewFlip.addView(list, 0);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+        fab.setVisibility(View.INVISIBLE);
+        fab_phone.setVisibility(View.INVISIBLE);
+
+        viewFlip.setDisplayedChild(0);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+        getSupportActionBar().setTitle("Időpontok");
+
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.show();
+
+
+        EstateUtil.getIdopontByUser(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                if (pd != null) {
+                    pd.dismiss();
+                }
+
+                ArrayList<Idopont> lst = (ArrayList<Idopont>) result;
+                ListView thread = (ListView) findViewById(R.id.allmessages);
+
+                final CalendarMyBookingAdapter adapter = new CalendarMyBookingAdapter(MainActivity.this, lst);
+
+                thread.setAdapter(adapter);
+                thread.setDividerHeight(0);
+
+                thread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        //MessageUtil ms = adapter.getItem(i);
+                        //loadMessagesForEstate(ms.getHash(), ms.getUid());
+                    }
+                });
+            }
+        }, SettingUtil.getToken(this));
+
+        menuType = MESSAGES_MENU;
+        supportInvalidateOptionsMenu();
+
         closeDrawer();
     }
 
