@@ -120,6 +120,7 @@
                     android:layout_centerInParent="true"
                     android:layout_centerHorizontal="true"
                     android:fillViewport="true"
+                    android:scrollbars="none"
                     >
 
                     <LinearLayout
@@ -179,7 +180,9 @@
                     android:id="@+id/camera_images_layout"
                     android:layout_gravity="center"
                     android:fillViewport="true"
-                    android:foregroundGravity="center_vertical|center_horizontal">
+                    android:foregroundGravity="center_vertical|center_horizontal"
+                    android:scrollbars="none"
+                    >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
