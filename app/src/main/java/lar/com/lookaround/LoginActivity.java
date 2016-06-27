@@ -783,9 +783,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (viewFlip.getDisplayedChild() == LOGIN) {
-            switchLayoutTo(REGISTRATION);
-        }
-        if (viewFlip.getDisplayedChild() == REGISTRATION) {
+            this.finishAffinity();
+        } else if (viewFlip.getDisplayedChild() == REGISTRATION) {
             switchLayoutTo(LOGIN);
             RelativeLayout layone= (RelativeLayout) findViewById(R.id.Layout_Login);
             layone.setVisibility(View.VISIBLE);
@@ -793,6 +792,8 @@ public class LoginActivity extends AppCompatActivity {
             laytwo.setVisibility(View.INVISIBLE);
             LinearLayout layFooter = (LinearLayout) findViewById(R.id.login_linear_footer);
             layFooter.setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
         }
     }
 

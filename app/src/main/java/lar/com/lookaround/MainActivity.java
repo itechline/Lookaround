@@ -13,7 +13,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -37,7 +36,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -72,7 +70,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormatSymbols;
@@ -81,7 +78,6 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -3134,6 +3130,7 @@ public class MainActivity extends AppCompatActivity
 
     static final int FIGYELO_MENU = 7;
     static final int ADD_FIGYELO_MENU = 8;
+    static final int CALENDAR = 9;
 
     int menuType = 0;
 
@@ -3529,7 +3526,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void parseRerult(Object result) {
 
-                if(pd != null) {
+                if (pd != null) {
                     pd.dismiss();
                 }
                 ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
@@ -3613,6 +3610,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.action_calendar:
                 loadBooking();
+                menuType = CALENDAR;
                 break;
             case R.id.action_fav:
                 if (!currentEstate.isFavourite()) {
@@ -3704,6 +3702,9 @@ public class MainActivity extends AppCompatActivity
                         loadRealEstates();
 
                         break;
+                    case CALENDAR:
+                        getEstateContent(currentEstate.getId());
+                        break;
                     default:
                         loadRealEstates();
                         break;
@@ -3713,6 +3714,68 @@ public class MainActivity extends AppCompatActivity
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        switch (menuType) {
+            case MAIN_MENU:
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    this.finishAffinity();
+                    //drawer.openDrawer(GravityCompat.START);
+                }
+                break;
+            case ESTATE_MENU:
+                loadRealEstates();
+                break;
+            case MESSAGES_THREAD_MENU:
+                if(currentEstate == null) {
+                    showMessages(null);
+                } else {
+                    getEstateContent(currentEstate.getId());
+                }
+                break;
+            case ADD_FIGYELO_MENU:
+                showAdmonitor(null);
+                break;
+            case ADD_ESTATE_MENU:
+
+                hirdetesSpinner_int = 0;
+                szobaszamSpinner_int = 0;
+                allapotSpinner_int = 0;
+                emeletekSpinner_int = 0;
+                ingatlanTipusSpinner_int = 0;
+                parkolasSpinner_int = 0;
+                futesSpinner_int = 0;
+                energiaSpinner_int = 0;
+                kilatasSpinner_int = 0;
+                butorozottSpinner_int = 0;
+                balconySpinner_int = 0;
+                elevatorSpinner_int = 0;
+                mon = 0;
+                tue = 0;
+                wed = 0;
+                thu = 0;
+                fri = 0;
+                sat = 0;
+                sun = 0;
+                start = "0";
+                finish = "0";
+
+                loadRealEstates();
+
+                break;
+            case CALENDAR:
+                getEstateContent(currentEstate.getId());
+                break;
+            default:
+                Log.d("DEFAULT", "BACK");
+                loadRealEstates();
+                break;
+        }
     }
 
     boolean isBackPressed = false;
