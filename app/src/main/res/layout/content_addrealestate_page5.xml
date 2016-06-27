@@ -4,8 +4,13 @@
     android:layout_height="match_parent"
     android:background="#efefef">
 
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/relativeLayout_withcontent_page5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,36 +56,21 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_forbuttons_4"
-            android:orientation="horizontal"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/button_back"
-                android:id="@+id/back_button_page5"
-                android:layout_margin="10sp"
-                android:textColor="#0066cc"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/button_next"
-                android:id="@+id/button_go_page5"
-                android:layout_margin="10sp"
-                android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"
-                android:padding="3sp"/>
-        </LinearLayout>
+            android:text="@string/enchancement_title"
+            android:id="@+id/enchancement_title_text"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10sp"
+            android:textStyle="bold"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="250sp"
@@ -95,38 +85,7 @@
             android:layout_alignParentEnd="true"
             android:textSize="13sp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/layout_forbuttons_4"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="10sp"
-            android:id="@+id/relativeLayout5"
-            android:visibility="invisible">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aszf_text"
-                android:id="@+id/aszf_checkbox"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textSize="10sp"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enchancement_title"
-            android:id="@+id/enchancement_title_text"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textStyle="bold"
-            android:textSize="15sp" />
+</LinearLayout>
 
         <RelativeLayout
             android:id="@+id/enchancement_rlayout"
@@ -204,6 +163,39 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/layout_forbuttons_4"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_back"
+                android:id="@+id/back_button_page5"
+                android:layout_margin="10sp"
+                android:textColor="#0066cc"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/button_next"
+                android:id="@+id/button_go_page5"
+                android:layout_margin="10sp"
+                android:background="@drawable/colorbutton"
+                android:textColor="#ffffff"
+                android:padding="3sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
 
 </RelativeLayout>

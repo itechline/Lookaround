@@ -135,10 +135,12 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                 DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
                 String format = decimalFormat.format(estate.getPrice());
 
-                if (estate.getType() == 1) {
-                    price.setText(format + " Ft");
-                } else {
-                    price.setText(format + " Ft/hó");
+                if(price != null) {
+                    if (estate.getType() == 1) {
+                        price.setText(format + " Ft");
+                    } else {
+                        price.setText(format + " Ft/hó");
+                    }
                 }
                 fav.setChecked(estate.isFavourite());
 

@@ -799,6 +799,68 @@ public class EstateUtil {
         }
     }
 
+    public static void updateIdopont(final SoapObjectResult getBackWhenItsDone, String token, int stat, int id) {
+        try {
+            String url = "https://bonodom.com/api/update_idopont";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            postadatok.put("s", String.valueOf(stat));
+            postadatok.put("id", String.valueOf(id));
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    getBackWhenItsDone.parseRerult(true);
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getIdopontByUser(final SoapObjectResult getBackWhenItsDone, String token) {
+        try {
+            String url = "https://bonodom.com/api/get_idopont_by_user";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", token);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    ArrayList<Idopont> dates = new ArrayList<>();
+
+                    if (result != null) {
+                        try {
+                            JSONArray arrs = new JSONArray(result);
+                            for (int i = 0; i < arrs.length(); i++) {
+                                JSONObject obj = arrs.getJSONObject(i);
+                                Idopont tmp = new Idopont();
+                                tmp.setId(obj.getInt("idopont_id"));
+                                tmp.setIid(obj.getInt("idopont_ingatlan_id"));
+                                tmp.setDatum(obj.getString("idopont_bejelentkezes"));
+                                tmp.setStatus(obj.getInt("idopont_statusz"));
+                                tmp.setFelid(obj.getInt("idopont_id"));
+                                tmp.setFel(obj.getString("fel"));
+                                dates.add(tmp);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        getBackWhenItsDone.parseRerult(dates);
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void getIdoponts(final SoapObjectResult getBackWhenItsDone, String token, int ingatlan_id) {
         try {
             String url = "https://bonodom.com/api/get_idopont_dates";
