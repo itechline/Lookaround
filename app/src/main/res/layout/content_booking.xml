@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300sp"
+        android:layout_height="275sp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5sp"
         android:id="@+id/booking_calendar_layout"

@@ -10,7 +10,7 @@
 
     <include
         layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
@@ -34,7 +34,7 @@
                 >
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
@@ -63,7 +63,7 @@
                 <LinearLayout
                     android:id="@+id/menu_profile_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:onClick="showProfile"
                     android:layout_below="@+id/menu_all_add_layout"
@@ -90,7 +90,7 @@
                 <LinearLayout
                     android:id="@+id/menu_messages_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_profile_layout"
                     android:layout_alignParentStart="true"
@@ -130,7 +130,7 @@
                 <LinearLayout
                     android:id="@+id/menu_billing_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_messages_layout"
                     android:layout_alignParentStart="true"
@@ -159,7 +159,7 @@
                 <LinearLayout
                     android:id="@+id/nav_myads_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_billing_layout"
                     android:layout_alignParentStart="true"
@@ -186,7 +186,7 @@
                 <LinearLayout
                     android:id="@+id/menu_favs_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:onClick="showMyFavs"
                     android:layout_below="@+id/nav_myads_layout"
@@ -214,7 +214,7 @@
                 <LinearLayout
                     android:id="@+id/menu_admonitor_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_favs_layout"
                     android:layout_alignParentStart="true"
@@ -268,7 +268,7 @@
                 <LinearLayout
                     android:id="@+id/menu_agency_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:layout_below="@+id/menu_admonitor_layout2"
                     android:layout_alignParentStart="true"
@@ -297,7 +297,7 @@
                 <LinearLayout
                     android:id="@+id/menu_invite_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:onClick="showInviteFriends"
                     android:layout_below="@+id/menu_agency_layout"
@@ -324,7 +324,7 @@
                 <LinearLayout
                     android:id="@+id/menu_logout_layout"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="40sp"
                     android:onClick="doLogout"
                     android:layout_below="@+id/menu_invite_layout"

@@ -19,7 +19,7 @@
             android:layout_toLeftOf="@+id/reply_delete_image_layout">
 
             <ImageView
-                android:src="@drawable/user_avatar"
+                android:src="@drawable/avatar"
                 android:layout_width="40sp"
                 android:layout_height="wrap_content"
                 android:id="@+id/item_message_profile_image"
