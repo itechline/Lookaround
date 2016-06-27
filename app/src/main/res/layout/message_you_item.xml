@@ -4,7 +4,7 @@
     android:id="@+id/item_your_message_layout">
 
     <ImageView
-        android:src="@drawable/user_avatar"
+        android:src="@drawable/avatar"
         android:layout_width="30sp"
         android:layout_height="wrap_content"
         android:id="@+id/message_profile_pic_you"
