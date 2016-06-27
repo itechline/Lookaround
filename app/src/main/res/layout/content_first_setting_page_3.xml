@@ -6,8 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/first_setting_page_2_relativelayout"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/placeholder_layout5"
+        android:layout_above="@+id/placeholder_layout6"
+        android:gravity="center_vertical|center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,5 +83,20 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/placeholder_layout5"
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20sp"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/placeholder_layout6"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"></RelativeLayout>
 
 </RelativeLayout>

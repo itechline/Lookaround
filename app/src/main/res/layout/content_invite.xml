@@ -34,14 +34,16 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/email1"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
-            android:layout_margin="10sp" />
+            android:layout_margin="10sp"
+            android:paddingLeft="5sp"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -64,14 +66,16 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/email2"
             android:layout_alignParentEnd="true"
             android:layout_margin="10sp"
-            android:background="@drawable/spinner_border"/>
+            android:background="@drawable/spinner_border"
+            android:paddingLeft="5sp"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -93,14 +97,16 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/email3"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
-            android:layout_margin="10sp" />
+            android:layout_margin="10sp"
+            android:paddingLeft="5sp"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -122,14 +128,16 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/email4"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
-            android:layout_margin="10sp" />
+            android:layout_margin="10sp"
+            android:paddingLeft="5sp"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -152,7 +160,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="fill_parent"
             android:inputType="textEmailAddress"
             android:ems="10"
@@ -160,7 +168,9 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="true"
             android:background="@drawable/spinner_border"
-            android:layout_margin="10sp" />
+            android:layout_margin="10sp"
+            android:paddingLeft="5sp"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -183,7 +193,10 @@
             android:background="@drawable/colorbutton"
             android:textSize="16sp"
             android:layout_margin="5sp"
-            android:padding="3sp"/>
+            android:paddingTop="3sp"
+            android:paddingBottom="3sp"
+            android:paddingRight="10sp"
+            android:paddingLeft="10sp" />
     </LinearLayout>
 
 

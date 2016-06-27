@@ -10,8 +10,7 @@
         android:layout_height="36sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:padding="1sp"
-        >
+        android:padding="1sp">
 
         <TextView
             android:id="@+id/booking_date_textView"

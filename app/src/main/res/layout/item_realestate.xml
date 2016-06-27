@@ -33,6 +33,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:layout_marginBottom="1sp" />
 
         <ProgressBar
