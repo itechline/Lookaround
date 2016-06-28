@@ -192,12 +192,16 @@ public class LoginActivity extends AppCompatActivity {
                     EstateUtil.updateReg(new SoapObjectResult() {
                         @Override
                         public void parseRerult(Object result) {
+                            Log.d("RESULT", result.toString());
                             if ((boolean) result) {
                                 Snackbar.make(view, "Hiba történt!", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                             } else {
                                 if (uri != null) {
                                     uploadImages(SettingUtil.getToken(LoginActivity.this));
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
                                 }
                             }
 
@@ -284,6 +288,8 @@ public class LoginActivity extends AppCompatActivity {
             service.execute(token);
         } catch (Exception e) {
             e.printStackTrace();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
         }
     }
 
