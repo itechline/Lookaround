@@ -198,6 +198,11 @@ public class MainActivity extends AppCompatActivity
                     int c = (int) result;
                     TextView count = (TextView) findViewById(R.id.nav_message_count);
                     count.setText(String.valueOf(result));
+                    if((int) result == 0) {
+                        count.setVisibility(View.INVISIBLE);
+                    } else {
+                        count.setVisibility(View.VISIBLE);
+                    }
                     if (prewMessageCount < c) {
                         if (prewMessageCount != 0) {
                             Snackbar.make(count, "Üzenete érkezett!", Snackbar.LENGTH_LONG)
