@@ -20,17 +20,24 @@
         android:layout_margin="10sp" />
 
 
+    <ScrollView
+        android:id="@+id/Layout_Registration_360_Scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true">
+
     <RelativeLayout
+        android:id="@+id/Layout_Registration_360"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="370sp"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:paddingRight="15sp"
         android:paddingLeft="15sp"
         android:paddingTop="15sp"
         android:background="#ffffff"
-        android:layout_below="@+id/imageView2"
-        android:layout_above="@+id/linearLayout6">
+        android:gravity="center_vertical">
 
 
         <RelativeLayout
@@ -143,10 +150,9 @@
         <RelativeLayout
             android:id="@+id/layoutfor_registerbutton"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="50sp"
             android:layout_below="@+id/relative_individual"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/fszf_text">
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,25 +173,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/acceptingfszf"
-            android:gravity="bottom|center_horizontal"
             android:textStyle="italic"
-            android:layout_above="@+id/fszf_btn_text"
             android:textSize="12sp"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="false"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/layoutfor_registerbutton" />
         <TextView
             android:id="@+id/fszf_btn_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fszf"
-            android:layout_alignParentEnd="false"
-            android:gravity="bottom|center_horizontal"
+            android:gravity="center_horizontal"
             android:textColor="#0066cc"
             android:textStyle="italic"
             android:onClick="openBlankPage"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="5sp"
             android:textSize="12sp"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            android:layout_below="@+id/fszf_text" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -217,7 +222,7 @@
         </RadioGroup>
 
     </RelativeLayout>
-
+    </ScrollView>
 
     <ImageView
         android:layout_width="fill_parent"
@@ -235,9 +240,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linearLayout6"
-        android:layout_margin="10sp">
+        android:id="@+id/linearLayout_youhaveACC"
+        android:layout_margin="10sp"
+        android:layout_below="@+id/Layout_Registration_360_Scroll">
         <TextView
             android:id="@+id/you_have_existing"
             android:layout_width="wrap_content"
@@ -245,7 +250,6 @@
             android:text="@string/existing_account"
             android:layout_weight="2"
             android:textColor="#8c9397"
-            android:layout_marginBottom="60sp"
             android:textStyle="italic"
             android:paddingRight="2sp"
             android:textSize="12sp" />
@@ -257,7 +261,6 @@
             android:layout_weight="2"
             android:onClick="showLogin"
             android:textColor="#0066cc"
-            android:layout_marginBottom="60sp"
             android:textStyle="italic"
             android:paddingLeft="2sp"
             android:textSize="12sp" />

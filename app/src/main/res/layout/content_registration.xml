@@ -19,18 +19,20 @@
         android:id="@+id/imageView"
         android:layout_margin="5sp" />
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ScrollView
+        android:id="@+id/Layout_Registration_Scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="320sp"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
-        android:layout_marginBottom="90sp"
-        android:paddingRight="15sp"
-        android:paddingLeft="15sp"
-        android:paddingTop="15sp"
-        android:background="#ffffff"
-        android:layout_below="@+id/imageView">
+        android:layout_below="@+id/imageView"
+        >
+
+        <RelativeLayout
+        android:id="@+id/Layout_Registration"
+        android:layout_width="match_parent"
+        android:layout_height="320sp"
+        android:background="#ffffff">
 
 
         <RelativeLayout
@@ -140,50 +142,29 @@
         </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/fszf_text"
-            android:layout_below="@+id/relative_individual">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/registration"
-                android:id="@+id/registButton"
-                android:onClick="sendRegistration"
-                android:background="@drawable/colorbutton"
-                android:textColor="#ffffff"
+            <RelativeLayout
+                android:id="@+id/layout_forregisterButton"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_above="@+id/fszf_text"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:padding="3sp"/>
-        </RelativeLayout>
+                android:layout_below="@+id/relative_individual">
 
-        <TextView
-            android:id="@+id/fszf_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/acceptingfszf"
-            android:layout_alignParentEnd="false"
-            android:gravity="bottom|center_horizontal"
-            android:textStyle="italic"
-            android:layout_above="@+id/fszf_btn_text"
-            android:layout_marginTop="5sp" />
-        <TextView
-            android:id="@+id/fszf_btn_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fszf"
-            android:layout_alignParentEnd="false"
-            android:gravity="bottom|center_horizontal"
-            android:textColor="#0066cc"
-            android:textStyle="italic"
-            android:onClick="openBlankPage"
-            android:layout_marginBottom="10sp"
-            android:layout_alignParentBottom="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="@string/registration"
+                    android:id="@+id/registButton"
+                    android:onClick="sendRegistration"
+                    android:background="@drawable/colorbutton"
+                    android:textColor="#ffffff"
+                    android:layout_above="@+id/fszf_text_layout"
+                    android:layout_below="@+id/relative_individual"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3sp"/>
+            </RelativeLayout>
 
-        <RadioGroup
+            <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioGroup1"
@@ -211,7 +192,45 @@
                 android:buttonTint="#0066cc"/>
         </RadioGroup>
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/fszf_text_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/relative_individual"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                android:id="@+id/fszf_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acceptingfszf"
+                android:layout_alignParentEnd="false"
+                android:gravity="bottom|center_horizontal"
+                android:textStyle="italic"
+                android:layout_above="@+id/fszf_btn_text"
+                android:layout_marginTop="5sp"
+                android:layout_below="@+id/relative_individual"/>
+
+                <TextView
+                    android:id="@+id/fszf_btn_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fszf"
+                    android:layout_alignParentEnd="false"
+                    android:gravity="bottom|center_horizontal"
+                    android:textColor="#0066cc"
+                    android:textStyle="italic"
+                    android:onClick="openBlankPage"
+                    android:layout_marginBottom="10sp"
+                    android:layout_alignParentBottom="false"
+                    android:layout_below="@+id/relative_individual"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
 
     <ImageView
@@ -230,7 +249,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/Layout_Registration_Scroll"
         >
         <TextView
             android:id="@+id/you_have_existing"
