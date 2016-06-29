@@ -91,6 +91,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "tipusresult "+result);
 
                     if (result != null) {
                         try {
@@ -135,6 +136,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "allapotresult "+result);
 
                     if (result != null) {
                         try {
@@ -179,7 +181,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-
+                    //Log.d("spinnerbonodom", "ingatlanenergiaresult "+result);
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
@@ -223,6 +225,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "ingatlanfutesresult "+result);
 
                     if (result != null) {
                         try {
@@ -269,7 +272,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-
+                    //Log.d("spinnerbonodom", "liststasusesresult "+result);
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
@@ -307,6 +310,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "ingatlankilatas "+result);
 
                     if (result != null) {
                         try {
@@ -353,6 +357,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "parkolas "+result);
 
                     if (result != null) {
                         try {
@@ -398,6 +403,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "szoba "+result);
 
                     if (result != null) {
                         try {
@@ -440,6 +446,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "ingatlanemelet "+result);
 
                     if (result != null) {
                         try {
@@ -512,6 +519,7 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                    //Log.d("spinnerbonodom", "ingatlantipus "+result);
 
                     if (result != null) {
                         try {
@@ -557,6 +565,8 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
+                   // Log.d("spinnerbonodom", "ingatlanemelet "+result);
+
 
                     if (result != null) {
                         try {
