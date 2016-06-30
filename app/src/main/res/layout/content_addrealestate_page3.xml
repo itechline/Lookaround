@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/below_advertinfo"
+            android:text="@string/addrealest_pg_3_desc"
             android:id="@+id/below_advertinfo_text_page3"
             android:layout_below="@+id/add_photos_title_rlayout"
             android:layout_centerHorizontal="true"
