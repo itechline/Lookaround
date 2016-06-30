@@ -11,7 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 import lar.com.lookaround.models.Idopont;
 import lar.com.lookaround.restapi.SoapObjectResult;
@@ -47,6 +46,15 @@ public class EstateUtil {
     private String estateStreet;
     private String estetaHouseNumber;
     private String estateSize;
+    private int estateCityID;
+
+    public int getEstateCityID() {
+        return estateCityID;
+    }
+
+    public void setEstateCityID(int estateCityID) {
+        this.estateCityID = estateCityID;
+    }
 
     public String getEstateTitle() {
         return estateTitle;
@@ -518,6 +526,7 @@ public class EstateUtil {
                                 util.setEstateStreet(json_data.getString("ingatlan_utca"));
                                 util.setEstetaHouseNumber(json_data.getString("ingatlan_hsz"));
                                 util.setEstateSize(json_data.getString("ingatlan_meret"));
+                                util.setEstateCityID(json_data.getInt("ingatlan_varos_id"));
 
                                 estates.add(util);
 

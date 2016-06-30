@@ -3078,6 +3078,7 @@ public class MainActivity extends AppCompatActivity
             estateStreet = util.getEstateStreet();
             estetaHouseNumber = util.getEstetaHouseNumber();
             estateSize = util.getEstateSize();
+            estateCityID = String.valueOf(util.getEstateCityID());
 
             mon = 0;
             tue = 0;
