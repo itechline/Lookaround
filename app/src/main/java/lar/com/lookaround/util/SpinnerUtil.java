@@ -82,6 +82,47 @@ public class SpinnerUtil {
         this.name = name;
     }
 
+
+    public static void get_list_varosok(final SoapObjectResult getBackWhenItsDone) {
+        try {
+            String url = "https://bonodom.com/api/list_varos";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+
+                    if (result != null) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            Log.d("VAROSOK_JSONARRAY", jsonArray.toString());
+                            ArrayList<SpinnerUtil> hiredtestipusa = new ArrayList<SpinnerUtil>();
+
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject json_data = jsonArray.getJSONObject(i);
+                                int idJson = json_data.getInt("VarosID");
+                                String nameJson = json_data.getString("VarosNev");
+
+                                hiredtestipusa.add(new SpinnerUtil(idJson, nameJson));
+                            }
+                            getBackWhenItsDone.parseRerult(hiredtestipusa);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void get_list_hirdetestipusa(final SoapObjectResult getBackWhenItsDone) {
         try {
             String url = "https://bonodom.com/api/list_hirdetestipusa";

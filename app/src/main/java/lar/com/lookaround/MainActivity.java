@@ -1573,6 +1573,7 @@ public class MainActivity extends AppCompatActivity
     public String estetaHouseNumber;
     public String estateSize;
     public String postalCode = "0";
+    public String estateCityID = "";
 
     public double lat;
     public double lng;
@@ -1768,7 +1769,7 @@ public class MainActivity extends AppCompatActivity
                         isFilledOut = false;
                     }
 
-                    if(!isValidString(estateCity)) {
+                    if(!isValidString(estateCity) || !isValidString(estateCityID)) {
                         city2.setError("Hiba!");
                         city2.invalidate();
                         isFilledOut = false;
@@ -2236,6 +2237,7 @@ public class MainActivity extends AppCompatActivity
                                                      estateDescription = "";
                                                      estatePrice = "";
                                                      estateCity = "";
+                                                     estateCityID = "";
                                                      estateStreet = "";
                                                      estetaHouseNumber = "";
                                                      estateSize = "";
@@ -2250,7 +2252,7 @@ public class MainActivity extends AppCompatActivity
                                                  }
 
                                              }
-                                         }, estateSize, estateCity, estateStreet, estetaHouseNumber, estateDescription, estatePrice,
+                                         }, estateSize, estateCityID, estateStreet, estetaHouseNumber, estateDescription, estatePrice,
                             String.valueOf(energiaSpinner_int), String.valueOf(butorozottSpinner_int), String.valueOf(kilatasSpinner_int), String.valueOf(elevatorSpinner_int),
                             String.valueOf(futesSpinner_int), String.valueOf(parkolasSpinner_int), String.valueOf(balconySpinner_int), String.valueOf(ingatlanTipusSpinner_int),
                             String.valueOf(emeletekSpinner_int), String.valueOf(allapotSpinner_int), String.valueOf(szobaszamSpinner_int),
@@ -3049,6 +3051,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    ArrayAdapter<SpinnerUtil> autocompleteAdapter;
     public void crudEstate(EstateUtil util) {
 
         if(util == null) {
@@ -3086,6 +3089,33 @@ public class MainActivity extends AppCompatActivity
             start = "0";
             finish = "0";
         }
+        SpinnerUtil.get_list_varosok(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                //String[] some_array = getResources().getStringArray(R.array.varosok_array);
+
+                ArrayList<SpinnerUtil> some_array = (ArrayList) result;
+
+                AutoCompleteTextView autocomplete_addestate = (AutoCompleteTextView)
+                        findViewById(R.id.add_advert_city_edittext);
+
+                autocompleteAdapter = new ArrayAdapter<SpinnerUtil>
+                        (MainActivity.this, android.R.layout.select_dialog_item, some_array);
+
+                autocomplete_addestate.setThreshold(2);
+                autocomplete_addestate.setAdapter(autocompleteAdapter);
+
+
+                autocomplete_addestate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        estateCityID = String.valueOf(autocompleteAdapter.getItem(position).getId());
+                    }
+                });
+            }
+        });
+
+
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View list = inflater.inflate(R.layout.content_addrealestate, null);
