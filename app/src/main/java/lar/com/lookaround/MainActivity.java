@@ -3319,7 +3319,7 @@ public class MainActivity extends AppCompatActivity
                     pd.dismiss();
                 }
 
-                ArrayList<AdmonitorUtil> arrayList = (ArrayList) result;
+                final ArrayList<AdmonitorUtil> arrayList = (ArrayList) result;
 
                 final AdmonitorAdapter adapter = new AdmonitorAdapter(MainActivity.this, arrayList);
                 // Attach the adapter to a ListView
@@ -3337,7 +3337,7 @@ public class MainActivity extends AppCompatActivity
 
                 listView.setDivider(null);
                 listView.setDividerHeight(0);
-                /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ImageView asd = (ImageView) findViewById(R.id.admonitor_list_item_edit_image);
@@ -3352,9 +3352,28 @@ public class MainActivity extends AppCompatActivity
                         isFavorite = false;
                         ing_ordering = 0;
                         ing_type = 0;
+
+                        Log.d("ADMONITOR", arrayList.get(position).getSearch());
+                        furniture_int = arrayList.get(position).getHasFurniture();
+                        lift_int = arrayList.get(position).getElevator();
+                        balcony_int = arrayList.get(position).getBalcony();
+                        meret_int = arrayList.get(position).getSize();
+                        szobaMax_int = arrayList.get(position).getRoomsMax();
+                        szobaMin_int = arrayList.get(position).getRoomsMax();
+                        floorsMint_int = arrayList.get(position).getFloorsMin();
+                        floorsMax_int = arrayList.get(position).getFloorsMax();
+                        type_int = arrayList.get(position).getType();
+                        allapot_int = arrayList.get(position).getCondition();
+                        energigenyo_int = arrayList.get(position).getEtype();
+                        panoramaSpinner_int = arrayList.get(position).getView();
+                        parkolasSpinner_int = arrayList.get(position).getParking();
+
+                        price_from = arrayList.get(position).getPriceMin();
+                        price_to = arrayList.get(position).getPriceMax();
+                        key = arrayList.get(position).getSearch();
                         loadRealEstates();
                     }
-                });*/
+                });
 
             }
         }, SettingUtil.getToken(this));
@@ -3367,18 +3386,23 @@ public class MainActivity extends AppCompatActivity
         TextView minPrice = (TextView) findViewById(R.id.realestate_price_admonitor_min);
         TextView maxPrice = (TextView) findViewById(R.id.realestate_price_admonitor_max);
 
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.show();
 
-        EstateUtil.addFigyelo(new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-                if (pd != null) {
-                    pd.dismiss();
+
+        if (!isValidString(name.getText().toString())) {
+            name.setError("");
+        } else {
+            final ProgressDialog pd = new ProgressDialog(this);
+            pd.show();
+            EstateUtil.addFigyelo(new SoapObjectResult() {
+                @Override
+                public void parseRerult(Object result) {
+                    if (pd != null) {
+                        pd.dismiss();
+                    }
+                    showAdmonitor(null);
                 }
-                showAdmonitor(null);
-            }
-        }, SettingUtil.getToken(this), name.getText().toString(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", "");
+            }, SettingUtil.getToken(this), name.getText().toString(), furniture_int, lift_int, balcony_int, meret_int, szobaMin_int, szobaMax_int, floorsMax_int, floorsMint_int, type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, minPrice.getText().toString(), maxPrice.getText().toString(), search.getText().toString());
+        }
     }
 
     public void doLogout(final View view) {
@@ -3413,6 +3437,341 @@ public class MainActivity extends AppCompatActivity
 
         menuType = ADD_FIGYELO_MENU;
         supportInvalidateOptionsMenu();
+        furniture_int = 0;
+        lift_int = 0;
+        balcony_int = 0;
+        meret_int = 0;
+        szobaMin_int = 0;
+        szobaMax_int = 0;
+        floorsMint_int = 0;
+        floorsMax_int = 0;
+        type_int = 0;
+        allapot_int = 0;
+        energigenyo_int = 0;
+        parkolasSpinner_int = 0;
+        panoramaSpinner_int = 0;
+
+        //hasfurniture_spinner
+        ArrayList<SpinnerUtil> arrayListFurniture = (ArrayList) SpinnerUtil.get_list_butorozott();
+        final SpinnerAdapter adapterFurniture = new SpinnerAdapter(MainActivity.this, arrayListFurniture);
+        Spinner furniture = (Spinner) findViewById(R.id.hasfurniture_spinner_admonitor);
+        furniture.setAdapter(adapterFurniture);
+
+        furniture.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerUtil spinnerUtil = adapterFurniture.getItem(position);
+                furniture_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        //realestate_elevator_spinner
+        ArrayList<SpinnerUtil> arrayListElevator = (ArrayList) SpinnerUtil.get_list_lift();
+        final SpinnerAdapter adapterElevator = new SpinnerAdapter(MainActivity.this, arrayListElevator);
+        Spinner lift = (Spinner) findViewById(R.id.realestate_elevator_spinner_admonitor);
+        adapterElevator.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lift.setAdapter(adapterElevator);
+
+        lift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerUtil spinnerUtil = adapterElevator.getItem(position);
+                lift_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
+        ArrayList<SpinnerUtil> arrayListBalcony = (ArrayList) SpinnerUtil.get_list_erkely();
+        final SpinnerAdapter adapterBalcony = new SpinnerAdapter(MainActivity.this, arrayListBalcony);
+        Spinner balcony = (Spinner) findViewById(R.id.realestate_balcony_spinner_admonitor);
+        adapterBalcony.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        balcony.setAdapter(adapterBalcony);
+
+        balcony.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerUtil spinnerUtil = adapterBalcony.getItem(position);
+                balcony_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
+        ArrayList<SpinnerUtil> arrayListSize= (ArrayList) SpinnerUtil.get_list_meret();
+        final SpinnerAdapter adapterSize = new SpinnerAdapter(MainActivity.this, arrayListSize);
+        Spinner meret = (Spinner) findViewById(R.id.realestate_size_spinner_admonitor);
+        adapterSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        meret.setAdapter(adapterSize);
+
+        meret.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerUtil spinnerUtil = adapterSize.getItem(position);
+                meret_int = spinnerUtil.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
+        SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner szobaMin = (Spinner) findViewById(R.id.realestate_roomcount_min_spinner_admonitor);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                szobaMin.setAdapter(adapter);
+
+                szobaMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        szobaMin_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+
+                });
+
+            }
+        });
+
+        SpinnerUtil.get_list_ingatlanszoba(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner szobaMax = (Spinner) findViewById(R.id.realestate_roomcount_max_spinner_admonitor);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                szobaMax.setAdapter(adapter);
+
+                szobaMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        szobaMax_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+
+                });
+
+            }
+        });
+
+        //realestate_floors_min_spinner
+        SpinnerUtil.get_list_ingatlanemelet(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner floorsMin = (Spinner) findViewById(R.id.realestate_floors_min_spinner_admonitor);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                floorsMin.setAdapter(adapter);
+
+                floorsMin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        floorsMint_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+
+        SpinnerUtil.get_list_ingatlanemelet(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner floorsMax = (Spinner) findViewById(R.id.realestate_floors_max_spinner_admonitor);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                floorsMax.setAdapter(adapter);
+
+                floorsMax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        floorsMax_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+
+        SpinnerUtil.get_list_ingatlantipus(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner typeSpinner = (Spinner) findViewById(R.id.realestate_type_spinner_admonitor);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                typeSpinner.setAdapter(adapter);
+
+                typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+
+
+                        type_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+
+            }
+        });
+
+        SpinnerUtil.get_list_ingatlanallapota(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner allapot = (Spinner) findViewById(R.id.condition_spinner_admonitor);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                allapot.setAdapter(adapter);
+
+                allapot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        allapot_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+
+        //ecertificate_search_spinner
+        SpinnerUtil.get_list_ingatlanenergia(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner enegigenyo = (Spinner) findViewById(R.id.ecertificate_search_spinner_admonitor);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                enegigenyo.setAdapter(adapter);
+
+                enegigenyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        energigenyo_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+
+        //parkolas_search_cpinner
+        SpinnerUtil.get_list_ingatlanparkolas(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner parkolasSpinner = (Spinner) findViewById(R.id.parking_type_spinner_admonitor);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                parkolasSpinner.setAdapter(adapter);
+
+                parkolasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        parkolasSpinner_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+
+        //ingatlan kilatas search spinner
+        SpinnerUtil.get_list_ingatlankilatas(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                ArrayList<SpinnerUtil> arrayList = (ArrayList) result;
+                final SpinnerAdapter adapter = new SpinnerAdapter(MainActivity.this, arrayList);
+
+                Spinner panoramaSpinner = (Spinner) findViewById(R.id.view_type_realestate_spinner_admonitor);
+                //ArrayAdapter<SpinnerUtil> adapter2 = new ArrayAdapter<Spinner>(getBaseContext(), android.R.layout.simple_spinner_item ,arrayList);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                panoramaSpinner.setAdapter(adapter);
+
+                panoramaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        SpinnerUtil spinnerUtil = adapter.getItem(position);
+                        panoramaSpinner_int = spinnerUtil.getId();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
     }
 
     public void showAdmonitor(View view) {

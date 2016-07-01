@@ -596,6 +596,22 @@ public class EstateUtil {
                                 AdmonitorUtil mon = new AdmonitorUtil();
                                 mon.setId(json_data.getInt("hir_id"));
                                 mon.setName(json_data.getString("name"));
+                                mon.setHasFurniture(json_data.getInt("ingatlan_butorozott"));
+                                mon.setElevator(json_data.getInt("ingatlan_lift"));
+                                mon.setBalcony(json_data.getInt("ingatlan_erkely"));
+                                mon.setSize(json_data.getInt("ingatlan_meret"));
+                                mon.setRoomsMin(json_data.getInt("ingatlan_szsz_min"));
+                                mon.setRoomsMax(json_data.getInt("ingatlan_szsz_max"));
+                                mon.setFloorsMax(json_data.getInt("ingatlan_emelet_max"));
+                                mon.setFloorsMin(json_data.getInt("ingatlan_emelet_min"));
+                                mon.setCondition(json_data.getInt("ingatlan_allapot_id"));
+                                mon.setType(json_data.getInt("ingatlan_tipus_id"));
+                                mon.setEtype(json_data.getInt("ingatlan_energiatan_id"));
+                                mon.setView(json_data.getInt("ingatlan_kilatas_id"));
+                                mon.setParking(json_data.getInt("ingatlan_parkolas_id"));
+                                mon.setPriceMax(json_data.getString("ingatlan_ar_max"));
+                                mon.setPriceMin(json_data.getString("ingatlan_ar_min"));
+                                mon.setSearch(json_data.getString("keyword"));
                                 figyelok.add(mon);
 
                             }
