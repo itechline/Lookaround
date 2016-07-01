@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/messagethread"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
         android:layout_above="@+id/message_edittext_rlayout"
         android:layout_centerHorizontal="true" />
 

@@ -31,6 +31,15 @@ public class MessageUtil {
     private String utca;
     private int uid;
     private String hash;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getHash() {
         return hash;
@@ -182,7 +191,7 @@ public class MessageUtil {
     }
 
 
-    public static void sendMessage(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, String msg) {
+    public static void sendMessage(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, String msg, int uid) {
         try {
             String url = "https://bonodom.com/api/send_message";
 
@@ -190,6 +199,7 @@ public class MessageUtil {
             postadatok.put("token", tokenTosend);
             postadatok.put("hash", hash);
             postadatok.put("msg", msg);
+            postadatok.put("uid", String.valueOf(uid));
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
@@ -263,20 +273,20 @@ public class MessageUtil {
         }
     }
 
-    public static void listMessagesForEstate(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, int uid) {
+    public static void listMessagesForEstate(final SoapObjectResult getBackWhenItsDone, String tokenTosend, String hash, int uid, int id) {
         try {
             String url = "https://bonodom.com/api/get_messagebyestate";
 
             HashMap<String, String> postadatok = new HashMap<String, String>();
             postadatok.put("token", tokenTosend);
             postadatok.put("hash", hash);
+            postadatok.put("id", String.valueOf(id));
             if(uid != 0) {
                 postadatok.put("uid", String.valueOf(uid));
             }
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-
                     if (result != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(result);
@@ -288,6 +298,7 @@ public class MessageUtil {
                                 MessageUtil msg = new MessageUtil();
                                 msg.setMsg(json_data.getString("conv_msg"));
                                 msg.setFromme(json_data.getInt("fromme"));
+                                msg.setId(json_data.getInt("id"));
 
                                 messages.add(msg);
                             }

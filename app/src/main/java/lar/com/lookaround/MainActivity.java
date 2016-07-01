@@ -13,13 +13,16 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +60,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -72,6 +76,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -97,6 +105,7 @@ import lar.com.lookaround.util.AddImageUtil;
 import lar.com.lookaround.util.AdmonitorUtil;
 import lar.com.lookaround.util.CalendarBookingUtil;
 import lar.com.lookaround.util.EstateUtil;
+import lar.com.lookaround.util.ImageUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.MessageUtil;
 import lar.com.lookaround.util.ScalingUtilities;
@@ -184,7 +193,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 refreshMessageCount();
-                handler.postDelayed(this, 60 * 1000);
+                if(menuType == MESSAGES_THREAD_MENU) {
+                    handler.postDelayed(this, 5 * 1000);
+                } else {
+                    handler.postDelayed(this, 30 * 1000);
+                }
             }
         }, 1000);
     }
@@ -209,6 +222,9 @@ public class MainActivity extends AppCompatActivity
                                     .setAction("Action", null).show();
                         }
                         prewMessageCount = c;
+                    }
+                    if(menuType == MESSAGES_THREAD_MENU) {
+                        loadMessagesForEstate(tmpHashForMessages, tmpUidForMessages);
                     }
                 } catch (Exception e) {
                     Log.e("MSG", "COUNT");
@@ -1352,21 +1368,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        String[] proj = { MediaStore.MediaColumns.DATA };
-        Cursor cursor = getContentResolver().query(contentURI, proj, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex( MediaStore.MediaColumns.DATA );
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;
-    }
-
     int imageID = 0;
     int camImageID = 0;
     int galleryImageID = 0;
@@ -2313,8 +2314,10 @@ public class MainActivity extends AppCompatActivity
 
         ArrayList<File> files = new ArrayList<>();
         for (int j = 0; j < uris.size(); j++) {
-            File imageFile = new File(getRealPathFromURI(uris.get(j)));
-            files.add(imageFile);
+            if(ImageUtil.getPath(MainActivity.this, uris.get(j)) != null) {
+                File imageFile = new File(ImageUtil.getPath(MainActivity.this, uris.get(j)));
+                files.add(imageFile);
+            }
         }
         try {
             ImageUploadService service = new ImageUploadService(files, progressBar);
@@ -2664,6 +2667,11 @@ public class MainActivity extends AppCompatActivity
                     ImageView iw = (ImageView)findViewById(R.id.imageViewProfile);
 
                     iw.setImageResource(R.drawable.avatar);
+                    if(!model.getPicurl().isEmpty()) {
+                        final DownloadImageTask task = new DownloadImageTask(iw);
+                        task.execute(model.getPicurl());
+                    }
+
                     tv.setText(model.getVezeteknev() + " " + model.getKeresztnev());
 
                     if(reload)
@@ -2674,6 +2682,65 @@ public class MainActivity extends AppCompatActivity
 
             }
         }, SettingUtil.getToken(this));
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, BitmapDrawable> {
+        private WeakReference<ImageView> imageViewReference;
+        private WeakReference<ProgressBar> progressBarWeakReference;
+
+        public DownloadImageTask(ImageView bmImage) {
+            imageViewReference = new WeakReference<ImageView>(bmImage);
+        }
+
+        protected BitmapDrawable doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            BitmapDrawable drawable = null;
+            HttpURLConnection connection = null;
+            InputStream is = null;
+            try {
+                connection = (HttpURLConnection) new URL(urldisplay).openConnection();
+                is = connection.getInputStream();
+                mIcon11 = BitmapFactory.decodeStream(is, null, null);
+
+                //final float scale = getContext().getResources().getDisplayMetrics().density;
+                //int w = (int) (150 * scale + 0.5f);
+                //int h = (int) (200 * scale + 0.5f);
+
+                drawable = new BitmapDrawable(getResources(), mIcon11);
+
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (connection != null)
+                        connection.disconnect();
+                    if (is != null)
+                        is.close();
+                } catch (Exception e) {
+
+                }
+            }
+            return drawable;
+        }
+
+        protected void onPostExecute(BitmapDrawable result) {
+            super.onPostExecute(result);
+            if (isCancelled())
+                result = null;
+
+            if(Thread.interrupted()) {
+                result = null;
+            }
+
+            if (imageViewReference != null && result != null) {
+                ImageView imageView = imageViewReference.get();
+                if (imageView != null) {
+                    imageView.setImageDrawable(result);
+                }
+            }
+        }
     }
 
     @Override
@@ -2773,30 +2840,39 @@ public class MainActivity extends AppCompatActivity
     private int pageCount = 0;
     private boolean isRefreshing = false;
 
-    public void loadMessagesForEstate(final String hash, int uid) {
+    private String tmpHashForMessages;
+    private int tmpUidForMessages;
+    private int tmpLstIdForMessages;
+
+    public void loadMessagesForEstate(final String hash, final int uid) {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+
+        tmpHashForMessages = hash;
+        tmpUidForMessages = uid;
 
         //messages = inflater.inflate(R.layout.content_messages, null);
         //message2 = inflater.inflate(R.layout.content_message_thread, null);
-
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View list = inflater.inflate(R.layout.content_message_thread, null);
-        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-        viewFlip.removeAllViews();
-        viewFlip.addView(list, 0);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
         fab.setVisibility(View.INVISIBLE);
         fab_phone.setVisibility(View.INVISIBLE);
 
-        viewFlip.setDisplayedChild(0);
-
-        menuType = MESSAGES_THREAD_MENU;
-        supportInvalidateOptionsMenu();
 
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.show();
+        if(menuType != MESSAGES_THREAD_MENU) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View list = inflater.inflate(R.layout.content_message_thread, null);
+            ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+            viewFlip.removeAllViews();
+            viewFlip.addView(list, 0);
+            viewFlip.setDisplayedChild(0);
+
+            menuType = MESSAGES_THREAD_MENU;
+            supportInvalidateOptionsMenu();
+            pd.show();
+            tmpLstIdForMessages = 0;
+        }
 
         MessageUtil.listMessagesForEstate(new SoapObjectResult() {
             @Override
@@ -2806,39 +2882,60 @@ public class MainActivity extends AppCompatActivity
                     pd.dismiss();
                 }
                 ArrayList<MessageUtil> lst = (ArrayList<MessageUtil>) result;
-                ListView thread = (ListView) findViewById(R.id.messagethread);
+                final ListView thread = (ListView) findViewById(R.id.messagethread);
 
-                final MessageAdapter adapter = new MessageAdapter(MainActivity.this, lst);
+                final MessageAdapter adapter;
 
-                thread.setAdapter(adapter);
+                if(tmpLstIdForMessages == 0) {
+                    adapter = new MessageAdapter(MainActivity.this, lst);
+                    thread.setAdapter(adapter);
+                } else {
+                    if(lst.size() != 0) {
+                        adapter = (MessageAdapter) thread.getAdapter();
+                        adapter.addAll(lst);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
                 thread.setDividerHeight(0);
+
+                if(lst.size() != 0) {
+                    tmpLstIdForMessages = lst.get(lst.size() - 1).getId();
+                }
 
                 final EditText et = (EditText) findViewById(R.id.write_message_edittext);
                 RelativeLayout send = (RelativeLayout) findViewById(R.id.sent_message_text_rlayout);
+
+
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        final ProgressDialog pd2 = new ProgressDialog(MainActivity.this);
+                        pd2.show();
+
                         MessageUtil.sendMessage(new SoapObjectResult() {
                             @Override
                             public void parseRerult(Object result) {
+
+                                if (pd2 != null) {
+                                    pd2.dismiss();
+                                }
+
                                 boolean b = (boolean) result;
                                 if (!b) {
-                                    MessageUtil ms = new MessageUtil();
-                                    ms.setFromme(1);
-                                    ms.setMsg(et.getText().toString());
-                                    adapter.add(ms);
-                                    adapter.notifyDataSetChanged();
+                                    loadMessagesForEstate(tmpHashForMessages, tmpUidForMessages);
                                 } else {
                                     // TODO ERROR DIALOG
                                 }
                                 et.setText("");
                             }
-                        }, SettingUtil.getToken(MainActivity.this), hash, et.getText().toString());
+                        }, SettingUtil.getToken(MainActivity.this), hash, et.getText().toString(), uid);
                     }
                 });
 
             }
-        }, SettingUtil.getToken(this), hash, uid);
+        }, SettingUtil.getToken(this), hash, uid, tmpLstIdForMessages);
     }
 
     public void showMyFavs(View view) {
