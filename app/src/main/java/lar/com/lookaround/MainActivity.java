@@ -2827,14 +2827,14 @@ public class MainActivity extends AppCompatActivity
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-                            if (sliderLayout.getScaleY() == 1) {
+                            /*if (sliderLayout.getScaleY() == 1) {
                                 sliderLayout.setScaleY(3);
                                 sliderLayout.setScaleX(3);
                                 //sliderLayout.getCurrentSlider().setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                             } else {
                                 sliderLayout.setScaleY(1);
                                 sliderLayout.setScaleX(1);
-                            }
+                            }*/
                         }
                     });
 
