@@ -51,6 +51,7 @@
                 android:hint="@string/lastname"
                 android:paddingTop="50sp"
                 android:layout_centerHorizontal="true"
+                android:capitalize="sentences"
 
                 />
 
@@ -64,6 +65,8 @@
                 android:hint="@string/firstname"
                 android:layout_below="@+id/vezetekNev"
                 android:layout_centerHorizontal="true"
+                android:capitalize="sentences"
+
                 />
 
             <EditText
@@ -110,6 +113,7 @@
                 android:singleLine="true"
                 android:hint="@string/company_name"
                 android:layout_centerHorizontal="true"
+
                 />
 
             <EditText

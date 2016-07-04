@@ -2549,6 +2549,7 @@ public class MainActivity extends AppCompatActivity
                     type.setText(obj.getString("ingatlan_tipus"));
                     item_realestate_description_text.setText(obj.getString("ingatlan_rovidleiras"));
 
+
                     name.setText(obj.getString("vezeteknev") + " " + obj.getString("keresztnev"));
                     profile_type.setText(obj.getString("tipus"));
                     String mobileNum = obj.getString("mobil");

@@ -56,6 +56,8 @@
                 android:hint="@string/lastname"
                 android:paddingTop="50sp"
                 android:layout_centerHorizontal="true"
+                android:capitalize="sentences"
+
                 />
 
             <EditText
@@ -68,6 +70,8 @@
                 android:hint="@string/firstname"
                 android:layout_below="@+id/vezetekNev"
                 android:layout_centerHorizontal="true"
+                android:capitalize="sentences"
+
                 />
 
             <EditText
