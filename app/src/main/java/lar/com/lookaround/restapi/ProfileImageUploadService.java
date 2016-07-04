@@ -23,21 +23,11 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
     String twoHyphens = "--";
     String boundary =  "*****";
     File toUpload;
-    ProgressDialog pg;
     SoapObjectResult sor;
 
-    public ProfileImageUploadService(File toUpload, ProgressDialog pg, SoapObjectResult sor) {
+    public ProfileImageUploadService(File toUpload, SoapObjectResult sor) {
         this.toUpload = toUpload;
-        this.pg = pg;
         this.sor = sor;
-    }
-
-    @Override
-    protected void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
-        if(pg != null) {
-            pg.setProgress(values[0]);
-        }
     }
 
     @Override
@@ -51,7 +41,7 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
             //    all += files.length();
             //}
             //for (File file: toUpload) {
-                URL url = new URL("http://bonodom.com/upload/uplodeprofilepicture?token=" + params[0]);
+                URL url = new URL("https://bonodom.com/upload/uplodeprofilepicture?token=" + params[0]);
                 urlConnection = (HttpsURLConnection) url.openConnection();
                 urlConnection.setUseCaches(false);
                 urlConnection.setDoInput(true);
@@ -88,7 +78,6 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
 
                 while (bytesRead > 0) {
                     current += bytesRead;
-                    publishProgress(Math.round(current / all * 100));
                     request.write(buffer, 0, bufferSize);
                     bytesAvailable = fis.available();
                     bufferSize = Math.min(bytesAvailable, maxBufferSize);
@@ -104,7 +93,7 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
                 request.close();
 
                 InputStream responseStream = new
-                        BufferedInputStream(urlConnection.getInputStream());
+                        BufferedInputStream(urlConnection.getErrorStream());
 
                 BufferedReader responseStreamReader =
                         new BufferedReader(new InputStreamReader(responseStream));
@@ -117,10 +106,11 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
                 }
                 responseStreamReader.close();
 
-                //String response = stringBuilder.toString();
 
                 responseStream.close();
                 urlConnection.disconnect();
+
+                return stringBuilder.toString();
 
             //}
         } catch (Exception e) {
@@ -132,11 +122,7 @@ public class ProfileImageUploadService extends AsyncTask<String, Integer, String
 
     @Override
     protected void onPostExecute(String s) {
-        Log.e("ERROR", "DONE");
-        if(pg != null)
-            pg.hide();
-
+        Log.e("ERROR", "errorMsg " + s);
         sor.parseRerult(true);
-
     }
 }

@@ -31,7 +31,8 @@
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"
             android:textStyle="italic"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:capitalize="sentences" />
 
         <TextView
             android:layout_width="wrap_content"

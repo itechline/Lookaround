@@ -139,6 +139,7 @@ public class LoginUtil {
                                 model.setError(false);
                                 model.setVezeteknev(jsonObj.getString("veznev"));
                                 model.setKeresztnev(jsonObj.getString("kernev"));
+                                model.setPicurl(jsonObj.getString("pic"));
                             }
 
 

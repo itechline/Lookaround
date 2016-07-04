@@ -61,6 +61,7 @@ import java.util.regex.Pattern;
 import lar.com.lookaround.restapi.ProfileImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
 import lar.com.lookaround.util.EstateUtil;
+import lar.com.lookaround.util.ImageUtil;
 import lar.com.lookaround.util.LoginUtil;
 import lar.com.lookaround.util.ScalingUtilities;
 import lar.com.lookaround.util.SettingUtil;
@@ -257,30 +258,22 @@ public class LoginActivity extends AppCompatActivity {
     Uri uri;
 
     public void uploadImages(String token) {
-        ProgressDialog progressBar = new ProgressDialog(LoginActivity.this);
-        progressBar.setMessage("Feltöltés...");
-        progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressBar.setProgress(0);
-        progressBar.setMax(100);
-        progressBar.show();
+        final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+        pd.show();
 
 
         File imageFile = null;
-        if(getRealPathFromURI(uri) != null) {
-            imageFile = new File(getRealPathFromURI(uri));
+        if(ImageUtil.getPath(this, uri) != null) {
+            imageFile = new File(ImageUtil.getPath(this, uri));
         }
 
-
-
-
-        //ArrayList<File> files = new ArrayList<>();
-        //for (int j = 0; j < uris.size(); j++) {
-            //files.add(imageFile);
-        //}
         try {
-            ProfileImageUploadService service = new ProfileImageUploadService(imageFile, progressBar, new SoapObjectResult() {
+            ProfileImageUploadService service = new ProfileImageUploadService(imageFile, new SoapObjectResult() {
                 @Override
                 public void parseRerult(Object result) {
+                    if(pd != null) {
+                        pd.dismiss();
+                    }
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
@@ -292,22 +285,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        String[] proj = { MediaStore.MediaColumns.DATA };
-        Cursor cursor = getContentResolver().query(contentURI, proj, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex( MediaStore.MediaColumns.DATA );
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;
-    }
-
 
     private int PICK_IMAGE_REQUEST = 2;
     private int TAKE_IMAGE_REQUEST = 1;

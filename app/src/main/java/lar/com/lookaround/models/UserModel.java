@@ -10,6 +10,15 @@ public class UserModel {
     private String mobil;
     private String email;
     private boolean error;
+    private String picurl;
+
+    public String getPicurl() {
+        return picurl;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
 
     public String getMobil() {
         return mobil;
