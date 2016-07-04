@@ -236,6 +236,20 @@
                         android:id="@+id/nav_idopontjaim"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:id="@+id/nav_idpont_count"
+                        android:layout_gravity="center_vertical|right"
+                        android:gravity="right"
+                        android:background="#f25e36"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="10sp"
+                        android:paddingLeft="2sp"
+                        android:paddingRight="2sp" />
+
                 </LinearLayout>
 
                 <LinearLayout

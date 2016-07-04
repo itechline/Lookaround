@@ -157,6 +157,37 @@ public class MessageUtil {
 
     }
 
+    public static void getIdopontCount(final SoapObjectResult getBackWhenItsDone, String tokenTosend) {
+        try {
+            String url = "https://bonodom.com/api/get_idpontcount";
+
+            HashMap<String, String> postadatok = new HashMap<String, String>();
+            postadatok.put("token", tokenTosend);
+            SoapService ss = new SoapService(new SoapResult() {
+                @Override
+                public void parseRerult(String result) {
+                    int count = 0;
+                    if (result != null) {
+                        try {
+                            JSONObject obj = new JSONObject(result);
+
+                            count = obj.getInt("count");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    }
+
+                    getBackWhenItsDone.parseRerult(count);
+                }
+            }, postadatok);
+            ss.execute(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void getMessageCount(final SoapObjectResult getBackWhenItsDone, String tokenTosend) {
         try {

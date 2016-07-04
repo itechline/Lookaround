@@ -97,6 +97,7 @@ import lar.com.lookaround.adapters.EstateAdapter;
 import lar.com.lookaround.adapters.MessageAdapter;
 import lar.com.lookaround.adapters.SpinnerAdapter;
 import lar.com.lookaround.models.Idopont;
+import lar.com.lookaround.models.ShowTimeModel;
 import lar.com.lookaround.models.UserModel;
 import lar.com.lookaround.restapi.ImageUploadService;
 import lar.com.lookaround.restapi.SoapObjectResult;
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     EstateUtil currentEstate;
+    ShowTimeModel currentShowTime;
 
     DrawerLayout drawer;
     private int furniture_int = 0;
@@ -202,6 +204,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     int prewMessageCount = 0;
+    int prewIdopontCount = 0;
     public void refreshMessageCount() {
         MessageUtil.getMessageCount(new SoapObjectResult() {
             @Override
@@ -217,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     if (prewMessageCount < c) {
                         if (prewMessageCount != 0) {
-                            Snackbar.make(count, "Üzenete érkezett!", Snackbar.LENGTH_LONG)
+                            Snackbar.make(count, "Új üzeneted érkezett egy hirdetéssel kapcsolatban.", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                         }
                         prewMessageCount = c;
@@ -230,6 +233,35 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }, SettingUtil.getToken(MainActivity.this));
+
+        MessageUtil.getIdopontCount(new SoapObjectResult() {
+            @Override
+            public void parseRerult(Object result) {
+                try {
+                    int c = (int) result;
+                    TextView count = (TextView) findViewById(R.id.nav_idpont_count);
+                    count.setText(String.valueOf(result));
+                    if ((int) result == 0) {
+                        count.setVisibility(View.INVISIBLE);
+                    } else {
+                        count.setVisibility(View.VISIBLE);
+                    }
+                    if (prewIdopontCount < c) {
+                        if (prewIdopontCount != 0) {
+                            Snackbar.make(count, "Bejelentkeztek az ingatlanod megtekintésére.", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                        prewIdopontCount = c;
+                    }
+                    if (menuType == MESSAGES_THREAD_MENU) {
+                        loadMessagesForEstate(tmpHashForMessages, tmpUidForMessages);
+                    }
+                } catch (Exception e) {
+                    Log.e("MSG", "COUNT");
+                }
+            }
+        }, SettingUtil.getToken(MainActivity.this));
+
     }
 
 
@@ -348,13 +380,18 @@ public class MainActivity extends AppCompatActivity
                 final java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 final java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd");
 
-                CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, lst_dates, thisYear, thisMonth);
+                CalendarAdapter calendarAdapter = new CalendarAdapter(MainActivity.this, lst, lst_dates, thisYear, thisMonth, currentShowTime);
                 gridview.setAdapter(calendarAdapter);
                 gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                         CalendarAdapter adapter = (CalendarAdapter) parent.getAdapter();
                         if(adapter.getItem(position).isEmpty())
                             return;
+
+                        if(!adapter.isFoglalhato(position)) {
+                            Snackbar.make(gridview, "Erre a dátumra nem lehet foglalni!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                            return;
+                        }
 
                         for (int i = 0; i < gridview.getChildCount(); i++) {
                             if(!adapter.getItem(i).isEmpty()) {
@@ -384,9 +421,33 @@ public class MainActivity extends AppCompatActivity
 
                                 CalendarBookingUtil.getAppointments().clear();
 
+                                int starth = 0;
+                                int startmin = 0;
+                                int finh = 24;
+                                int finm = 0;
+                                if(!currentShowTime.getFromtime().isEmpty()) {
+                                    String tmp[] = currentShowTime.getFromtime().split(":");
+                                    if(tmp.length == 2) {
+                                        starth = Integer.valueOf(tmp[0]);
+                                        startmin = Integer.valueOf(tmp[1]);
+                                    }
+                                }
+                                if(!currentShowTime.getTotime().isEmpty()) {
+                                    String tmp[] = currentShowTime.getTotime().split(":");
+                                    if(tmp.length == 2) {
+                                        finh = Integer.valueOf(tmp[0]);
+                                        finm = Integer.valueOf(tmp[1]);
+                                    }
+                                }
                                 for (int i = 0; i < 24; i++) {
                                     for (int j = 0; j < 31; j += 30) {
-                                        CalendarBookingUtil.addAppointment(i, j);
+                                        if(starth <= i && finh >= i) {
+                                            if((starth == i && startmin <= j) || starth != i) {
+                                                if((finh == i && finm >= j) || finh != i) {
+                                                    CalendarBookingUtil.addAppointment(i, j);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 
@@ -2201,9 +2262,6 @@ public class MainActivity extends AppCompatActivity
                     break;
 
                 case 5:
-                    start = String.valueOf(hour_x) + ":" + String.valueOf(minute_x);
-                    finish = String.valueOf(hour_x_end) + ":" + String.valueOf(minute_x_end);
-
                     final ProgressDialog pd = new ProgressDialog(this);
                     pd.show();
 
@@ -2301,6 +2359,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerUtil spinnerUtil = adapterStart.getItem(position);
                 start = spinnerUtil.getName();
+                Log.e("START", "e " + start);
             }
 
             @Override
@@ -2515,6 +2574,25 @@ public class MainActivity extends AppCompatActivity
 
                         }
                     });
+
+                    JSONArray showtime = obj.getJSONArray("showtime");
+                    if(showtime.length() != 0) {
+                        JSONObject st1 = showtime.getJSONObject(0);
+
+                        currentShowTime = new ShowTimeModel();
+                        currentShowTime.setHetfo(st1.getInt("mon"));
+                        currentShowTime.setKedd(st1.getInt("tue"));
+                        currentShowTime.setSzerda(st1.getInt("wed"));
+                        currentShowTime.setCsutortok(st1.getInt("thu"));
+                        currentShowTime.setPentek(st1.getInt("fri"));
+                        currentShowTime.setSzombat(st1.getInt("sat"));
+                        currentShowTime.setVasarnap(st1.getInt("sun"));
+
+                        currentShowTime.setFromtime(st1.getString("start"));
+                        currentShowTime.setTotime(st1.getString("finish"));
+                    } else {
+                        currentShowTime = new ShowTimeModel();
+                    }
 
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
@@ -2804,7 +2882,7 @@ public class MainActivity extends AppCompatActivity
 
     public void showAlert() {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        myAlert.setMessage("Nincs internet! :(")
+        myAlert.setMessage("Észleltük, hogy nincs internet így nem tudunk számodra szolgáltatást nyújtani. Kérjük, próbáld meg újra később. Köszönjük.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -4165,7 +4243,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "A Bonodom.com –on találtam ezt az ingatlant: " + "\n\n" + "https://bonodom.com/ad/details/" + currentEstate.getHash());
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
                 break;
