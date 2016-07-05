@@ -32,7 +32,9 @@
             android:layout_marginRight="5sp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="1sp" />
+            android:layout_marginBottom="1sp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"/>
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -59,7 +61,7 @@
             <ImageView
                 android:src="@drawable/list_size"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="16sp"
                 android:id="@+id/list_size_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -76,7 +78,7 @@
             <ImageView
                 android:src="@drawable/list_roomcount"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="16sp"
                 android:id="@+id/list_roomcount_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -93,7 +95,7 @@
             <ImageView
                 android:src="@drawable/list_furniture"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="16sp"
                 android:id="@+id/list_furniture_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -102,7 +104,7 @@
             <ImageView
                 android:src="@drawable/list_balcony"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="16sp"
                 android:id="@+id/list_balcony_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
@@ -111,7 +113,7 @@
             <ImageView
                 android:src="@drawable/list_parking"
                 android:layout_width="wrap_content"
-                android:layout_height="22sp"
+                android:layout_height="16sp"
                 android:id="@+id/list_parking_imageview"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
