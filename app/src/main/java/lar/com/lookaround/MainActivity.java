@@ -65,6 +65,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.hkm.slider.SliderLayout;
 import com.hkm.slider.SliderTypes.BaseSliderView;
 import com.hkm.slider.SliderTypes.DefaultSliderView;
@@ -2906,14 +2908,18 @@ public class MainActivity extends AppCompatActivity
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-                            /*if (sliderLayout.getScaleY() == 1) {
-                                sliderLayout.setScaleY(3);
-                                sliderLayout.setScaleX(3);
-                                //sliderLayout.getCurrentSlider().setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
-                            } else {
-                                sliderLayout.setScaleY(1);
-                                sliderLayout.setScaleX(1);
-                            }*/
+                            Log.d("URL", slider.getUrl());
+                            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View list = inflater.inflate(R.layout.gallery_zoom, null);
+                            ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+                            //viewFlip.removeAllViews();
+                            viewFlip.addView(list, 1);
+                            viewFlip.setDisplayedChild(1);
+
+                            menuType = GALLERY_ZOOM;
+                            SubsamplingScaleImageView imageView_zoom = (SubsamplingScaleImageView)findViewById(R.id.imageView_zoom);
+                            final DownloadImage task = new DownloadImage(imageView_zoom);
+                                task.execute(slider.getUrl());
                         }
                     });
 
@@ -2923,6 +2929,70 @@ public class MainActivity extends AppCompatActivity
         }
         urls.clear();
     }
+
+
+    private class DownloadImage extends AsyncTask<String, Void, BitmapDrawable> {
+        SubsamplingScaleImageView bmImage;
+
+        public DownloadImage(SubsamplingScaleImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected BitmapDrawable doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            BitmapDrawable drawable = null;
+            HttpURLConnection connection = null;
+            InputStream is = null;
+            try {
+                connection = (HttpURLConnection) new URL(urldisplay).openConnection();
+                is = connection.getInputStream();
+                mIcon11 = BitmapFactory.decodeStream(is, null, null);
+
+                //final float scale = getContext().getResources().getDisplayMetrics().density;
+                //int w = (int) (150 * scale + 0.5f);
+                //int h = (int) (200 * scale + 0.5f);
+
+                drawable = new BitmapDrawable(MainActivity.this.getResources(), mIcon11);
+
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (connection != null)
+                        connection.disconnect();
+                    if (is != null)
+                        is.close();
+                } catch (Exception e) {
+
+                }
+            }
+            return drawable;
+        }
+
+        protected void onPostExecute(BitmapDrawable result) {
+            super.onPostExecute(result);
+            if (isCancelled())
+                result = null;
+
+            if(Thread.interrupted()) {
+                result = null;
+            }
+
+
+            if (bmImage != null && result != null) {
+                SubsamplingScaleImageView imageView = bmImage;
+                if (imageView != null) {
+                    //imageView.setImageDrawable(result);
+                    imageView.setImage(ImageSource.bitmap(result.getBitmap()));
+                }
+            }
+        }
+    }
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -3366,6 +3436,7 @@ public class MainActivity extends AppCompatActivity
     static final int FIGYELO_MENU = 7;
     static final int ADD_FIGYELO_MENU = 8;
     static final int CALENDAR = 9;
+    static final int GALLERY_ZOOM = 10;
 
     int menuType = 0;
 
@@ -4299,6 +4370,12 @@ public class MainActivity extends AppCompatActivity
                     case CALENDAR:
                         getEstateContent(currentEstate.getId());
                         break;
+                    case GALLERY_ZOOM:
+                        final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+                        viewFlip.setDisplayedChild(0);
+                        viewFlip.removeViewAt(1);
+                        menuType = ESTATE_MENU;
+                        break;
                     default:
                         loadRealEstates();
                         break;
@@ -4364,6 +4441,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case CALENDAR:
                 getEstateContent(currentEstate.getId());
+                break;
+            case GALLERY_ZOOM:
+                final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+                viewFlip.setDisplayedChild(0);
+                viewFlip.removeViewAt(1);
+                menuType = ESTATE_MENU;
                 break;
             default:
                 Log.d("DEFAULT", "BACK");
