@@ -31,8 +31,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -65,8 +70,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.hkm.slider.SliderLayout;
 import com.hkm.slider.SliderTypes.BaseSliderView;
 import com.hkm.slider.SliderTypes.DefaultSliderView;
@@ -2598,10 +2601,12 @@ public class MainActivity extends AppCompatActivity
 
                     JSONArray kepekArray = new JSONArray(obj.getString("kepek"));
                     List<String> imageUrls = new ArrayList<String>();
-                    imageUrls.clear();
+                    //imageUrls.clear();
                     for (int j = 0; j < kepekArray.length(); j++) {
                         JSONObject jsonKep = kepekArray.getJSONObject(j);
                         imageUrls.add(jsonKep.getString("kepek_url"));
+                        //IMAGES[j] = jsonKep.getString("kepek_url");
+
                     }
 
                     SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
@@ -2901,7 +2906,9 @@ public class MainActivity extends AppCompatActivity
         final SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
         sliderLayout.removeAllSliders();
+        imageUrls_zoom.clear();
         for(int i = 0; i<urls.size();i ++) {
+            imageUrls_zoom.add(urls.get(i));
             DefaultSliderView defaultSliderView = new DefaultSliderView(this);
             defaultSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
             defaultSliderView.image(urls.get(i))
@@ -2909,17 +2916,26 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
                             Log.d("URL", slider.getUrl());
+                            Log.d("URL SIZE", String.valueOf(imageUrls_zoom.size()));
                             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                            View list = inflater.inflate(R.layout.gallery_zoom, null);
+                            View list = inflater.inflate(R.layout.gallery_zoom_view_pager, null);
                             ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
                             //viewFlip.removeAllViews();
+                            Log.d("SLIDER NUMBER", String.valueOf(slider.getSliderOrderNumber()));
                             viewFlip.addView(list, 1);
                             viewFlip.setDisplayedChild(1);
-
                             menuType = GALLERY_ZOOM;
-                            SubsamplingScaleImageView imageView_zoom = (SubsamplingScaleImageView)findViewById(R.id.imageView_zoom);
+
+
+                            PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+                            page = (ViewPager)findViewById(R.id.pager);
+                            page.setAdapter(pagerAdapter);
+                            page.setCurrentItem(slider.getSliderOrderNumber());
+
+
+                            /*SubsamplingScaleImageView imageView_zoom = (SubsamplingScaleImageView)findViewById(R.id.imageView_zoom);
                             final DownloadImage task = new DownloadImage(imageView_zoom);
-                                task.execute(slider.getUrl());
+                                task.execute(slider.getUrl());*/
                         }
                     });
 
@@ -2930,66 +2946,29 @@ public class MainActivity extends AppCompatActivity
         urls.clear();
     }
 
-
-    private class DownloadImage extends AsyncTask<String, Void, BitmapDrawable> {
-        SubsamplingScaleImageView bmImage;
-
-        public DownloadImage(SubsamplingScaleImageView bmImage) {
-            this.bmImage = bmImage;
+    private ViewPager page;
+    public String[] IMAGES = null;
+    List<String> imageUrls_zoom = new ArrayList<String>();
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        protected BitmapDrawable doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            BitmapDrawable drawable = null;
-            HttpURLConnection connection = null;
-            InputStream is = null;
-            try {
-                connection = (HttpURLConnection) new URL(urldisplay).openConnection();
-                is = connection.getInputStream();
-                mIcon11 = BitmapFactory.decodeStream(is, null, null);
-
-                //final float scale = getContext().getResources().getDisplayMetrics().density;
-                //int w = (int) (150 * scale + 0.5f);
-                //int h = (int) (200 * scale + 0.5f);
-
-                drawable = new BitmapDrawable(MainActivity.this.getResources(), mIcon11);
-
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (connection != null)
-                        connection.disconnect();
-                    if (is != null)
-                        is.close();
-                } catch (Exception e) {
-
-                }
-            }
-            return drawable;
+        @Override
+        public Fragment getItem(int position) {
+            ViewPagerFragment fragment = new ViewPagerFragment();
+            //fragment.setAsset(IMAGES[position]);
+            fragment.setAsset(imageUrls_zoom.get(position));
+            return fragment;
         }
 
-        protected void onPostExecute(BitmapDrawable result) {
-            super.onPostExecute(result);
-            if (isCancelled())
-                result = null;
-
-            if(Thread.interrupted()) {
-                result = null;
-            }
-
-
-            if (bmImage != null && result != null) {
-                SubsamplingScaleImageView imageView = bmImage;
-                if (imageView != null) {
-                    //imageView.setImageDrawable(result);
-                    imageView.setImage(ImageSource.bitmap(result.getBitmap()));
-                }
-            }
+        @Override
+        public int getCount() {
+            //return IMAGES.length;
+            return imageUrls_zoom.size();
         }
     }
+
 
 
 
