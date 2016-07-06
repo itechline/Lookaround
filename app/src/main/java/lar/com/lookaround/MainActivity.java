@@ -35,6 +35,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -2846,7 +2848,11 @@ public class MainActivity extends AppCompatActivity
             if (imageViewReference != null && result != null) {
                 ImageView imageView = imageViewReference.get();
                 if (imageView != null) {
-                    imageView.setImageDrawable(result);
+                    //imageView.setImageDrawable(result);
+                    RoundedBitmapDrawable img = RoundedBitmapDrawableFactory.create(getResources(), result.getBitmap());
+                    img.setCircular(true);
+
+                    imageView.setImageDrawable(img);
                 }
             }
         }
