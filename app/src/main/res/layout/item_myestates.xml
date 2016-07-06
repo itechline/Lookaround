@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayout4"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic">
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:gravity="fill_vertical">
 
             <ImageView
                 android:src="@drawable/list_size"
@@ -73,7 +74,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="100"
                 android:id="@+id/list_size_textView"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:gravity="center_vertical" />
 
             <ImageView
                 android:src="@drawable/list_roomcount"
@@ -90,7 +92,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="3"
                 android:id="@+id/list_roomcount_textView"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:gravity="center_vertical" />
 
             <ImageView
                 android:src="@drawable/list_furniture"
