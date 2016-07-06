@@ -87,7 +87,7 @@
                     android:background="@drawable/spinner_border"
                     android:padding="5sp"
 
-                    />
+                    android:capitalize="sentences" />
 
                 <TextView
                     android:id="@+id/keyword_realestate_search_text"
