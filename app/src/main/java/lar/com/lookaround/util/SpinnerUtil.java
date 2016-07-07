@@ -707,7 +707,7 @@ public class SpinnerUtil {
         hiredtestipusa.add(new SpinnerUtil(18, "16:30"));
         hiredtestipusa.add(new SpinnerUtil(19, "17:00"));
         hiredtestipusa.add(new SpinnerUtil(20, "17:30"));
-        hiredtestipusa.add(new SpinnerUtil(20, "18:00"));
+        hiredtestipusa.add(new SpinnerUtil(21, "18:00"));
         return hiredtestipusa;
     }
 
@@ -734,7 +734,7 @@ public class SpinnerUtil {
         hiredtestipusa.add(new SpinnerUtil(18, "16:30"));
         hiredtestipusa.add(new SpinnerUtil(19, "17:00"));
         hiredtestipusa.add(new SpinnerUtil(20, "17:30"));
-        hiredtestipusa.add(new SpinnerUtil(20, "18:00"));
+        hiredtestipusa.add(new SpinnerUtil(21, "18:00"));
         return hiredtestipusa;
     }
 
