@@ -61,7 +61,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_toStartOf="@+id/bookingPhonwIMG"
-            android:ellipsize="end"/>
+            android:ellipsize="end"
+            android:maxLines="1"/>
 
         <ImageView
             android:src="@drawable/ic_action_name2"
