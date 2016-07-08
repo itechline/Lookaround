@@ -59,7 +59,18 @@
             android:layout_marginTop="10sp"
             android:layout_marginLeft="0sp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_toStartOf="@+id/bookingPhonwIMG"
+            android:ellipsize="end"/>
+
+        <ImageView
+            android:src="@drawable/ic_action_name2"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookingPhonwIMG"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds = "true"/>
     </RelativeLayout>
 
 
