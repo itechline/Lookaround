@@ -677,7 +677,7 @@ public class SpinnerUtil {
         hiredtestipusa.add(new SpinnerUtil(1, "25-ig"));
         hiredtestipusa.add(new SpinnerUtil(2, "26-50"));
         hiredtestipusa.add(new SpinnerUtil(3, "51-75"));
-        hiredtestipusa.add(new SpinnerUtil(4, "67-100"));
+        hiredtestipusa.add(new SpinnerUtil(4, "76-100"));
         hiredtestipusa.add(new SpinnerUtil(5, "101-125"));
         hiredtestipusa.add(new SpinnerUtil(6, "126-150"));
         hiredtestipusa.add(new SpinnerUtil(7, "150+"));
