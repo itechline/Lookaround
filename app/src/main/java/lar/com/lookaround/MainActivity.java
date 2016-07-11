@@ -1363,7 +1363,7 @@ public class MainActivity extends AppCompatActivity
             mon = 0;
         } else {
             day1text.setTextColor(Color.parseColor("#FFFFFF"));
-            day1text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day1text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay1 = true;
             mon = 1;
         }
@@ -1378,7 +1378,7 @@ public class MainActivity extends AppCompatActivity
             tue = 0;
         } else {
             day2text.setTextColor(Color.parseColor("#FFFFFF"));
-            day2text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day2text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay2 = true;
             tue = 1;
         }
@@ -1393,7 +1393,7 @@ public class MainActivity extends AppCompatActivity
             wed = 0;
         } else {
             day3text.setTextColor(Color.parseColor("#FFFFFF"));
-            day3text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day3text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay3 = true;
             wed = 1;
         }
@@ -1408,7 +1408,7 @@ public class MainActivity extends AppCompatActivity
             thu = 0;
         } else {
             day4text.setTextColor(Color.parseColor("#FFFFFF"));
-            day4text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day4text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay4 = true;
             thu = 1;
         }
@@ -1423,7 +1423,7 @@ public class MainActivity extends AppCompatActivity
             fri = 0;
         } else {
             day5text.setTextColor(Color.parseColor("#FFFFFF"));
-            day5text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day5text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay5 = true;
             fri = 1;
         }
@@ -1438,7 +1438,7 @@ public class MainActivity extends AppCompatActivity
             sat = 0;
         } else {
             day6text.setTextColor(Color.parseColor("#FFFFFF"));
-            day6text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day6text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay6 = true;
             sat = 1;
         }
@@ -1453,7 +1453,7 @@ public class MainActivity extends AppCompatActivity
             sun = 0;
         } else {
             day7text.setTextColor(Color.parseColor("#FFFFFF"));
-            day7text.setBackgroundColor(Color.parseColor("#0066CC"));
+            day7text.setBackgroundColor(Color.parseColor("#0066cc"));
             isDay7 = true;
             sun = 1;
         }
