@@ -2,13 +2,13 @@ package lar.com.lookaround.adapters;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import lar.com.lookaround.R;
 import lar.com.lookaround.models.Idopont;
 import lar.com.lookaround.restapi.SoapObjectResult;
-import lar.com.lookaround.util.CalendarBookingUtil;
 import lar.com.lookaround.util.EstateUtil;
 import lar.com.lookaround.util.SettingUtil;
 
@@ -38,9 +37,16 @@ public class CalendarMyBookingAdapter extends ArrayAdapter<Idopont> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_booking_item_myads, parent, false);
-        } else {
-
         }
+
+        ImageView phone = (ImageView) convertView.findViewById(R.id.bookingPhonwIMG);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tmp.getMobile(), null));
+                getContext().startActivity(intent);
+            }
+        });
 
         TextView when = (TextView) convertView.findViewById(R.id.booking_hours_text);
         TextView who = (TextView) convertView.findViewById(R.id.who_booked_it_text);
@@ -91,6 +97,9 @@ public class CalendarMyBookingAdapter extends ArrayAdapter<Idopont> {
 
         when.setText(tmp.getDatum());
         who.setText(tmp.getFel());
+
+
+
 
 
         return convertView;

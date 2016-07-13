@@ -11,6 +11,15 @@ public class Idopont {
     private String datum;
     private int felid;
     private String fel;
+    private String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getFel() {
         return fel;

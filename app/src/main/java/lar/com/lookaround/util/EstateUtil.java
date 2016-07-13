@@ -856,6 +856,7 @@ public class EstateUtil {
                     ArrayList<Idopont> dates = new ArrayList<>();
 
                     if (result != null) {
+                        Log.d("IDOPONT RESULT", result.toString());
                         try {
                             JSONArray arrs = new JSONArray(result);
                             for (int i = 0; i < arrs.length(); i++) {
@@ -867,6 +868,7 @@ public class EstateUtil {
                                 tmp.setStatus(obj.getInt("idopont_statusz"));
                                 tmp.setFelid(obj.getInt("idopont_id"));
                                 tmp.setFel(obj.getString("fel"));
+                                tmp.setMobile(obj.getString("fel_telefon"));
                                 dates.add(tmp);
                             }
 

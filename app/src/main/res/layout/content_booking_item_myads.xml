@@ -65,7 +65,7 @@
             android:maxLines="1"/>
 
         <ImageView
-            android:src="@drawable/ic_action_name2"
+            android:src="@drawable/ic_action_phone_new"
             android:layout_width="60sp"
             android:layout_height="wrap_content"
             android:id="@+id/bookingPhonwIMG"
