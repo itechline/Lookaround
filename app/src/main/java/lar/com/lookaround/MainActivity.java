@@ -2928,8 +2928,8 @@ public class MainActivity extends AppCompatActivity
                             ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
                             //viewFlip.removeAllViews();
                             Log.d("SLIDER NUMBER", String.valueOf(slider.getSliderOrderNumber()));
-                            viewFlip.addView(list, 1);
-                            viewFlip.setDisplayedChild(1);
+                            viewFlip.addView(list, 2);
+                            viewFlip.setDisplayedChild(2);
                             menuType = GALLERY_ZOOM;
 
 
@@ -4383,8 +4383,8 @@ public class MainActivity extends AppCompatActivity
                         break;
                     case GALLERY_ZOOM:
                         final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-                        viewFlip.setDisplayedChild(0);
-                        viewFlip.removeViewAt(1);
+                        viewFlip.setDisplayedChild(1);
+                        viewFlip.removeViewAt(2);
                         menuType = ESTATE_MENU;
                         break;
                     default:
@@ -4455,8 +4455,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case GALLERY_ZOOM:
                 final ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-                viewFlip.setDisplayedChild(0);
-                viewFlip.removeViewAt(1);
+                viewFlip.setDisplayedChild(1);
+                viewFlip.removeViewAt(2);
                 menuType = ESTATE_MENU;
                 break;
             default:
