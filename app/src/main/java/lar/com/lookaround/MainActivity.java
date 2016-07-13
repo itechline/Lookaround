@@ -2514,10 +2514,10 @@ public class MainActivity extends AppCompatActivity
         LayoutInflater inflater = (LayoutInflater)   getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentRealestate = inflater.inflate(R.layout.content_realestate, null);
         ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-        viewFlip.removeAllViews();
-        viewFlip.addView(contentRealestate, 0);
+        //viewFlip.removeAllViews();
+        viewFlip.addView(contentRealestate, 1);
 
-        viewFlip.setDisplayedChild(0);
+        viewFlip.setDisplayedChild(1);
 
         menuType = ESTATE_MENU;
         supportInvalidateOptionsMenu();
@@ -3128,166 +3128,192 @@ public class MainActivity extends AppCompatActivity
     boolean justme = false;
     int updateingid = 0;
     public void loadRealEstates() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View list = inflater.inflate(R.layout.content_istview, null);
-        ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
-        viewFlip.removeAllViews();
-        viewFlip.addView(list, 0);
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
-
-        viewFlip.setDisplayedChild(0);
-
-        getSupportActionBar().setTitle("Hirdetések");
-        if(isFavorite) {
-            getSupportActionBar().setTitle("Kedvencek");
-        }
-        if(justme) {
-            fab.setVisibility(View.INVISIBLE);
-            getSupportActionBar().setTitle("Hírdetéseim");
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
-        }
-
-        ArrayList<SpinnerUtil> arrayListSorting = (ArrayList) SpinnerUtil.get_list_szures();
-        final SpinnerAdapter adapterSorting = new SpinnerAdapter(MainActivity.this, arrayListSorting);
-        Spinner sortingSpinner = (Spinner) findViewById(R.id.sort_estates_spinner);
-        adapterSorting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortingSpinner.setAdapter(adapterSorting);
-        for (int i = 0; i < arrayListSorting.size(); i++) {
-            if(arrayListSorting.get(i).getId() == ing_ordering) {
-                sortingSpinner.setSelection(i);
+        if (menuType != ESTATE_MENU) {
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        }
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View list = inflater.inflate(R.layout.content_istview, null);
+            ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
 
-        sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
-                if(ing_ordering != spinnerUtil.getId()) {
-                    ing_ordering = spinnerUtil.getId();
-                    loadRealEstates();
+            viewFlip.removeAllViews();
+            viewFlip.addView(list, 0);
+
+
+            final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            final FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+
+            viewFlip.setDisplayedChild(0);
+
+            getSupportActionBar().setTitle("Hirdetések");
+            if (isFavorite) {
+                getSupportActionBar().setTitle("Kedvencek");
+            }
+            if (justme) {
+                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Hírdetéseim");
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_backicon);
+            }
+
+            ArrayList<SpinnerUtil> arrayListSorting = (ArrayList) SpinnerUtil.get_list_szures();
+            final SpinnerAdapter adapterSorting = new SpinnerAdapter(MainActivity.this, arrayListSorting);
+            Spinner sortingSpinner = (Spinner) findViewById(R.id.sort_estates_spinner);
+            adapterSorting.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sortingSpinner.setAdapter(adapterSorting);
+            for (int i = 0; i < arrayListSorting.size(); i++) {
+                if (arrayListSorting.get(i).getId() == ing_ordering) {
+                    sortingSpinner.setSelection(i);
                 }
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            sortingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    SpinnerUtil spinnerUtil = adapterSorting.getItem(position);
+                    if (ing_ordering != spinnerUtil.getId()) {
+                        ing_ordering = spinnerUtil.getId();
+                        loadRealEstates();
+                    }
+                }
 
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            TextView typeText = (TextView) viewFlip.getCurrentView().findViewById(R.id.estate_type_textview);
+            switch (adType) {
+                case 1:
+                    typeText.setText("Eladó");
+                    break;
+                case 2:
+                    typeText.setText("Kiadó");
+                    break;
+                default:
+                    typeText.setText("Mindegy");
+                    break;
             }
-        });
 
-        TextView typeText = (TextView) viewFlip.getCurrentView().findViewById(R.id.estate_type_textview);
-        switch (adType) {
-            case 1:
-                typeText.setText("Eladó");
-                break;
-            case 2:
-                typeText.setText("Kiadó");
-                break;
-            default:
-                typeText.setText("Mindegy");
-                break;
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    crudEstate(null);
+                }
+            });
+            fab.setVisibility(View.VISIBLE);
+
+            fab_phone.setVisibility(View.INVISIBLE);
+
+            final SwipeRefreshLayout swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+            swipeContainer.setRefreshing(true);
+
+            swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadRealEstates();
+                }
+            });
+            swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+
+            pageCount = 0;
+            isRefreshing = false;
+            EstateUtil.largestId = 0;
+            updateingid = 0;
+            EstateUtil.listEstates(new SoapObjectResult() {
+                                       @Override
+                                       public void parseRerult(Object result) {
+                                           final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
+                                           final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers, new SoapObjectResult() {
+                                               @Override
+                                               public void parseRerult(Object result) {
+                                                   //TODO: szerkeszt
+                                                   EstateUtil util = (EstateUtil) result;
+                                                   crudEstate(util);
+                                               }
+                                           });
+                                           final ListView listView = (ListView) findViewById(R.id.estateListView);
+                                           if (listView == null)
+                                               return;
+                                           listView.setAdapter(adapter);
+                                           listView.setDivider(null);
+                                           listView.setDividerHeight(0);
+                                           listView.setOnItemClickListener(new ItemList());
+
+                                           listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                                               @Override
+                                               public void onScrollStateChanged(AbsListView view, int scrollState) {
+                                               }
+
+                                               @Override
+                                               public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                                                   adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
+                                                   if (firstVisibleItem + visibleItemCount == totalItemCount) {
+                                                       if (!isRefreshing) {
+                                                           pageCount += 1;
+                                                           isRefreshing = true;
+                                                           String pageStr = String.valueOf(pageCount);
+                                                           String lrgst = String.valueOf(EstateUtil.largestId);
+                                                           EstateUtil.listEstates(new SoapObjectResult() {
+                                                                                      @Override
+                                                                                      public void parseRerult(Object result) {
+                                                                                          ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
+                                                                                          if (arrayOfUsers.size() == 0) {
+
+                                                                                          } else {
+                                                                                              adapter.addAll(arrayOfUsers);
+                                                                                              isRefreshing = false;
+                                                                                          }
+                                                                                      }
+                                                                                  }, lrgst, pageStr, SettingUtil.getToken(MainActivity.this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
+                                                                   furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
+                                                                   type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
+                                                       }
+                                                   }
+                                               }
+                                           });
+                                           if (swipeContainer != null)
+                                               swipeContainer.setRefreshing(false);
+                                       }
+                                   }, String.valueOf(0), String.valueOf(pageCount), SettingUtil.getToken(this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
+                    furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
+                    type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
+
+            menuType = MAIN_MENU;
+            supportInvalidateOptionsMenu();
+        } else {
+            ViewFlipper viewFlip = (ViewFlipper) findViewById(R.id.viewFlipperContent);
+            viewFlip.setDisplayedChild(0);
+            viewFlip.removeViewAt(1);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            FloatingActionButton fab_phone = (FloatingActionButton) findViewById(R.id.fab_phone);
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    crudEstate(null);
+                }
+            });
+            fab.setVisibility(View.VISIBLE);
+
+            fab_phone.setVisibility(View.INVISIBLE);
+            menuType = MAIN_MENU;
         }
-
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_menuicon);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                crudEstate(null);
-            }
-        });
-        fab.setVisibility(View.VISIBLE);
-
-        fab_phone.setVisibility(View.INVISIBLE);
-
-        final SwipeRefreshLayout swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        swipeContainer.setRefreshing(true);
-
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadRealEstates();
-            }
-        });
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-        pageCount = 0;
-        isRefreshing = false;
-        EstateUtil.largestId = 0;
-        updateingid = 0;
-        EstateUtil.listEstates(new SoapObjectResult() {
-            @Override
-            public void parseRerult(Object result) {
-                final ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
-                final EstateAdapter adapter = new EstateAdapter(MainActivity.this, arrayOfUsers, new SoapObjectResult() {
-                    @Override
-                    public void parseRerult(Object result) {
-                        //TODO: szerkeszt
-                        EstateUtil util = (EstateUtil)result;
-                        crudEstate(util);
-                    }
-                });
-                final ListView listView = (ListView) findViewById(R.id.estateListView);
-                if(listView == null)
-                    return;
-                listView.setAdapter(adapter);
-                listView.setDivider(null);
-                listView.setDividerHeight(0);
-                listView.setOnItemClickListener(new ItemList());
-
-                listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(AbsListView view, int scrollState) {
-                    }
-
-                    @Override
-                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                        adapter.stopDownloadingImage(firstVisibleItem, firstVisibleItem + visibleItemCount);
-                        if (firstVisibleItem + visibleItemCount == totalItemCount) {
-                            if (!isRefreshing) {
-                                pageCount += 1;
-                                isRefreshing = true;
-                                String pageStr = String.valueOf(pageCount);
-                                String lrgst = String.valueOf(EstateUtil.largestId);
-                                EstateUtil.listEstates(new SoapObjectResult() {
-                                    @Override
-                                    public void parseRerult(Object result) {
-                                        ArrayList<EstateUtil> arrayOfUsers = (ArrayList) result;
-                                        if(arrayOfUsers.size() == 0) {
-
-                                        } else {
-                                            adapter.addAll(arrayOfUsers);
-                                            isRefreshing = false;
-                                        }
-                                    }
-                                }, lrgst, pageStr, SettingUtil.getToken(MainActivity.this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
-                                        furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
-                                        type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
-                            }
-                        }
-                    }
-                });
-                if (swipeContainer != null)
-                    swipeContainer.setRefreshing(false);
-            }
-        }, String.valueOf(0), String.valueOf(pageCount), SettingUtil.getToken(this), isFavorite ? "1" : "0", String.valueOf(ing_type), String.valueOf(ing_ordering), justme ? "1" : "0",
-                furniture_int, lift_int, balcony_int, meret_int, szobaMax_int, szobaMin_int, floorsMax_int, floorsMint_int,
-                type_int, allapot_int, energigenyo_int, panoramaSpinner_int, parkolasSpinner_int, price_from, price_to, key);
-
-        menuType = MAIN_MENU;
-        supportInvalidateOptionsMenu();
     }
 
     public void loadBooking() {
