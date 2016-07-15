@@ -2331,10 +2331,12 @@ public class MainActivity extends AppCompatActivity
                                                      estetaHouseNumber = "";
                                                      estateSize = "";
 
+
+
                                                      getEstateContent(resArray.get(resArray.size() - 1).getId());
                                                      Snackbar.make(viewFlipAddEstate.getCurrentView(), "Hirdetés feladva!", Snackbar.LENGTH_LONG)
                                                              .setAction("Action", null).show();
-                                                     Log.d("ADDESTATE_HASH: ", resArray.get(0).getHash());
+                                                     viewFlipAddEstate.removeAllViews();
                                                  } else {
                                                      showAlertError("Sikertelen feltöltés");
 

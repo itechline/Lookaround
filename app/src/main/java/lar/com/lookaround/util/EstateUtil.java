@@ -866,7 +866,7 @@ public class EstateUtil {
                                 tmp.setIid(obj.getInt("idopont_ingatlan_id"));
                                 tmp.setDatum(obj.getString("idopont_bejelentkezes"));
                                 tmp.setStatus(obj.getInt("idopont_statusz"));
-                                tmp.setFelid(obj.getInt("idopont_id"));
+                                tmp.setFelid(obj.getInt("fel_id"));
                                 tmp.setFel(obj.getString("fel"));
                                 tmp.setMobile(obj.getString("fel_telefon"));
                                 dates.add(tmp);
