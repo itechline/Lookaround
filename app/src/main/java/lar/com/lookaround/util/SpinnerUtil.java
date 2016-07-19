@@ -487,8 +487,8 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    Log.d("SPINNER URL", urlend);
-                    Log.d("SPINNER RESULT", result);
+                    //Log.d("SPINNER URL", urlend);
+                    //Log.d("SPINNER RESULT", result);
 
                     if (result != null) {
                         try {
