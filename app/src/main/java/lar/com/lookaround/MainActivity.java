@@ -1946,7 +1946,7 @@ public class MainActivity extends AppCompatActivity
                             }
                         });
 
-                        Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinner);
+                        Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinnerke);
                         Spinner allapotSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_condition_spinner);
                         Spinner emeletekSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_floors_spinner);
                         Spinner ingatlanTipusSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_type_spinner);
@@ -1961,6 +1961,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void parseRerult(Object result) {
                                 SpinnerUtil util = (SpinnerUtil)result;
+                                Log.d("SZOBASZAM", "SPINNER");
                                 szobaszamSpinner_int = util.getId();
                             }
                         }, szobaszamSpinner, szobaszamSpinner_int, "list_ingatlanszoba");
@@ -1969,6 +1970,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void parseRerult(Object result) {
                                 SpinnerUtil util = (SpinnerUtil) result;
+                                Log.d("ALLAPOT", "SPINNER");
                                 allapotSpinner_int = util.getId();
                             }
                         }, allapotSpinner, allapotSpinner_int, "list_ingatlanallapota");
@@ -1977,6 +1979,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void parseRerult(Object result) {
                                 SpinnerUtil util = (SpinnerUtil)result;
+                                Log.d("EMELT", "SPINNER");
                                 emeletekSpinner_int = util.getId();
                             }
                         }, emeletekSpinner, emeletekSpinner_int, "list_ingatlanemelet");
@@ -1985,6 +1988,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void parseRerult(Object result) {
                                 SpinnerUtil util = (SpinnerUtil)result;
+                                Log.d("TIPUS", "SPINNER");
                                 ingatlanTipusSpinner_int = util.getId();
                             }
                         }, ingatlanTipusSpinner, ingatlanTipusSpinner_int, "list_ingatlantipus");
@@ -2070,7 +2074,7 @@ public class MainActivity extends AppCompatActivity
 
                 case 2:
                     viewFlipAddEstate.setDisplayedChild(1);
-                    Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinner);
+                    Spinner szobaszamSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_rooms_spinnerke);
                     Spinner allapotSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_condition_spinner);
                     Spinner emeletekSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_floors_spinner);
                     Spinner ingatlanTipusSpinner = (Spinner)viewFlipAddEstate.getCurrentView().findViewById(R.id.addestate_type_spinner);

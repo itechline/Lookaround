@@ -231,7 +231,7 @@
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="30sp"
-                    android:id="@+id/addestate_rooms_spinner"
+                    android:id="@+id/addestate_rooms_spinnerke"
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:gravity="left"

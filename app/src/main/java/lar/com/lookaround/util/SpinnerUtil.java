@@ -487,7 +487,8 @@ public class SpinnerUtil {
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
-                    //Log.d("spinnerbonodom", "ingatlanemelet "+result);
+                    Log.d("SPINNER URL", urlend);
+                    Log.d("SPINNER RESULT", result);
 
                     if (result != null) {
                         try {
@@ -502,8 +503,26 @@ public class SpinnerUtil {
                                 JSONObject json_data = jsonArray.getJSONObject(i);
                                 Iterator<String> keys = json_data.keys();
 
-                                int idJson = json_data.getInt((String) keys.next());
-                                String nameJson = json_data.getString((String) keys.next());
+                                String idKey = "";
+                                String valueKey = "";
+
+                                String tmp = keys.next();
+                                String tmp2 = keys.next();
+
+                                if(tmp.contains("id")) {
+                                    idKey = tmp;
+                                } else {
+                                    valueKey = tmp;
+                                }
+
+                                if(tmp2.contains("id")) {
+                                    idKey = tmp2;
+                                } else {
+                                    valueKey = tmp2;
+                                }
+
+                                int idJson = json_data.getInt(idKey);
+                                String nameJson = json_data.getString(valueKey);
                                 if(idJson == 0) {
                                     nameJson = "Nincs Megadva";
                                 }
