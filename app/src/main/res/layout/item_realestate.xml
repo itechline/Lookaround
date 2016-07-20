@@ -9,10 +9,19 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="201sp"
         android:layout_marginTop="4sp"
         android:background="@drawable/background_shadow">
 
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:id="@+id/kiemeles_listpic"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
 
         <TextView
             android:layout_width="wrap_content"
