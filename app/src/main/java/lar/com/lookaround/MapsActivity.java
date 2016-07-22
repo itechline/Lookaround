@@ -176,9 +176,16 @@ public class MapsActivity extends AppCompatActivity {
         private final LatLng mPosition;
         private final int id;
 
-        public MyItem(double lat, double lng, int id) {
+        public String getHash() {
+            return hash;
+        }
+
+        private final String hash;
+
+        public MyItem(double lat, double lng, int id, String hash) {
             mPosition = new LatLng(lat, lng);
             this.id = id;
+            this.hash = hash;
         }
 
         @Override
@@ -202,7 +209,8 @@ public class MapsActivity extends AppCompatActivity {
                     MyItem offsetItem = new MyItem(
                             arrayOfUsers.get(i).getLat(),
                             arrayOfUsers.get(i).getLng(),
-                            arrayOfUsers.get(i).getId());
+                            arrayOfUsers.get(i).getId(),
+                            arrayOfUsers.get(i).getHash());
 
                     mClusterManager.addItem(offsetItem);
                 }
@@ -277,7 +285,8 @@ public class MapsActivity extends AppCompatActivity {
                 //finish();
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",clickedClusterItem.getID());
-                setResult(Activity.RESULT_OK,returnIntent);
+                returnIntent.putExtra("hash", clickedClusterItem.getHash());
+                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
         });
@@ -416,7 +425,7 @@ public class MapsActivity extends AppCompatActivity {
     }
 
 
-    private void addItems() {
+    /*private void addItems() {
 
         // Set some lat/lng coordinates to start with.
         double lat = 51.5145160;
@@ -430,7 +439,7 @@ public class MapsActivity extends AppCompatActivity {
             MyItem offsetItem = new MyItem(lat, lng, 1);
             mClusterManager.addItem(offsetItem);
         }
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

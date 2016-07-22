@@ -408,10 +408,11 @@ public class EstateUtil {
         this.id = id;
     }
 
-    public EstateUtil(int id, double lat, double lng) {
+    public EstateUtil(int id, double lat, double lng, String hash) {
         this.id = id;
         this.lat = lat;
         this.lng = lng;
+        this.hash = hash;
     }
 
 
@@ -1161,8 +1162,9 @@ public class EstateUtil {
                                 int idJson = json_data.getInt(INGATLAN_ID);
                                 double latJson = json_data.getDouble(INGATLAN_LAT);
                                 double lngJson = json_data.getDouble(INGATLAN_LNG);
+                                String hsh = json_data.getString("ingatlan_hash");
 
-                                estates.add(new EstateUtil(idJson, latJson, lngJson));
+                                estates.add(new EstateUtil(idJson, latJson, lngJson, hsh));
 
                                 if (idJson > largestId) {
                                     largestId = idJson;

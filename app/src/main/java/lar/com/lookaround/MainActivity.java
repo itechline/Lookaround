@@ -1540,10 +1540,17 @@ public class MainActivity extends AppCompatActivity
                 int result=data.getIntExtra("result", 0);
                 if (result != 0) {
                     getEstateContent(result);
+                    String hsh = data.getStringExtra("hash");
+
+                    //EstateAdapter adapter = (EstateAdapter) ;
+                    //EstateUtil estateUtil = adapter.getItem(0);
+                    //currentEstate = estateUtil;
+
+                    hashFromMaps = hsh;
                 }
         }
     }
-
+    String hashFromMaps = "";
 
     private void callPopup(final int id, final LinearLayout layout) {
 
@@ -2997,6 +3004,7 @@ public class MainActivity extends AppCompatActivity
             EstateAdapter adapter = (EstateAdapter)parent.getAdapter();
             EstateUtil estateUtil = adapter.getItem(position);
             currentEstate = estateUtil;
+            hashFromMaps = "";
             getEstateContent(currentEstate.getId());
         }
     }
@@ -4327,12 +4335,20 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.action_message:
-                loadMessagesForEstate(currentEstate.getHash(), 0);
+                if (hashFromMaps != "") {
+                    loadMessagesForEstate(hashFromMaps, 0);
+                } else {
+                    loadMessagesForEstate(currentEstate.getHash(), 0);
+                }
                 break;
             case R.id.action_share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "A Bonodom.com –on találtam ezt az ingatlant: " + "\n\n" + "https://bonodom.com/ad/details/" + currentEstate.getHash());
+                if (hashFromMaps != "") {
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "A Bonodom.com –on találtam ezt az ingatlant: " + "\n\n" + "https://bonodom.com/ad/details/" + hashFromMaps);
+                } else {
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "A Bonodom.com –on találtam ezt az ingatlant: " + "\n\n" + "https://bonodom.com/ad/details/" + currentEstate.getHash());
+                }
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.advert_city)));
                 break;

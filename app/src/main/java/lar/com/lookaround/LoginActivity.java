@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -97,6 +96,8 @@ public class LoginActivity extends AppCompatActivity {
     String first_name_FB;
     String last_name_FB;
     String user_fb_id;
+
+    Bitmap fb_profile_pic = null;
 
 
     @Override
@@ -189,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                    //TODO: adatokat feltölteni és profilképet is ha van
+                    //TODO: fb_profile_pic feltöltése ha facebook-al regisztrált
                     EstateUtil.updateReg(new SoapObjectResult() {
                         @Override
                         public void parseRerult(Object result) {
@@ -392,9 +393,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                         try {
                                             URL image_value = new URL("http://graph.facebook.com/"+ user_fb_id+ "/picture?type=large");
-                                            Bitmap bmp = null;
                                             try {
-                                                bmp = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
+                                                fb_profile_pic = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
                                             } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
@@ -427,6 +427,7 @@ public class LoginActivity extends AppCompatActivity {
                                             public void parseRerult(Object result) {
                                                 if ((boolean) result) {
                                                     ringProgressDialog.dismiss();
+                                                    switchLayoutTo(FIRSTSETTINGS);
                                                     //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                     //finish();
                                                 } else {
