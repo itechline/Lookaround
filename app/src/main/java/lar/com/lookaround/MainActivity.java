@@ -497,6 +497,7 @@ public class MainActivity extends AppCompatActivity
                                         tmp.set(Calendar.SECOND, 0);
 
                                         String mikor = sdf.format(tmp.getTime());
+                                        Log.d("MIKOR", mikor);
 
                                         EstateUtil.addIdopont(new SoapObjectResult() {
                                             @Override

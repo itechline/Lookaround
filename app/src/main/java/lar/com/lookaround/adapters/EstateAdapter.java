@@ -1,6 +1,5 @@
 package lar.com.lookaround.adapters;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,18 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -88,34 +83,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             TextView street = (TextView) convertView.findViewById(R.id.item_realestate_adress2);
             TextView description = (TextView) convertView.findViewById(R.id.item_realestate_description);
 
-            final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
 
-            TextView size = (TextView) convertView.findViewById(R.id.list_size_textView);
-            TextView rooms = (TextView) convertView.findViewById(R.id.list_roomcount_textView);
-            ImageView furniture = (ImageView) convertView.findViewById(R.id.list_furniture_imageview);
-            ImageView balcony = (ImageView) convertView.findViewById(R.id.list_balcony_imageview);
-            ImageView parking = (ImageView) convertView.findViewById(R.id.list_parking_imageview);
-
-            size.setText(estate.getMeret());
-            rooms.setText(String.valueOf(estate.getSzobaszam()));
-
-            if (estate.getButor() == 1) {
-                furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nofurniture));
-            } else {
-                furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
-            }
-
-            if (estate.getErkely() == 0) {
-                balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nobalcony));
-            } else {
-                balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
-            }
-
-            if (estate.getParkolas() == 4) {
-                parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
-            } else {
-                parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));
-            }
 
 
             adress.setText(estate.getAdress());
@@ -123,6 +91,36 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
             description.setText(estate.getDescription());
 
             if (estate.getJustme().equals("0")) {
+                final CheckBox fav = (CheckBox) convertView.findViewById(R.id.item_realestate_isfavourite);
+
+                TextView size = (TextView) convertView.findViewById(R.id.list_size_textView);
+                TextView rooms = (TextView) convertView.findViewById(R.id.list_roomcount_textView);
+                ImageView furniture = (ImageView) convertView.findViewById(R.id.list_furniture_imageview);
+                ImageView balcony = (ImageView) convertView.findViewById(R.id.list_balcony_imageview);
+                ImageView parking = (ImageView) convertView.findViewById(R.id.list_parking_imageview);
+
+                size.setText(estate.getMeret());
+                rooms.setText(String.valueOf(estate.getSzobaszam()));
+
+                if (estate.getButor() == 1) {
+                    furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nofurniture));
+                } else {
+                    furniture.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_furniture));
+                }
+
+                if (estate.getErkely() == 2) {
+                    balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_nobalcony));
+                } else {
+                    balcony.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_balcony));
+                }
+
+                if (estate.getParkolas() == 4) {
+                    parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_noparking));
+                } else {
+                    parking.setImageDrawable(getContext().getResources().getDrawable(R.drawable.list_parking));
+                }
+
+
                 TextView price = (TextView) convertView.findViewById(R.id.Price);
 
                 Locale locale = new Locale("en", "UK");

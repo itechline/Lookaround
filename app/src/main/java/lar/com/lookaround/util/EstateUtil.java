@@ -789,6 +789,9 @@ public class EstateUtil {
             postadatok.put("token", token);
             postadatok.put("datum", mikor);
             postadatok.put("ingatlan_id", String.valueOf(ingatlan_id));
+
+            Log.d("IDOPONT DATUM", mikor);
+            Log.d("IDOPONT INGATLAN ID", String.valueOf(ingatlan_id));
             SoapService ss = new SoapService(new SoapResult() {
                 @Override
                 public void parseRerult(String result) {
