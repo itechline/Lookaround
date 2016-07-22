@@ -307,6 +307,7 @@
     <string name="vr_button">Körbejárás</string>
     <string name="coming_soon">(Hamarosan)</string>
     <string name="areyousure_delete">Biztosan törli a hírdetést?</string>
+    <string name="upmyad_button">Lista elejére</string>
 
     <string-array name="varosok_array">
         <item>Aba</item>

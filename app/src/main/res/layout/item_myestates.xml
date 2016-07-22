@@ -50,80 +50,6 @@
             android:visibility="visible" />
 
         <LinearLayout
-            android:id="@+id/icons_linera_layout"
-            android:orientation="horizontal"
-            android:layout_width="230sp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout4"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:gravity="fill_vertical">
-
-            <ImageView
-                android:src="@drawable/list_size"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_size_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="100"
-                android:id="@+id/list_size_textView"
-                android:layout_margin="5sp"
-                android:gravity="center_vertical" />
-
-            <ImageView
-                android:src="@drawable/list_roomcount"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_roomcount_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="3"
-                android:id="@+id/list_roomcount_textView"
-                android:layout_margin="5sp"
-                android:gravity="center_vertical" />
-
-            <ImageView
-                android:src="@drawable/list_furniture"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_furniture_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <ImageView
-                android:src="@drawable/list_balcony"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_balcony_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <ImageView
-                android:src="@drawable/list_parking"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_parking_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -197,13 +123,10 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/icons_linera_layout"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
             android:layout_marginLeft="10sp"
-            android:layout_marginTop="20sp"
             android:layout_marginRight="10sp"
-            android:layout_marginBottom="10sp">
+            android:layout_below="@+id/myads_up_button"
+            android:layout_toEndOf="@+id/item_realestate_mainpic">
 
             <Button
                 android:layout_width="wrap_content"
@@ -229,6 +152,22 @@
                 android:layout_marginRight="5sp"
                 android:textColor="#ff0000" />
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:text="@string/upmyad_button"
+            android:id="@+id/myads_up_button"
+            android:layout_below="@+id/relativeLayout4"
+            android:layout_alignEnd="@+id/myads_button_layout"
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:background="@drawable/buttonup_border"
+            android:textColor="#00d548"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_alignStart="@+id/myads_button_layout" />
     </RelativeLayout>
 
 </LinearLayout>
