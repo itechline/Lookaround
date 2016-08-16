@@ -27,17 +27,18 @@
     <string name="send">Küldés</string>
     <string name="forgotten_pass_text">Új jelszó beállításához kérjük adja meg a regisztrált e-mail címét. Rendszerünk a megadott e-mail címre kiküldi az új jelszavát, amit később megváltoztathat</string>
     <string name="offensive_ad">Hibás, sértő hírdetés bejelentése</string>
-    <string name="button_go">MEHET</string>
-    <string name="button_next">KÖVETKEZŐ</string>
-    <string name="button_back">VISSZA</string>
-    <string name="button_save">MENTÉS</string>
-    <string name="button_cancel">MÉGSE</string>
+    <string name="button_go">Mehet</string>
+    <string name="button_next">Következő</string>
+    <string name="button_back">Vissza</string>
+    <string name="button_save">Mentés</string>
+    <string name="button_cancel">Mégse</string>
     <string name="button_picswap">Kép lecserélése</string>
     <string name="button_picdelete">Kép törlése</string>
     <string name="button_delete">törlés</string>
     <string name="button_modify">módosít</string>
     <string name="button_yes">Igen</string>
     <string name="button_no">Nem</string>
+    <string name="button_finish">Befejezés</string>
 
     <!-- activity drawer stringek -->
     <string name="mainpage">Összes hirdetés</string>
@@ -286,7 +287,9 @@
     <string name="first_setting_p1_hint">Város megadása</string>
     <string name="first_settings_page2">Kérjük adja meg a telefonszámát, hogy könnyebben el tudják érni a hírdetésével kapcsolatban</string>
     <string name="first_setting_p2_hint">Telefonszám megadása</string>
-    <string name="first_settings_page3">Fotózzon vagy töltsön fel profil képet (opcionális)</string>
+    <string name="first_settings_page3">Készítsen profilképet magának, vagy töltsön fel egyet készüléke galériájából "\n\n" (Nem kötelező)</string>
+    <string name="first_setting_pickphoto">Készülék galéria</string>
+    <string name="first_setting_takephoto">Fényképezés</string>
 
     <string name="booking_text">FOGLALÁS</string>
 
