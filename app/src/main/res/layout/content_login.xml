@@ -45,16 +45,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/LL_login"
             android:layout_below="@+id/passwLogin"
-            android:layout_centerHorizontal="true"
             android:layout_margin="5sp"
-            android:gravity="fill_horizontal|fill_vertical">
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_centerHorizontal="true">
 
             <RelativeLayout
                 android:id="@+id/login_withfacebook_button_layout"
                 android:onClick="fb_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5sp">
+                android:layout_margin="5sp"
+                android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/face"
                     android:layout_width="20sp"
@@ -79,7 +80,8 @@
                 android:id="@+id/login_withgoogleplus_button_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5sp">
+                android:layout_margin="5sp"
+                android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/g_plus"
                     android:layout_width="20sp"

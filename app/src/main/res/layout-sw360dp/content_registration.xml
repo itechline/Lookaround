@@ -30,7 +30,7 @@
     <RelativeLayout
         android:id="@+id/Layout_Registration_360"
         android:layout_width="match_parent"
-        android:layout_height="370sp"
+        android:layout_height="350sp"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:paddingRight="15sp"
