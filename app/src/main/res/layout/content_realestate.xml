@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ededed">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView2">
+        android:id="@+id/scrollView2"
+        android:background="#ededed">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/item_scv_relative_layout"
-            >
+            android:background="#ededed">
 
             <RelativeLayout
                 android:id="@+id/item_realestate_profile_layout"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="50sp"
-                android:layout_marginTop="250sp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true">
+                android:layout_marginTop="260sp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
+                android:background="@color/cardview_light_background"
+                android:elevation="2dp">
 
                 <ImageView
                     android:src="@drawable/avatar"
@@ -71,7 +76,11 @@
                 android:id="@+id/item_realestate_addresses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/item_realestate_profile_layout">
+                android:layout_below="@id/item_realestate_profile_layout"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:elevation="2dp"
+                android:background="#ffffff">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,9 +108,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/item_realestate_hscrollview"
                 android:layout_below="@id/item_realestate_addresses"
-                android:layout_margin="5sp"
+                android:layout_margin="10sp"
                 android:scrollbars="none"
-                >
+                android:background="#ffffff"
+                android:elevation="2dp">
 
 
                 <RelativeLayout
@@ -306,81 +316,107 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/item_realestate_hscrollview"
-                android:layout_margin="5sp">
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
+                android:background="#ffffff"
+                android:elevation="2dp">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/item_realestate_description_text" />
+                    android:id="@+id/item_realestate_description_text"
+                    android:layout_margin="5sp" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:id="@+id/realestate_whats_near_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60sp"
                 android:layout_below="@id/realestate_dtail_layout"
-                android:layout_margin="5sp">
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp">
 
-                <TextView
+
+
+                <RelativeLayout
+                    android:id="@+id/realestate_stats_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@id/realestate_whats_near_layout"
+                    android:onClick="doVR"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="#ffffff"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5sp"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:id="@+id/vr_button_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vr_button"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/vr_icon_imageview"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:src="@drawable/vr_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60sp"
+                        android:id="@+id/vr_icon_imageview"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/iwantoseeonmaps_button"
                     android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:text="@string/i_want_to_see_it_on_maps"
+                    android:layout_height="fill_parent"
                     android:onClick="seeOnMap"
-                    android:layout_margin="5sp"
-                    android:background="@drawable/colorbutton"
-                    android:textColor="#ffffff"
+                    android:background="#ffffff"
                     android:gravity="center_horizontal|center_vertical"
-                    android:textStyle="bold"
-                    />
-            </RelativeLayout>
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5sp"
+                    android:elevation="2dp">
 
-            <RelativeLayout
-                android:id="@+id/realestate_stats_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/realestate_whats_near_layout"
-                android:layout_margin="10sp"
-                android:onClick="doVR"
-                android:gravity="center_vertical|center_horizontal"
-                android:background="@drawable/spinner_border">
+                    <ImageView
+                        android:src="@drawable/googlemapsicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60sp"
+                        android:id="@+id/map_icon_view"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter" />
 
-                <TextView
-                    android:id="@+id/vr_button_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vr_button"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/vr_icon_imageview"
-                    android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/seeonmap_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/i_want_to_see_it_on_maps"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/map_icon_view"
+                        android:textStyle="italic"
+                        android:textColor="#f25e36"
+                        android:textAlignment="center"
+                        android:layout_margin="2sp" />
 
-                <ImageView
-                    android:src="@drawable/vr_icon"
-                    android:layout_width="60sp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/vr_icon_imageview"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/coming_soon"
-                    android:id="@+id/vr_coming_soon"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/vr_button_textview"
-                    android:textColor="#f25e36"
-                    android:layout_margin="10sp" />
 
-            </RelativeLayout>
+                    </RelativeLayout>
+
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/item_offensive_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/realestate_stats_layout"
+                android:layout_below="@id/realestate_whats_near_layout"
                 android:layout_marginRight="10sp"
                 android:layout_marginBottom="10sp"
                 android:layout_marginLeft="10sp">
@@ -411,7 +447,8 @@
                 android:layout_height="250sp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                />
+                android:background="#ededed"
+                android:elevation="2dp" />
 
 
         </RelativeLayout>
