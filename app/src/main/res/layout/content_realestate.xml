@@ -46,7 +46,8 @@
                     android:layout_alignTop="@+id/profile_avatar"
                     android:layout_toRightOf="@+id/profile_avatar"
                     android:layout_toEndOf="@+id/profile_avatar"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -55,7 +56,8 @@
                     android:id="@+id/profile_type_text"
                     android:layout_alignBottom="@+id/profile_avatar"
                     android:layout_alignLeft="@+id/profile_name_text"
-                    android:layout_alignStart="@+id/profile_name_text" />
+                    android:layout_alignStart="@+id/profile_name_text"
+                    android:fontFamily="sans-serif-light" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -67,7 +69,8 @@
                     android:background="#0066cc"
                     android:textColor="#ffffff"
                     android:layout_margin="10sp"
-                    android:padding="2sp" />
+                    android:padding="2sp"
+                    android:fontFamily="sans-serif-medium" />
 
 
             </RelativeLayout>
@@ -91,7 +94,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
                     android:textStyle="bold"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-medium" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,7 +103,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:id="@+id/item_realestate_optional_address"
                     android:layout_below="@id/item_realestate_needed_address"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:fontFamily="sans-serif-light" />
 
             </RelativeLayout>
 
@@ -135,11 +140,13 @@
                                 android:layout_column="1"
                                 android:text="@string/roomcount_realestate_item"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/roomcount_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp"/>
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -148,11 +155,13 @@
                                 android:layout_column="1"
                                 android:text="@string/size_realestate_item"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/size_realestate_item_value"
                                 android:gravity="right"
-                                android:padding="3sp"/>
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -162,11 +171,14 @@
                                 android:layout_column="1"
                                 android:text="@string/type_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/type_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light"
+                                />
                         </TableRow>
 
                         <TableRow>
@@ -175,11 +187,13 @@
                                 android:layout_column="1"
                                 android:text="@string/elevator_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/elevator_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -188,11 +202,13 @@
                                 android:layout_column="1"
                                 android:text="@string/balcony_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/balcony_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -201,11 +217,13 @@
                                 android:layout_column="1"
                                 android:text="@string/parking_realestate"
                                 android:padding="3dip"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/parking_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp"/>
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
 
@@ -218,7 +236,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/realestate_dtail_table2"
-                        android:layout_alignEnd="@+id/item_realestate_hscrollview"
                         android:layout_toRightOf="@+id/realestate_dtail_table1"
                         android:layout_margin="5sp">
 
@@ -229,11 +246,13 @@
                                 android:layout_column="2"
                                 android:text="@string/condition_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/condition_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -242,11 +261,13 @@
                                 android:layout_column="2"
                                 android:text="@string/floors_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/floors_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -255,11 +276,13 @@
                                 android:layout_column="2"
                                 android:text="@string/heating_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/heating_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp"/>
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -268,11 +291,13 @@
                                 android:layout_column="2"
                                 android:text="@string/energy_certificate_realestate"
                                 android:padding="3dip"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/energy_certificate_realestate_item_value"
                                 android:gravity="right"
-                                android:padding="3sp"/>
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -281,11 +306,13 @@
                                 android:layout_column="2"
                                 android:text="@string/has_furniture_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
                             <TextView
                                 android:id="@+id/hasfurniture_realestate_item_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
                         </TableRow>
 
                         <TableRow>
@@ -295,12 +322,14 @@
                                 android:layout_column="2"
                                 android:text="@string/view_realestate"
                                 android:padding="3sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
 
                             <TextView
                                 android:id="@+id/view_realestate_value"
                                 android:gravity="right"
-                                android:padding="3sp" />
+                                android:padding="3sp"
+                                android:fontFamily="sans-serif-light" />
 
                         </TableRow>
 
@@ -328,7 +357,8 @@
                     android:layout_height="wrap_content"
                     android:text="New Text"
                     android:id="@+id/item_realestate_description_text"
-                    android:layout_margin="5sp" />
+                    android:layout_margin="5sp"
+                    android:fontFamily="sans-serif-light" />
             </RelativeLayout>
 
             <LinearLayout
@@ -362,7 +392,8 @@
                         android:text="@string/vr_button"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/vr_icon_imageview"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"
+                        android:fontFamily="sans-serif-medium" />
 
                     <ImageView
                         android:src="@drawable/vr_icon"
@@ -403,7 +434,8 @@
                         android:textStyle="italic"
                         android:textColor="#f25e36"
                         android:textAlignment="center"
-                        android:layout_margin="2sp" />
+                        android:layout_margin="2sp"
+                        android:fontFamily="sans-serif-medium" />
 
 
 
@@ -427,7 +459,8 @@
                 android:text="@string/offensive_ad"
                 android:textColor="#ff0000"
                 android:id="@+id/text_offensive"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-light" />
 
                 <ImageView
                     android:layout_width="wrap_content"

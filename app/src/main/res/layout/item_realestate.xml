@@ -31,7 +31,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/linearLayout2"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic" />
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:fontFamily="sans-serif-light" />
 
         <ImageView
             android:layout_width="150sp"
@@ -69,7 +70,9 @@
             android:layout_margin="5sp"
             android:background="#0066cc"
             android:textColor="#ffffff"
-            android:padding="2sp" />
+            android:padding="2sp"
+            android:fontFamily="sans-serif-medium"
+            android:focusableInTouchMode="false" />
 
         <LinearLayout
             android:id="@+id/icons_linera_layout"
@@ -97,7 +100,8 @@
                 android:text="100"
                 android:id="@+id/list_size_textView"
                 android:layout_margin="5sp"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-light" />
 
             <ImageView
                 android:src="@drawable/list_roomcount"
@@ -115,7 +119,8 @@
                 android:text="3"
                 android:id="@+id/list_roomcount_textView"
                 android:layout_margin="5sp"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-light" />
 
             <ImageView
                 android:src="@drawable/list_furniture"
@@ -171,7 +176,8 @@
                 android:layout_toRightOf="@+id/item_realestate_mainpic"
                 android:layout_toEndOf="@+id/item_realestate_mainpic"
                 android:textSize="18sp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -211,7 +217,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/item_realestate_adress2"
-                android:layout_alignStart="@+id/item_realestate_adress2" />
+                android:layout_alignStart="@+id/item_realestate_adress2"
+                android:fontFamily="sans-serif-light" />
         </RelativeLayout>
     </RelativeLayout>
 
