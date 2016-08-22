@@ -6,11 +6,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="275sp"
+        android:layout_height="285sp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5sp"
         android:id="@+id/booking_calendar_layout"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:elevation="1dp">
 
         <GridView
             android:id="@+id/booking_calendar"
@@ -21,8 +22,8 @@
             android:layout_height="fill_parent"
             android:choiceMode="singleChoice"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/relativeLayout2"
-            android:gravity="fill_horizontal|fill_vertical">
+            android:layout_below="@+id/days_layout_linear"
+            android:gravity="center_vertical|center_horizontal">
 
         </GridView>
 
@@ -45,7 +46,7 @@
             <ImageView
                 android:src="@drawable/arrow_left"
                 android:layout_width="wrap_content"
-                android:layout_height="30sp"
+                android:layout_height="25sp"
                 android:id="@+id/arrowleft_imageview"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
@@ -58,7 +59,7 @@
             <ImageView
                 android:src="@drawable/arrow_right"
                 android:layout_width="wrap_content"
-                android:layout_height="30sp"
+                android:layout_height="25sp"
                 android:id="@+id/arrowright_imageview"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
@@ -68,15 +69,80 @@
                 android:layout_margin="5sp" />
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/days_layout_linear"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20sp"
+            android:layout_below="@+id/relativeLayout2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="H"
+                android:id="@+id/hetfo_textview"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="K"
+                android:id="@+id/kedd_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="SZ"
+                android:id="@+id/szerda_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="CS"
+                android:id="@+id/csutortok_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="P"
+                android:id="@+id/pentek_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="SZ"
+                android:id="@+id/szombat_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="V"
+                android:id="@+id/vasarnap_textView"
+                android:layout_weight="1"
+                android:gravity="center|center_horizontal" />
+        </LinearLayout>
+
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/booking_items_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_margin="5sp"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:elevation="1dp">
 
         <ListView
             android:layout_width="wrap_content"
@@ -84,7 +150,8 @@
             android:id="@+id/listView_booking"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="5sp" />
+            android:layout_margin="5sp"
+            android:divider="#ffffff" />
 
     </RelativeLayout>
 </LinearLayout>

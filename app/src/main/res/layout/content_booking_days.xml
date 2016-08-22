@@ -22,7 +22,8 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:textSize="22sp"
-            android:layout_alignParentTop="false" />
+            android:layout_alignParentTop="false"
+            android:textColor="#000000" />
 
     </RelativeLayout>
 </LinearLayout>

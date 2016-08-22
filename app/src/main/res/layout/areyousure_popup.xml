@@ -12,7 +12,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/background_shadow_popup"
         android:layout_marginLeft="5sp"
-        android:layout_marginRight="5sp">
+        android:layout_marginRight="5sp"
+        android:elevation="24dp">
 
         <Button
             android:layout_width="wrap_content"
