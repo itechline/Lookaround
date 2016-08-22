@@ -397,11 +397,12 @@
 
                     <ImageView
                         android:src="@drawable/vr_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60sp"
+                        android:layout_width="50sp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/vr_icon_imageview"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:layout_centerVertical="true" />
 
                 </RelativeLayout>
 
@@ -418,11 +419,12 @@
 
                     <ImageView
                         android:src="@drawable/googlemapsicon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60sp"
+                        android:layout_width="50sp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/map_icon_view"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         android:id="@+id/seeonmap_textview"
@@ -450,8 +452,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/realestate_whats_near_layout"
                 android:layout_marginRight="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginLeft="10sp">
+                android:layout_marginBottom="15sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp">
 
             <TextView
                 android:layout_width="wrap_content"

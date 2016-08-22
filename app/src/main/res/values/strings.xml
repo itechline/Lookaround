@@ -297,7 +297,7 @@
     <string name="addmonitor_page_top_hint_text">Válaszd ki a paramétereket, amik alapján az értesítéseket szeretnéd kapni a kívánt hírdetésekről</string>
     <string name="admonitor_main_top_hint_text">Ez a funkció lehetővé teszi, hogy értesítést kapj a számodra megfelelő legfrissebb hírdetésekről</string>
     <string name="invite_page_top_hint_text">Hívd meg ismerőseidet és barátaidat, hogy ők is lássák mennyire király ez az app ;)</string>
-    <string name="i_want_to_see_it_on_maps">Megnézem a térképen</string>
+    <string name="i_want_to_see_it_on_maps">Térkép</string>
     <string name="theres_no_such_ad">Nincs a keresének megfelelő hírdetés!</string>
     <string name="disagree">Elutasít</string>
     <string name="agree">Elfogad</string>
