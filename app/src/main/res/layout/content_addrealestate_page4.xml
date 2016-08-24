@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_gravity="center"
-                    android:background="@drawable/spinner_border"
+                    android:background="#ffffff"
                     android:padding="1sp">
 
                 <TextView
@@ -312,7 +312,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/dayselector_linear_layout"
                 android:id="@+id/linearLayout4"
-                android:visibility="invisible">
+                android:visibility="visible"
+                android:gravity="center_vertical|center_horizontal">
             <ImageView
                 android:src="@drawable/plus_blue"
                 android:layout_width="wrap_content"
