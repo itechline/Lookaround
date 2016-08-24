@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efefef">
+    android:background="#ededed">
 
 
     <RelativeLayout
@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5sp"
-        android:background="#ffffff"
         android:visibility="visible"
         android:layout_centerInParent="true"
         android:gravity="center_vertical">
@@ -108,7 +107,8 @@
                 android:layout_alignStart="@+id/addestate_balcony_spinner_rlayout"
                 android:layout_below="@+id/addestate_balcony_spinner_rlayout"
                 android:layout_above="@+id/addestate_heatingtype_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_parking_spinner"
                     android:layout_width="match_parent"
@@ -135,7 +135,8 @@
                 android:layout_alignStart="@+id/addestate_floors_spinner_rlayout"
                 android:layout_below="@+id/addestate_floors_spinner_rlayout"
                 android:layout_above="@+id/addestate_balcony_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_type_spinner"
                     android:layout_width="match_parent"
@@ -160,7 +161,8 @@
                 android:layout_alignLeft="@+id/addestate_ecertificate_spinner_rlayout"
                 android:layout_alignStart="@+id/addestate_ecertificate_spinner_rlayout"
                 android:layout_below="@+id/addestate_ecertificate_spinner_rlayout"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/adestate_view_spinner"
                     android:layout_width="match_parent"
@@ -187,7 +189,8 @@
                 android:layout_alignStart="@+id/addestate_heatingtype_spinner_rlayout"
                 android:layout_below="@+id/addestate_heatingtype_spinner_rlayout"
                 android:layout_above="@+id/addestate_e_certification_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_elevator_spinner"
                     android:layout_width="match_parent"
@@ -227,7 +230,8 @@
                 android:layout_toEndOf="@+id/addestate_type_textview"
                 android:layout_alignParentTop="true"
                 android:layout_above="@+id/addestate_condition_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="30sp"
@@ -254,7 +258,8 @@
                 android:layout_alignStart="@+id/addestate_parking_spinner_rlayout"
                 android:layout_below="@+id/addestate_parking_spinner_rlayout"
                 android:layout_above="@+id/addestate_elevator_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_heatingtype_spinner"
                     android:layout_width="match_parent"
@@ -281,7 +286,8 @@
                 android:layout_alignStart="@+id/addestate_elevator_spinner_rlayout"
                 android:layout_below="@+id/addestate_elevator_spinner_rlayout"
                 android:layout_above="@+id/addestate_view_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_ecertificate_spinner"
                     android:layout_width="match_parent"
@@ -308,7 +314,8 @@
                 android:layout_alignStart="@+id/addestate_rooms_spinner_rlayout"
                 android:layout_below="@+id/addestate_rooms_spinner_rlayout"
                 android:layout_above="@+id/addestate_floors_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_condition_spinner"
                     android:layout_width="match_parent"
@@ -335,7 +342,8 @@
                 android:layout_alignStart="@+id/addestate_type_spinner_rlayout"
                 android:layout_above="@+id/addestate_parking_textview"
                 android:layout_below="@+id/addestate_type_spinner_rlayout"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_balcony_spinner"
                     android:layout_width="match_parent"
@@ -361,7 +369,8 @@
                 android:layout_alignStart="@+id/addestate_condition_spinner_rlayout"
                 android:layout_below="@+id/addestate_condition_spinner_rlayout"
                 android:layout_above="@+id/addestate_type_textview"
-                android:background="@drawable/spinner_border">
+                android:background="#ffffff"
+                android:layout_marginTop="5sp">
                 <Spinner
                     android:id="@+id/addestate_floors_spinner"
                     android:layout_width="match_parent"

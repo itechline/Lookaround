@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efefef">
+    android:background="#ededed">
 
 
     <RelativeLayout
@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5sp"
-        android:background="#ffffff"
         android:visibility="visible">
 
 
@@ -114,7 +113,7 @@
                     android:id="@+id/spinner_booking_start_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_border"
+                    android:background="#ffffff"
                     android:layout_gravity="center"
                     android:layout_weight="1">
 
@@ -149,7 +148,7 @@
                     android:id="@+id/spinner_booking_end_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_border"
+                    android:background="#ffffff"
                     android:layout_weight="1"
                     android:layout_gravity="center">
 
