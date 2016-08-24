@@ -9,7 +9,7 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="201sp"
         android:layout_marginTop="4sp"
         android:background="@drawable/background_shadow">
 
@@ -111,10 +111,8 @@
                 android:layout_gravity="center_horizontal"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:layout_below="@+id/item_realestate_adress2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/item_realestate_adress2"
                 android:layout_alignStart="@+id/item_realestate_adress2" />
         </RelativeLayout>
 
@@ -123,51 +121,43 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:layout_below="@+id/myads_up_button"
-            android:layout_toEndOf="@+id/item_realestate_mainpic">
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:layout_below="@id/relativeLayout4"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10sp">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30sp"
-                android:text="@string/button_modify"
+                android:layout_width="fill_parent"
+                android:layout_height="50sp"
                 android:id="@+id/myads_modify_button"
-                android:layout_gravity="bottom"
-                android:background="@drawable/colorbutton"
+                android:background="@drawable/modify_icon"
                 android:layout_weight="1"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
-                android:textColor="#ffffff" />
+                android:layout_gravity="center_vertical"
+                />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30sp"
-                android:text="@string/button_delete"
+                android:layout_width="fill_parent"
+                android:layout_height="50sp"
                 android:id="@+id/myads_delete_button"
-                android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:background="@drawable/buttondelete_border"
+                android:background="@drawable/remove_icon"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
-                android:textColor="#ff0000" />
+                android:layout_gravity="center_vertical" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50sp"
+                android:id="@+id/myads_up_button"
+                android:background="@drawable/up_icon"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:text="@string/upmyad_button"
-            android:id="@+id/myads_up_button"
-            android:layout_below="@+id/relativeLayout4"
-            android:layout_alignEnd="@+id/myads_button_layout"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:background="@drawable/buttonup_border"
-            android:textColor="#00d548"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="5sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_alignStart="@+id/myads_button_layout" />
     </RelativeLayout>
 
 </LinearLayout>
