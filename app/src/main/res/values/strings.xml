@@ -34,8 +34,8 @@
     <string name="button_cancel">Mégse</string>
     <string name="button_picswap">Kép lecserélése</string>
     <string name="button_picdelete">Kép törlése</string>
-    <string name="button_delete">törlés</string>
-    <string name="button_modify">módosít</string>
+    <string name="button_delete">Törlés</string>
+    <string name="button_modify">Módosít</string>
     <string name="button_yes">Igen</string>
     <string name="button_no">Nem</string>
     <string name="button_finish">Befejezés</string>

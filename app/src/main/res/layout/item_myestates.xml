@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:layout_height="wrap_content"
-    android:id="@+id/item_realestate_layout">
+    android:id="@+id/item_realestate_layout"
+    android:background="#ededed">
 
 
     <RelativeLayout
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="201sp"
         android:layout_marginTop="4sp"
-        android:background="@drawable/background_shadow">
+        android:background="@drawable/background_shadow"
+        android:elevation="1dp">
 
 
         <TextView
@@ -22,11 +24,12 @@
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/linearLayout2"
             android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic" />
+            android:layout_toEndOf="@+id/item_realestate_mainpic"
+            android:fontFamily="sans-serif-light" />
 
         <ImageView
-            android:layout_width="150sp"
-            android:layout_height="200sp"
+            android:layout_width="130sp"
+            android:layout_height="fill_parent"
             android:id="@+id/item_realestate_mainpic"
             android:visibility="visible"
             android:layout_marginRight="5sp"
@@ -75,7 +78,8 @@
                 android:layout_toRightOf="@+id/item_realestate_mainpic"
                 android:layout_toEndOf="@+id/item_realestate_mainpic"
                 android:textSize="18sp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-normal" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -113,7 +117,8 @@
                 android:ellipsize="end"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/item_realestate_adress2" />
+                android:layout_alignStart="@+id/item_realestate_adress2"
+                android:fontFamily="sans-serif-light" />
         </RelativeLayout>
 
         <LinearLayout
@@ -124,38 +129,83 @@
             android:layout_toEndOf="@+id/item_realestate_mainpic"
             android:layout_below="@id/relativeLayout4"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10sp">
+            android:gravity="center_vertical|center_horizontal">
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="50sp"
+            <LinearLayout
                 android:id="@+id/myads_modify_button"
-                android:background="@drawable/modify_icon"
-                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="25sp"
+                android:src="@drawable/modify_icon"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
                 android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
                 />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="50sp"
-                android:id="@+id/myads_delete_button"
-                android:layout_weight="1"
-                android:background="@drawable/remove_icon"
-                android:layout_marginLeft="5sp"
-                android:layout_marginRight="5sp"
-                android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_modify"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textIsSelectable="false"
+                    android:textSize="12sp"
+                    android:textColor="#000000" />
+            </LinearLayout>
 
-            <Button
+
+        <LinearLayout
+            android:id="@+id/myads_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="50sp"
-                android:id="@+id/myads_up_button"
-                android:background="@drawable/up_icon"
+                android:layout_height="25sp"
+                android:src="@drawable/remove_icon"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_delete"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="12sp"
+                android:textColor="#f25e36" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/myads_up_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+            <ImageView
+                android:src="@drawable/up_icon"
+                android:layout_width="fill_parent"
+                android:layout_height="25sp"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upmyad_button"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="12sp"
+                    android:textColor="#79b445" />
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

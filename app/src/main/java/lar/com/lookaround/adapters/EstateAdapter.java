@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -156,7 +157,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                     }
                 });
             } else {
-                Button delete = (Button) convertView.findViewById(R.id.myads_delete_button);
+                LinearLayout delete = (LinearLayout) convertView.findViewById(R.id.myads_delete_button);
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -164,7 +165,7 @@ public class EstateAdapter extends ArrayAdapter<EstateUtil> {
                     }
                 });
 
-                Button update = (Button) convertView.findViewById(R.id.myads_modify_button);
+                LinearLayout update = (LinearLayout) convertView.findViewById(R.id.myads_modify_button);
                 update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
