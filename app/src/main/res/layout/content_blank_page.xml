@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="lar.com.lookaround.BlankPageActivity"
-    tools:showIn="@layout/activity_blank_page">
+    tools:showIn="@layout/activity_blank_page"
+    android:background="#ededed">
 
     <ScrollView
         android:layout_width="fill_parent"

@@ -1478,7 +1478,7 @@ public class MainActivity extends AppCompatActivity
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
                 AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmap, 200, 200, ScalingUtilities.ScalingLogic.CROP));
-
+                // TODO: a feltöltött képek megoldása az új dizájn alapján
                 final LinearLayout linearLayoutGallery = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
                 ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
@@ -1512,8 +1512,8 @@ public class MainActivity extends AppCompatActivity
             Bitmap bitmapCam = (Bitmap) data.getExtras().get("data");
 
             AddImageUtil.addImage(imageID, ScalingUtilities.createScaledBitmap(bitmapCam, 200, 200, ScalingUtilities.ScalingLogic.CROP));
-
-            final LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.camera_images_linearlayout);
+            //TODO: feltöltött képek megoldása az új dizánj alapján
+            final LinearLayout linearLayoutCam = (LinearLayout) findViewById(R.id.uploaded_images_linearlayout);
 
             ArrayList<AddImageUtil> allImages = AddImageUtil.getAllImages();
             AddImageAdapter adapter = new AddImageAdapter(MainActivity.this, allImages);

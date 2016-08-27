@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="lar.com.lookaround.MainActivity">
+    tools:context="lar.com.lookaround.MainActivity"
+    android:background="#ededed">
 
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -30,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sorting_estates_relativeLayout"
-        android:background="#f1f2f3">
+        android:background="#ededed">
 
         <RelativeLayout
             android:id="@+id/estate_types_changing_layout"

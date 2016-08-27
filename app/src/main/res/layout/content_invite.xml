@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ededed">
     <ScrollView
     android:layout_height="match_parent"
     android:layout_width="match_parent" >
@@ -47,7 +48,7 @@
             android:ems="10"
             android:id="@+id/email1"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/spinner_border"
+            android:background="#ffffff"
             android:layout_margin="10sp"
             android:paddingLeft="5sp"
             android:textSize="13sp" />
@@ -80,7 +81,7 @@
             android:id="@+id/email2"
             android:layout_alignParentEnd="true"
             android:layout_margin="10sp"
-            android:background="@drawable/spinner_border"
+            android:background="#ffffff"
             android:paddingLeft="5sp"
             android:textSize="13sp" />
     </RelativeLayout>
@@ -110,7 +111,7 @@
             android:ems="10"
             android:id="@+id/email3"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/spinner_border"
+            android:background="#ffffff"
             android:layout_margin="10sp"
             android:paddingLeft="5sp"
             android:textSize="13sp" />
@@ -128,7 +129,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/email"
-            android:id="@+id/email_3_textView"
+            android:id="@+id/email_4_textView"
             android:layout_alignParentStart="true"
             android:layout_margin="10sp"
             android:textSize="16sp"
@@ -141,7 +142,7 @@
             android:ems="10"
             android:id="@+id/email4"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/spinner_border"
+            android:background="#ffffff"
             android:layout_margin="10sp"
             android:paddingLeft="5sp"
             android:textSize="13sp" />
@@ -174,7 +175,7 @@
             android:id="@+id/email5"
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/spinner_border"
+            android:background="#ffffff"
             android:layout_margin="10sp"
             android:paddingLeft="5sp"
             android:textSize="13sp" />
