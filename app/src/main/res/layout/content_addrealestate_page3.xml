@@ -115,21 +115,21 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal">
+                    android:gravity="bottom">
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:id="@+id/add_estate_take_imgLayout"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="20sp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_margin="10sp"
                         android:layout_weight="1"
                         android:onClick="TakeImage">
 
                         <ImageView
                             android:src="@drawable/fenykepezo"
-                            android:layout_width="60sp"
+                            android:layout_width="50sp"
                             android:layout_height="wrap_content"
                             android:id="@+id/addestate_takeIMG_imgView"
                             android:adjustViewBounds="true"/>
@@ -139,8 +139,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/add_camera_image_text"
                             android:id="@+id/addestate_takeIMG_txtView"
-                            android:layout_margin="10sp"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10sp" />
                     </LinearLayout>
 
                     <View
@@ -155,14 +156,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:id="@+id/add_estate_pick_imgLayout"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="20sp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_margin="10sp"
                         android:layout_weight="1"
                         android:onClick="pickImage">
 
                         <ImageView
                             android:src="@drawable/feltoltes"
-                            android:layout_width="60sp"
+                            android:layout_width="50sp"
                             android:layout_height="wrap_content"
                             android:id="@+id/addestate_pickIMG_imgView"
                             android:adjustViewBounds="true"/>
@@ -172,8 +173,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/add_gallery_image_text"
                             android:id="@+id/add_estate_pickIMG_txtView"
-                            android:layout_margin="10sp"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10sp" />
 
 
                     </LinearLayout>
@@ -185,7 +187,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal">
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp">
 
                     <View
                         android:id="@+id/vonalgyasz1"
@@ -202,11 +206,10 @@
                         <ImageView
                             android:src="@drawable/bonodom_logo"
                             android:layout_width="fill_parent"
-                            android:layout_height="60sp"
+                            android:layout_height="50sp"
                             android:id="@+id/picked_imgs_sofar"
                             android:adjustViewBounds="true"
-                            android:layout_weight="1"
-                            android:layout_margin="10sp" />
+                            android:layout_weight="1" />
 
                     </LinearLayout>
 
@@ -225,20 +228,20 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal">
+                    android:gravity="top">
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:id="@+id/add_estate_take_panoLayout"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="20sp"
-                        android:layout_weight="1">
+                        android:layout_margin="10sp"
+                        android:layout_weight="1"
+                        android:gravity="top|center_horizontal">
 
                         <ImageView
                             android:src="@drawable/panorama"
-                            android:layout_width="60sp"
+                            android:layout_width="50sp"
                             android:layout_height="wrap_content"
                             android:id="@+id/addestate_takePANO_imgView"
                             android:adjustViewBounds="true"/>
@@ -248,8 +251,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/add_pano_img"
                             android:id="@+id/addestate_takePANO_txtView"
-                            android:layout_margin="10sp"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10sp" />
                     </LinearLayout>
 
                     <View
@@ -264,13 +268,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:id="@+id/add_lookaround_imgLayout"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="20sp"
-                        android:layout_weight="1">
+                        android:layout_margin="10sp"
+                        android:layout_weight="1"
+                        android:gravity="top|center_horizontal">
 
                         <ImageView
                             android:src="@drawable/korbejaras"
-                            android:layout_width="60sp"
+                            android:layout_width="50sp"
                             android:layout_height="wrap_content"
                             android:id="@+id/add_lookaround_imgView"
                             android:adjustViewBounds="true"/>
@@ -280,8 +284,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/add_lookaround"
                             android:id="@+id/add_lookaround_txtView"
-                            android:layout_margin="10sp"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10sp" />
 
 
                     </LinearLayout>
