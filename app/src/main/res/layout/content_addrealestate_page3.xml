@@ -107,7 +107,9 @@
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:gravity="center_vertical|center_horizontal">
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
 
 
                 <LinearLayout
