@@ -2631,7 +2631,7 @@ public class MainActivity extends AppCompatActivity
                         sliderLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 250, getResources().getDisplayMetrics()))));
 
                         RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) item_realestate_profile_layout.getLayoutParams();
-                        relativeParams.setMargins(Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 260, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())));  // left, top, right, bottom
+                        relativeParams.setMargins(Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 255, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())), Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5, getResources().getDisplayMetrics())));  // left, top, right, bottom
                         item_realestate_profile_layout.setLayoutParams(relativeParams);
 
                         loadEstateImages(imageUrls);

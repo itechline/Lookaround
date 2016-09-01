@@ -20,7 +20,7 @@
                 android:id="@+id/item_realestate_profile_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="50sp"
-                android:layout_marginTop="260sp"
+                android:layout_marginTop="255sp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
@@ -370,7 +370,8 @@
                 android:layout_below="@id/realestate_dtail_layout"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
-                android:layout_marginBottom="5sp">
+                android:layout_marginBottom="5sp"
+                android:paddingBottom="5sp">
 
 
 

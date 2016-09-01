@@ -46,7 +46,8 @@
                 android:layout_toRightOf="@+id/gps_indicator_1"
                 android:layout_toEndOf="@+id/gps_indicator_1"
                 android:layout_margin="5sp"
-                android:textSize="15sp"/>
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-bold" />
 
         </RelativeLayout>
 
@@ -87,7 +88,8 @@
             android:id="@+id/add_esatet_page1_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layout_below="@+id/below_advertinfo_text">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,11 +97,11 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/advert_title"
                 android:id="@+id/adverttitle_textview"
-                android:layout_below="@+id/below_advertinfo_text"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +113,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -129,7 +132,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_above="@+id/advert_description_textveiw"
                 android:paddingLeft="5sp"
-                android:capitalize="sentences" />
+                android:capitalize="sentences"
+                android:fontFamily="sans-serif-light" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -144,13 +148,13 @@
                 android:ellipsize="end"
                 android:background="#ffffff"
                 android:layout_marginRight="5sp"
-                android:layout_marginTop="5sp"
                 android:layout_toEndOf="@+id/advert_type_textview"
                 android:layout_toRightOf="@+id/advert_type_textview"
                 android:gravity="top"
                 android:paddingLeft="5sp"
                 android:paddingTop="2sp"
-                android:capitalize="sentences" />
+                android:capitalize="sentences"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,7 +166,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <RelativeLayout
                 android:id="@+id/add_advert_type_spinner_layout"
@@ -180,7 +185,7 @@
 
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:id="@+id/add_advert_type_spinner"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
@@ -189,7 +194,7 @@
                     android:spinnerMode="dialog"
                     android:popupTheme="@android:style/ThemeOverlay.Material.Light"
                     android:layout_alignParentTop="true"
-                    android:padding="3sp" />
+                    android:paddingBottom="5sp" />
             </RelativeLayout>
 
             <TextView
@@ -202,7 +207,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -221,7 +227,8 @@
                 android:layout_above="@+id/add_advert_city_edittext"
                 android:layout_marginTop="5sp"
                 android:numeric="decimal"
-                android:paddingLeft="5sp" />
+                android:paddingLeft="5sp"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -233,7 +240,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <AutoCompleteTextView
                 android:layout_width="match_parent"
@@ -252,7 +260,8 @@
                 android:layout_below="@+id/add_advert_price_textview"
                 android:layout_above="@+id/add_advert_street_edittext"
                 android:layout_marginTop="5sp"
-                android:paddingLeft="5sp" />
+                android:paddingLeft="5sp"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -264,7 +273,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/add_advert_city_text"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -283,7 +293,8 @@
                 android:layout_above="@+id/add_advert_str_number_textview"
                 android:layout_marginTop="5sp"
                 android:paddingLeft="5sp"
-                android:capitalize="sentences" />
+                android:capitalize="sentences"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -295,7 +306,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5sp"
-                android:textSize="16sp"/>
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-bold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -314,7 +326,8 @@
                 android:layout_above="@+id/add_estate_size_textview"
                 android:layout_marginTop="5sp"
                 android:paddingLeft="5sp"
-                android:capitalize="sentences" />
+                android:capitalize="sentences"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:id="@+id/add_estate_size_textview"
@@ -322,11 +335,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/add_advert_size"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_below="@+id/add_advert_str_number_textview"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:fontFamily="sans-serif-bold" />
 
 
                 <EditText
@@ -336,7 +350,6 @@
                     android:drawableRight="@drawable/size_nm"
                     android:singleLine="true"
                     android:numeric="decimal"
-                    android:padding="3sp"
                     android:background="#ffffff"
                     android:layout_below="@+id/add_advert_str_number_edittext"
                     android:layout_alignParentRight="true"
@@ -346,7 +359,9 @@
                     android:layout_marginTop="5sp"
                     android:layout_marginRight="5sp"
                     android:textSize="14sp"
-                    android:layout_above="@+id/add_estate_furniture_textview" />
+                    android:layout_above="@+id/add_estate_furniture_textview"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingLeft="5sp" />
 
             <TextView
                 android:id="@+id/add_estate_furniture_textview"
@@ -354,11 +369,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/add_advert_furniture"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_below="@+id/add_estate_size_textview"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_margin="5sp" />
+                android:layout_margin="5sp"
+                android:fontFamily="sans-serif-bold" />
 
             <RelativeLayout
                 android:id="@+id/add_furniture_spinner_rlayout"
@@ -382,8 +398,7 @@
                     android:layout_alignParentEnd="true"
                     android:spinnerMode="dialog"
                     android:popupTheme="@android:style/ThemeOverlay.Material.Light"
-                    android:layout_alignParentTop="true"
-                    android:padding="3sp" />
+                    android:layout_alignParentTop="true" />
             </RelativeLayout>
         </RelativeLayout>
 
