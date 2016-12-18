@@ -172,25 +172,29 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
         android:id="@+id/Forgotten_Pass_Layout"
 
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_below="@+id/imageView3"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:layout_above="@+id/login_linear_footer">
 
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
             android:id="@+id/forgottenMailLogin"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:hint="@string/mail"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/mail_icon"
+            android:drawablePadding="10sp"
+            android:background="@drawable/layout_bggyasz"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -201,8 +205,8 @@
             android:onClick="sendForgottenPass"
             android:background="@drawable/colorbutton"
             android:textColor="#ffffff"
-            android:paddingRight="10sp"
-            android:paddingLeft="10sp"
+            android:paddingRight="30sp"
+            android:paddingLeft="30sp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"

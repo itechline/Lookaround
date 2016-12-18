@@ -9,55 +9,42 @@
     android:background="#f1f2f3">
     <!--tools:showIn="@layout/activity_main"-->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="90sp"
-        android:src="@drawable/bonodom_logo"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:id="@+id/imageView"
-        android:layout_margin="5sp" />
-
     <ScrollView
         android:id="@+id/Layout_Registration_Scroll"
         android:layout_width="wrap_content"
-        android:layout_height="320sp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:layout_below="@+id/imageView"
-        android:elevation="2dp">
+        android:layout_marginRight="20sp">
 
         <RelativeLayout
         android:id="@+id/Layout_Registration"
         android:layout_width="match_parent"
-        android:layout_height="320sp"
-        android:background="#ffffff">
+        android:layout_height="wrap_content">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relative_individual"
-            android:visibility="visible">
+            android:visibility="invisible"
+            android:layout_below="@id/radioGroup1"
+            >
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/vezetekNev"
                 android:maxLength="13"
                 android:minWidth="300sp"
                 android:singleLine="true"
                 android:hint="@string/lastname"
-                android:paddingTop="50sp"
                 android:layout_centerHorizontal="true"
                 android:capitalize="sentences"
-
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/keresztNev"
                 android:maxLength="13"
                 android:minWidth="300sp"
@@ -66,12 +53,12 @@
                 android:layout_below="@+id/vezetekNev"
                 android:layout_centerHorizontal="true"
                 android:capitalize="sentences"
-
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/mail"
                 android:inputType="textEmailAddress"
                 android:minWidth="300sp"
@@ -80,11 +67,12 @@
                 android:hint="@string/mail"
                 android:layout_below="@+id/keresztNev"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/passw"
@@ -95,43 +83,59 @@
                 android:layout_alignStart="@+id/mail"
                 android:hint="@string/password"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relative_agency"
             android:layout_below="@+id/radioGroup1"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/entry_company"
                 android:maxLength="13"
                 android:minWidth="300sp"
                 android:singleLine="true"
                 android:hint="@string/company_name"
                 android:layout_centerHorizontal="true"
-
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/contactholder"
+                android:inputType="textEmailAddress"
+                android:minWidth="300sp"
+                android:singleLine="true"
+                android:text=""
+                android:hint="@string/contactholder"
+                android:layout_below="@+id/entry_company"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
                 android:id="@+id/mail2"
                 android:inputType="textEmailAddress"
                 android:minWidth="300sp"
                 android:singleLine="true"
                 android:text=""
                 android:hint="@string/mail"
-                android:layout_below="@+id/entry_company"
+                android:layout_below="@+id/contactholder"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/passw2"
@@ -142,31 +146,11 @@
                 android:layout_alignStart="@+id/mail2"
                 android:hint="@string/password"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@drawable/layout_bggyasz"
+                android:padding="10sp"
+                android:layout_height="60sp" />
         </RelativeLayout>
 
-
-            <RelativeLayout
-                android:id="@+id/layout_forregisterButton"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_above="@+id/fszf_text"
-                android:layout_below="@+id/relative_individual">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:text="@string/registration"
-                    android:id="@+id/registButton"
-                    android:onClick="sendRegistration"
-                    android:background="@drawable/colorbutton"
-                    android:textColor="#ffffff"
-                    android:layout_above="@+id/fszf_text_layout"
-                    android:layout_below="@+id/relative_individual"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:padding="3sp"/>
-            </RelativeLayout>
 
             <RadioGroup
             android:layout_width="wrap_content"
@@ -175,6 +159,8 @@
             android:orientation="horizontal"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+                android:layout_marginTop="30sp"
+                android:layout_marginBottom="30sp"
             >
 
             <RadioButton
@@ -184,7 +170,6 @@
                 android:onClick="setIndividual"
                 android:checked="true"
                 android:id="@+id/radioButton2"
-                android:buttonTint="#0066cc"
                 />
 
             <RadioButton
@@ -192,8 +177,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/estateagency"
                 android:onClick="setEstateagency"
-                android:id="@+id/radioButton"
-                android:buttonTint="#0066cc"/>
+                android:id="@+id/radioButton"/>
         </RadioGroup>
 
             <LinearLayout
@@ -206,47 +190,33 @@
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentBottom="true">
 
-                <TextView
-                android:id="@+id/fszf_text"
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_forregisterButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/acceptingfszf"
-                android:layout_alignParentEnd="false"
-                android:gravity="bottom|center_horizontal"
-                android:textStyle="italic"
-                android:layout_above="@+id/fszf_btn_text"
-                android:layout_marginTop="5sp"
-                android:layout_below="@+id/relative_individual"/>
+                android:layout_height="fill_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/relative_individual">
 
                 <TextView
-                    android:id="@+id/fszf_btn_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fszf"
-                    android:layout_alignParentEnd="false"
-                    android:gravity="bottom|center_horizontal"
-                    android:textColor="#0066cc"
-                    android:textStyle="italic"
-                    android:onClick="openBlankPage"
-                    android:layout_marginBottom="10sp"
-                    android:layout_alignParentBottom="false"
-                    android:layout_below="@+id/relative_individual"/>
-            </LinearLayout>
+                    android:layout_height="50sp"
+                    android:text="@string/registration"
+                    android:id="@+id/registButton"
+                    android:onClick="sendRegistration"
+                    android:background="@drawable/colorbutton"
+                    android:textColor="#ffffff"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_margin="20sp"/>
+            </RelativeLayout>
 
         </RelativeLayout>
     </ScrollView>
 
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="60sp"
-        android:id="@+id/reg_pic"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/main_house"
-        android:adjustViewBounds="true"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="@string/reg_house"
-        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -254,6 +224,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/Layout_Registration_Scroll"
+        android:layout_margin="20sp"
         >
         <TextView
             android:id="@+id/you_have_existing"
@@ -262,7 +233,7 @@
             android:text="@string/existing_account"
             android:layout_weight="2"
             android:textColor="#8c9397"
-            android:layout_marginBottom="60sp"
+            android:layout_marginTop="0sp"
             android:textStyle="italic"
             android:paddingRight="2sp" />
         <TextView
@@ -273,7 +244,6 @@
             android:layout_weight="2"
             android:onClick="showLogin"
             android:textColor="#0066cc"
-            android:layout_marginBottom="60sp"
             android:textStyle="italic"
             android:paddingLeft="2sp" />
     </LinearLayout>
