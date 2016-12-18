@@ -14,12 +14,13 @@
     <string name="individual">Magánszemély</string>
     <string name="estateagency">Ingatlaniroda</string>
     <string name="mail">E-mail</string>
+    <string name="contactholder">Kapcsolattartó</string>
     <string name="reg_house">main_house_image</string>
     <string name="existing_account">Már van fiókja?</string>
     <string name="acceptingfszf">A REGISZTRÁCIÓ gomb megnyomásávával elfogadja a</string>
     <string name="fszf">Felhasználási Feltételeket</string>
     <string name="title_activity_blank_page">BlankPageActivity</string>
-    <string name="company_name">Cégnév</string>
+    <string name="company_name">Iroda neve</string>
     <string name="forgotten_pass">Elfelejtette jelszavát?</string>
     <string name="reminder_pass">Emlékeztető</string>
     <string name="registration_1">Regisztráljon</string>
