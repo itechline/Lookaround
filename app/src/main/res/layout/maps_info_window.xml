@@ -7,158 +7,172 @@
     >
 
     <RelativeLayout
-        android:layout_width="340sp"
-        android:layout_height="190sp"
         android:id="@+id/item_realestate_maps_window_layout"
         android:background="@drawable/background_shadow"
         android:gravity="center_vertical|center_horizontal"
         android:layout_margin="10sp"
-        android:elevation="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_realestate_adress2_maps"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/linearLayout2_maps"
-            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
-            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:layout_marginLeft="5sp" />
+        android:elevation="24dp"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="150sp"
-            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             android:id="@+id/item_realestate_mainpic_maps"
             android:visibility="visible"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_above="@+id/Price_maps" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:textStyle="bold"
-            android:id="@+id/price_maps"
-            android:background="#0066cc"
-            android:textColor="#ffffff"
-            android:padding="2sp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/descript_relativeLayout_maps"
-            android:layout_toStartOf="@+id/descript_relativeLayout_maps" />
+            android:layout_height="120sp" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
-            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:id="@+id/linearLayout2_maps"
-            android:layout_marginRight="5sp">
+            android:layout_below="@id/item_realestate_mainpic_maps"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="15sp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2_maps">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/item_realestate_adress1_maps"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textColor="#0066cc"/>
+
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:id="@+id/item_realestate_isfavourite"
+                    android:button="@drawable/checkbox_fav_selector"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="5sp"
+                    android:gravity="right|center"
+                    android:layout_gravity="center"
+                    android:layout_weight="4" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/item_realestate_adress1_maps"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
-                android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:layout_margin="5sp" />
+                android:id="@+id/item_realestate_adress2_maps"
+                android:layout_gravity="left|center_horizontal"
+                android:textStyle="bold"
+                android:text="BOLON ITEM"/>
 
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
-            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:layout_marginRight="5sp"
-            android:id="@+id/descript_relativeLayout_maps"
-            android:layout_below="@+id/icons_linera_layout_maps">
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/icons_linera_layout_maps"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/item_realestate_description_maps"
-                android:layout_gravity="center_horizontal"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:layout_below="@+id/item_realestate_adress2_maps"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/item_realestate_adress2_maps"
-                android:layout_alignStart="@+id/item_realestate_adress2_maps"
-                android:layout_margin="5sp"
-                android:textSize="15sp"
-                android:gravity="center_vertical" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/icons_linera_layout_maps"
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_realestate_adress2_maps"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/item_realestate_mainpic_maps"
-            android:layout_toEndOf="@+id/item_realestate_mainpic_maps"
-            android:layout_centerInParent="true"
-            android:gravity="left|center_vertical"
-            android:layout_margin="5sp">
-
-            <ImageView
-                android:src="@drawable/list_size"
-                android:layout_width="wrap_content"
-                android:layout_height="18sp"
-                android:id="@+id/list_size_imageview_maps"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/list_size_textView_maps"
-                android:layout_margin="5sp" />
+                android:gravity="left|center_vertical">
 
-            <ImageView
-                android:src="@drawable/list_roomcount"
-                android:layout_width="wrap_content"
-                android:layout_height="18sp"
-                android:id="@+id/list_roomcount_imageview_maps"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
+                <ImageView
+                    android:src="@drawable/list_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18sp"
+                    android:id="@+id/list_size_imageview_maps"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/list_size_textView_maps"
+                    android:layout_margin="2sp" />
+
+                <ImageView
+                    android:src="@drawable/list_roomcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18sp"
+                    android:id="@+id/list_roomcount_imageview_maps"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/list_roomcount_textView_maps"
+                    android:layout_margin="2sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/icons2_linera_layout_maps"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/list_roomcount_textView_maps"
-                android:layout_margin="5sp" />
+                android:gravity="left|center_vertical">
 
-            <ImageView
-                android:src="@drawable/list_furniture"
-                android:layout_width="wrap_content"
-                android:layout_height="18sp"
-                android:id="@+id/list_furniture_imageview_maps"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
+                <ImageView
+                    android:src="@drawable/list_furniture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18sp"
+                    android:id="@+id/list_furniture_imageview_maps"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/maps_furniture_text"
+                    android:layout_margin="2sp" />
+
+                <ImageView
+                    android:src="@drawable/list_balcony"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18sp"
+                    android:id="@+id/maps_balcony_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/maps_balcony_text"
+                    android:layout_margin="2sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/maps_realestate_type"
+                    android:text="kijadó"
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="bolon ár"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:textStyle="normal"
+                    android:id="@+id/price_maps"
+                    android:textColor="#0066cc"
+                    android:gravity="right|center_vertical"
+                    android:layout_marginLeft="5sp"
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
 
         </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>

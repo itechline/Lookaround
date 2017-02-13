@@ -15,26 +15,6 @@
 
 
         <ImageView
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:id="@+id/kiemeles_listpic"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arany János utca"
-            android:id="@+id/item_realestate_adress2"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:fontFamily="sans-serif-light" />
-
-        <ImageView
             android:layout_width="150sp"
             android:layout_height="200sp"
             android:id="@+id/item_realestate_mainpic"
@@ -59,167 +39,255 @@
             android:layout_margin="40sp"
             android:visibility="visible" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="28.560.000 HUF"
-            android:textStyle="bold"
-            android:id="@+id/Price"
-            android:layout_alignBottom="@+id/item_realestate_mainpic"
-            android:layout_alignStart="@+id/item_realestate_adress2"
-            android:layout_margin="5sp"
-            android:background="#0066cc"
-            android:textColor="#ffffff"
-            android:padding="2sp"
-            android:fontFamily="sans-serif-medium"
-            android:focusableInTouchMode="false" />
-
-        <LinearLayout
-            android:id="@+id/icons_linera_layout"
-            android:orientation="horizontal"
-            android:layout_width="230sp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/Price"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_alignRight="@+id/relativeLayout3"
-            android:layout_alignEnd="@+id/relativeLayout3">
-
-            <ImageView
-                android:src="@drawable/list_size"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_size_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="100"
-                android:id="@+id/list_size_textView"
-                android:layout_margin="5sp"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-light" />
-
-            <ImageView
-                android:src="@drawable/list_roomcount"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_roomcount_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="3"
-                android:id="@+id/list_roomcount_textView"
-                android:layout_margin="5sp"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-light" />
-
-            <ImageView
-                android:src="@drawable/list_furniture"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_furniture_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <ImageView
-                android:src="@drawable/list_balcony"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_balcony_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-
-            <ImageView
-                android:src="@drawable/list_parking"
-                android:layout_width="wrap_content"
-                android:layout_height="16sp"
-                android:id="@+id/list_parking_imageview"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="2sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:id="@+id/kiemeles_listpic"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:id="@+id/linearLayout2"
-            android:layout_marginRight="5sp">
+            android:layout_alignParentBottom="true" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/item_realestate_mainpic">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:id="@+id/linearLayout2"
+                android:layout_margin="5sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1f2126"
+                    android:text="Budapest V. kerület, megbolonult vénasszonytól"
+                    android:id="@+id/item_realestate_adress1"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium" />
+
+                <CheckBox
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_realestate_isfavourite"
+                    android:button="@drawable/checkbox_fav_selector"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="5sp"
+                    android:gravity="right"
+                    android:layout_width="30sp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Budapest V. kerület"
-                android:id="@+id/item_realestate_adress1"
-                android:layout_gravity="center"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                android:layout_toLeftOf="@+id/item_realestate_isfavourite"
+                android:text="Arany János utca"
+                android:id="@+id/item_realestate_adress2"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/linearLayout2"
                 android:layout_toRightOf="@+id/item_realestate_mainpic"
                 android:layout_toEndOf="@+id/item_realestate_mainpic"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-medium" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_realestate_isfavourite"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:nestedScrollingEnabled="true"
-                android:button="@drawable/checkbox_fav_selector"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:layout_margin="5sp"
-                android:gravity="right" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/item_realestate_mainpic"
-            android:layout_toEndOf="@+id/item_realestate_mainpic"
-            android:layout_above="@+id/icons_linera_layout"
-            android:layout_below="@+id/item_realestate_adress2"
-            android:layout_marginTop="5sp"
-            android:layout_marginRight="5sp"
-            android:id="@+id/relativeLayout3">
+                android:fontFamily="sans-serif-light"
+                android:visibility="gone"/>
 
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="28,5 M Ft"
+                android:textStyle="normal"
+                android:id="@+id/Price"
+                android:layout_gravity="left"
+                android:layout_margin="5sp"
+                android:textColor="#0066cc"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="22sp"
+                android:focusableInTouchMode="false" />
+
+            <LinearLayout
+                android:id="@+id/icons_linera_layout"
+                android:orientation="horizontal"
+                android:layout_width="230sp"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ImageView
+                    android:src="@drawable/list_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp"
+                    android:id="@+id/list_size_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="100"
+                    android:id="@+id/list_size_textView"
+                    android:layout_margin="5sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="sans-serif-light" />
+
+                <ImageView
+                    android:src="@drawable/list_roomcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp"
+                    android:id="@+id/list_roomcount_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="3"
+                    android:id="@+id/list_roomcount_textView"
+                    android:layout_margin="5sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="sans-serif-light" />
+
+                <ImageView
+                    android:src="@drawable/list_furniture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp"
+                    android:id="@+id/list_furniture_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+
+                <ImageView
+                    android:src="@drawable/list_balcony"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp"
+                    android:id="@+id/list_balcony_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+
+                <ImageView
+                    android:src="@drawable/list_parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp"
+                    android:id="@+id/list_parking_imageview"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="2sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="5sp"
+                android:id="@+id/relativeLayout3"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:id="@+id/item_realestate_description"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:layout_below="@+id/item_realestate_adress2"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignLeft="@+id/item_realestate_adress2"
+                    android:layout_alignStart="@+id/item_realestate_adress2"
+                    android:fontFamily="sans-serif-light" />
+            </RelativeLayout>
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text=""
-                android:id="@+id/item_realestate_description"
-                android:layout_gravity="center_horizontal"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:layout_below="@+id/item_realestate_adress2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/item_realestate_adress2"
-                android:layout_alignStart="@+id/item_realestate_adress2"
-                android:fontFamily="sans-serif-light" />
-        </RelativeLayout>
+                android:layout_alignParentLeft="true"
+                android:id="@+id/item_realestate_dtail_table1"
+                android:layout_margin="5sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/item_roomcount_realestate_text"
+                    android:layout_column="1"
+                    android:text="@string/roomcount_realestate_item"
+                    android:padding="3sp"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/item_roomcount_realestate_value"
+                    android:gravity="right"
+                    android:padding="3sp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="#0066cc" />
+            </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/item_size_realestate_item_text"
+                        android:layout_column="1"
+                        android:text="@string/size_realestate_item"
+                        android:padding="3sp"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium" />
+                    <TextView
+                        android:id="@+id/item_size_realestate_item_value"
+                        android:gravity="right"
+                        android:padding="3sp"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#0066cc" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/item_furniture_realestate_text"
+                        android:layout_column="1"
+                        android:text="@string/has_furniture_realestate"
+                        android:padding="3sp"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium" />
+                    <TextView
+                        android:id="@+id/item_furniture_realestate_value"
+                        android:gravity="right"
+                        android:padding="3sp"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#0066cc"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/item_balcony_realestate_text"
+                        android:layout_column="1"
+                        android:text="@string/balcony_realestate"
+                        android:padding="3sp"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif-medium" />
+                    <TextView
+                        android:id="@+id/item_balcony_realestate_value"
+                        android:gravity="right"
+                        android:padding="3sp"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#0066cc" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 </LinearLayout>

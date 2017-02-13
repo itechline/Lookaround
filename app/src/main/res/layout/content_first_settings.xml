@@ -7,13 +7,13 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="150sp"
         android:src="@drawable/bonodom_logo"
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:id="@+id/first_settings_page_logo"
-        android:layout_margin="20sp" />
+        android:layout_margin="20sp"
+        android:layout_height="130sp" />
 
     <ViewFlipper
         android:id="@+id/viewFlipperFirstSettings"
@@ -24,23 +24,12 @@
 
     </ViewFlipper>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:id="@+id/first_settings_pic"
-        android:src="@drawable/main_house"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/reg_house"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY" />
-
     <LinearLayout
         android:id="@+id/progress_indicator_frststtng_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/first_settings_pic"
-        android:gravity="bottom|center_vertical|center_horizontal"
+        android:gravity="bottom|center_vertical|right"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:layout_marginBottom="10sp"

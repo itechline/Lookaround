@@ -51,6 +51,23 @@
             android:layout_below="@+id/linearLayout">
 
             <RelativeLayout
+                android:id="@+id/login_withgoogleplus_button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:layout_weight="1">
+                <ImageView
+                    android:src="@drawable/g_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView4"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="5sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/login_withfacebook_button_layout"
                 android:onClick="fb_login"
                 android:layout_width="wrap_content"
@@ -59,7 +76,7 @@
                 android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/face"
-                    android:layout_width="20sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fb_img"
                     android:scaleType="fitCenter"
@@ -68,22 +85,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/login_withgoogleplus_button_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15sp"
-                android:layout_weight="1">
-                <ImageView
-                    android:src="@drawable/g_plus"
-                    android:layout_width="20sp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView4"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:layout_margin="5sp" />
 
-            </RelativeLayout>
         </LinearLayout>
 
 
@@ -152,7 +154,7 @@
             android:text="@string/button_login"
             android:id="@+id/button3"
             android:onClick="sendLogin"
-            android:background="@drawable/colorbutton"
+            android:background="@drawable/gomb_kicsi"
             android:textColor="#ffffff"
             android:padding="5sp"
             android:textStyle="bold"
@@ -203,7 +205,7 @@
             android:text="@string/send"
             android:id="@+id/buttonsend"
             android:onClick="sendForgottenPass"
-            android:background="@drawable/colorbutton"
+            android:background="@drawable/gomb_kicsi"
             android:textColor="#ffffff"
             android:paddingRight="30sp"
             android:paddingLeft="30sp"

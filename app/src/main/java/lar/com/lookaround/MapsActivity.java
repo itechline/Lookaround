@@ -317,7 +317,7 @@ public class MapsActivity extends AppCompatActivity {
                 final TextView tvSize = (TextView) myContentsView.findViewById(R.id.list_size_textView_maps);
                 final TextView tvRooms = (TextView) myContentsView.findViewById(R.id.list_roomcount_textView_maps);
                 final TextView tvPrice = (TextView) myContentsView.findViewById(R.id.price_maps);
-                final TextView tvDesc = (TextView) myContentsView.findViewById(R.id.item_realestate_description_maps);
+                //final TextView tvDesc = (TextView) myContentsView.findViewById(R.id.item_realestate_description_maps);
                 final ImageView imageView = (ImageView) myContentsView.findViewById(R.id.item_realestate_mainpic_maps);
 
 
@@ -326,7 +326,7 @@ public class MapsActivity extends AppCompatActivity {
                 tvSize.setText("");
                 tvRooms.setText("");
                 tvPrice.setText("");
-                tvDesc.setText("");
+                //tvDesc.setText("");
                 if (imageView != null && imageView.getDrawable() != null && ((BitmapDrawable) imageView.getDrawable()).getBitmap() != null) {
                     ((BitmapDrawable) imageView.getDrawable()).getBitmap().recycle();
                 }
@@ -373,7 +373,7 @@ public class MapsActivity extends AppCompatActivity {
                                 tvPrice.setText(format + " Ft/hó");
                             }
 
-                            tvDesc.setText(obj.getString("ingatlan_rovidleiras"));
+                            //tvDesc.setText(obj.getString("ingatlan_rovidleiras"));
 
                             myContentsView.invalidate();
                             Log.d("MAPS_TRY ", "finished");

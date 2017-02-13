@@ -41,17 +41,12 @@
             <ImageView
                 android:src="@drawable/fenykepezo"
                 android:layout_width="wrap_content"
-                android:layout_height="40sp"
                 android:onClick="TakeImageFS"
                 android:id="@+id/profile_photo_cam"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:layout_margin="10sp"/>
-                <TextView
-                    android:id="@+id/takeimage_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/first_setting_takephoto"/>
+                android:layout_margin="10sp"
+                android:layout_height="35sp" />
             </LinearLayout>
 
             <View
@@ -69,17 +64,12 @@
             <ImageView
                 android:src="@drawable/feltoltes"
                 android:layout_width="wrap_content"
-                android:layout_height="40sp"
                 android:onClick="pickImageFS"
                 android:id="@+id/profile_photo_gallery"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:layout_margin="10sp"/>
-            <TextView
-                android:id="@+id/pickimage_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/first_setting_pickphoto"/>
+                android:layout_margin="10sp"
+                android:layout_height="35sp" />
         </LinearLayout>
         </LinearLayout>
 
@@ -87,10 +77,23 @@
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center_vertical|center_horizontal"
             android:layout_below="@+id/first_setting_profile_pic_layout"
             android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="130sp"
+                android:layout_height="40sp"
+                android:text="@string/button_finish"
+                android:id="@+id/textView6"
+                android:textColor="#ffffff"
+                android:background="@drawable/gomb_kicsi"
+                android:onClick="nextPageFirstSetting"
+                android:padding="3sp"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:gravity="center" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -98,22 +101,11 @@
                 android:text="@string/button_back"
                 android:id="@+id/textView5"
                 android:onClick="prewPageFirstSetting"
-                android:textColor="#0066cc"
+                android:textColor="#8c9397"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
-                android:gravity="center_vertical|right" />
+                android:gravity="center" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="25sp"
-                android:text="@string/button_finish"
-                android:id="@+id/textView6"
-                android:textColor="#0066cc"
-                android:onClick="nextPageFirstSetting"
-                android:padding="3sp"
-                android:layout_margin="5sp"
-                android:layout_weight="1"
-                android:gravity="left|center_vertical" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -121,10 +113,10 @@
     <RelativeLayout
         android:id="@+id/placeholder_layout5"
         android:layout_width="match_parent"
-        android:layout_height="150sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20sp"></RelativeLayout>
+        android:layout_margin="20sp"
+        android:layout_height="130sp"></RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/placeholder_layout6"

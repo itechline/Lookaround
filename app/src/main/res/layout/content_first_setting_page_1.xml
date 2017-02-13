@@ -32,29 +32,30 @@
             android:padding="2sp">
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="35sp"
             android:id="@+id/first_setting_city_edittext"
             android:hint="@string/first_setting_p1_hint"
             android:gravity="center_vertical|center_horizontal"
             android:textStyle="italic"
             android:singleLine="true"
             android:capitalize="sentences"
-            android:background="#ffffff" />
+            android:background="#ffffff"
+            android:layout_height="45sp" />
         </RelativeLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="25sp"
+            android:layout_width="130sp"
             android:text="@string/button_next"
             android:id="@+id/first_setting_next_button"
             android:layout_below="@+id/first_setting_city_edittext_layout"
             android:layout_centerHorizontal="true"
             android:onClick="nextPageFirstSetting"
-            android:textColor="#0066cc"
+            android:textColor="#ffffff"
+            android:background="@drawable/gomb_kicsi"
             android:layout_centerInParent="true"
             android:gravity="center_vertical|center_horizontal"
             android:padding="3sp"
-            android:layout_margin="20sp" />
+            android:layout_margin="20sp"
+            android:layout_height="40sp" />
 
 
     </RelativeLayout>
@@ -69,8 +70,8 @@
     <RelativeLayout
         android:id="@+id/placeholder_layout2"
         android:layout_width="match_parent"
-        android:layout_height="150sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20sp"></RelativeLayout>
+        android:layout_margin="20sp"
+        android:layout_height="130sp"></RelativeLayout>
 </RelativeLayout>

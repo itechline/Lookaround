@@ -9,6 +9,8 @@
     android:background="#f1f2f3">
     <!--tools:showIn="@layout/activity_main"-->
 
+
+
     <ScrollView
         android:id="@+id/Layout_Registration_Scroll"
         android:layout_width="wrap_content"
@@ -16,10 +18,39 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp">
 
+
         <RelativeLayout
         android:id="@+id/Layout_Registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroup1"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30sp"
+                android:layout_marginBottom="30sp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/individual"
+                    android:onClick="setIndividual"
+                    android:checked="true"
+                    android:id="@+id/radioButton2"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/estateagency"
+                    android:onClick="setEstateagency"
+                    android:id="@+id/radioButton"/>
+            </RadioGroup>
 
 
         <RelativeLayout
@@ -152,33 +183,7 @@
         </RelativeLayout>
 
 
-            <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioGroup1"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-                android:layout_marginTop="30sp"
-                android:layout_marginBottom="30sp"
-            >
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/individual"
-                android:onClick="setIndividual"
-                android:checked="true"
-                android:id="@+id/radioButton2"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/estateagency"
-                android:onClick="setEstateagency"
-                android:id="@+id/radioButton"/>
-        </RadioGroup>
 
             <LinearLayout
                 android:id="@+id/fszf_text_layout"
@@ -206,7 +211,7 @@
                     android:text="@string/registration"
                     android:id="@+id/registButton"
                     android:onClick="sendRegistration"
-                    android:background="@drawable/colorbutton"
+                    android:background="@drawable/gomb_kicsi"
                     android:textColor="#ffffff"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"

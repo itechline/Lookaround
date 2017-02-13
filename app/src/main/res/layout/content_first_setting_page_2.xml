@@ -32,24 +32,36 @@
             android:padding="2sp">
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="35sp"
             android:id="@+id/first_setting_phone_edittext"
             android:hint="@string/first_setting_p2_hint"
             android:gravity="center_vertical|center_horizontal"
             android:textStyle="italic"
             android:inputType="phone"
-            android:background="#ffffff"/>
+            android:background="#ffffff"
+            android:layout_height="45sp" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/layout_forbuttons_first_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_centerInParent="true"
             android:layout_below="@+id/first_setting_phone_edittext_layout"
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:layout_width="130sp"
+                android:text="@string/button_next"
+                android:id="@+id/first_setting_next_button"
+                android:textColor="#ffffff"
+                android:background="@drawable/gomb_kicsi"
+                android:onClick="nextPageFirstSetting"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="3sp"
+                android:layout_margin="5sp"
+                android:layout_height="40sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,20 +69,8 @@
                 android:text="@string/button_back"
                 android:onClick="prewPageFirstSetting"
                 android:id="@+id/first_setting_back_button"
-                android:textColor="#0066cc"
+                android:textColor="#8c9397"
                 android:layout_margin="5sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="25sp"
-                android:text="@string/button_next"
-                android:id="@+id/first_setting_next_button"
-                android:textColor="#0066cc"
-                android:onClick="nextPageFirstSetting"
-                android:gravity="center_vertical|center_horizontal"
-                android:padding="3sp"
-                android:layout_margin="5sp"
-            />
 
         </LinearLayout>
     </RelativeLayout>
@@ -78,10 +78,10 @@
     <RelativeLayout
         android:id="@+id/placeholer_layout3"
         android:layout_width="match_parent"
-        android:layout_height="150sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20sp"></RelativeLayout>
+        android:layout_margin="20sp"
+        android:layout_height="130sp"></RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/palceholder_layout4"
