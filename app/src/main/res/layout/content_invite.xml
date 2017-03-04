@@ -1,212 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#ededed">
+
     <ScrollView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent" >
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/invite_page_top_hint_text"
-        android:id="@+id/invite_smalltext"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10sp"
-        android:textAlignment="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/email_1_relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_below="@+id/invite_smalltext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20sp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/email"
-            android:id="@+id/email_1_textView"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/invite_smalltext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginBottom="20sp"
+                    android:text="@string/invite_page_top_hint_text"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <EditText
-            android:layout_width="200sp"
-            android:layout_height="fill_parent"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email1"
-            android:layout_alignParentEnd="true"
-            android:background="#ffffff"
-            android:layout_margin="10sp"
-            android:paddingLeft="5sp"
-            android:textSize="13sp" />
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/email1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-    <RelativeLayout
-        android:id="@+id/email_2_relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_below="@+id/email_1_relativelayout"
-        android:layout_centerHorizontal="true"
-        >
+                <EditText
+                    android:id="@+id/email2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/email"
-            android:id="@+id/email_2_textView"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/email3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-        <EditText
-            android:layout_width="200sp"
-            android:layout_height="fill_parent"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email2"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="10sp"
-            android:background="#ffffff"
-            android:paddingLeft="5sp"
-            android:textSize="13sp" />
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/email4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_below="@+id/email_2_relativelayout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/email_3_relativelayout">
+                <EditText
+                    android:id="@+id/email5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/email"
-            android:id="@+id/email_3_textView"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="200sp"
-            android:layout_height="fill_parent"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email3"
-            android:layout_alignParentEnd="true"
-            android:background="#ffffff"
-            android:layout_margin="10sp"
-            android:paddingLeft="5sp"
-            android:textSize="13sp" />
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/email6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5sp"
+                    android:textSize="13sp" />
 
-    <RelativeLayout
-        android:id="@+id/email_4_relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_below="@+id/email_3_relativelayout"
-        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/email"
-            android:id="@+id/email_4_textView"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            </LinearLayout>
 
-        <EditText
-            android:layout_width="200sp"
-            android:layout_height="fill_parent"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email4"
-            android:layout_alignParentEnd="true"
-            android:background="#ffffff"
-            android:layout_margin="10sp"
-            android:paddingLeft="5sp"
-            android:textSize="13sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/email_5_relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_below="@+id/email_4_relativelayout"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/email"
-            android:id="@+id/email_5_textView"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10sp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="200sp"
-            android:layout_height="fill_parent"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email5"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="true"
-            android:background="#ffffff"
-            android:layout_margin="10sp"
-            android:paddingLeft="5sp"
-            android:textSize="13sp" />
-    </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/invite_buttons_layout"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:layout_marginTop="370sp">
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Küld"
             android:id="@+id/intive_send_button"
-            android:textColor="#ffffff"
-            android:background="@drawable/colorbutton"
-            android:textSize="16sp"
+            android:layout_width="130sp"
+            android:layout_height="40sp"
             android:layout_margin="5sp"
-            android:paddingTop="3sp"
+            android:background="@drawable/gomb_kicsi"
+            android:gravity="center"
             android:paddingBottom="3sp"
+            android:paddingLeft="10sp"
             android:paddingRight="10sp"
-            android:paddingLeft="10sp" />
+            android:paddingTop="3sp"
+            android:text="Küld"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
     </LinearLayout>
 
-
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+</LinearLayout>
