@@ -44,11 +44,11 @@
             android:layout_centerInParent="true">
         <TextView
             android:layout_width="70sp"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Mindegy"
             android:id="@+id/estate_type_textview"
-            android:background="@drawable/colorbutton"
+            android:background="@drawable/gomb_kicsi"
             android:textColor="#ffffff"
             android:padding="2sp"
             android:onClick="adTypeChange"
@@ -57,7 +57,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="20sp"
             android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:textStyle="italic"
             android:fontFamily="sans-serif" />
 
